@@ -12,7 +12,7 @@ export default class SignUp extends Component {
   render(){
     return(
       <div className='login-form'> 
-        <Grid style={{ height: '100%' }} verticalAlign='middle'>
+        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 800 }}>
             
             <Form size='large'>
@@ -59,7 +59,7 @@ export default class SignUp extends Component {
                     <Input placeholder='Contact Number'/>
                   </Form.Field>
                 </Form.Group>
-                <Button style={{marginLeft: 300}} color='teal'>
+                <Button color='teal'>
                   Sign Up
                 </Button>
               </Segment>
