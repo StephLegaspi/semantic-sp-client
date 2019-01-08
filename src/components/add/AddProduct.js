@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid,  Segment, Input, Radio } from 'semantic-ui-react'
+import { Button, Form, Grid,  Segment, Input, Radio, Checkbox } from 'semantic-ui-react'
 import './index.css';
 
 export default class SignUp extends Component {
@@ -13,7 +13,7 @@ export default class SignUp extends Component {
     return(
       <div className='login-form'> 
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 800 }}>
+          <Grid.Column style={{ maxWidth: 500 }}>
             
             <Form size='large'>
               <Segment stacked>
@@ -23,11 +23,12 @@ export default class SignUp extends Component {
                     <label>Product Name</label>
                     <Input placeholder='Product Name'/>
                   </Form.Field>
-                  <Form.Field>
-                    <label>Price</label>
-                    <Input placeholder='Price'/>
-                  </Form.Field>
                 </Form.Group>
+
+                <Form.Field>
+                  <label>Price</label>
+                  <Input placeholder='Price'/>
+                </Form.Field>
 
                 <Form.Group inline>
                   <label>Available for: </label>
@@ -47,6 +48,12 @@ export default class SignUp extends Component {
                   />
                 </Form.Group>
 
+                <Form.Group inline>
+                  <label>Display Product </label>
+                  <Form.Field>
+                    <Checkbox toggle />
+                  </Form.Field>
+                </Form.Group>
                 
 
                 <Button color='teal'>
