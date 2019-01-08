@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid,  Segment, Input } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment, Input } from 'semantic-ui-react'
 import './index.css';
 
-export default class SignUp extends Component {
+export default class AddAdmin extends Component {
 
   constructor() {
     super();
@@ -17,60 +17,50 @@ export default class SignUp extends Component {
             
             <Form size='large'>
               <Segment stacked>
-
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>First name</label>
                     <Input placeholder='First name'/>
                   </Form.Field>
+
                   <Form.Field>
                     <label>Middle name</label>
                     <Input placeholder='Middle name'/>
                   </Form.Field>
+
                   <Form.Field>
                    <label>Last name</label>
                     <Input placeholder='Last name'/>
                   </Form.Field>
                 </Form.Group>
-
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Email Address</label>
                     <Input placeholder='Email Address'/>
                   </Form.Field>
+
                   <Form.Field>
                     <label>Contact Number</label>
                     <Input placeholder='Contact Number'/>
                   </Form.Field>
-                </Form.Group >
-
+                </Form.Group>
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Password</label>
                     <Input placeholder='Password'/>
                   </Form.Field>
+
                   <Form.Field>
                     <label>Repeat Password</label>
                     <Input placeholder='Repeat Password'/>
                   </Form.Field>
                 </Form.Group>
-
-                <Form.Group widths='equal'>
-                  <Form.Field>
-                      <label>Address</label>
-                      <Input placeholder='Address'/>
-                  </Form.Field>
-                  <Form.Field style={{maxWidth:'120px'}}>
-                      <label>Zip Code</label>
-                      <Input placeholder='Zip Code'/>
-                  </Form.Field>
-                </Form.Group>
-
                 <Button color='teal'>
-                  Sign Up
+                  Add
                 </Button>
               </Segment>
             </Form>
+            
           </Grid.Column>
         </Grid>
       </div>
