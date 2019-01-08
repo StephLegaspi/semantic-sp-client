@@ -13,7 +13,7 @@ export default class AddProduct extends Component {
     return(
       <div className='login-form'> 
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 500 }}>
+          <Grid.Column style={{ maxWidth: 600 }}>
             
             <Form size='large'>
               <Segment stacked>
@@ -23,12 +23,16 @@ export default class AddProduct extends Component {
                     <label>Product Name</label>
                     <Input placeholder='Product Name'/>
                   </Form.Field>
+                  <Form.Field>
+                    <label>Price</label>
+                    <Input placeholder='Price'/>
+                  </Form.Field>
                 </Form.Group>
 
                 <Form.Field>
-                  <label>Price</label>
-                  <Input placeholder='Price'/>
-                </Form.Field>
+                    <label>Description</label>
+                    <Input placeholder='Description'/>
+                  </Form.Field>
 
                 <Form.Group inline>
                   <label>Available for: </label>
@@ -54,6 +58,10 @@ export default class AddProduct extends Component {
                     <Checkbox toggle />
                   </Form.Field>
                 </Form.Group>
+                
+                <Form.Field>
+                  <input type="file" id="hidden-new-file" style={{Display: "none"}} />
+                </Form.Field>      
                 
 
                 <Button color='teal'>
