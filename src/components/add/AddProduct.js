@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid,  Segment, Input, Radio, Checkbox } from 'semantic-ui-react'
 import './index.css';
 
-export default class SignUp extends Component {
+export default class AddProduct extends Component {
 
   state = {}
 
