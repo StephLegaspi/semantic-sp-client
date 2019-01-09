@@ -77,21 +77,6 @@ export default class AddProduct extends Component {
                     <Checkbox toggle />
                   </Form.Field>
                 </Form.Group>
-                
-                 
-
-            
-
-
-
-
-                
-                 
-                
-                  
-                  
-             
-              
 
 
                 <Button color='teal'>
