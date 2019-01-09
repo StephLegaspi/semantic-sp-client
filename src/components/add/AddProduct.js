@@ -45,13 +45,14 @@ export default class AddProduct extends Component {
                   <label>Product Image: </label>
                   <Form.Field className="relative">
                       <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
-                      <div className="absolute2">
-                          <label for="embedpollfileinput" class="ui button" style={{height: '37px', width:'104px', paddingTop: '5px'}}>    
-                             Upload Image
+                      <div className="absolute2"> 
+                          <label for="embedpollfileinput" class="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
+                            <i class="ui upload icon"></i>   
+                             Upload
                           </label>
                       </div>
                   </Form.Field>
-                </Form.Group>  
+                </Form.Group>   
 
                 <Form.Group inline>
                   <label>Available for: </label>

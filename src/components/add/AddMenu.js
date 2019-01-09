@@ -13,8 +13,8 @@ export default class AddMenu extends Component {
 
   render(){
     return(
-      <div className='login-form'> 
-        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+      <div style={{marginTop: '5%'}}> 
+        <Grid textAlign='center' style={{ height: '100%'}} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 800 }}>
             
             <Form size='large'>
