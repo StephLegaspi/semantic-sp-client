@@ -46,7 +46,7 @@ export default class AddProduct extends Component {
                   <Form.Field className="relative">
                       <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
                       <div className="absolute2">
-                          <label for="embedpollfileinput" class="ui button" style={{height: '45px', width:'104px'}}>    
+                          <label for="embedpollfileinput" class="ui button" style={{height: '37px', width:'104px', paddingTop: '5px'}}>    
                              Upload Image
                           </label>
                       </div>
@@ -72,7 +72,7 @@ export default class AddProduct extends Component {
                 </Form.Group>
 
                 <Form.Group inline>
-                  <label>Display Product </label>
+                  <label>Display Product: </label>
                   <Form.Field>
                     <Checkbox toggle />
                   </Form.Field>
