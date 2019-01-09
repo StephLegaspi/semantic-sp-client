@@ -62,7 +62,7 @@ export default class AddRequest extends Component {
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Event Type</label>
-                    <Input placeholder='Event Type'/>
+                    <Dropdown placeholder='Event Type' search selection options={this.stateOptions} />
                   </Form.Field>
                   <Form.Field>
                     <label>Event Date</label>
