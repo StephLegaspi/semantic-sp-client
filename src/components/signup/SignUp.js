@@ -55,12 +55,12 @@ export default class SignUp extends Component {
                   </Form.Field>
                 </Form.Group>
 
-                <Form.Group widths='equal'>
-                  <Form.Field>
+                <Form.Group>
+                  <Form.Field width={15}>
                       <label>Address</label>
                       <Input placeholder='Address'/>
                   </Form.Field>
-                  <Form.Field style={{maxWidth:'120px'}}>
+                  <Form.Field width={3}>
                       <label>Zip Code</label>
                       <Input placeholder='Zip Code'/>
                   </Form.Field>
