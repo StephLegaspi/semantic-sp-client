@@ -8,12 +8,13 @@ import AddProduct from './components/add/AddProduct.js';
 import AddMotif from './components/add/AddMotif.js';
 import AddMenu from './components/add/AddMenu.js';
 import AddRequest from './components/add/AddRequest.js';
+import AddOrder from './components/add/AddOrder.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <AddRequest/>
+        <AddOrder/>
       </div>
     );
   }
