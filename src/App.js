@@ -7,12 +7,13 @@ import AddAdmin from './components/add/AddAdmin.js';
 import AddProduct from './components/add/AddProduct.js';
 import AddMotif from './components/add/AddMotif.js';
 import AddMenu from './components/add/AddMenu.js';
+import AddRequest from './components/add/AddRequest.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <AddProduct/>
+        <AddRequest/>
       </div>
     );
   }
