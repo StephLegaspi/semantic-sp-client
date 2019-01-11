@@ -13,6 +13,7 @@ import AddOrder from './components/add/AddOrder.js';
 
 import ViewLogs from './components/view/ViewLogs.js';
 import ViewOrders from './components/view/ViewOrders.js';
+import sampleview from './components/view/sampleview.js';
 
 class App extends Component {
   render() {

@@ -89,11 +89,10 @@ class ViewOrders extends Component {
 				        <Table.HeaderCell style={{width: '5%'}}>Orders</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Delivery Address</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Zip Code</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '10%'}}>Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Order Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Items</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '10%'}}>Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
 				    </Table.Header>
@@ -200,11 +199,6 @@ class ViewOrders extends Component {
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
-							  <i class="large edit icon"></i>
-							</Button>
-				        </Table.Cell>
 				      </Table.Row>
 
 				      <Table.Row>
@@ -308,11 +302,6 @@ class ViewOrders extends Component {
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
-							  <i class="large edit icon"></i>
-							</Button>
-				        </Table.Cell>
 				      </Table.Row>
 
 				      <Table.Row>
@@ -414,11 +403,6 @@ class ViewOrders extends Component {
 				        <Table.Cell textAlign='center'>
 				        	<Button id='delete_button'>
 							  <i class="trash large alternate icon"></i>
-							</Button>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
-							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
 				      </Table.Row>    
