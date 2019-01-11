@@ -28,3 +28,51 @@
 	padding-left: 8px;
 	padding-top: 4px;
 }
+
+#modal_button{
+	background-color: red;
+	color: white;
+	margin-top: 4%;
+	margin-left: 19%;
+	height: 28px;
+	width: 50px;
+	padding-left: 8px;
+	padding-top: 7px;
+}
+
+#modal_button_order{
+	background-color: red;
+	color: white;
+	margin-top: 4%;
+	margin-left: 5%;
+	height: 28px;
+	width: 50px;
+	padding-left: 8px;
+	padding-top: 7px;
+}
+
+.searchModal{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+
+.searchModal .multivalued{
+	position: fixed;
+	height: 50%;
+	width: 60%;
+	top: 25%;
+	left: 20%;
+	overflow-y: scroll;
+}
+
+.searchModal .close{
+	position: fixed;
+	width: 10%;
+	top: 80%;
+	left: 45%;
+}
