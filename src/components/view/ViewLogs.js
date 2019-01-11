@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Icon, Label, Menu, Table, Input, Select, Button } from 'semantic-ui-react'
+import { Icon, Menu, Table, Input, Select, Button } from 'semantic-ui-react'
 
 
 import './index.css';
 
-class SearchBillCommittee extends Component {
+class ViewLogs extends Component {
 	constructor(props){
 		super(props);
 		
@@ -108,4 +108,4 @@ class SearchBillCommittee extends Component {
 
 }
 
-export default SearchBillCommittee;
+export default ViewLogs;

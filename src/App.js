@@ -12,12 +12,13 @@ import AddRequest from './components/add/AddRequest.js';
 import AddOrder from './components/add/AddOrder.js';
 
 import ViewLogs from './components/view/ViewLogs.js';
+import ViewOrders from './components/view/ViewOrders.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <ViewLogs/>
+        <ViewOrders/>
       </div>
     );
   }
