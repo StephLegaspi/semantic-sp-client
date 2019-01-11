@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //user-defined
 import Login from './components/login/Login.js';
+
 import SignUp from './components/add/AddCustomer.js';
 import FixedMenu from './components/homepage/FixedMenu.js';
 import AddAdmin from './components/add/AddAdmin.js';
@@ -10,11 +11,13 @@ import AddMenu from './components/add/AddMenu.js';
 import AddRequest from './components/add/AddRequest.js';
 import AddOrder from './components/add/AddOrder.js';
 
+import ViewLogs from './components/view/ViewLogs.js';
+
 class App extends Component {
   render() {
     return (
       <div>
-        <SignUp/>
+        <ViewLogs/>
       </div>
     );
   }
