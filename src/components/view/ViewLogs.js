@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Icon, Menu, Table, Input, Select, Button } from 'semantic-ui-react'
 
 
-import './index.css';
+import './assets/index.css';
 
 class ViewLogs extends Component {
 	constructor(props){

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 
-
-import './index.css';
+import './assets/index.css';
 
 class CustomerInfo extends Component {
 	constructor(props){
@@ -26,9 +25,9 @@ class CustomerInfo extends Component {
 		return (
 			<div>
 				<Button id= 'modal_button' onClick={this.onModal}> View</Button>
-					        {this.state.modal && (<div className='searchModal'>
+					        {this.state.modal && (<div className='custom_modal'>
 								<div>
-								<div className="multivalued">
+								<div className="open">
 								<Table celled>
 							    <Table.Header>
 							      <Table.Row>

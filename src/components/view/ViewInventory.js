@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header, Dropdown } from 'semantic-ui-react'
-import CustomerInfo from './CustomerInfo.js'
-import OrderInfo from './OrderInfo.js'
+import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header } from 'semantic-ui-react'
+import ProductInfo from './ProductInfo.js'
 
 import './assets/index.css';
 
-class ViewOrders extends Component {
+class ViewInventory extends Component {
 	constructor(props){
 		super(props);
 
@@ -17,38 +16,31 @@ class ViewOrders extends Component {
 		  { key: 'customer_name', text: 'Customer Name', value: 'customer_name' },
 		  { key: 'status', text: 'Status', value: 'status' }
 		]
-
-		this.stateOptions = [ { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
-
 	}
 
 	render() {
 		return (
 			<div>
 				<div style={{marginTop: '10%', textAlign: 'center'}}>
-					<Input style={{width: '40%'}} type='text' placeholder='Search by: ' action>
+					<Input style={{width: '40%'}} type='text' placeholder='Search product name.. ' action>
 					    <input />
-					    <Select compact options={this.options} defaultValue='customer_name' />
 					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
 								  <i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
 						</label>
 					</Input>
 				</div>
-				<div className='table_div_order'>
+				<div className='table_div'>
 					
 					
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>
 				        <Table.HeaderCell style={{width: '5%'}}>ID</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Customer Information</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Orders</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '20%'}}>Delivery Address</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Zip Code</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '10%'}}>Order Timestamp</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '10%'}}>Total Items</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '10%'}}>Status</Table.HeaderCell>
+				      	<Table.HeaderCell style={{width: '5%'}}>Product Information</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '20%'}}>Product Name</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '10%'}}>Total Quantity</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '10%'}}>No. of Remaining Items</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '20%'}}>Date of Stock Renewal</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -58,19 +50,12 @@ class ViewOrders extends Component {
 				      <Table.Row>
 				        <Table.Cell>cellll</Table.Cell>
 				        <Table.Cell>
-					       <CustomerInfo/>
+					       <ProductInfo/>
 						</Table.Cell>
-						<Table.Cell>
-					       <OrderInfo/>
-						</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<Button id='delete_button'>
 							  <i class="trash large alternate icon"></i>
@@ -84,21 +69,14 @@ class ViewOrders extends Component {
 				      </Table.Row>
 
 				      <Table.Row>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>cellll</Table.Cell>
 				        <Table.Cell>
-					        <CustomerInfo/>
+					       <ProductInfo/>
 						</Table.Cell>
-						<Table.Cell>
-					       <OrderInfo/>
-						</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<Button id='delete_button'>
 							  <i class="trash large alternate icon"></i>
@@ -112,21 +90,14 @@ class ViewOrders extends Component {
 				      </Table.Row>
 
 				      <Table.Row>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>cellll</Table.Cell>
 				        <Table.Cell>
-					        <CustomerInfo/>
+					       <ProductInfo/>
 						</Table.Cell>
-				        <Table.Cell>
-					        <OrderInfo/>
-						</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
+						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<Button id='delete_button'>
 							  <i class="trash large alternate icon"></i>
@@ -166,4 +137,4 @@ class ViewOrders extends Component {
 
 }
 
-export default ViewOrders;
+export default ViewInventory;

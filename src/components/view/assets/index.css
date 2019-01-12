@@ -51,7 +51,7 @@
 	padding-top: 7px;
 }
 
-.searchModal{
+.custom_modal{
 	position: fixed;
 	height: 100%;
 	width: 100%;
@@ -61,7 +61,7 @@
 }
 
 
-.searchModal .multivalued{
+.custom_modal .open{
 	position: fixed;
 	height: 50%;
 	width: 60%;
@@ -70,7 +70,7 @@
 	overflow-y: scroll;
 }
 
-.searchModal .close{
+.custom_modal .close{
 	position: fixed;
 	width: 10%;
 	top: 80%;
