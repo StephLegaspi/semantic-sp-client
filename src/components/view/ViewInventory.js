@@ -33,24 +33,22 @@ class ViewInventory extends Component {
 				</div>
 				
 				
-  					<div class="ui fluid segment" id='upper_div1'>
-      					<label> Products available for: </label>
-      					<Button id='upper_button'> Sale</Button>
-      					<Button id='upper_button'> Rent</Button>
-      				</div>
+  				<div class="ui fluid segment" id='upper_div1'>
+      				<label> Products available for: </label>
+      				<Button id='upper_button'> Sale</Button>
+      				<Button id='upper_button'> Rent</Button>
+      			</div>
 
-      				<div class="ui fluid segment" id='upper_div2'>  
-						    <label>
-						      Product Category: {' '}
-						      <Dropdown
-						        inline
-						        options={this.stateOptions}
-						        defaultValue={this.stateOptions[0].value}
-						      />
-						    </label>
-      				</div>
-      			
-
+      			<div class="ui fluid segment" id='upper_div2'>  
+					<label>
+					  Product Category: {' '}
+					  <Dropdown
+					    inline
+					    options={this.stateOptions}
+					    defaultValue={this.stateOptions[0].value}
+					  />
+					</label>
+      			</div>
 
 				<div className='table_div'>
 				<Table celled>
