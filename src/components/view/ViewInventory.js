@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header } from 'semantic-ui-react'
+import { Icon, Menu, Table, Input, Button, Header, Dropdown } from 'semantic-ui-react'
 import ProductInfo from './ProductInfo.js'
 
 import './assets/index.css';
@@ -16,6 +16,8 @@ class ViewInventory extends Component {
 		  { key: 'customer_name', text: 'Customer Name', value: 'customer_name' },
 		  { key: 'status', text: 'Status', value: 'status' }
 		]
+
+		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
 	render() {
@@ -25,13 +27,32 @@ class ViewInventory extends Component {
 					<Input style={{width: '40%'}} type='text' placeholder='Search product name.. ' action>
 					    <input />
 					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-								  <i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
+							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
 						</label>
 					</Input>
 				</div>
+				
+				
+  					<div class="ui fluid segment" id='upper_div1'>
+      					<label> Products available for: </label>
+      					<Button id='upper_button'> Sale</Button>
+      					<Button id='upper_button'> Rent</Button>
+      				</div>
+
+      				<div class="ui fluid segment" id='upper_div2'>  
+						    <label>
+						      Product Category: {' '}
+						      <Dropdown
+						        inline
+						        options={this.stateOptions}
+						        defaultValue={this.stateOptions[0].value}
+						      />
+						    </label>
+      				</div>
+      			
+
+
 				<div className='table_div'>
-					
-					
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>
