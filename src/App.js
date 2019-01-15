@@ -15,12 +15,13 @@ import ViewLogs from './components/view/ViewLogs.js';
 import ViewOrders from './components/view/ViewOrders.js';
 import ViewInventory from './components/view/ViewInventory.js';
 import ViewOrderRental from './components/view/ViewOrderRental.js';
+import ViewShoppingCart from './components/view/ViewShoppingCart.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <ViewInventory/>
+        <ViewShoppingCart/>
       </div>
     );
   }
