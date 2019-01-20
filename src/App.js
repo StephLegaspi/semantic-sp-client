@@ -4,6 +4,8 @@ import Login from './components/login/Login.js';
 
 import SignUp from './components/add/AddCustomer.js';
 import FixedMenu from './components/homepage/FixedMenu.js';
+import Contact from './components/contact/Contact.js';
+
 import AddAdmin from './components/add/AddAdmin.js';
 import AddProduct from './components/add/AddProduct.js';
 import AddMotif from './components/add/AddMotif.js';
@@ -22,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ViewRequests/>
+        <Contact/>
       </div>
     );
   }
