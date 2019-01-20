@@ -32,7 +32,7 @@ class ViewOrders extends Component {
 
 				<div class="ui fluid segment" id='upper_div3'>
       				<label>
-					  Order Status: {' '}
+					  Delivery Status: {' '}
 					  <Dropdown
 					    inline
 					    options={this.stateOptions}
@@ -53,7 +53,7 @@ class ViewOrders extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Order Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Items</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '10%'}}>Status</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
