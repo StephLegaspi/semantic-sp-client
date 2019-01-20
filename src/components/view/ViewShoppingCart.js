@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select, Button, Image, Header } from 'semantic-ui-react'
+import { Icon, Table, Button, Image, Header, Dropdown, Card } from 'semantic-ui-react'
 
 import img_tree from './tree.jpg'
-
 import './assets/index.css';
 
 class ViewShoppingCart extends Component {
   constructor(props){
     super(props);
-    
-    this.options = [
-      { key: 'user_ID', text: 'User ID', value: 'user_ID' },
-      { key: 'timestamp', text: 'Timestamp', value: 'timestamp' },
-    ]
+
+    this.state = {}
+  
+    this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
   }
 
 
   render() {
     return (
       <div>
-        <div className='table_div'>
+        <div className='table_div_cart'>
         <Table singleLine>
           <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Image</Table.HeaderCell>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Color</Table.HeaderCell>
-              <Table.HeaderCell>Quantity</Table.HeaderCell>
-              <Table.HeaderCell>Price</Table.HeaderCell>
+            <Table.Row >
+              <Table.HeaderCell id='header_color'>Product Image</Table.HeaderCell>
+              <Table.HeaderCell id='header_color'>Name</Table.HeaderCell>
+              <Table.HeaderCell id='header_color'>Color</Table.HeaderCell>
+              <Table.HeaderCell id='header_color'>Quantity</Table.HeaderCell>
+              <Table.HeaderCell id='header_color'>Price</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -39,9 +37,11 @@ class ViewShoppingCart extends Component {
                 </Header>
               </Table.Cell>
               <Table.Cell>John Lilki</Table.Cell>
-              <Table.Cell>September 14, 2013</Table.Cell>
-              <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-              <Table.Cell>No</Table.Cell>
+              <Table.Cell>
+                <Dropdown placeholder='Color' search selection options={this.stateOptions} />
+              </Table.Cell>
+              <Table.Cell>Yes</Table.Cell>
+              <Table.Cell>Yes</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
@@ -50,7 +50,9 @@ class ViewShoppingCart extends Component {
                 </Header>
               </Table.Cell>
               <Table.Cell>Jamie Harington</Table.Cell>
-              <Table.Cell>January 11, 2014</Table.Cell>
+              <Table.Cell>
+                <Dropdown placeholder='Color' search selection options={this.stateOptions} />
+              </Table.Cell>
               <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
               <Table.Cell>Yes</Table.Cell>
             </Table.Row>
@@ -61,12 +63,28 @@ class ViewShoppingCart extends Component {
                 </Header>
               </Table.Cell>
               <Table.Cell>Jill Lewis</Table.Cell>
-              <Table.Cell>May 11, 2014</Table.Cell>
+              <Table.Cell>
+                <Dropdown placeholder='Color' search selection options={this.stateOptions} />
+              </Table.Cell>
               <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
               <Table.Cell>Yes</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
+
+        <Card id='order_summary'>
+          <Card.Content>
+            <Card.Header>ORDER SUMMARY</Card.Header>
+            <Card.Description>Total number of items: </Card.Description>
+            <Card.Description>Total price: </Card.Description>
+
+            <button class="ui labeled icon button" id='checkout_button'>
+              <i class="cart icon"></i>
+              Checkout
+            </button>
+          </Card.Content>
+        </Card>
+
         </div>
       </div>
     );

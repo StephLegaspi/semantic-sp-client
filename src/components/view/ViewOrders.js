@@ -13,12 +13,8 @@ class ViewOrders extends Component {
 			
 		}
 		
-		this.options = [
-		  { key: 'customer_name', text: 'Customer Name', value: 'customer_name' },
-		  { key: 'status', text: 'Status', value: 'status' }
-		]
 
-		this.stateOptions = [ { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 
 	}
 
@@ -26,17 +22,26 @@ class ViewOrders extends Component {
 		return (
 			<div>
 				<div style={{marginTop: '10%', textAlign: 'center'}}>
-					<Input style={{width: '40%'}} type='text' placeholder='Search by: ' action>
+					<Input style={{width: '40%'}} type='text' placeholder='Search customer name.. ' action>
 					    <input />
-					    <Select compact options={this.options} defaultValue='customer_name' />
 					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-								  <i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
+							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
 						</label>
 					</Input>
 				</div>
+
+				<div class="ui fluid segment" id='upper_div3'>
+      				<label>
+					  Order Status: {' '}
+					  <Dropdown
+					    inline
+					    options={this.stateOptions}
+					    defaultValue='all'
+					  />
+					</label>
+      			</div>
+
 				<div className='table_div_order'>
-					
-					
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>
