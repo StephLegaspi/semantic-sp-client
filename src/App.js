@@ -19,12 +19,13 @@ import ViewInventory from './components/view/ViewInventory.js';
 import ViewOrderRental from './components/view/ViewOrderRental.js';
 import ViewShoppingCart from './components/view/ViewShoppingCart.js';
 import ViewRequests from './components/view/ViewRequests.js';
+import ViewProducts from './components/view/ViewProducts.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Contact/>
+        <ViewProducts/>
       </div>
     );
   }

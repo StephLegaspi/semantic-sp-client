@@ -93,7 +93,11 @@
 	left: 45%;
 }
 
-
+#search-bar{
+	text-align: center;
+	margin-top: 10%;
+	
+}
 
 #upper_div1 {
 	height: 46px;
@@ -111,6 +115,14 @@
 	float: left;
 	position: relative;
 	padding-top: 13px;
+}
+
+#add-button{
+	margin-top: 2.8%;
+	margin-left: 2%;
+	float: left;
+	position: relative;
+	padding-top: 4px;
 }
 
 #upper_div3{
