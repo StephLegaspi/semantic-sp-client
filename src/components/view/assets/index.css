@@ -113,6 +113,16 @@
 	padding-top: 13px;
 }
 
+#upper_div3{
+	height: 46px;
+	width: 17%;
+	margin-top: 3%;
+	margin-left: 5%;
+	float: left;
+	position: relative;
+	padding-top: 13px;
+}
+
 #upper_button{
 	background-color: red;
 	color: white;
