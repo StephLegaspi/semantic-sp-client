@@ -13,10 +13,6 @@ class ViewOrders extends Component {
 			
 		}
 		
-		this.options = [
-		  { key: 'customer_name', text: 'Customer Name', value: 'customer_name' },
-		  { key: 'status', text: 'Status', value: 'status' }
-		]
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 
