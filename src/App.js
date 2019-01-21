@@ -21,12 +21,13 @@ import ViewShoppingCart from './components/view/ViewShoppingCart.js';
 import ViewRequests from './components/view/ViewRequests.js';
 import ViewProducts from './components/view/ViewProducts.js';
 import ViewUsers from './components/view/ViewUsers.js';
+import ViewShop from './components/view/ViewShop.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <ViewInventory/>
+        <ViewShop/>
       </div>
     );
   }

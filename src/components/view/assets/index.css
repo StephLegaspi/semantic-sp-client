@@ -62,14 +62,6 @@
 	padding-top: 13px;
 }
 
-#add-button{
-	margin-top: 2.8%;
-	margin-left: 2%;
-	float: left;
-	position: relative;
-	padding-top: 4px;
-}
-
 #upper-div3{
 	height: 46px;
 	width: 20%;
@@ -79,6 +71,24 @@
 	position: relative;
 	padding-top: 13px;
 }
+
+#upper-div4 {
+	height: 46px;
+	width: 20%;
+	margin-top: 3%;
+	margin-left: 10%;
+	float: left;
+	padding-top: 13px;
+}
+
+#add-button{
+	margin-top: 2.8%;
+	margin-left: 2%;
+	float: left;
+	position: relative;
+	padding-top: 4px;
+}
+
 
 #upper-button{
 	background-color: red;
@@ -163,9 +173,31 @@
 	margin-top: 1%;
 	margin-left: 10%;
 	width: 90%;
-	overflow-y: scroll;
 }
 
 #card{
 	width: 20%;
+}
+
+
+#bar{
+	background-color: #0000ff;
+	height: 100px;
+	position: relative;
+}
+
+#search-bar2{
+	float: left;
+	text-align: center;
+	margin-top: 2.5%;
+	position: absolute;
+	margin-left: 25%;
+}
+
+#cart-button{
+	margin-top: 1.8%;
+	margin-left: 64%;
+	float: left;
+	position: absolute;
+	padding-top: 4px;
 }
