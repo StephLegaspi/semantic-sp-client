@@ -24,8 +24,8 @@ class ProductInfo extends Component {
 	render() {
 		return (
 			<div>
-				<Button id= 'modal_button' onClick={this.onModal}> View</Button>
-					        {this.state.modal && (<div className='custom_modal'>
+				<Button id= 'modal-button' onClick={this.onModal}> View</Button>
+					        {this.state.modal && (<div className='custom-modal'>
 								<div>
 								<div className="open">
 								<Table celled>

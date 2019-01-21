@@ -18,7 +18,7 @@ class ViewLogs extends Component {
 	render() {
 		return (
 			<div>
-				<div style={{marginTop: '10%', textAlign: 'center'}}>
+				<div id='search-bar'>
 					<Input style={{width: '40%'}} type='text' placeholder='Search by: ' action>
 					    <input />
 					    <Select compact options={this.options} defaultValue='user_ID' />
@@ -28,9 +28,8 @@ class ViewLogs extends Component {
 						</label>
 					</Input>
 				</div>
-				<div className='table_div'>
-					
-					
+
+				<div className='table-div'>
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>

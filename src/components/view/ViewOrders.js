@@ -21,7 +21,7 @@ class ViewOrders extends Component {
 	render() {
 		return (
 			<div>
-				<div style={{marginTop: '10%', textAlign: 'center'}}>
+				<div id='search-bar'>
 					<Input style={{width: '40%'}} type='text' placeholder='Search customer name.. ' action>
 					    <input />
 					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
@@ -30,7 +30,7 @@ class ViewOrders extends Component {
 					</Input>
 				</div>
 
-				<div class="ui fluid segment" id='upper_div3'>
+				<div class="ui fluid segment" id='upper-div3'>
       				<label>
 					  Delivery Status: {' '}
 					  <Dropdown
@@ -41,7 +41,7 @@ class ViewOrders extends Component {
 					</label>
       			</div>
 
-				<div className='table_div_order'>
+				<div className='table-div-longer'>
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>
@@ -77,12 +77,12 @@ class ViewOrders extends Component {
 				        	Pending
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
@@ -105,12 +105,12 @@ class ViewOrders extends Component {
 				        	Pending
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
@@ -133,12 +133,12 @@ class ViewOrders extends Component {
 				        	Pending
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>

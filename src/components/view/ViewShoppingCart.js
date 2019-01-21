@@ -17,15 +17,15 @@ class ViewShoppingCart extends Component {
   render() {
     return (
       <div>
-        <div className='table_div_cart'>
+        <div className='table-div-cart'>
         <Table singleLine>
           <Table.Header>
             <Table.Row >
-              <Table.HeaderCell id='header_color'>Product Image</Table.HeaderCell>
-              <Table.HeaderCell id='header_color'>Name</Table.HeaderCell>
-              <Table.HeaderCell id='header_color'>Color</Table.HeaderCell>
-              <Table.HeaderCell id='header_color'>Quantity</Table.HeaderCell>
-              <Table.HeaderCell id='header_color'>Price</Table.HeaderCell>
+              <Table.HeaderCell id='header-color'>Product Image</Table.HeaderCell>
+              <Table.HeaderCell id='header-color'>Name</Table.HeaderCell>
+              <Table.HeaderCell id='header-color'>Color</Table.HeaderCell>
+              <Table.HeaderCell id='header-color'>Quantity</Table.HeaderCell>
+              <Table.HeaderCell id='header-color'>Price</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -72,13 +72,13 @@ class ViewShoppingCart extends Component {
           </Table.Body>
         </Table>
 
-        <Card id='order_summary'>
+        <Card id='order-summary'>
           <Card.Content>
             <Card.Header>ORDER SUMMARY</Card.Header>
             <Card.Description>Total number of items: </Card.Description>
             <Card.Description>Total price: </Card.Description>
 
-            <button class="ui labeled icon button" id='checkout_button'>
+            <button class="ui labeled icon button" id='checkout-button'>
               <i class="cart icon"></i>
               Checkout
             </button>

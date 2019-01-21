@@ -24,10 +24,10 @@ class ViewUsers extends Component {
 				</div>
 
 				
-				<div class="ui fluid segment" id='upper_div1'>
+				<div class="ui fluid segment" id='upper-div1'>
       				<label> Type of user: </label>
-      				<Button id='upper_button'> Admin</Button>
-      				<Button id='upper_button'> Customer</Button>
+      				<Button id='upper-button'> Admin</Button>
+      				<Button id='upper-button'> Customer</Button>
       			</div>
       			
       			<div id='card-div'>

@@ -1,33 +1,27 @@
-.table_div {
+.table-div {
 	margin-top: 3%;
 	margin-left: 10%;
 	width: 80%;
 }
 
-.table_div_order {
+.table-div-longer {
 	margin-top: 3%;
 	margin-left: 5%;
 	width: 90%;
 }
 
-.table_div_rental {
-	margin-top: 3%;
-	margin-left: 5%;
-	width: 90%;
-}
-
-.table_div_cart {
+.table-div-cart {
 	margin-top: 10%;
 	margin-left: 5%;
 	width: 90%;
 }
 
-#header_color{
+#header-color{
 	background-color: red;
 	color: white;
 }
 
-#delete_button{
+#delete-button{
 	background-color: red;
 	color: white;
 	height: 28px;
@@ -36,7 +30,7 @@
 	padding-top: 2px;
 }
 
-#edit_button{
+#edit-button{
 	background-color: red;
 	color: white;
 	height: 28px;
@@ -45,61 +39,12 @@
 	padding-top: 4px;
 }
 
-#modal_button{
-	background-color: red;
-	color: white;
-	margin-top: 4%;
-	margin-left: 19%;
-	height: 28px;
-	width: 50px;
-	padding-left: 8px;
-	padding-top: 7px;
-}
-
-#modal_button_order{
-	background-color: red;
-	color: white;
-	margin-top: 4%;
-	margin-left: 5%;
-	height: 28px;
-	width: 50px;
-	padding-left: 8px;
-	padding-top: 7px;
-}
-
-.custom_modal{
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	background-color: black;
-}
-
-
-.custom_modal .open{
-	position: fixed;
-	height: 50%;
-	width: 60%;
-	top: 25%;
-	left: 20%;
-	overflow-y: scroll;
-}
-
-.custom_modal .close{
-	position: fixed;
-	width: 10%;
-	top: 80%;
-	left: 45%;
-}
-
 #search-bar{
 	text-align: center;
 	margin-top: 10%;
-	
 }
 
-#upper_div1 {
+#upper-div1 {
 	height: 46px;
 	width: 26.5%;
 	padding-top: 8px;
@@ -107,7 +52,7 @@
 	margin-left: 10%;
 	float: left;
 }
-#upper_div2{
+#upper-div2{
 	height: 46px;
 	width: 20%;
 	margin-top: 3%;
@@ -125,7 +70,7 @@
 	padding-top: 4px;
 }
 
-#upper_div3{
+#upper-div3{
 	height: 46px;
 	width: 20%;
 	margin-top: 3%;
@@ -135,29 +80,22 @@
 	padding-top: 13px;
 }
 
-#upper_button{
+#upper-button{
 	background-color: red;
 	color: white;
 	height: 28px;
 	padding-top: 7px;
 	margin-left: 3%;
 }
-#upper_dropdown{
-	position: absolute;
-	
-	padding-top: 7px;
-	min-height: 10px;
-	min-width: 87%;
-}
 
-#order_summary{
+#order-summary{
 	margin-top: 5%;
 	margin-left: 25%;
 	width: 50%;
 	text-align: center;
 }
 
-#checkout_button{
+#checkout-button{
 	margin-top: 3%;
 	background-color: red;
 	color: white;
@@ -168,6 +106,56 @@
 
 
 
+#modal-button{
+	background-color: red;
+	color: white;
+	margin-top: 4%;
+	margin-left: 19%;
+	height: 28px;
+	width: 50px;
+	padding-left: 8px;
+	padding-top: 7px;
+}
+
+#modal-button2{
+	background-color: red;
+	color: white;
+	margin-top: 4%;
+	margin-left: 5%;
+	height: 28px;
+	width: 50px;
+	padding-left: 8px;
+	padding-top: 7px;
+}
+
+.custom-modal{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: black;
+}
+
+
+.custom-modal .open{
+	position: fixed;
+	height: 50%;
+	width: 60%;
+	top: 25%;
+	left: 20%;
+	overflow-y: scroll;
+}
+
+.custom-modal .close{
+	position: fixed;
+	width: 10%;
+	top: 80%;
+	left: 45%;
+}
+
+
+
 
 
 #card-div{
@@ -175,6 +163,7 @@
 	margin-top: 1%;
 	margin-left: 10%;
 	width: 90%;
+	overflow-y: scroll;
 }
 
 #card{

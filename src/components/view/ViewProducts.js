@@ -27,13 +27,13 @@ class ViewProducts extends Component {
 				</div>
 				
 				
-  				<div class="ui fluid segment" id='upper_div1'>
+  				<div class="ui fluid segment" id='upper-div1'>
       				<label> Products available for: </label>
-      				<Button id='upper_button'> Sale</Button>
-      				<Button id='upper_button'> Rent</Button>
+      				<Button id='upper-button'> Sale</Button>
+      				<Button id='upper-button'> Rent</Button>
       			</div>
 
-      			<div class="ui fluid segment" id='upper_div2'>  
+      			<div class="ui fluid segment" id='upper-div2'>  
 					<label>
 					  Product Category: {' '}
 					  <Dropdown
@@ -48,7 +48,7 @@ class ViewProducts extends Component {
 					<Button circular icon='add' size='big' color='red'/>
       			</div>
 
-				<div className='table_div'>
+				<div className='table-div'>
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>
@@ -76,12 +76,12 @@ class ViewProducts extends Component {
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
@@ -99,12 +99,12 @@ class ViewProducts extends Component {
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
@@ -122,12 +122,12 @@ class ViewProducts extends Component {
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>

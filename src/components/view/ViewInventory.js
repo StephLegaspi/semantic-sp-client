@@ -8,22 +8,14 @@ class ViewInventory extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {
-			
-		}
-		
-		this.options = [
-		  { key: 'customer_name', text: 'Customer Name', value: 'customer_name' },
-		  { key: 'status', text: 'Status', value: 'status' }
-		]
-
+		this.state = {}
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
 	render() {
 		return (
 			<div>
-				<div style={{marginTop: '10%', textAlign: 'center'}}>
+				<div id='search-bar'>
 					<Input style={{width: '40%'}} type='text' placeholder='Search product name.. ' action>
 					    <input />
 					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
@@ -33,13 +25,13 @@ class ViewInventory extends Component {
 				</div>
 				
 				
-  				<div class="ui fluid segment" id='upper_div1'>
+  				<div class="ui fluid segment" id='upper-div1'>
       				<label> Products available for: </label>
-      				<Button id='upper_button'> Sale</Button>
-      				<Button id='upper_button'> Rent</Button>
+      				<Button id='upper-button'> Sale</Button>
+      				<Button id='upper-button'> Rent</Button>
       			</div>
 
-      			<div class="ui fluid segment" id='upper_div2'>  
+      			<div class="ui fluid segment" id='upper-div2'>  
 					<label>
 					  Product Category: {' '}
 					  <Dropdown
@@ -50,7 +42,7 @@ class ViewInventory extends Component {
 					</label>
       			</div>
 
-				<div className='table_div'>
+				<div className='table-div'>
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>
@@ -76,12 +68,12 @@ class ViewInventory extends Component {
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
@@ -97,12 +89,12 @@ class ViewInventory extends Component {
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
@@ -118,12 +110,12 @@ class ViewInventory extends Component {
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete_button'>
+				        	<Button id='delete-button'>
 							  <i class="trash large alternate icon"></i>
 							</Button>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit_button'>
+				        	<Button id='edit-button'>
 							  <i class="large edit icon"></i>
 							</Button>
 				        </Table.Cell>
