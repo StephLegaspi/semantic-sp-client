@@ -31,8 +31,7 @@ class ViewPackages extends Component {
 				      <Card.Description>P 10,000</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '2.5%'}}> View Details </Button>
-				      <Button color='red' size='small' style={{padding: '8px'}}> Request Package </Button>
+				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '57%'}}> View Details </Button>
 				    </Card.Content>
 				</Card>
 
@@ -42,8 +41,7 @@ class ViewPackages extends Component {
 				      <Card.Description>P 10,000</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '2.5%'}}> View Details </Button>
-				      <Button color='red' size='small' style={{padding: '8px'}}> Request Package </Button>
+				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '57%'}}> View Details </Button>
 				    </Card.Content>
 				</Card>
 
@@ -53,8 +51,7 @@ class ViewPackages extends Component {
 				      <Card.Description>P 10,000</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '2.5%'}}> View Details </Button>
-				      <Button color='red' size='small' style={{padding: '8px'}}> Request Package </Button>
+				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '57%'}}> View Details </Button>
 				    </Card.Content>
 				</Card>
 
@@ -64,19 +61,17 @@ class ViewPackages extends Component {
 				      <Card.Description>P 10,000</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '2.5%'}}> View Details </Button>
-				      <Button color='red' size='small' style={{padding: '8px'}}> Request Package </Button>
+				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '57%'}}> View Details </Button>
 				    </Card.Content>
 				</Card>
-				
+
 				<Card id='card'>
 				    <Card.Content>
 				      <Card.Header>Package 1 </Card.Header>
 				      <Card.Description>P 10,000</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '2.5%'}}> View Details </Button>
-				      <Button color='red' size='small' style={{padding: '8px'}}> Request Package </Button>
+				      <Button color='red' size='small' style={{padding: '8px', marginLeft: '57%'}}> View Details </Button>
 				    </Card.Content>
 				</Card>
 
