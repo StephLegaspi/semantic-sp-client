@@ -20,7 +20,6 @@ import {
 const HomePage = () => (
   <div>    
     <Menu fixed='top' id='menu-div'>
-      <Container>
     
         <Menu.Item className='logo-div'>
           <Image circular src={logo} className='logo-style' />
@@ -36,7 +35,6 @@ const HomePage = () => (
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item as='a' id='menu-font'>Request Package</Menu.Item>
-      </Container>
          
       <Container>
         <Menu.Item as='a' id='menu-font' style={{marginLeft: '44%'}} >Portfolio</Menu.Item>
@@ -47,7 +45,7 @@ const HomePage = () => (
     </Menu>
     
     <Segment id='container'>
-      <Image size='large' src={sample_header} style={{marginTop: '3%', minWidth:'100%'}}/>
+      <Image size='large' src={sample_header} style={{marginTop: '0%', minWidth:'100%'}}/>
       <Button primary size='huge' id='btn'>
           Get Started
           <Icon name='right arrow' />

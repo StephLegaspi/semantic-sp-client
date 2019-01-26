@@ -193,9 +193,10 @@
 
 
 #bar{
-	background-color: #0000ff;
+	background-color: #191167;
 	height: 100px;
 	position: relative;
+	margin-top: 6%;
 }
 
 #search-bar2{

@@ -29,13 +29,13 @@
 
 #menu-div{
 	position: fixed;
-	background-color: #191167;
+	background-color: white;
 	height: 12%;
 	font-size: 15px;
 }
 
 #menu-font{
-	color: white;
+	color: #191167;
 	font-weight: 900;
 }
 
@@ -66,7 +66,6 @@
 
 .logo-div{
 	margin-left: 2%;
-	padding-right: 20px;
 }
 
 .logo-div .logo-style{
