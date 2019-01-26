@@ -23,12 +23,14 @@ import ViewProducts from './components/view/ViewProducts.js';
 import ViewUsers from './components/view/ViewUsers.js';
 import ViewShop from './components/view/ViewShop.js';
 import ViewPackages from './components/view/ViewPackages.js';
+import ViewMotifs from './components/view/ViewMotifs.js';
+import ViewMenus from './components/view/ViewMenus.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <ViewPackages/>
+        <ViewMenus/>
       </div>
     );
   }
