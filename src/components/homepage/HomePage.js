@@ -20,7 +20,6 @@ import {
 const HomePage = () => (
   <div>    
     <Menu fixed='top' id='menu-div'>
-    
         <Menu.Item className='logo-div'>
           <Image circular src={logo} className='logo-style' />
         </Menu.Item>

@@ -10,7 +10,6 @@ class ViewUsers extends Component {
 		super(props);
 
 		this.state = {}
-
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
