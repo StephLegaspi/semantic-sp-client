@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
-import logo from './pic.png'
-import sample_header from './sample_header.jpg'
+import logo from './logo.jpg'
+import sample_header from './header2.jpg'
 import {
   Container,
   Divider,
@@ -24,40 +24,35 @@ const HomepageHeading = ({ mobile }) => (
 
 
 const FixedMenuLayout = () => (
-  <div>
-
-    
+  <div>    
     <Menu fixed='top' id='menu-div'>
       <Container>
-        <Menu.Item as='a' header style={{color: 'white'}}>
-          <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
+    
+        <Menu.Item style={{marginLeft:'3%', paddingRight: '12px'}}>
+          <Image circular src={logo} style={{height: '150px', marginTop: '84px', border: '1px solid #191167'}} />
         </Menu.Item>
-        <Menu.Item as='a' id='menu-font'>Home</Menu.Item>
+
+        <Menu.Item as='a' active id='menu-font'>Home</Menu.Item>
         <Menu.Item as='a' id='menu-font'>Shop</Menu.Item>
         <Dropdown item simple text='Catering Services' id='menu-font'>
           <Dropdown.Menu>
-            <Dropdown.Item>List Item</Dropdown.Item>
-            <Dropdown.Item>List Item</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Header>Header Item</Dropdown.Header>
-            <Dropdown.Item>
-              <i className='dropdown icon' />
-              <span className='text'>Submenu</span>
-              <Dropdown.Menu>
-                <Dropdown.Item>List Item</Dropdown.Item>
-                <Dropdown.Item>List Item</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown.Item>
-            <Dropdown.Item>List Item</Dropdown.Item>
+            <Dropdown.Item>Packages</Dropdown.Item>
+            <Dropdown.Item>Motifs</Dropdown.Item>
+            <Dropdown.Item>Food Menus</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item as='a' id='menu-font'>Request Package</Menu.Item>
-        <Menu.Item as='a' id='menu-font'>Portfolio</Menu.Item>
-      </Container>
+        
 
-      <Menu.Item as='a' id='menu-font'>Contact Us</Menu.Item>
-      <Menu.Item as='a' id='menu-font'>Sign Up</Menu.Item>
-      <Menu.Item as='a' id='menu-font'>Login</Menu.Item>
+      </Container>
+      
+      
+      <Container>
+        <Menu.Item as='a' id='menu-font' style={{marginLeft: '44%'}} >Portfolio</Menu.Item>
+        <Menu.Item as='a' id='menu-font'>Contact Us</Menu.Item>
+        <Menu.Item as='a' id='menu-font'>Sign Up</Menu.Item>
+        <Menu.Item as='a' id='menu-font'>Login</Menu.Item>
+      </Container>
     </Menu>
     
     <Segment id='container'>
@@ -137,21 +132,10 @@ const FixedMenuLayout = () => (
 
     <Segment inverted vertical id='footer2'>
       <Container style={{textAlign:'center'}}>
-        <Image centered size='mini' src={logo} />
-        <List horizontal inverted divided link size='small' >
-          <List.Item as='a' href='#'>
-            Site Map
-          </List.Item>
-          <List.Item as='a' href='#'>
-            Contact Us
-          </List.Item>
-          <List.Item as='a' href='#'>
-            Terms and Conditions
-          </List.Item>
-          <List.Item as='a' href='#'>
-            Privacy Policy
-          </List.Item>
-        </List>
+        <Button circular color='facebook' icon='large facebook' />
+        <Button circular color='twitter' icon='large twitter' />
+        <br/>
+        <label>© Leira Jane's Party Needs and Catering Services 2019</label>
       </Container>
     </Segment>
   </div>

@@ -1,18 +1,18 @@
 
 #footer2{
-    background: orange;
+    background: #f89d28;
     color: rgba(255, 255, 255, 0.9);
     max-height: 100px;
 }
 
 #footer-button1{
-	background-color: orange;
+	background-color: #f89d28;
 	color: white;
 	margin-top: 10%;
 }
 
 #footer-button2{
-	background-color: orange;
+	background-color: #f89d28;
 	color: white;
 	margin-top: 3.8%;
 }
@@ -22,14 +22,16 @@
 }
 
 #segment-div{
-	background-color: blue;
+	background-color: #191167;
 	color: white;
 	padding: 4em 0em;
 }
 
 #menu-div{
-	background-color: blue;
-	
+	position: fixed;
+	background-color: #191167;
+	height: 12%;
+	font-size: 15px;
 }
 
 #menu-font{
