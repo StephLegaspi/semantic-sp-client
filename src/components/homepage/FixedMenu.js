@@ -91,8 +91,8 @@ const FixedMenuLayout = () => (
       <Container>
         <Grid inverted divided stackable>
           <Grid.Row>
-            <Grid.Column width={5}>
-              <Header inverted as='h4' content='Contact Us' />
+            <Grid.Column width={5} style={{marginLeft: '6%'}}>
+              <Header inverted as='h4' content='Contact Us' style={{marginLeft: '15%'}} />
               <div>
                 <Icon name='phone' size='big'/>
                 <label> +63 949 881 2448 </label>
