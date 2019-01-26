@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import logo from './pic.png'
+import sample_header from './sample_header.jpg'
 import {
   Container,
   Divider,
@@ -15,8 +16,17 @@ import {
   Button
 } from 'semantic-ui-react'
 
+
+const HomepageHeading = ({ mobile }) => (
+    <Image size='large' src={sample_header} style={{marginTop: '3%', minWidth:'100%', position: 'relative'}}/>
+   
+)
+
+
 const FixedMenuLayout = () => (
   <div>
+
+    
     <Menu fixed='top' id='menu-div'>
       <Container>
         <Menu.Item as='a' header style={{color: 'white'}}>
@@ -49,6 +59,16 @@ const FixedMenuLayout = () => (
       <Menu.Item as='a' id='menu-font'>Sign Up</Menu.Item>
       <Menu.Item as='a' id='menu-font'>Login</Menu.Item>
     </Menu>
+    
+    <Segment id='container'>
+      <Image size='large' src={sample_header} style={{marginTop: '3%', minWidth:'100%'}}/>
+      <Button primary size='huge' id='btn'>
+          Get Started
+          <Icon name='right arrow' />
+      </Button>
+
+    </Segment>
+
 
     <Container text style={{ marginTop: '7em' }}>
       <Header as='h1'>Semantic UI React Fixed Template</Header>
@@ -65,6 +85,7 @@ const FixedMenuLayout = () => (
       <p>This is a basic fixed menu template using fixed size containers.</p> 
       <p>This is a basic fixed menu template using fixed size containers.</p> 
     </Container>
+
 
     <Segment vertical id='segment-div'>
       <Container>
