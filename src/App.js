@@ -4,6 +4,7 @@ import Login from './components/login/Login.js';
 
 import SignUp from './components/add/AddCustomer.js';
 import FixedMenu from './components/homepage/FixedMenu.js';
+import HomepageLayout from './components/homepage/HomepageLayout.js';
 import Contact from './components/contact/Contact.js';
 
 import AddAdmin from './components/add/AddAdmin.js';
@@ -30,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Contact/>
+        <FixedMenu/>
       </div>
     );
   }

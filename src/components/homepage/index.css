@@ -1,6 +1,6 @@
 
 #footer2{
-    background: red;
+    background: orange;
     color: rgba(255, 255, 255, 0.9);
     max-height: 100px;
 }
@@ -30,4 +30,9 @@
 #menu-div{
 	background-color: blue;
 	
+}
+
+#menu-font{
+	color: white;
+	font-weight: 900;
 }

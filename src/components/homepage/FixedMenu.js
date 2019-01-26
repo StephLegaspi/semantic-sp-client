@@ -21,11 +21,10 @@ const FixedMenuLayout = () => (
       <Container>
         <Menu.Item as='a' header style={{color: 'white'}}>
           <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
-          Project Name
         </Menu.Item>
-        <Menu.Item as='a' style={{color: 'white'}}>Home</Menu.Item>
-
-        <Dropdown item simple text='Dropdown' style={{color: 'white'}}>
+        <Menu.Item as='a' id='menu-font'>Home</Menu.Item>
+        <Menu.Item as='a' id='menu-font'>Shop</Menu.Item>
+        <Dropdown item simple text='Catering Services' id='menu-font'>
           <Dropdown.Menu>
             <Dropdown.Item>List Item</Dropdown.Item>
             <Dropdown.Item>List Item</Dropdown.Item>
@@ -42,7 +41,13 @@ const FixedMenuLayout = () => (
             <Dropdown.Item>List Item</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+        <Menu.Item as='a' id='menu-font'>Request Package</Menu.Item>
+        <Menu.Item as='a' id='menu-font'>Portfolio</Menu.Item>
       </Container>
+
+      <Menu.Item as='a' id='menu-font'>Contact Us</Menu.Item>
+      <Menu.Item as='a' id='menu-font'>Sign Up</Menu.Item>
+      <Menu.Item as='a' id='menu-font'>Login</Menu.Item>
     </Menu>
 
     <Container text style={{ marginTop: '7em' }}>
