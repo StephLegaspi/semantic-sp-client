@@ -17,31 +17,6 @@ class ViewUsers extends Component {
 	render() {
 		return (
 			<div>
-				<Menu fixed='top' id='menu-div'>
-			      
-			        <Menu.Item className='logo-div'>
-			          <Image circular src={logo} className='logo-style' />
-			        </Menu.Item>
-
-			        <Menu.Item as='a' active id='menu-font'>Home</Menu.Item>
-			        <Menu.Item as='a' id='menu-font'>Shop</Menu.Item>
-			        <Dropdown item simple text='Catering Services' id='menu-font'>
-			          <Dropdown.Menu>
-			            <Dropdown.Item>Packages</Dropdown.Item>
-			            <Dropdown.Item>Motifs</Dropdown.Item>
-			            <Dropdown.Item>Food Menus</Dropdown.Item>
-			          </Dropdown.Menu>
-			        </Dropdown>
-			        <Menu.Item as='a' id='menu-font'>Request Package</Menu.Item>
-			      
-			         
-			      <Container>
-			        <Menu.Item as='a' id='menu-font' style={{marginLeft: '44%'}} >Portfolio</Menu.Item>
-			        <Menu.Item as='a' id='menu-font'>Contact Us</Menu.Item>
-			        <Menu.Item as='a' id='menu-font'>Sign Up</Menu.Item>
-			        <Menu.Item as='a' id='menu-font'>Login</Menu.Item>
-			      </Container>
-			    </Menu>
 				<div id='bar'>  
 					<div id='search-bar2'>
 					<Input style={{width: '500px'}} type='text' placeholder='Search product name.. ' action>
