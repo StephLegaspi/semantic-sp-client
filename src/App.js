@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Login from './components/login/Login.js';
 
 import SignUp from './components/add/AddCustomer.js';
-import FixedMenu from './components/homepage/FixedMenu.js';
+import HomePage from './components/homepage/HomePage.js';
 import HomepageLayout from './components/homepage/HomepageLayout.js';
 import Contact from './components/contact/Contact.js';
 
@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <FixedMenu/>
+        <HomePage/>
       </div>
     );
   }

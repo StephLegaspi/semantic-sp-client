@@ -17,19 +17,13 @@ import {
 } from 'semantic-ui-react'
 
 
-const HomepageHeading = ({ mobile }) => (
-    <Image size='large' src={sample_header} style={{marginTop: '3%', minWidth:'100%', position: 'relative'}}/>
-   
-)
-
-
-const FixedMenuLayout = () => (
+const HomePage = () => (
   <div>    
     <Menu fixed='top' id='menu-div'>
       <Container>
     
-        <Menu.Item style={{marginLeft:'3%', paddingRight: '12px'}}>
-          <Image circular src={logo} style={{height: '150px', marginTop: '84px', border: '1px solid #191167'}} />
+        <Menu.Item className='logo-div'>
+          <Image circular src={logo} className='logo-style' />
         </Menu.Item>
 
         <Menu.Item as='a' active id='menu-font'>Home</Menu.Item>
@@ -42,11 +36,8 @@ const FixedMenuLayout = () => (
           </Dropdown.Menu>
         </Dropdown>
         <Menu.Item as='a' id='menu-font'>Request Package</Menu.Item>
-        
-
       </Container>
-      
-      
+         
       <Container>
         <Menu.Item as='a' id='menu-font' style={{marginLeft: '44%'}} >Portfolio</Menu.Item>
         <Menu.Item as='a' id='menu-font'>Contact Us</Menu.Item>
@@ -61,9 +52,7 @@ const FixedMenuLayout = () => (
           Get Started
           <Icon name='right arrow' />
       </Button>
-
     </Segment>
-
 
     <Container text style={{ marginTop: '7em' }}>
       <Header as='h1'>Semantic UI React Fixed Template</Header>
@@ -141,4 +130,4 @@ const FixedMenuLayout = () => (
   </div>
 )
 
-export default FixedMenuLayout
+export default HomePage

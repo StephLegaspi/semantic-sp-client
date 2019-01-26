@@ -63,3 +63,14 @@
 #container #btn:hover {
   background-color: black;
 }
+
+.logo-div{
+	margin-left: 2%;
+	padding-right: 20px;
+}
+
+.logo-div .logo-style{
+	height: 130px;
+	margin-top: 60px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
