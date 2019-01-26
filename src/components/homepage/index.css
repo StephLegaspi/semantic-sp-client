@@ -5,5 +5,29 @@
     max-height: 100px;
 }
 
+#footer-button1{
+	background-color: orange;
+	color: white;
+	margin-top: 10%;
+}
 
+#footer-button2{
+	background-color: orange;
+	color: white;
+	margin-top: 3.8%;
+}
 
+.footer-div{
+	text-align: center;
+}
+
+#segment-div{
+	background-color: blue;
+	color: white;
+	padding: 4em 0em;
+}
+
+#menu-div{
+	background-color: blue;
+	
+}

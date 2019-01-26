@@ -11,19 +11,21 @@ import {
   List,
   Menu,
   Segment,
+  Icon,
+  Button
 } from 'semantic-ui-react'
 
 const FixedMenuLayout = () => (
   <div>
-    <Menu fixed='top' inverted>
+    <Menu fixed='top' id='menu-div'>
       <Container>
-        <Menu.Item as='a' header>
+        <Menu.Item as='a' header style={{color: 'white'}}>
           <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
           Project Name
         </Menu.Item>
-        <Menu.Item as='a'>Home</Menu.Item>
+        <Menu.Item as='a' style={{color: 'white'}}>Home</Menu.Item>
 
-        <Dropdown item simple text='Dropdown'>
+        <Dropdown item simple text='Dropdown' style={{color: 'white'}}>
           <Dropdown.Menu>
             <Dropdown.Item>List Item</Dropdown.Item>
             <Dropdown.Item>List Item</Dropdown.Item>
@@ -53,39 +55,54 @@ const FixedMenuLayout = () => (
       <p>This is a basic fixed menu template using fixed size containers.</p>
       <p>This is a basic fixed menu template using fixed size containers.</p>
       <p>This is a basic fixed menu template using fixed size containers.</p>
-      <p>This is a basic fixed menu template using fixed size containers.</p>
-     
+      <p>This is a basic fixed menu template using fixed size containers.</p> 
+      <p>This is a basic fixed menu template using fixed size containers.</p> 
+      <p>This is a basic fixed menu template using fixed size containers.</p> 
+      <p>This is a basic fixed menu template using fixed size containers.</p> 
     </Container>
 
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
+    <Segment vertical id='segment-div'>
       <Container>
-        <Grid divided inverted stackable>
+        <Grid inverted divided stackable>
           <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
-              <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
-              </List>
+            <Grid.Column width={5}>
+              <Header inverted as='h4' content='Contact Us' />
+              <div>
+                <Icon name='phone' size='big'/>
+                <label> +63 949 881 2448 </label>
+              </div>
+              <div>
+                <Icon name='mobile alternate' size='big'/>
+                <label> +63 949 881 2448 </label>
+              </div>
+              <div>
+                <Icon name='envelope' size='large' style={{marginLeft: '2%'}}/>
+                <label> leirajane@gmail.com </label>
+              </div>
+              <div>
+                <Icon name='location arrow' size='big'/>
+                <label> Pembo, Makati </label>
+              </div>
             </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
-              <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
-              </List>
+
+            <Grid.Column width={5} className='footer-div'>
+              <Header inverted as='h4' content='How can we help you?' />
+              <div>
+                <label> For inquiries, feel free to send us a message.</label>
+              </div>
+              <div>
+                <Button circular icon='big envelope outline' size='big' id='footer-button1'/>
+              </div>
             </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-                Footer Header
-              </Header>
-              <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
-              </p>
+
+            <Grid.Column width={5} className='footer-div'>
+              <Header inverted as='h4' content='Request for Catering Package' />
+              <div>
+                <label> Fill up the request form and we will get back to you as soon as we can.</label>
+              </div>
+              <div>
+                <Button circular icon='big file text' size='big' id='footer-button2'/>
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
