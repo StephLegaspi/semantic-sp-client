@@ -27,11 +27,13 @@ import ViewPackages from './components/view/ViewPackages.js';
 import ViewMotifs from './components/view/ViewMotifs.js';
 import ViewMenus from './components/view/ViewMenus.js';
 
+import MotifsPortfolio from './components/view/MotifsPortfolio.js';
+
 class App extends Component {
   render() {
     return (
       <div>
-        <ViewShop/>
+      	<MotifsPortfolio/>
       </div>
     );
   }

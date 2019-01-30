@@ -214,3 +214,26 @@
 	position: absolute;
 	padding-top: 4px;
 }
+
+
+
+/*MotifsPortfoilio*/
+#card-pics{
+	margin-left: 12%;
+	width: 80%;
+}
+
+#card-request{
+	margin-top: 5%;
+	margin-left: 20%;
+	width: 60%;
+	text-align: center;	
+	margin-bottom: 3%;
+}
+
+#bar-title{
+	position: absolute;
+	color: white;
+	margin-left: 6%;
+	margin-top: 4%;
+}
