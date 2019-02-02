@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid,  Segment, Input, Radio, Checkbox, Icon, Label, TextArea } from 'semantic-ui-react'
-import './index.css';
+import '../../styles/add.css';
 
 export default class AddMotif extends Component {
 

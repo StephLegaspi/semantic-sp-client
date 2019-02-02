@@ -1,0 +1,27 @@
+#menu-div{
+	position: fixed;
+	background-color: white;
+	height: 12%;
+	font-size: 15px;
+}
+
+#menu-font{
+	color: #191167;
+	font-weight: 900;
+}
+
+.logo-div{
+	margin-left: 2%;
+}
+
+.logo-div .logo-style{
+	height: 130px;
+	margin-top: 60px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#lighter {
+	background-color: #f89d28;
+	color: white;
+	font-weight: 900;
+}

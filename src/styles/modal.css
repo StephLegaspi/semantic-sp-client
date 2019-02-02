@@ -1,0 +1,27 @@
+
+
+.custom-modal{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: black;
+}
+
+
+.custom-modal .open{
+	position: fixed;
+	height: 50%;
+	width: 60%;
+	top: 25%;
+	left: 20%;
+	overflow-y: scroll;
+}
+
+.custom-modal .close{
+	position: fixed;
+	width: 10%;
+	top: 80%;
+	left: 45%;
+}

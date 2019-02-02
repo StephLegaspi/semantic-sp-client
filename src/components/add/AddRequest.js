@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid,  Segment, Input, Radio, Checkbox, Icon, Label, Dropdown} from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
-import './index.css';
+import '../../styles/add.css';
 
 export default class AddRequest extends Component {
 

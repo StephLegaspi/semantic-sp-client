@@ -1,0 +1,38 @@
+
+#view-button{
+	padding: 10px;
+	width: 100px;
+	margin-left: 57%;
+	background-color: #f89d28;
+	color: white;
+}
+
+#modal-button{
+	background-color: #f89d28;
+	color: white;
+	margin-top: 4%;
+	margin-left: 19%;
+	height: 28px;
+	width: 50px;
+	padding-left: 8px;
+	padding-top: 7px;
+}
+
+#modal-button2{
+	background-color: #f89d28;
+	color: white;
+	margin-top: 4%;
+	margin-left: 5%;
+	height: 28px;
+	width: 50px;
+	padding-left: 8px;
+	padding-top: 7px;
+}
+
+#checkout-button{
+	margin-top: 3%;
+	background-color: #f89d28;
+	color: white;
+	height: 35px;
+	margin-left: 35%;
+}

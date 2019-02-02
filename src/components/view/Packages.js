@@ -1,0 +1,51 @@
+import React, { Component } from 'react';
+import { Input, Button, Header, Image, Card } from 'semantic-ui-react'
+
+import img_tree from '../../images/tree.jpg'
+import '../../styles/view.css';
+
+import ViewButton from '../button/ViewButton.js'
+import HeaderBar from '../headerBar/HeaderBar.js'
+
+class ViewPackages extends Component {
+	constructor(props){
+		super(props);
+
+		this.state = {}
+	}
+
+	render() {
+		return (
+			<div>
+				<HeaderBar headerTitle={'Catering Packages'}/>
+				<div id='search-bar'>
+					<Input style={{width: '40%'}} type='text' placeholder='Search user name.. ' action>
+					    <input />
+					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
+							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
+						</label>
+					</Input>
+				</div>
+      			
+      			<div id='card-div2'>
+				<Card.Group itemsPerRow={4}>
+				<Card id='card'>
+				    <Card.Content>
+				      <Card.Header>Package 1 </Card.Header>
+				      <Card.Description>P 10,000</Card.Description>
+				    </Card.Content>
+				    <Card.Content extra>
+				    	<ViewButton />
+				    </Card.Content>
+				</Card>
+
+
+				</Card.Group>
+				</div>
+			</div>
+		);
+	}
+
+}
+
+export default ViewPackages;

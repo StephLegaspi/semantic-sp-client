@@ -1,0 +1,176 @@
+.table-div {
+	margin-top: 3%;
+	margin-left: 10%;
+	width: 80%;
+}
+
+.table-div-longer {
+	margin-top: 3%;
+	margin-left: 5%;
+	width: 90%;
+}
+
+.table-div-cart {
+	margin-top: 10%;
+	margin-left: 5%;
+	width: 90%;
+}
+
+#header-color{
+	background-color: red;
+	color: white;
+}
+
+#delete-button{
+	background-color: red;
+	color: white;
+	height: 28px;
+	width: 30px;
+	padding-left: 7px;
+	padding-top: 2px;
+}
+
+#edit-button{
+	background-color: red;
+	color: white;
+	height: 28px;
+	width: 30px;
+	padding-left: 8px;
+	padding-top: 4px;
+}
+
+#search-bar{
+	text-align: center;
+	margin-top: 2.5%;
+}
+
+#upper-div1 {
+	height: 46px;
+	width: 26.5%;
+	padding-top: 8px;
+	margin-top: 3%;
+	margin-left: 10%;
+	float: left;
+}
+#upper-div2{
+	height: 46px;
+	width: 20%;
+	margin-top: 3%;
+	margin-left: 2%;
+	float: left;
+	position: relative;
+	padding-top: 13px;
+}
+
+#upper-div3{
+	height: 46px;
+	width: 20%;
+	margin-top: 3%;
+	margin-left: 5%;
+	float: left;
+	position: relative;
+	padding-top: 13px;
+}
+
+#upper-div4 {
+	height: 46px;
+	width: 20%;
+	margin-top: 3%;
+	margin-left: 10%;
+	float: left;
+	padding-top: 13px;
+}
+
+#add-button{
+	margin-top: 2.8%;
+	margin-left: 2%;
+	float: left;
+	position: relative;
+	padding-top: 4px;
+}
+
+
+#upper-button{
+	background-color: red;
+	color: white;
+	height: 28px;
+	padding-top: 7px;
+	margin-left: 3%;
+}
+
+#order-summary{
+	margin-top: 5%;
+	margin-left: 25%;
+	width: 50%;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#card-div{
+	float: left;
+	margin-top: 1%;
+	margin-left: 10%;
+	width: 90%;
+}
+
+#card-div2{
+	float: left;
+	margin-top: 3%;
+	margin-left: 10%;
+	width: 95%;
+}
+
+#card{
+	width: 20%;
+}
+
+#card2{
+	width: 20%;
+	text-align: center;
+}
+
+
+
+
+#search-bar2{
+	float: left;
+	text-align: center;
+	margin-top: 2.5%;
+	position: absolute;
+	margin-left: 28%;
+}
+
+#cart-button{
+	margin-top: 1.8%;
+	margin-left: 67%;
+	float: left;
+	position: absolute;
+	padding-top: 4px;
+}
+
+
+
+/*MotifsPortfoilio*/
+#card-pics{
+	margin-left: 12%;
+	width: 80%;
+}
+
+#card-request{
+	margin-top: 5%;
+	margin-left: 20%;
+	width: 60%;
+	text-align: center;	
+	margin-bottom: 3%;
+}
+
