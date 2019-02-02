@@ -3,6 +3,7 @@ import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header, Dropdow
 
 import '../../styles/contact.css';
 import HeaderBar from '../headerBar/HeaderBar.js'
+import SendButton from '../button/SendButton.js'
 
 class Contact extends Component {
 	constructor(props){
@@ -27,10 +28,15 @@ class Contact extends Component {
 					<label> +63 949 881 2448 </label>
 				</div>
 				<div className='contact-div'>
+					<Icon name='envelope' size='large'/>
+                	<label> leirajane@gmail.com </label>
+				</div>
+				<div className='contact-div'>
 					<Icon name='location arrow' size='big'/>
 					<label> Pembo, Makati </label>
 				</div>
 
+				
 				<div className='form-div'>
 					<label> Do you have any inquiries? Send us a message. </label>
 					<br></br>
@@ -70,15 +76,14 @@ class Contact extends Component {
 			                  <TextArea placeholder='Message' style={{ minHeight: 100 }} />
 			                </Form.Field>
 
-			                <Button color='teal' style={{marginLeft: '90%'}}>
-			                  Send
-			                </Button>
+			                <SendButton/>
 
 			              </Segment>
 			            </Form>
 			          </Grid.Column>
 			        </Grid>
 			    </div>
+			  
 			</div>
 		);
 	}

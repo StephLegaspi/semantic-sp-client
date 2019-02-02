@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid,  Segment, Input } from 'semantic-ui-react'
 import '../../styles/add.css';
+import '../../styles/button.css';
+import HeaderBar from '../headerBar/HeaderBar.js'
 
 export default class SignUp extends Component {
 
@@ -11,9 +13,11 @@ export default class SignUp extends Component {
 
   render(){
     return(
-      <div className='login-form'> 
-        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 800 }}>
+      <div> 
+        <HeaderBar headerTitle={'Request Package'}/>
+        <div className='form-style'>
+        <Grid>
+          <Grid.Column>
             
             <Form size='large'>
               <Segment stacked>
@@ -66,13 +70,14 @@ export default class SignUp extends Component {
                   </Form.Field>
                 </Form.Group>
 
-                <Button color='teal'>
+                <Button id='signup-button'>
                   Sign Up
                 </Button>
               </Segment>
             </Form>
           </Grid.Column>
         </Grid>
+        </div>
       </div>
     );
   }

@@ -16,12 +16,13 @@ import {
 } from 'semantic-ui-react'
 
 import NavBar from '../navbar/NavigationBar.js';
+import HeaderBar from '../headerBar/HeaderBar.js'
 
 const HomePage = () => (
   <div>    
-    
     <Segment id='container'>
-      <Image size='large' src={sample_header} style={{marginTop: '0%', minWidth:'100%'}}/>
+      <HeaderBar headerTitle={''}/>
+      <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
       <Button primary size='huge' id='btn'>
           Get Started
           <Icon name='right arrow' />

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Form, Grid,  Segment, Input, Radio, Checkbox, Icon, Label, Dropdown} from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 import '../../styles/add.css';
+import HeaderBar from '../headerBar/HeaderBar.js'
+import SendButton from '../button/SendButton.js'
 
 export default class AddRequest extends Component {
 
@@ -26,9 +28,11 @@ export default class AddRequest extends Component {
 
   render(){
     return(
-      <div className='login-form'> 
-        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 1000 }}>
+      <div>
+        <HeaderBar headerTitle={'Request Package'}/>
+        <div className='form-style'>
+        <Grid>
+          <Grid.Column >
             
             <Form size='large'>
               <Segment stacked>
@@ -101,13 +105,12 @@ export default class AddRequest extends Component {
                   </Form.Field>
                 </Form.Group>
 
-                <Button color='teal'>
-                  Send Request
-                </Button>
+                <SendButton/>
               </Segment>
             </Form>
           </Grid.Column>
         </Grid>
+        </div>
       </div>
     );
   }
