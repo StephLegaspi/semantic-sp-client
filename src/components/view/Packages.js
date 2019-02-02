@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Input, Button, Header, Image, Card } from 'semantic-ui-react'
+import { Input, Button, Header, Image, Card, Container} from 'semantic-ui-react'
 
 import img_tree from '../../images/tree.jpg'
 import '../../styles/view.css';
 
 import ViewButton from '../button/ViewButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
+import Footer from '../footer/Footer.js'
 
 class ViewPackages extends Component {
 	constructor(props){
@@ -28,20 +29,59 @@ class ViewPackages extends Component {
 				</div>
       			
       			<div id='card-div2'>
-				<Card.Group itemsPerRow={4}>
-				<Card id='card'>
-				    <Card.Content>
-				      <Card.Header>Package 1 </Card.Header>
-				      <Card.Description>P 10,000</Card.Description>
-				    </Card.Content>
-				    <Card.Content extra>
-				    	<ViewButton />
-				    </Card.Content>
-				</Card>
-
-
-				</Card.Group>
+					<Card.Group itemsPerRow={4}>
+					<Card id='card'>
+					    <Card.Content>
+					      <Card.Header>Package 1 </Card.Header>
+					      <Card.Description>P 10,000</Card.Description>
+					    </Card.Content>
+					    <Card.Content extra>
+					    	<ViewButton />
+					    </Card.Content>
+					</Card>
+					<Card id='card'>
+					    <Card.Content>
+					      <Card.Header>Package 1 </Card.Header>
+					      <Card.Description>P 10,000</Card.Description>
+					    </Card.Content>
+					    <Card.Content extra>
+					    	<ViewButton />
+					    </Card.Content>
+					</Card>
+					<Card id='card'>
+					    <Card.Content>
+					      <Card.Header>Package 1 </Card.Header>
+					      <Card.Description>P 10,000</Card.Description>
+					    </Card.Content>
+					    <Card.Content extra>
+					    	<ViewButton />
+					    </Card.Content>
+					</Card>
+					<Card id='card'>
+					    <Card.Content>
+					      <Card.Header>Package 1 </Card.Header>
+					      <Card.Description>P 10,000</Card.Description>
+					    </Card.Content>
+					    <Card.Content extra>
+					    	<ViewButton />
+					    </Card.Content>
+					</Card>
+					<Card id='card'>
+					    <Card.Content>
+					      <Card.Header>Package 1 </Card.Header>
+					      <Card.Description>P 10,000</Card.Description>
+					    </Card.Content>
+					    <Card.Content extra>
+					    	<ViewButton />
+					    </Card.Content>
+					</Card>
+					</Card.Group>
 				</div>
+
+				<br></br>
+
+				<Footer/>
+				
 			</div>
 		);
 	}

@@ -4,6 +4,7 @@ import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header, Dropdow
 import '../../styles/contact.css';
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
+import Footer from '../footer/Footer.js'
 
 class Contact extends Component {
 	constructor(props){
@@ -40,7 +41,7 @@ class Contact extends Component {
 				<div className='form-div'>
 					<label> Do you have any inquiries? Send us a message. </label>
 					<br></br>
-					<Grid  id='form-style'>
+					<Grid id='form-contact'>
 			          <Grid.Column>
 			            <Form size='large'>
 			              <Segment stacked>
@@ -83,7 +84,8 @@ class Contact extends Component {
 			          </Grid.Column>
 			        </Grid>
 			    </div>
-			  
+			  	
+			  	<Footer/>
 			</div>
 		);
 	}

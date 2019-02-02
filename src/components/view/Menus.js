@@ -6,6 +6,7 @@ import '../../styles/view.css';
 
 import ViewButton from '../button/ViewButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
+import Footer from '../footer/Footer.js'
 
 class ViewMenus extends Component {
 	constructor(props){
@@ -38,12 +39,10 @@ class ViewMenus extends Component {
 				      <ViewButton/>
 				    </Card.Content>
 				</Card>
-
-				
-
-
 				</Card.Group>
 				</div>
+
+				<Footer/>
 			</div>
 		);
 	}

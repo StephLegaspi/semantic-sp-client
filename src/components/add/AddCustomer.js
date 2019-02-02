@@ -3,6 +3,7 @@ import { Button, Form, Grid,  Segment, Input } from 'semantic-ui-react'
 import '../../styles/add.css';
 import '../../styles/button.css';
 import HeaderBar from '../headerBar/HeaderBar.js'
+import Footer from '../footer/Footer.js'
 
 export default class SignUp extends Component {
 
@@ -78,6 +79,8 @@ export default class SignUp extends Component {
           </Grid.Column>
         </Grid>
         </div>
+
+        <Footer/>
       </div>
     );
   }

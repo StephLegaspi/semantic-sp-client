@@ -73,11 +73,10 @@
 }
 
 #upper-div4 {
-	height: 46px;
 	width: 20%;
+	height: 46px;
 	margin-top: 3%;
 	margin-left: 10%;
-	float: left;
 	padding-top: 13px;
 }
 
@@ -117,14 +116,14 @@
 
 
 #card-div{
+	position: absolute;
 	float: left;
-	margin-top: 1%;
+	margin-top: 8%;
 	margin-left: 10%;
 	width: 90%;
 }
 
 #card-div2{
-	float: left;
 	margin-top: 3%;
 	margin-left: 10%;
 	width: 95%;

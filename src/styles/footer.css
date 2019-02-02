@@ -1,0 +1,30 @@
+
+#footer2{
+    background: #f89d28;
+    color: rgba(255, 255, 255, 0.9);
+    max-height: 100px;
+}
+
+#footer-button1{
+	background-color: #f89d28;
+	color: white;
+	margin-top: 10%;
+}
+
+#footer-button2{
+	background-color: #f89d28;
+	color: white;
+	margin-top: 3.8%;
+}
+
+.footer-div{
+	text-align: center;
+}
+
+#segment-div{
+	background-color: #191167;
+	color: white;
+	padding: 4em 0em;
+	margin-top: 10%;
+	
+}

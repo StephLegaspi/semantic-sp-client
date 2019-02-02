@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Button, Header, Image, Card, Dropdown, Menu, Container } from 'semantic-ui-react'
 import AddCartButton from '../button/AddCartButton.js'
+import Footer from '../footer/Footer.js'
 
 import img_tree from '../../images/tree.jpg'
 import logo from '../../images/logo.jpg'
@@ -33,8 +34,8 @@ class ViewUsers extends Component {
 						</label>
       				</div>
       			</div>
-				
-				<div class="ui fluid segment" id='upper-div4'>  
+
+      			<div class="ui fluid segment" id='upper-div4'>  
 					<label>
 					  Product Category: {' '}
 					  <Dropdown
@@ -45,22 +46,26 @@ class ViewUsers extends Component {
 					</label>
       			</div>
       			
-      			<div id='card-div'>
-				<Card.Group itemsPerRow={4}>
-				<Card id='card2'>
-					<Card.Content>
-				      <Card.Header>Stephanie Legaspi </Card.Header>
-				      <Card.Description >P 30.00 /pc</Card.Description>
-				    </Card.Content>
-				    <Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}} />
-				    <Card.Content extra>
-				      <AddCartButton />
-				    </Card.Content>
-				</Card>
+      			<div>
+			    	<div id='card-div2'>
+						<Card.Group itemsPerRow={4}>
+						<Card id='card2'>
+							<Card.Content>
+						      <Card.Header>Stephanie Legaspi </Card.Header>
+						      <Card.Description >P 30.00 /pc</Card.Description>
+						    </Card.Content>
+						    <Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}} />
+						    <Card.Content extra>
+						      <AddCartButton />
+						    </Card.Content>
+						</Card>
+						</Card.Group>
+					</div> 
+			    </div>
 
-				</Card.Group>
-				</div>
+				<Footer/>
 			</div>
+			
 		);
 	}
 

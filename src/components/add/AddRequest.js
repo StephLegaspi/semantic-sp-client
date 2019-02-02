@@ -4,6 +4,7 @@ import { DateInput } from 'semantic-ui-calendar-react';
 import '../../styles/add.css';
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
+import Footer from '../footer/Footer.js'
 
 export default class AddRequest extends Component {
 
@@ -111,6 +112,8 @@ export default class AddRequest extends Component {
           </Grid.Column>
         </Grid>
         </div>
+
+        <Footer/>
       </div>
     );
   }

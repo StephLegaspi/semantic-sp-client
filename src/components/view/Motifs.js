@@ -7,6 +7,7 @@ import '../../styles/view.css';
 import MotifsPortfolio from './MotifsPortfolio.js'
 import ViewButton from '../button/ViewButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
+import Footer from '../footer/Footer.js'
 
 class Motifs extends Component {
 	constructor(props){
@@ -47,11 +48,10 @@ class Motifs extends Component {
 				    	<ViewButton handleView={this.toMotifsPortfolio}/>
 				    </Card.Content>
 				</Card>
-
-				
-
 				</Card.Group>
 				</div>
+
+				<Footer/>
 			</div>
 		);
 	}
