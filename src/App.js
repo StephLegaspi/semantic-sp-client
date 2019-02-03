@@ -31,6 +31,8 @@ import MenusPortfolio from './components/view/MenusPortfolio.js';
 import NavigationBar from './components/navbar/NavigationBar.js';
 import Portfolio from './components/view/Portfolio.js';
 
+import AddToCart from './components/add/AddToCart.js';
+
 import {Switch, Route} from 'react-router-dom';
 
 class App extends Component {
@@ -114,6 +116,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBar {...props} activePage={[0,0,0,0,0,0,1,0,0,0]}/>
 																			<Portfolio   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/add-to-cart" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBar {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
+																			<AddToCart   {...props} />
 							             								</div>)}}> 
 			</Route>
       	</Switch>

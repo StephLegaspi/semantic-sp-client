@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { Input, Button, Header, Image, Card, Dropdown, Menu, Container } from 'semantic-ui-react'
-import AddCartButton from '../button/AddCartButton.js'
+import ViewButton from '../button/ViewButton.js'
 import Footer from '../footer/Footer.js'
 
 import img_tree from '../../images/tree.jpg'
 import logo from '../../images/logo.jpg'
 import '../../styles/view.css';
 
-class ViewUsers extends Component {
+class Shop extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {}
+		this.toAddToCart = this. toAddToCart.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
+	}
+
+	toAddToCart(e) {
+		this.props.history.push('/add-to-cart');
 	}
 
 	render() {
@@ -54,9 +59,9 @@ class ViewUsers extends Component {
 						      <Card.Header>Stephanie Legaspi </Card.Header>
 						      <Card.Description >P 30.00 /pc</Card.Description>
 						    </Card.Content>
-						    <Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
+						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
-						      <AddCartButton />
+						      <ViewButton handleView={this.toAddToCart}/>
 						    </Card.Content>
 						</Card>
 						</Card.Group>
@@ -71,4 +76,4 @@ class ViewUsers extends Component {
 
 }
 
-export default ViewUsers;
+export default Shop;
