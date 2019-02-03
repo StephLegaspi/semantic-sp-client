@@ -14,15 +14,13 @@ class Motifs extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {
-			redirect: false
-		}
+		this.state = {}
 
 		this.toMotifsPortfolio = this. toMotifsPortfolio.bind(this);
 	}
 
 	toMotifsPortfolio(e) {
-		this.props.history.push('/motifs-portfolio');
+		this.props.history.push('/motif-portfolio');
 	}
 
 	render() {

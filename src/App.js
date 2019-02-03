@@ -27,6 +27,7 @@ import Motifs from './components/view/Motifs.js';
 import Menus from './components/view/Menus.js';
 
 import MotifsPortfolio from './components/view/MotifsPortfolio.js';
+import MenusPortfolio from './components/view/MenusPortfolio.js';
 import NavigationBar from './components/navbar/NavigationBar.js';
 
 import {Switch, Route} from 'react-router-dom';
@@ -93,11 +94,18 @@ class App extends Component {
 																			<SignUp   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/motifs-portfolio" render={(props) => {
+			<Route exact={true} path="/motif-portfolio" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBar {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
 																			<MotifsPortfolio   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/menu-portfolio" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBar {...props} activePage={[0,0,0,0,1,0,0,0,0,0]}/>
+																			<MenusPortfolio   {...props} />
 							             								</div>)}}> 
 			</Route>
 			

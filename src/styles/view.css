@@ -164,6 +164,15 @@
 
 #card-request{
 	margin-top: 5%;
+	margin-right: 0%;
+	padding: 50px;
+	
+}
+
+#card-menu{
+	margin-top: 1%;
+	margin-right: 0%;
+	padding: 10px;
 	
 }
 

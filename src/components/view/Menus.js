@@ -9,11 +9,16 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
-class ViewMenus extends Component {
+class Menus extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {}
+		this.toMenusPortfolio = this. toMenusPortfolio.bind(this);
+	}
+
+	toMenusPortfolio(e) {
+		this.props.history.push('/menu-portfolio');
 	}
 
 	render() {
@@ -30,7 +35,7 @@ class ViewMenus extends Component {
 				    </Card.Content>
 					<Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 				    <Card.Content extra>
-				      <ViewButton/>
+				      <ViewButton handleView={this.toMenusPortfolio}/>
 				    </Card.Content>
 				</Card>
 				</Card.Group>
@@ -43,4 +48,4 @@ class ViewMenus extends Component {
 
 }
 
-export default ViewMenus;
+export default Menus;

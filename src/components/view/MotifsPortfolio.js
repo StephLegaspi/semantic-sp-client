@@ -22,8 +22,8 @@ class MotifsPortfolio extends Component {
 				<HeaderBar headerTitle={'Motif 1'}/>
 				<div id='card-pics'>
 					<Card image={img} style={{width: '100%'}}/>
-					<Card.Group itemsPerRow={2}>
-					    <Card image={img} />
+					<Card.Group itemsPerRow={2} >
+					    <Card image={img}/>
 					    <Card image={img} />
 					    <Card image={img} />
 					    <Card image={img} />

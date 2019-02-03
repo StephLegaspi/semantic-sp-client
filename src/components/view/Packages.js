@@ -9,7 +9,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
-class ViewPackages extends Component {
+class Packages extends Component {
 	constructor(props){
 		super(props);
 
@@ -82,4 +82,4 @@ class ViewPackages extends Component {
 
 }
 
-export default ViewPackages;
+export default Packages;
