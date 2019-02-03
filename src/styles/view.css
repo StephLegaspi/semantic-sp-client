@@ -138,21 +138,8 @@
 
 
 
-#search-bar2{
-	float: left;
-	text-align: center;
-	margin-top: 3%;
-	position: absolute;
-	margin-left: 28%;
-}
 
-#cart-button{
-	margin-top: 2.2%;
-	margin-left: 67%;
-	float: left;
-	position: absolute;
-	padding-top: 4px;
-}
+
 
 
 
@@ -202,31 +189,4 @@
 	transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
-/*Add to cart*/
 
-#img-holder{
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	float: left;
-	margin-left: 10%;
-	width: 35%;
-	margin-top: 4%;
-}
-
-#desc-holder{
-	float: right;
-	width: 38%;
-	margin-right: 10%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	margin-top: 9%;
-}
-
-.body-font{
-	color: #16163a;
-	font-size: 20px;
-	text-align: center;
-}
-
-.label-font{
-	color: #16163a;
-	font-size: 15px;
-}

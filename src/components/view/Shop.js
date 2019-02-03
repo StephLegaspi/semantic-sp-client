@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Input, Button, Header, Image, Card, Dropdown, Menu, Container } from 'semantic-ui-react'
-import ViewButton from '../button/ViewButton.js'
-import Footer from '../footer/Footer.js'
 
 import img_tree from '../../images/tree.jpg'
-import logo from '../../images/logo.jpg'
 import '../../styles/view.css';
+
+import SearchBarShop from '../searchBar/SearchBarShop.js'
+import ViewButton from '../button/ViewButton.js'
+import CartButton from '../button/CartButton.js'
+import Footer from '../footer/Footer.js'
+
 
 class Shop extends Component {
 	constructor(props){
@@ -24,20 +27,8 @@ class Shop extends Component {
 		return (
 			<div>
 				<div id='bar'>  
-					<div id='search-bar2'>
-					<Input style={{width: '500px'}} type='text' placeholder='Search product name.. ' action>
-					    <input />
-					    <label class="ui icon button" style={{backgroundColor: '#f89d28', color:'white'}}>
-							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
-						</label>
-					</Input>
-					</div>
-
-					<div id='cart-button'> 
-						<label class="ui icon button" style={{backgroundColor: 'transparent', color:'white'}}>
-							<i class="big cart icon"></i>  
-						</label>
-      				</div>
+					<SearchBarShop/>
+					<CartButton/>
       			</div>
 
       			<div class="ui fluid segment" id='upper-div4'>  

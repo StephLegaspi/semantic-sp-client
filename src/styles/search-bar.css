@@ -7,3 +7,12 @@
 	background-color: #f89d28;
 	color: white;
 }
+
+
+#search-bar2{
+	float: left;
+	text-align: center;
+	margin-top: 3%;
+	position: absolute;
+	margin-left: 28%;
+}

@@ -5,6 +5,9 @@ import img_tree from '../../images/tree.jpg'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
 
+import '../../styles/add.css';
+import '../../styles/view.css';
+
 
 class AddToCart extends Component {
 	constructor(props){
