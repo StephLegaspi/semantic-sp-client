@@ -32,8 +32,7 @@ export default class AddRequest extends Component {
       <div>
         <HeaderBar headerTitle={'Request Package'}/>
         <div className='form-style'>
-        <Grid>
-          <Grid.Column >
+        
             
             <Form size='large'>
               <Segment stacked>
@@ -109,8 +108,7 @@ export default class AddRequest extends Component {
                 <SendButton/>
               </Segment>
             </Form>
-          </Grid.Column>
-        </Grid>
+         
         </div>
 
         <Footer/>

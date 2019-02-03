@@ -17,8 +17,7 @@ export default class SignUp extends Component {
       <div> 
         <HeaderBar headerTitle={'Sign Up'}/>
         <div className='form-style'>
-        <Grid>
-          <Grid.Column>
+        
             
             <Form size='large'>
               <Segment stacked>
@@ -76,8 +75,6 @@ export default class SignUp extends Component {
                 </Button>
               </Segment>
             </Form>
-          </Grid.Column>
-        </Grid>
         </div>
 
         <Footer/>
