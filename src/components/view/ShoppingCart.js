@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Icon, Table, Button, Image, Header, Dropdown, Card } from 'semantic-ui-react'
 
-import SearchBarShop from '../searchBar/SearchBarShop.js'
+import HeaderBar from '../headerBar/HeaderBar.js'
 import CartButton from '../button/CartButton.js'
 import Footer from '../footer/Footer.js'
 
@@ -24,10 +24,7 @@ class ViewShoppingCart extends Component {
   render() {
     return (
       <div>
-        <div id='bar'>  
-          <SearchBarShop/>
-          <CartButton handleClick={this.toShoppingCart}/>
-        </div>
+        <HeaderBar headerTitle={'Shopping Cart'}/>
         <div className='table-div-longer'>
         <Table singleLine>
           <Table.Header>
