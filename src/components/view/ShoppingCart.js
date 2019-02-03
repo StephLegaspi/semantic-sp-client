@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Icon, Table, Button, Image, Header, Dropdown, Card } from 'semantic-ui-react'
 
+import SearchBarShop from '../searchBar/SearchBarShop.js'
+import CartButton from '../button/CartButton.js'
+import Footer from '../footer/Footer.js'
+
 import img_tree from '../../images/tree.jpg'
 import '../../styles/view.css';
 
@@ -9,15 +13,22 @@ class ViewShoppingCart extends Component {
     super(props);
 
     this.state = {}
-  
+    this.toShoppingCart = this. toShoppingCart.bind(this);
     this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
   }
 
+  toShoppingCart(e) {
+    this.props.history.push('/shopping-cart');
+  }
 
   render() {
     return (
       <div>
-        <div className='table-div-cart'>
+        <div id='bar'>  
+          <SearchBarShop/>
+          <CartButton handleClick={this.toShoppingCart}/>
+        </div>
+        <div className='table-div-longer'>
         <Table singleLine>
           <Table.Header>
             <Table.Row >
@@ -78,14 +89,15 @@ class ViewShoppingCart extends Component {
             <Card.Description>Total number of items: </Card.Description>
             <Card.Description>Total price: </Card.Description>
 
-            <button class="ui labeled icon button" id='checkout-button'>
+            <button class="ui labeled icon button" id='checkout-button2'>
               <i class="cart icon"></i>
               Checkout
             </button>
           </Card.Content>
         </Card>
-
         </div>
+
+        <Footer/>
       </div>
     );
   }

@@ -4,18 +4,25 @@ import { Button } from 'semantic-ui-react';
 import '../../styles/button.css';
 
 class CartButton extends Component{
+	constructor(props){
+		super(props);
+		this.state={
+			
+		}
 
-	callView = () => {
-		this.props.handleView();
+	}
+
+	callClick = () => {
+		this.props.handleClick();
 	}
 
 	render(){
 		return(
-			<div id='cart-button'> 
-						<label class="ui icon button" style={{backgroundColor: 'transparent', color:'white'}}>
-							<i class="big cart icon"></i>  
-						</label>
-      		</div>
+			
+			<label class="ui icon button" id='cart-button'  onClick={this.callClick}>
+				<i class="big cart icon"></i>  
+			</label>
+
 		);
 	}
 }

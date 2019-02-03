@@ -10,14 +10,9 @@
 	width: 90%;
 }
 
-.table-div-cart {
-	margin-top: 10%;
-	margin-left: 5%;
-	width: 90%;
-}
 
 #header-color{
-	background-color: red;
+	background-color: #f89d28;
 	color: white;
 }
 
@@ -99,6 +94,7 @@
 	margin-left: 25%;
 	width: 50%;
 	text-align: center;
+	padding: 25px;
 }
 
 

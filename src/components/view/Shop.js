@@ -16,6 +16,7 @@ class Shop extends Component {
 
 		this.state = {}
 		this.toAddToCart = this. toAddToCart.bind(this);
+		this.toShoppingCart = this. toShoppingCart.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
@@ -23,12 +24,16 @@ class Shop extends Component {
 		this.props.history.push('/add-to-cart');
 	}
 
+	toShoppingCart(e) {
+		this.props.history.push('/shopping-cart');
+	}
+
 	render() {
 		return (
 			<div>
 				<div id='bar'>  
 					<SearchBarShop/>
-					<CartButton/>
+					<CartButton handleClick={this.toShoppingCart}/>
       			</div>
 
       			<div class="ui fluid segment" id='upper-div4'>  

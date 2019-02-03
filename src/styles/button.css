@@ -37,6 +37,14 @@
 	margin-left: 35%;
 }
 
+#checkout-button2{
+	margin-top: 3%;
+	background-color: #f89d28;
+	color: white;
+	height: 35px;
+	
+}
+
 #send-button{
 	margin-left: 90%;
 	background-color: #f89d28;
@@ -56,9 +64,21 @@
 }
 
 #cart-button{
-	margin-top: 2.2%;
+	margin-top: 3.2%;
 	margin-left: 67%;
 	float: left;
 	position: absolute;
 	padding-top: 4px;
+	background-color: transparent;
+	color: white;
+}
+
+#cart-button-clicked{
+	margin-top: 3.2%;
+	margin-left: 67%;
+	float: left;
+	position: absolute;
+	padding-top: 4px;
+	background-color: transparent;
+	color: #f89d28;
 }

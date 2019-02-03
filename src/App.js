@@ -125,6 +125,13 @@ class App extends Component {
 																			<AddToCart   {...props} />
 							             								</div>)}}> 
 			</Route>
+			<Route exact={true} path="/shopping-cart" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBar {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
+																			<ShoppingCart   {...props} />
+							             								</div>)}}> 
+			</Route>
       	</Switch>
       </div>
     );
