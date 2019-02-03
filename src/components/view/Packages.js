@@ -9,6 +9,8 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
+import PackageInfo from '../infoModal/PackageInfo.js'
+
 class Packages extends Component {
 	constructor(props){
 		super(props);
@@ -30,45 +32,10 @@ class Packages extends Component {
 					      <Card.Description>P 10,000</Card.Description>
 					    </Card.Content>
 					    <Card.Content extra>
-					    	<ViewButton />
+					    	<PackageInfo/>
 					    </Card.Content>
 					</Card>
-					<Card id='card'>
-					    <Card.Content>
-					      <Card.Header>Package 1 </Card.Header>
-					      <Card.Description>P 10,000</Card.Description>
-					    </Card.Content>
-					    <Card.Content extra>
-					    	<ViewButton />
-					    </Card.Content>
-					</Card>
-					<Card id='card'>
-					    <Card.Content>
-					      <Card.Header>Package 1 </Card.Header>
-					      <Card.Description>P 10,000</Card.Description>
-					    </Card.Content>
-					    <Card.Content extra>
-					    	<ViewButton />
-					    </Card.Content>
-					</Card>
-					<Card id='card'>
-					    <Card.Content>
-					      <Card.Header>Package 1 </Card.Header>
-					      <Card.Description>P 10,000</Card.Description>
-					    </Card.Content>
-					    <Card.Content extra>
-					    	<ViewButton />
-					    </Card.Content>
-					</Card>
-					<Card id='card'>
-					    <Card.Content>
-					      <Card.Header>Package 1 </Card.Header>
-					      <Card.Description>P 10,000</Card.Description>
-					    </Card.Content>
-					    <Card.Content extra>
-					    	<ViewButton />
-					    </Card.Content>
-					</Card>
+					
 					</Card.Group>
 				</div>
 
