@@ -54,7 +54,7 @@ class ViewUsers extends Component {
 						      <Card.Header>Stephanie Legaspi </Card.Header>
 						      <Card.Description >P 30.00 /pc</Card.Description>
 						    </Card.Content>
-						    <Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}} />
+						    <Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
 						      <AddCartButton />
 						    </Card.Content>
