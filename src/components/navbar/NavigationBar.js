@@ -70,7 +70,7 @@ class NavigationBar extends Component {
 			        <Menu.Item as='a' id={this.props.activePage[5] ? 'lighter': 'menu-font'} onClick={this.toRequest}>Request Package</Menu.Item>
 			         
 			    	<Container>
-				        <Menu.Item as='a' style={{marginLeft: '44%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a' style={{marginLeft: '42%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toSignUp}>Sign Up</Menu.Item>
 				        <Menu.Item as='a'>Login</Menu.Item>

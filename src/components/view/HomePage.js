@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../styles/homepage.css'
+import '../../styles/header-bar.css'
 import sample_header from '../../images/header2.jpg'
 import {
   Container,
@@ -22,7 +23,7 @@ import Footer from '../footer/Footer.js'
 const HomePage = () => (
   <div>    
     <Segment id='container'>
-      <HeaderBar headerTitle={''}/>
+      <HeaderBar headerTiltle={''}/>
       <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
       <Button primary size='huge' id='btn'>
           Get Started

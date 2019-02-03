@@ -22,7 +22,7 @@ class ViewUsers extends Component {
 					<div id='search-bar2'>
 					<Input style={{width: '500px'}} type='text' placeholder='Search product name.. ' action>
 					    <input />
-					    <label class="ui icon button" style={{backgroundColor: 'orange', color:'white'}}>
+					    <label class="ui icon button" style={{backgroundColor: '#f89d28', color:'white'}}>
 							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
 						</label>
 					</Input>

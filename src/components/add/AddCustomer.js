@@ -15,7 +15,7 @@ export default class SignUp extends Component {
   render(){
     return(
       <div> 
-        <HeaderBar headerTitle={'Request Package'}/>
+        <HeaderBar headerTitle={'Sign Up'}/>
         <div className='form-style'>
         <Grid>
           <Grid.Column>

@@ -8,6 +8,7 @@ import MotifsPortfolio from './MotifsPortfolio.js'
 import ViewButton from '../button/ViewButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
+import SearchBar from '../searchBar/SearchBar.js'
 
 class Motifs extends Component {
 	constructor(props){
@@ -28,14 +29,7 @@ class Motifs extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Event Motifs'}/>
-				<div id='search-bar'>
-					<Input style={{width: '40%'}} type='text' placeholder='Search user name.. ' action>
-					    <input />
-					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
-						</label>
-					</Input>
-				</div>
+				<SearchBar titleHolder={'Search motif name..'}/>
       			
       			<div id='card-div2'>
 				<Card.Group itemsPerRow={4}>
