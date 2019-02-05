@@ -4,6 +4,7 @@ import { Input, Button, Header, Image, Card, Dropdown, Menu, Container } from 's
 import img_tree from '../../images/tree.jpg'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
+import Footer from '../footer/Footer.js'
 
 import '../../styles/add.css';
 import '../../styles/view.css';
@@ -21,6 +22,7 @@ class AddToCart extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={''}/>
+		
 				<div class="ui fluid segment" id='img-holder'>
 					<Image  src={img_tree} rounded size='big' />
 				</div>
@@ -37,6 +39,10 @@ class AddToCart extends Component {
 						<Dropdown placeholder='Color' search selection options={this.stateOptions} style={{marginLeft: '5%'}}/>
 					</div>
 					<div style={{marginTop: '2%'}}>
+						<label className='label-font'> Quantity: </label>
+						<Dropdown placeholder='Quantity' search selection options={this.stateOptions} style={{marginLeft: '5%'}}/>
+					</div>
+					<div style={{marginTop: '2%'}}>
 						<label className='label-font'> Description: </label>
 						<p style={{marginLeft: '25%'}}> blaknkfnhghvsckbsdkbcksbvisbdcbsibk</p>
 					</div>
@@ -44,6 +50,11 @@ class AddToCart extends Component {
 						<AddCartButton/>
 					</div>
 				</div>
+				
+				<div style={{clear: 'both'}}>
+					<Footer/>
+				</div>
+				
 			</div>
 		);
 	}

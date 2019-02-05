@@ -64,7 +64,9 @@ class Shop extends Component {
 					</div> 
 			    </div>
 
-				<Footer/>
+				<div style={{clear: 'both'}}>
+					<Footer/>
+				</div>
 			</div>
 			
 		);
