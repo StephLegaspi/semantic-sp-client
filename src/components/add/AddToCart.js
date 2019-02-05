@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Input, Button, Header, Image, Card, Dropdown, Menu, Container } from 'semantic-ui-react'
+import { Image, Dropdown } from 'semantic-ui-react'
 
-import img_tree from '../../images/tree.jpg'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/add.css';
 import '../../styles/view.css';
+import img_tree from '../../images/tree.jpg'
 
 
 class AddToCart extends Component {

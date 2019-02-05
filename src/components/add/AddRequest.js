@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid,  Segment, Input, Radio, Checkbox, Icon, Label, Dropdown} from 'semantic-ui-react'
+import { Form, Segment, Input, Label, Dropdown} from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
-import '../../styles/add.css';
+
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
 import Footer from '../footer/Footer.js'
+
+import '../../styles/add.css';
 
 export default class AddRequest extends Component {
 

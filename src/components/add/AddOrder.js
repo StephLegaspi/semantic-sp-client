@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid,  Segment, Input, Radio, Checkbox, Icon, Label, Dropdown} from 'semantic-ui-react'
+import { Button, Form, Grid,  Segment, Input } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
+
 import '../../styles/add.css';
 
 export default class AddOrder extends Component {

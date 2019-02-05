@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid,  Segment, Input } from 'semantic-ui-react'
-import '../../styles/add.css';
-import '../../styles/button.css';
+import { Button, Form, Segment, Input } from 'semantic-ui-react'
+
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
+
+import '../../styles/add.css';
+import '../../styles/button.css';
 
 export default class SignUp extends Component {
 

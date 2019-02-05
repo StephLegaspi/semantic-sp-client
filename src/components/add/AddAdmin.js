@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Segment, Input } from 'semantic-ui-react'
+
 import '../../styles/add.css';
 
 export default class AddAdmin extends Component {

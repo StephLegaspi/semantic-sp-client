@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid,  Segment, Input, Radio, Checkbox, Icon, Label } from 'semantic-ui-react'
+import { Button, Form, Grid,  Segment, Input, Radio, Checkbox } from 'semantic-ui-react'
+
 import '../../styles/add.css';
 
 export default class AddProduct extends Component {
 
   state = {}
-
   handleChange = (e, { value }) => this.setState({ value });
-
- 
 
   render(){
     const { value } = this.state

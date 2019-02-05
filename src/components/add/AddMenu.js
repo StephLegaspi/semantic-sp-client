@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid,  Segment, Input, Radio, Checkbox, Icon, Label, TextArea } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment, Input, TextArea } from 'semantic-ui-react'
+
 import '../../styles/add.css';
 
 export default class AddMenu extends Component {
@@ -8,8 +9,6 @@ export default class AddMenu extends Component {
     super();
 
   }
-
- 
 
   render(){
     return(
