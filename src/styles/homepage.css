@@ -21,20 +21,3 @@
 #container #btn:hover {
   background-color: black;
 }
-
-
-
-
-#bar-title2{
-	position: absolute;
-	color: white;
-	margin-left: 84%;
-	margin-top: 1%;
-}
-
-#bar-title3{
-	position: absolute;
-	color: white;
-	margin-left: 62%;
-	margin-top: 4%;
-}

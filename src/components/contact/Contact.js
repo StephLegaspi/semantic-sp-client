@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header, Dropdown, Form, Segment, Grid, TextArea } from 'semantic-ui-react'
+import { Icon, Input, Form, Segment, Grid, TextArea } from 'semantic-ui-react'
 
 import '../../styles/contact.css';
 import HeaderBar from '../headerBar/HeaderBar.js'

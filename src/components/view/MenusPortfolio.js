@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Input, Button, Header, Image, Card, Segment, Grid, Container, Icon, List} from 'semantic-ui-react'
-
-import img from '../../images/food.jpg'
-import '../../styles/view.css';
-import '../../styles/button.css';
+import { Button, Header, Card, Icon, List} from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
+
+import '../../styles/view.css';
+import '../../styles/button.css';
+import img from '../../images/food.jpg'
+
 
 class MenusPortfolio extends Component {
 	constructor(props){

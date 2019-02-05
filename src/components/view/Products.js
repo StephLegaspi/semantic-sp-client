@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Icon, Menu, Table, Input, Button, Header, Dropdown, Image } from 'semantic-ui-react'
 
-import img_tree from '../../images/tree.jpg'
 import '../../styles/view.css';
+import img_tree from '../../images/tree.jpg'
 
 class ViewProducts extends Component {
 	constructor(props){

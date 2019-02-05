@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Input, Button, Header, Image, Card } from 'semantic-ui-react'
 
-import img_tree from '../../images/tree.jpg'
 import '../../styles/view.css';
+import img_tree from '../../images/tree.jpg'
 
 class ViewUsers extends Component {
 	constructor(props){

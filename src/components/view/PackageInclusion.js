@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {  List } from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
 
-import img_tree from '../../images/tree.jpg'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
+import img_tree from '../../images/tree.jpg'
 
 
 class PackageInclusion extends Component {

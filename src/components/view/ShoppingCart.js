@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Icon, Table, Button, Image, Header, Dropdown, Card } from 'semantic-ui-react'
+import { Table, Image, Header, Dropdown, Card } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
-import CartButton from '../button/CartButton.js'
 import Footer from '../footer/Footer.js'
 
-import img_tree from '../../images/tree.jpg'
 import '../../styles/view.css';
+import img_tree from '../../images/tree.jpg'
 
 class ViewShoppingCart extends Component {
   constructor(props){

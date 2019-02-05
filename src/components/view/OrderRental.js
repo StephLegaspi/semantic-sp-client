@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header, Dropdown } from 'semantic-ui-react'
+import { Icon, Menu, Table, Input, Button, Header, Dropdown } from 'semantic-ui-react'
 import CustomerInfo from '../infoModal/CustomerInfo.js'
 import OrderInfo from '../infoModal/OrderInfo.js'
 import RentalInfo from '../infoModal/RentalInfo.js'

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Input, Button, Header, Image, Card, Segment, Grid, Container, Icon} from 'semantic-ui-react'
-
-import img from '../../images/header2.jpg'
-import '../../styles/view.css';
-import '../../styles/button.css';
+import { Button, Header, Image, Card, Icon} from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 
+import '../../styles/view.css';
+import '../../styles/button.css';
+import img from '../../images/header2.jpg'
 import sample_header from '../../images/header1.jpg'
 
 class Portfolio extends Component {

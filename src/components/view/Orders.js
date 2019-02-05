@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select, Button, Modal, Image, Header, Dropdown } from 'semantic-ui-react'
+import { Icon, Menu, Table, Input, Button, Header, Dropdown } from 'semantic-ui-react'
+
 import CustomerInfo from '../infoModal/CustomerInfo.js'
 import OrderInfo from '../infoModal/OrderInfo.js'
 
@@ -9,13 +10,9 @@ class ViewOrders extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {
-			
-		}
-		
+		this.state = {}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
-
 	}
 
 	render() {

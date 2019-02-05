@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Login from './components/login/Login.js';
 
 import SignUp from './components/add/AddCustomer.js';
-import HomePage from './components/view/HomePage.js';
-import Contact from './components/view/Contact.js';
+import HomePage from './components/homepage/HomePage.js';
+import Contact from './components/contact/Contact.js';
 
 import AddAdmin from './components/add/AddAdmin.js';
 import AddProduct from './components/add/AddProduct.js';
