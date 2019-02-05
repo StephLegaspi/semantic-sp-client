@@ -9,13 +9,16 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
-import PackageInfo from '../infoModal/PackageInfo.js'
-
 class Packages extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {}
+		this.toPackageInclusion = this. toPackageInclusion.bind(this);
+	}
+
+	toPackageInclusion(e) {
+		this.props.history.push('/package-inclusion');
 	}
 
 	render() {
@@ -32,7 +35,7 @@ class Packages extends Component {
 					      <Card.Description>P 10,000</Card.Description>
 					    </Card.Content>
 					    <Card.Content extra>
-					    	<PackageInfo/>
+					    	<ViewButton handleView={this.toPackageInclusion}/>
 					    </Card.Content>
 					</Card>
 					

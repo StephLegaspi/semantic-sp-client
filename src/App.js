@@ -30,6 +30,7 @@ import MotifsPortfolio from './components/view/MotifsPortfolio.js';
 import MenusPortfolio from './components/view/MenusPortfolio.js';
 import NavigationBar from './components/navbar/NavigationBar.js';
 import Portfolio from './components/view/Portfolio.js';
+import PackageInclusion from './components/view/PackageInclusion.js'
 
 import AddToCart from './components/add/AddToCart.js';
 
@@ -130,6 +131,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBar {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
 																			<ShoppingCart   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/package-inclusion" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBar {...props} activePage={[0,0,1,0,0,0,0,0,0,0]}/>
+																			<PackageInclusion   {...props} />
 							             								</div>)}}> 
 			</Route>
       	</Switch>
