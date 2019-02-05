@@ -94,3 +94,21 @@
 	color: white;
 	margin-top: 3.8%;
 }
+
+#delete-button{
+	background-color: #f89d28;
+	color: white;
+	height: 28px;
+	width: 30px;
+	padding-left: 8.5px;
+	padding-top: 2px;
+}
+
+#edit-button{
+	background-color: #f89d28;
+	color: white;
+	height: 28px;
+	width: 30px;
+	padding-left: 9px;
+	padding-top: 4px;
+}

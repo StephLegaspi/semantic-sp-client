@@ -16,3 +16,11 @@
 	position: absolute;
 	margin-left: 28%;
 }
+
+#search-bar3{
+	margin-top: 3%;
+	position: relative;
+	float: left;
+	text-align: center;
+	width: 90%;
+}

@@ -1,7 +1,7 @@
 .table-div {
-	margin-top: 3%;
 	margin-left: 10%;
 	width: 80%;
+	margin-top: 8%;
 }
 
 .table-div-longer {
@@ -15,25 +15,6 @@
 	background-color: #f89d28;
 	color: white;
 }
-
-#delete-button{
-	background-color: red;
-	color: white;
-	height: 28px;
-	width: 30px;
-	padding-left: 7px;
-	padding-top: 2px;
-}
-
-#edit-button{
-	background-color: red;
-	color: white;
-	height: 28px;
-	width: 30px;
-	padding-left: 8px;
-	padding-top: 4px;
-}
-
 
 
 #upper-div1 {
@@ -65,12 +46,23 @@
 }
 
 #upper-div4 {
-	width: 20%;
+	width: 19%;
 	height: 46px;
 	margin-top: 3%;
 	margin-left: 10%;
 	padding-top: 13px;
 }
+
+#upper-div5 {
+	float: left;
+	position: absolute;
+	width: 19%;
+	height: 46px;
+	margin-top: 3%;
+	margin-left: 71%;
+	padding-top: 13px;
+}
+
 
 #add-button{
 	margin-top: 2.8%;

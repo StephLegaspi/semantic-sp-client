@@ -26,25 +26,37 @@ import Packages from './components/view/Packages.js';
 import Motifs from './components/view/Motifs.js';
 import Menus from './components/view/Menus.js';
 
+import NavigationBarCustomer from './components/navbar/NavigationBarCustomer.js';
 import MotifsPortfolio from './components/view/MotifsPortfolio.js';
 import MenusPortfolio from './components/view/MenusPortfolio.js';
-import NavigationBar from './components/navbar/NavigationBar.js';
 import Portfolio from './components/view/Portfolio.js';
 import PackageInclusion from './components/view/PackageInclusion.js'
-
 import AddToCart from './components/add/AddToCart.js';
 
-import {Switch, Route} from 'react-router-dom';
+import NavigationBarAdmin from './components/navbar/NavigationBarAdmin.js';
+
+import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
 
 class App extends Component {
+  
+  constructor() {
+	super();
+	this.state = {
+	  	curr_user: 0
+	}
+
+  }
+
   render() {
     return (
       <div>
+      	<Router history={withRouter}>
+      	{this.state.curr_user ? (
       	<Switch>
       		<Route exact={true} path="/" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[1,0,0,0,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[1,0,0,0,0,0,0,0,0,0]}/>
 																			<HomePage   {...props} />
 							             								</div>)}}> 
 			</Route>
@@ -52,95 +64,108 @@ class App extends Component {
 			<Route exact={true} path="/shop" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
 																			<Shop   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/packages" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,1,0,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,1,0,0,0,0,0,0,0]}/>
 																			<Packages   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/motifs" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
 																			<Motifs   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/menus" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,0,1,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,1,0,0,0,0,0]}/>
 																			<Menus   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/request-package" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
 																			<AddRequest   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/contact-us" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,0,0,0,0,1,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,1,0,0]}/>
 																			<Contact   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/sign-up" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,0,0,0,0,0,1,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,1,0]}/>
 																			<SignUp   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/motif-portfolio" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
 																			<MotifsPortfolio   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/menu-portfolio" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,0,1,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,1,0,0,0,0,0]}/>
 																			<MenusPortfolio   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/portfolio" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,0,0,0,0,1,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,1,0,0,0]}/>
 																			<Portfolio   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/add-to-cart" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
 																			<AddToCart   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/shopping-cart" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>
 																			<ShoppingCart   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/package-inclusion" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBar {...props} activePage={[0,0,1,0,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,1,0,0,0,0,0,0,0]}/>
 																			<PackageInclusion   {...props} />
 							             								</div>)}}> 
 			</Route>
       	</Switch>
+      	) : (
+      		<Switch>
+      		<Route exact={true} path="/inventory" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin  {...props} />
+																			<Inventory   {...props} />
+							             								</div>)}}> 
+			</Route>
+			</Switch>
+
+      	)}
+      	</Router>
       </div>
     );
   }
