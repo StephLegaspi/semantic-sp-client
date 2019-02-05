@@ -12,7 +12,7 @@ class ViewShoppingCart extends Component {
     super(props);
 
     this.state = {}
-    this.toShoppingCart = this. toShoppingCart.bind(this);
+    this.toShoppingCart = this.toShoppingCart.bind(this);
     this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
   }
 

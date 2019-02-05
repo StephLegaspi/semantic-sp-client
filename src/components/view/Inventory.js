@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Button, Header, Dropdown } from 'semantic-ui-react'
+import { Icon, Menu, Table, Input, Button, Dropdown } from 'semantic-ui-react'
 import ProductInfo from '../infoModal/ProductInfo.js'
 
 import '../../styles/view.css';

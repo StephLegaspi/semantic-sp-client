@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Header, Image, Card } from 'semantic-ui-react'
+import { Image, Card } from 'semantic-ui-react'
 
-import MotifsPortfolio from './MotifsPortfolio.js'
 import ViewButton from '../button/ViewButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'

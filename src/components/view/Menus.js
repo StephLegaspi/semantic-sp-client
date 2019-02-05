@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Image, Card } from 'semantic-ui-react'
+import { Image, Card } from 'semantic-ui-react'
 
 import img_tree from '../../images/tree.jpg'
 import '../../styles/view.css';
@@ -14,7 +14,7 @@ class Menus extends Component {
 		super(props);
 
 		this.state = {}
-		this.toMenusPortfolio = this. toMenusPortfolio.bind(this);
+		this.toMenusPortfolio = this.toMenusPortfolio.bind(this);
 	}
 
 	toMenusPortfolio(e) {

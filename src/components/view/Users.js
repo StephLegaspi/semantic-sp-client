@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Header, Image, Card } from 'semantic-ui-react'
+import { Input, Button, Image, Card } from 'semantic-ui-react'
 
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'

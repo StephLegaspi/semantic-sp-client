@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Header, Image, Segment, Icon, Button } from 'semantic-ui-react'
 
-import NavBar from '../navbar/NavigationBar.js';
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 

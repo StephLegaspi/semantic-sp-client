@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select, Button } from 'semantic-ui-react'
+import { Icon, Menu, Table, Input, Select} from 'semantic-ui-react'
 
 
 import '../../styles/view.css';

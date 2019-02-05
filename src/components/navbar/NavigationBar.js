@@ -8,9 +8,9 @@ class NavigationBar extends Component {
 	constructor(props){
 		super(props);
 
-		this.toHomePage = this. toHomePage.bind(this);
-		this.toShop = this. toShop.bind(this);
-		this.toPackages = this. toPackages.bind(this);
+		this.toHomePage = this.toHomePage.bind(this);
+		this.toShop = this.toShop.bind(this);
+		this.toPackages = this.toPackages.bind(this);
 		this.toMotifs = this.toMotifs.bind(this);
 		this.toMenus = this.toMenus.bind(this);
 		this.toRequest = this.toRequest.bind(this);

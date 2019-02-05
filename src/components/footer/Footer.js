@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import '../../styles/footer.css'
+import {withRouter} from 'react-router-dom';
+import { Container, Grid, Header, Image, Segment, Icon, Button } from 'semantic-ui-react'
+
 import ContactButton from '../button/ContactButton.js'
 import RequestButton from '../button/RequestButton.js'
-import {withRouter} from 'react-router-dom';
-import {
-  Container,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
-  Image,
-  List,
-  Menu,
-  Segment,
-  Icon,
-  Button
-} from 'semantic-ui-react'
+
+import '../../styles/footer.css'
 
 class Footer extends Component {
   constructor(props){
@@ -23,8 +13,8 @@ class Footer extends Component {
 
     this.state = {}
 
-    this.toContactUs = this. toContactUs.bind(this);
-    this.toRequest = this. toRequest.bind(this);
+    this.toContactUs = this.toContactUs.bind(this);
+    this.toRequest = this.toRequest.bind(this);
   }
 
   toContactUs(e) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Image, Card, Dropdown } from 'semantic-ui-react'
+import { Image, Card, Dropdown } from 'semantic-ui-react'
 
 import SearchBarShop from '../searchBar/SearchBarShop.js'
 import ViewButton from '../button/ViewButton.js'
@@ -14,8 +14,8 @@ class Shop extends Component {
 		super(props);
 
 		this.state = {}
-		this.toAddToCart = this. toAddToCart.bind(this);
-		this.toShoppingCart = this. toShoppingCart.bind(this);
+		this.toAddToCart = this.toAddToCart.bind(this);
+		this.toShoppingCart = this.toShoppingCart.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 

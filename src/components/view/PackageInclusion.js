@@ -5,7 +5,6 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
-import img_tree from '../../images/tree.jpg'
 
 
 class PackageInclusion extends Component {

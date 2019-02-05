@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Card } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 
 import ViewButton from '../button/ViewButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -7,14 +7,13 @@ import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
 import '../../styles/view.css';
-import img_tree from '../../images/tree.jpg'
 
 class Packages extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {}
-		this.toPackageInclusion = this. toPackageInclusion.bind(this);
+		this.toPackageInclusion = this.toPackageInclusion.bind(this);
 	}
 
 	toPackageInclusion(e) {
