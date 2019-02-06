@@ -20,7 +20,8 @@ import OrderRental from './components/view/OrderRental.js';
 import ShoppingCart from './components/view/ShoppingCart.js';
 import Requests from './components/view/Requests.js';
 import Products from './components/view/Products.js';
-import Users from './components/view/Users.js';
+import UserCustomers from './components/view/UserCustomers.js';
+import UserAdmins from './components/view/UserAdmins.js';
 import Shop from './components/view/Shop.js';
 import Packages from './components/view/Packages.js';
 import Motifs from './components/view/Motifs.js';
@@ -181,6 +182,20 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,1,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<Requests   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/customers" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,1,0,0,0,0,0,0,0,0]} {...props} />
+																			<UserCustomers   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/admins" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0,0]} {...props} />
+																			<UserAdmins   {...props} />
 							             								</div>)}}> 
 			</Route>
 			</Switch>

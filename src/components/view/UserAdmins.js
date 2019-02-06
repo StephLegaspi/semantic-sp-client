@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Input, Button, Image, Card } from 'semantic-ui-react'
+import { Button, Image, Card } from 'semantic-ui-react'
+
+import HeaderBar from '../headerBar/HeaderBar.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
 
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'
 
-class ViewUsers extends Component {
+class UserAdmins extends Component {
 	constructor(props){
 		super(props);
 
@@ -14,22 +17,9 @@ class ViewUsers extends Component {
 	render() {
 		return (
 			<div>
-				<div id='search-bar'>
-					<Input style={{width: '40%'}} type='text' placeholder='Search user name.. ' action>
-					    <input />
-					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
-						</label>
-					</Input>
-				</div>
+				<HeaderBar headerTitle={'Admins'}/>
+				<SearchBarTable titleHolder={'Search customer name..'}/>
 
-				
-				<div class="ui fluid segment" id='upper-div1'>
-      				<label> Type of user: </label>
-      				<Button id='upper-button'> Admin</Button>
-      				<Button id='upper-button'> Customer</Button>
-      			</div>
-      			
       			<div id='card-div'>
 				<Card.Group itemsPerRow={4}>
 				<Card id='card'>
@@ -105,4 +95,4 @@ class ViewUsers extends Component {
 
 }
 
-export default ViewUsers;
+export default UserAdmins;

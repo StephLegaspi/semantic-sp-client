@@ -12,6 +12,8 @@ class NavigationBar extends Component {
 		this.toInventory = this.toInventory.bind(this);
 		this.toOrders = this.toOrders.bind(this);
 		this.toRequests = this.toRequests.bind(this);
+		this.toUserCustomers = this.toUserCustomers.bind(this);
+		this.toUserAdmins = this.toUserAdmins.bind(this);
 	}
 
 	toInventory(e) {
@@ -30,6 +32,14 @@ class NavigationBar extends Component {
 		this.props.history.push('/requests');
 	}
 
+	toUserCustomers(e) {
+		this.props.history.push('/customers');
+	}
+
+	toUserAdmins(e) {
+		this.props.history.push('/admins');
+	}
+
 	render() {
 		return (
 			<div>
@@ -42,12 +52,12 @@ class NavigationBar extends Component {
 			        <Menu.Item as='a'  id={this.props.activePage[1] ? 'lighter': 'menu-font'} onClick={this.toProducts}>Products</Menu.Item>
 			        <Menu.Item as='a'  id={this.props.activePage[2] ? 'lighter': 'menu-font'} onClick={this.toOrders}>Orders</Menu.Item>
 			        <Menu.Item as='a'  id={this.props.activePage[3] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
-				    <Dropdown item simple text='User' id='menu-font'>
+				    <Dropdown item simple text='Users' id={(this.props.activePage[4] || this.props.activePage[5]) ? 'lighter': 'menu-font'} >
 				          <Dropdown.Menu>
-				            <Dropdown.Item>Admin</Dropdown.Item>
-				            <Dropdown.Item >Customer</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toUserAdmins}>Admins</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toUserCustomers}>Customer</Dropdown.Item>
 				          </Dropdown.Menu>
-				    </Dropdown>
+				        </Dropdown>
 			        			         
 			    	<Container>
 				        <Dropdown item simple text='Data Management' id='menu-font' style={{marginLeft: '34.2%'}}>
