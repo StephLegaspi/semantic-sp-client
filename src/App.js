@@ -169,6 +169,20 @@ class App extends Component {
 																			<Products   {...props} />
 							             								</div>)}}> 
 			</Route>
+			<Route exact={true} path="/orders" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<Orders   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/requests" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,1,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<Requests   {...props} />
+							             								</div>)}}> 
+			</Route>
 			</Switch>
 
       	)}

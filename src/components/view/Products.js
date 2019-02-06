@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Button, Header, Dropdown, Image, Tab } from 'semantic-ui-react'
+import { Dropdown, Tab } from 'semantic-ui-react'
 
 import ProductsTable from './ProductsTable.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -51,7 +51,7 @@ class ViewProducts extends Component {
       			</div>
       			
       			<Tab panes={this.panes} menu={{ fluid: true, pointing: true }} className='table-div'/>
-      			
+
 			</div>
 		);
 	}

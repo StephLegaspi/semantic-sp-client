@@ -10,6 +10,8 @@ class NavigationBar extends Component {
 
 		this.toProducts = this.toProducts.bind(this);
 		this.toInventory = this.toInventory.bind(this);
+		this.toOrders = this.toOrders.bind(this);
+		this.toRequests = this.toRequests.bind(this);
 	}
 
 	toInventory(e) {
@@ -18,6 +20,14 @@ class NavigationBar extends Component {
 
 	toProducts(e) {
 		this.props.history.push('/products');
+	}
+
+	toOrders(e) {
+		this.props.history.push('/orders');
+	}
+
+	toRequests(e) {
+		this.props.history.push('/requests');
 	}
 
 	render() {
@@ -30,8 +40,8 @@ class NavigationBar extends Component {
 
 			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'} onClick={this.toInventory}>Inventory</Menu.Item>
 			        <Menu.Item as='a'  id={this.props.activePage[1] ? 'lighter': 'menu-font'} onClick={this.toProducts}>Products</Menu.Item>
-			        <Menu.Item as='a'  id='menu-font'>Orders</Menu.Item>
-			        <Menu.Item as='a'  id='menu-font'>Requests</Menu.Item>
+			        <Menu.Item as='a'  id={this.props.activePage[2] ? 'lighter': 'menu-font'} onClick={this.toOrders}>Orders</Menu.Item>
+			        <Menu.Item as='a'  id={this.props.activePage[3] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
 				    <Dropdown item simple text='User' id='menu-font'>
 				          <Dropdown.Menu>
 				            <Dropdown.Item>Admin</Dropdown.Item>
