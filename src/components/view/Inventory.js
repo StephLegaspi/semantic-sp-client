@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Dropdown, Tab, Input } from 'semantic-ui-react'
+import { Dropdown, Tab } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
-import SearchBar from '../searchBar/SearchBar.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
 import InventoryTable from './InventoryTable.js'
 
 import '../../styles/view.css';
@@ -32,14 +32,7 @@ class Inventory extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Inventory'}/>
-				<div id='search-bar3'>
-					<Input style={{width: '40%'}} type='text' placeholder='search' action>
-					    <input />
-					    <label class="ui icon button" id='search-bar-button'>
-							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
-						</label>
-					</Input>
-				</div>
+				<SearchBarTable titleHolder={'Search product name..'}/>
   				
 
       			<div class="ui fluid segment" id='upper-div5'>  

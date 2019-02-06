@@ -13,7 +13,7 @@ class SearchBar extends Component {
 	render() {
 		return (
 			<div>
-				<div id='search-bar'>
+				<div id='search-bar3'>
 					<Input style={{width: '40%'}} type='text' placeholder={this.props.titleHolder} action>
 					    <input />
 					    <label class="ui icon button" id='search-bar-button'>
