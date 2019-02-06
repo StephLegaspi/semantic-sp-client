@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-import { Container, Grid, Header, Image, Segment, Icon, Button } from 'semantic-ui-react'
+import { Container, Grid, Header, Segment, Icon, Button } from 'semantic-ui-react'
 
 import ContactButton from '../button/ContactButton.js'
 import RequestButton from '../button/RequestButton.js'

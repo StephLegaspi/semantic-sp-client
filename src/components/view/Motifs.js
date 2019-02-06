@@ -15,7 +15,7 @@ class Motifs extends Component {
 
 		this.state = {}
 
-		this.toMotifsPortfolio = this. toMotifsPortfolio.bind(this);
+		this.toMotifsPortfolio = this.toMotifsPortfolio.bind(this);
 	}
 
 	toMotifsPortfolio(e) {

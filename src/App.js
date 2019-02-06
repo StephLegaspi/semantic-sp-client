@@ -158,8 +158,15 @@ class App extends Component {
       		<Route exact={true} path="/inventory" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin  {...props} />
+																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<Inventory   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/products" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<Products   {...props} />
 							             								</div>)}}> 
 			</Route>
 			</Switch>

@@ -112,3 +112,11 @@
 	padding-left: 9px;
 	padding-top: 4px;
 }
+
+#add-button{
+	margin-top: 2.6%;
+	margin-left: 65.5%;
+	float: left;
+	position: absolute;
+	padding-top: 4px;
+}

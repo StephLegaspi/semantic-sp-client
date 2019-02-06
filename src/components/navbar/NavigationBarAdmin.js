@@ -8,11 +8,16 @@ class NavigationBar extends Component {
 	constructor(props){
 		super(props);
 
+		this.toProducts = this.toProducts.bind(this);
 		this.toInventory = this.toInventory.bind(this);
 	}
 
 	toInventory(e) {
 		this.props.history.push('/inventory');
+	}
+
+	toProducts(e) {
+		this.props.history.push('/products');
 	}
 
 	render() {
@@ -23,8 +28,8 @@ class NavigationBar extends Component {
 			          <Image circular src={logo} className='logo-style' />
 			        </Menu.Item>
 
-			        <Menu.Item as='a'  id='menu-font'>Inventory</Menu.Item>
-			        <Menu.Item as='a'  id='menu-font'>Products</Menu.Item>
+			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'} onClick={this.toInventory}>Inventory</Menu.Item>
+			        <Menu.Item as='a'  id={this.props.activePage[1] ? 'lighter': 'menu-font'} onClick={this.toProducts}>Products</Menu.Item>
 			        <Menu.Item as='a'  id='menu-font'>Orders</Menu.Item>
 			        <Menu.Item as='a'  id='menu-font'>Requests</Menu.Item>
 				    <Dropdown item simple text='User' id='menu-font'>

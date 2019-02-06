@@ -7,7 +7,7 @@ import EditButton from '../button/EditButton.js'
 
 import '../../styles/view.css';
 
-class Inventory extends Component {
+class InventoryTable extends Component {
 	constructor(props){
 		super(props);
 
@@ -76,4 +76,4 @@ class Inventory extends Component {
 
 }
 
-export default Inventory;
+export default InventoryTable;
