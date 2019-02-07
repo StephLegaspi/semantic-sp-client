@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Table, List, Icon } from 'semantic-ui-react'
 
 import '../../styles/modal.css';
-import ViewButton from '../button/ViewButton.js'
+import ModalButton from '../button/ModalButton.js'
 
 class PackageInfo extends Component {
 	constructor(props){
@@ -25,7 +25,7 @@ class PackageInfo extends Component {
 	render() {
 		return (
 			<div>
-				<ViewButton handleView={this.onModal}/>
+				<ModalButton handleClickModal={this.onModal}/>
 					        {this.state.modal && (<div className='custom-modal'>
 								<div>
 									<div className="open-box">

@@ -70,9 +70,8 @@ class NavigationBar extends Component {
 				    </Dropdown>
 			        			         
 			    	<Container>
-				        <Dropdown item simple text='Data Management' id='menu-font' style={{marginLeft: '34.2%'}}>
+				        <Dropdown item simple text='Data Management' id='menu-font' style={{marginLeft: '32%'}}>
 				          <Dropdown.Menu>
-				            <Dropdown.Item>Shop</Dropdown.Item>
 				            <Dropdown.Item >Packages</Dropdown.Item>
 				            <Dropdown.Item >Motifs</Dropdown.Item>
 				            <Dropdown.Item >Menus</Dropdown.Item>
