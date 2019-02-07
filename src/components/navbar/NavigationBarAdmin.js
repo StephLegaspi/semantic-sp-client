@@ -18,6 +18,7 @@ class NavigationBar extends Component {
 		this.toPackagesTable = this.toPackagesTable.bind(this);
 		this.toMotifsTable = this.toMotifsTable.bind(this);
 		this.toMenusTable = this.toMenusTable.bind(this);
+		this.toContactDetails = this.toContactDetails.bind(this);
 	}
 
 	toInventory(e) {
@@ -60,6 +61,10 @@ class NavigationBar extends Component {
 		this.props.history.push('/menus-table');
 	}
 
+	toContactDetails(e) {
+		this.props.history.push('/contact-details');
+	}
+
 	render() {
 		return (
 			<div>
@@ -92,7 +97,7 @@ class NavigationBar extends Component {
 				            <Dropdown.Item onClick={this.toMenusTable}>Menus</Dropdown.Item>
 				          </Dropdown.Menu>
 				        </Dropdown>
-				        <Menu.Item as='a'>Contact</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toContactDetails}>Contact</Menu.Item>
 				        <Menu.Item as='a'>FAQS</Menu.Item>
 				        <Menu.Item as='a'>Logout</Menu.Item>
      				</Container>
