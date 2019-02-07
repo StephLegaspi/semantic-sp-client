@@ -170,31 +170,38 @@ class App extends Component {
 																			<Products   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/orders" render={(props) => {
+			<Route exact={true} path="/orders-purchase" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<Orders   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/orders-rental" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<OrderRental   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/requests" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,1,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,1,0,0,0,0,0,0,0,0]} {...props} />
 																			<Requests   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/customers" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,1,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0,0]} {...props} />
 																			<UserCustomers   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/admins" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,1,0,0,0,0,0,0]} {...props} />
 																			<UserAdmins   {...props} />
 							             								</div>)}}> 
 			</Route>

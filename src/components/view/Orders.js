@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Button, Dropdown } from 'semantic-ui-react'
+import { Icon, Menu, Table, Dropdown } from 'semantic-ui-react'
 
 import CustomerInfo from '../infoModal/CustomerInfo.js'
 import OrderInfo from '../infoModal/OrderInfo.js'
+import HeaderBar from '../headerBar/HeaderBar.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
+import DeleteButton from '../button/DeleteButton.js'
+import EditButton from '../button/EditButton.js'
 
 import '../../styles/view.css';
 
@@ -18,16 +22,11 @@ class ViewOrders extends Component {
 	render() {
 		return (
 			<div>
-				<div id='search-bar'>
-					<Input style={{width: '40%'}} type='text' placeholder='Search customer name.. ' action>
-					    <input />
-					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
-						</label>
-					</Input>
-				</div>
+				<HeaderBar headerTitle={'Purchase Orders'}/>
+				<SearchBarTable titleHolder={'Search customer name..'}/>
 
-				<div class="ui fluid segment" id='upper-div3'>
+
+				<div class="ui fluid segment" id='upper-div6'>
       				<label>
 					  Delivery Status: {' '}
 					  <Dropdown
@@ -74,72 +73,12 @@ class ViewOrders extends Component {
 				        	Pending
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='delete-button'>
-							  <i class="trash large alternate icon"></i>
-							</Button>
+				        	<EditButton/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<Button id='edit-button'>
-							  <i class="large edit icon"></i>
-							</Button>
+				        	<DeleteButton/>
 				        </Table.Cell>
-				      </Table.Row>
-
-				      <Table.Row>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-					        <CustomerInfo/>
-						</Table.Cell>
-						<Table.Cell>
-					       <OrderInfo/>
-						</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<Button id='delete-button'>
-							  <i class="trash large alternate icon"></i>
-							</Button>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<Button id='edit-button'>
-							  <i class="large edit icon"></i>
-							</Button>
-				        </Table.Cell>
-				      </Table.Row>
-
-				      <Table.Row>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-					        <CustomerInfo/>
-						</Table.Cell>
-				        <Table.Cell>
-					        <OrderInfo/>
-						</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<Button id='delete-button'>
-							  <i class="trash large alternate icon"></i>
-							</Button>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<Button id='edit-button'>
-							  <i class="large edit icon"></i>
-							</Button>
-				        </Table.Cell>
-				      </Table.Row>    
+				      </Table.Row>  
 				    </Table.Body>
 
 				    <Table.Footer>

@@ -14,6 +14,7 @@ class NavigationBar extends Component {
 		this.toRequests = this.toRequests.bind(this);
 		this.toUserCustomers = this.toUserCustomers.bind(this);
 		this.toUserAdmins = this.toUserAdmins.bind(this);
+		this.toOrderRentals = this.toOrderRentals.bind(this);
 	}
 
 	toInventory(e) {
@@ -25,7 +26,11 @@ class NavigationBar extends Component {
 	}
 
 	toOrders(e) {
-		this.props.history.push('/orders');
+		this.props.history.push('/orders-purchase');
+	}
+
+	toOrderRentals(e) {
+		this.props.history.push('/orders-rental');
 	}
 
 	toRequests(e) {
@@ -50,14 +55,19 @@ class NavigationBar extends Component {
 
 			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'} onClick={this.toInventory}>Inventory</Menu.Item>
 			        <Menu.Item as='a'  id={this.props.activePage[1] ? 'lighter': 'menu-font'} onClick={this.toProducts}>Products</Menu.Item>
-			        <Menu.Item as='a'  id={this.props.activePage[2] ? 'lighter': 'menu-font'} onClick={this.toOrders}>Orders</Menu.Item>
-			        <Menu.Item as='a'  id={this.props.activePage[3] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
-				    <Dropdown item simple text='Users' id={(this.props.activePage[4] || this.props.activePage[5]) ? 'lighter': 'menu-font'} >
+			        <Dropdown item simple text='Orders' id={(this.props.activePage[2] || this.props.activePage[3])  ? 'lighter': 'menu-font'} >
 				          <Dropdown.Menu>
-				            <Dropdown.Item onClick={this.toUserAdmins}>Admins</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toOrders}>Purchase</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toOrderRentals}>Rental</Dropdown.Item>
+				          </Dropdown.Menu>
+				    </Dropdown>
+			        <Menu.Item as='a'  id={this.props.activePage[4] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
+				    <Dropdown item simple text='Users' id={(this.props.activePage[5] || this.props.activePage[6]) ? 'lighter': 'menu-font'} >
+				          <Dropdown.Menu>
+				            <Dropdown.Item onClick={this.toUserAdmins}>Admin</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toUserCustomers}>Customer</Dropdown.Item>
 				          </Dropdown.Menu>
-				        </Dropdown>
+				    </Dropdown>
 			        			         
 			    	<Container>
 				        <Dropdown item simple text='Data Management' id='menu-font' style={{marginLeft: '34.2%'}}>
