@@ -36,6 +36,7 @@ import AddToCart from './components/add/AddToCart.js';
 
 import NavigationBarAdmin from './components/navbar/NavigationBarAdmin.js';
 import PackagesTable from './components/view/PackagesTable.js';
+import MotifsTable from './components/view/MotifsTable.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
 
@@ -211,6 +212,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
 																			<PackagesTable   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/motifs-table" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
+																			<MotifsTable   {...props} />
 							             								</div>)}}> 
 			</Route>
 			</Switch>

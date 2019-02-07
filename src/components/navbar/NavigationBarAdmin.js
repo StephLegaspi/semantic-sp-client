@@ -16,6 +16,7 @@ class NavigationBar extends Component {
 		this.toUserAdmins = this.toUserAdmins.bind(this);
 		this.toOrderRentals = this.toOrderRentals.bind(this);
 		this.toPackagesTable = this.toPackagesTable.bind(this);
+		this.toMotifsTable = this.toMotifsTable.bind(this);
 	}
 
 	toInventory(e) {
@@ -50,6 +51,10 @@ class NavigationBar extends Component {
 		this.props.history.push('/packages-table');
 	}
 
+	toMotifsTable(e) {
+		this.props.history.push('/motifs-table');
+	}
+
 	render() {
 		return (
 			<div>
@@ -78,7 +83,7 @@ class NavigationBar extends Component {
 				        <Dropdown item simple text='Data Management' id={(this.props.activePage[7] || this.props.activePage[8] || this.props.activePage[9]) ? 'lighter': 'menu-font'} style={{marginLeft: '32%'}}>
 				          <Dropdown.Menu>
 				            <Dropdown.Item onClick={this.toPackagesTable}>Packages</Dropdown.Item>
-				            <Dropdown.Item >Motifs</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toMotifsTable}>Motifs</Dropdown.Item>
 				            <Dropdown.Item >Menus</Dropdown.Item>
 				          </Dropdown.Menu>
 				        </Dropdown>

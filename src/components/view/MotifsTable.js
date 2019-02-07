@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Menu, Table } from 'semantic-ui-react'
 
-import PackageInfo from '../infoModal/PackageInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
@@ -10,7 +9,7 @@ import AddButton from '../button/AddButton.js'
 
 import '../../styles/view.css';
 
-class PackagesTable extends Component {
+class MotifsTable extends Component {
 	constructor(props){
 		super(props);
 
@@ -22,8 +21,8 @@ class PackagesTable extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderBar headerTitle={'Packages'}/>
-				<SearchBarTable titleHolder={'Search package name..'}/>
+				<HeaderBar headerTitle={'Motifs'}/>
+				<SearchBarTable titleHolder={'Search motif name..'}/>
 
 				<AddButton/>
 
@@ -32,9 +31,8 @@ class PackagesTable extends Component {
 				    <Table.Header>
 				      <Table.Row>
 				        <Table.HeaderCell >ID</Table.HeaderCell>
-				        <Table.HeaderCell >Package Name</Table.HeaderCell>
-				        <Table.HeaderCell >Price</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '7%'}}>Inclusions</Table.HeaderCell>
+				        <Table.HeaderCell >Motif Name</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '50%'}}>Description</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -45,9 +43,6 @@ class PackagesTable extends Component {
 				        <Table.Cell>cellll</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	<PackageInfo/>
-				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditButton/>
 				        </Table.Cell>
@@ -83,4 +78,4 @@ class PackagesTable extends Component {
 
 }
 
-export default PackagesTable;
+export default MotifsTable;
