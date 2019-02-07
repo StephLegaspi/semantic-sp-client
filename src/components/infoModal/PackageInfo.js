@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table, List, Icon } from 'semantic-ui-react'
+import { Button, List } from 'semantic-ui-react'
 
 import '../../styles/modal.css';
 import ModalButton from '../button/ModalButton.js'

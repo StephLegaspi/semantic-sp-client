@@ -206,6 +206,13 @@ class App extends Component {
 																			<UserCustomers   {...props} />
 							             								</div>)}}> 
 			</Route>
+			<Route exact={true} path="/packages-table" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
+																			<PackagesTable   {...props} />
+							             								</div>)}}> 
+			</Route>
 			</Switch>
 
       	)}
