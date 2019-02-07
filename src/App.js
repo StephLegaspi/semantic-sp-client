@@ -39,6 +39,7 @@ import PackagesTable from './components/view/PackagesTable.js';
 import MotifsTable from './components/view/MotifsTable.js';
 import MenusTable from './components/view/MenusTable.js';
 import ContactDetails from './components/view/ContactDetails.js';
+import FAQS from './components/view/FAQS.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
 
@@ -235,6 +236,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,1,0,0]} {...props} />
 																			<ContactDetails   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/faqs" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
+																			<FAQS  {...props} />
 							             								</div>)}}> 
 			</Route>
 			</Switch>

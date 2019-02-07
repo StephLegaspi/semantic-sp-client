@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
-import SearchBarTable from '../searchBar/SearchBarTable.js'
 import EditButton from '../button/EditButton.js'
 
 import '../../styles/view.css';
