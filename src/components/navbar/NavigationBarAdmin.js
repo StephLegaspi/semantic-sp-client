@@ -17,6 +17,7 @@ class NavigationBar extends Component {
 		this.toOrderRentals = this.toOrderRentals.bind(this);
 		this.toPackagesTable = this.toPackagesTable.bind(this);
 		this.toMotifsTable = this.toMotifsTable.bind(this);
+		this.toMenusTable = this.toMenusTable.bind(this);
 	}
 
 	toInventory(e) {
@@ -55,6 +56,10 @@ class NavigationBar extends Component {
 		this.props.history.push('/motifs-table');
 	}
 
+	toMenusTable(e) {
+		this.props.history.push('/menus-table');
+	}
+
 	render() {
 		return (
 			<div>
@@ -84,7 +89,7 @@ class NavigationBar extends Component {
 				          <Dropdown.Menu>
 				            <Dropdown.Item onClick={this.toPackagesTable}>Packages</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toMotifsTable}>Motifs</Dropdown.Item>
-				            <Dropdown.Item >Menus</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toMenusTable}>Menus</Dropdown.Item>
 				          </Dropdown.Menu>
 				        </Dropdown>
 				        <Menu.Item as='a'>Contact</Menu.Item>
