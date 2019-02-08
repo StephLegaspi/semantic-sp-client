@@ -31,62 +31,11 @@ class UserCustomers extends Component {
 				      <Card.Description>09498812448</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px'}}> View Profile </Button>
+				      <Button size='small' id='profile-button'> View Profile </Button>
 				    </Card.Content>
 				</Card>
 
-				<Card id='card'>
-				    <Image src={img_tree} rounded size='small' />
-				    <Card.Content>
-				      <Card.Header>Stephanie Legaspi </Card.Header>
-				      <Card.Meta>10066165</Card.Meta>
-				      <Card.Description>sylegaspi@up.edu.ph</Card.Description>
-				      <Card.Description>09498812448</Card.Description>
-				    </Card.Content>
-				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px'}}> View Profile </Button>
-				    </Card.Content>
-				</Card>
-
-				<Card id='card'>
-				    <Image src={img_tree} rounded size='small' />
-				    <Card.Content>
-				      <Card.Header>Stephanie Legaspi </Card.Header>
-				      <Card.Meta>10066165</Card.Meta>
-				      <Card.Description>sylegaspi@up.edu.ph</Card.Description>
-				      <Card.Description>09498812448</Card.Description>
-				    </Card.Content>
-				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px'}}> View Profile </Button>
-				    </Card.Content>
-				</Card>
-
-				<Card id='card'>
-				    <Image src={img_tree} rounded size='small' />
-				    <Card.Content>
-				      <Card.Header>Stephanie Legaspi </Card.Header>
-				      <Card.Meta>10066165</Card.Meta>
-				      <Card.Description>sylegaspi@up.edu.ph</Card.Description>
-				      <Card.Description>09498812448</Card.Description>
-				    </Card.Content>
-				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px'}}> View Profile </Button>
-				    </Card.Content>
-				</Card>
-
-				<Card id='card'>
-				    <Image src={img_tree} rounded size='small' />
-				    <Card.Content>
-				      <Card.Header>Stephanie Legaspi </Card.Header>
-				      <Card.Meta>10066165</Card.Meta>
-				      <Card.Description>sylegaspi@up.edu.ph</Card.Description>
-				      <Card.Description>09498812448</Card.Description>
-				    </Card.Content>
-				    <Card.Content extra>
-				      <Button color='red' size='small' style={{padding: '8px'}}> View Profile </Button>
-				    </Card.Content>
-				</Card>
-
+			
 				</Card.Group>
 				</div>
 			</div>

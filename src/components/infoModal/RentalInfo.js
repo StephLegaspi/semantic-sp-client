@@ -58,7 +58,7 @@ class RentalInfo extends Component {
 								  
 								      </Table.Row> 
 							    </Table.Body>
-							    <Button color="red" className='close' onClick={this.onClose}> Close </Button>
+							    <Button className='close' onClick={this.onClose}> Close </Button>
 							    </Table>
 							    </div>
 							    </div>

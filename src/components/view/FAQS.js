@@ -4,6 +4,7 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import EditButton from '../button/EditButton.js'
 import DeleteButton from '../button/DeleteButton.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
 import AddButton from '../button/AddButton.js'
 
 import '../../styles/view.css';
@@ -19,6 +20,9 @@ class FAQS extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'FAQS'}/>
+				<SearchBarTable titleHolder={'Search question..'}/>
+
+				<AddButton/>
 
 				<div className='table-div'>
 				<Table celled>
