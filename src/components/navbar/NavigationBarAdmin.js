@@ -78,8 +78,8 @@ class NavigationBar extends Component {
 			          <Image circular src={logo} className='logo-style' />
 			        </Menu.Item>
 
-			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'} onClick={this.toInventory}>Inventory</Menu.Item>
-			        <Menu.Item as='a'  id={this.props.activePage[1] ? 'lighter': 'menu-font'} onClick={this.toProducts}>Products</Menu.Item>
+			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'} onClick={this.toProducts}>Products</Menu.Item>
+			        <Menu.Item as='a'  id={this.props.activePage[1] ? 'lighter': 'menu-font'} onClick={this.toInventory}>Inventory</Menu.Item>
 			        <Dropdown item simple text='Orders' id={(this.props.activePage[2] || this.props.activePage[3])  ? 'lighter': 'menu-font'} >
 				          <Dropdown.Menu>
 				            <Dropdown.Item onClick={this.toOrders}>Purchase</Dropdown.Item>

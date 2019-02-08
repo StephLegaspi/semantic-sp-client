@@ -48,7 +48,7 @@ class App extends Component {
   constructor() {
 	super();
 	this.state = {
-	  	curr_user: 0
+	  	curr_user: 1
 	}
 
   }
@@ -161,18 +161,18 @@ class App extends Component {
       	</Switch>
       	) : (
       		<Switch>
-      		<Route exact={true} path="/inventory" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
-																			<Inventory   {...props} />
-							             								</div>)}}> 
-			</Route>
 			<Route exact={true} path="/products" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<Products   {...props} />
+							             								</div>)}}> 
+			</Route>
+      		<Route exact={true} path="/inventory" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<Inventory   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/orders-purchase" render={(props) => {
@@ -243,6 +243,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
 																			<FAQS  {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/add-product" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<AddProduct   {...props} />
 							             								</div>)}}> 
 			</Route>
 			</Switch>

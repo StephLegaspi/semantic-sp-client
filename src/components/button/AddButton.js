@@ -12,7 +12,7 @@ class AddButton extends Component{
 	render(){
 		return(
 			<div id='add-button'>  
-					<Button circular icon='add' size='big' style={{backgroundColor: 'orange', color: 'white'}}/>
+					<Button circular icon='add' size='big' style={{backgroundColor: 'orange', color: 'white'}} onClick={this.callAdd}/>
       		</div>
 		);
 	}

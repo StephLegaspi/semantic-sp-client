@@ -20,7 +20,7 @@ class Contact extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Contact Us'}/>
-				<div className='contact-div'>
+				<div className='contact-div-top'>
 					<Icon name='phone' size='big'/>
 					<label> +63 949 881 2448 </label>
 				</div>
@@ -41,8 +41,8 @@ class Contact extends Component {
 				<div className='form-div'>
 					<label> Do you have any inquiries? Send us a message. </label>
 					<br></br>
-					<Grid id='form-contact'>
-			          <Grid.Column>
+					<div id='form-contact'>
+			          
 			            <Form size='large'>
 			              <Segment stacked>
 
@@ -81,8 +81,8 @@ class Contact extends Component {
 
 			              </Segment>
 			            </Form>
-			          </Grid.Column>
-			        </Grid>
+			          
+			        </div>
 			    </div>
 			  	
 			  	<Footer/>

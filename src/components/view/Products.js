@@ -27,8 +27,14 @@ class ViewProducts extends Component {
 			    menuItem: { key: 'rental', icon: 'newspaper', content: 'Products for rent', color: 'orange' },
 			    render: () => <Tab.Pane>  </Tab.Pane>,
 			  }
-			];	
+			];
+		this.toAddProduct = this.toAddProduct.bind(this);	
 	}
+
+	toAddProduct(e) {
+		this.props.history.push('/add-product');
+	}
+
 
 	render() {
 		return (
@@ -36,7 +42,7 @@ class ViewProducts extends Component {
 				<HeaderBar headerTitle={'Products'}/>
 				<SearchBarTable titleHolder={'Search product name..'}/>
 
-				<AddButton/>
+				<AddButton handleAdd={this.toAddProduct}/>
 				
 				
       			<div class="ui fluid segment" id='upper-div5'>  

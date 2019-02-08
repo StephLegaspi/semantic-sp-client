@@ -1,12 +1,19 @@
 .contact-div{
 	margin-left: 20%;
-	margin-top: 2%;
+	margin-top: 1%;
+	font-size: 20px;
+
+}
+
+.contact-div-top{
+	margin-left: 20%;
+	margin-top: 4%;
 	font-size: 20px;
 
 }
 
 .form-div{
-	margin-top: 4%;
+	margin-top: 3%;
 	margin-left: 20%;
 	font-size: 20px;
 
