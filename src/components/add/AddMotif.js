@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Segment, Input, TextArea } from 'semantic-ui-react'
+import { Button, Form, Segment, Input, TextArea } from 'semantic-ui-react'
+
+import HeaderBar from '../headerBar/HeaderBar.js'
 
 import '../../styles/add.css';
+import '../../styles/button.css';
 
 export default class AddMotif extends Component {
 
@@ -12,9 +15,9 @@ export default class AddMotif extends Component {
 
   render(){
     return(
-      <div className='login-form'> 
-        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 600 }}>
+      <div>
+      <HeaderBar headerTitle={'Add Motif'}/>
+      <div className='form-style-smaller'>
             
             <Form size='large'>
               <Segment stacked>
@@ -43,13 +46,12 @@ export default class AddMotif extends Component {
                 </Form.Group>   
 
 
-                <Button color='teal'>
+                <Button id='signup-button'>
                   Add
                 </Button>
               </Segment>
             </Form>
-          </Grid.Column>
-        </Grid>
+      </div>
       </div>
     );
   }

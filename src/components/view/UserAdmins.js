@@ -3,6 +3,7 @@ import { Button, Image, Card } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
+import AddButton from '../button/AddButton.js'
 
 import '../../styles/view.css';
 import '../../styles/button.css';
@@ -13,6 +14,11 @@ class UserAdmins extends Component {
 		super(props);
 
 		this.state = {}
+		this.toAddAdmin = this.toAddAdmin.bind(this);
+	}
+
+	toAddAdmin(e) {
+		this.props.history.push('/add-admin');
 	}
 
 	render() {
@@ -20,6 +26,8 @@ class UserAdmins extends Component {
 			<div>
 				<HeaderBar headerTitle={'Admins'}/>
 				<SearchBarTable titleHolder={'Search customer name..'}/>
+
+				<AddButton handleAdd={this.toAddAdmin}/>
 
       			<div id='card-div'>
 				<Card.Group itemsPerRow={4}>

@@ -16,6 +16,11 @@ class MotifsTable extends Component {
 		this.state = {}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.toAddMotif = this.toAddMotif.bind(this);
+	}
+
+	toAddMotif(e) {
+		this.props.history.push('/add-motif');
 	}
 
 	render() {
@@ -24,7 +29,7 @@ class MotifsTable extends Component {
 				<HeaderBar headerTitle={'Motifs'}/>
 				<SearchBarTable titleHolder={'Search motif name..'}/>
 
-				<AddButton/>
+				<AddButton handleAdd={this.toAddMotif}/>
 
 				<div className='table-div'>
 				<Table celled>

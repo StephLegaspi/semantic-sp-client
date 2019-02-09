@@ -48,7 +48,7 @@ class App extends Component {
   constructor() {
 	super();
 	this.state = {
-	  	curr_user: 1
+	  	curr_user: 0
 	}
 
   }
@@ -250,6 +250,27 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<AddProduct   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/add-motif" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,1,0,0,0,0]} {...props} />
+																			<AddMotif   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/add-menu" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
+																			<AddMenu   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/add-admin" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0]} {...props} />
+																			<AddAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
 			</Switch>

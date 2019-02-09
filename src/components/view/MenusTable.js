@@ -16,6 +16,11 @@ class MenusTable extends Component {
 		this.state = {}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.toAddMenu = this.toAddMenu.bind(this);
+	}
+
+	toAddMenu(e) {
+		this.props.history.push('/add-menu');
 	}
 
 	render() {
@@ -24,7 +29,7 @@ class MenusTable extends Component {
 				<HeaderBar headerTitle={'Menus'}/>
 				<SearchBarTable titleHolder={'Search menu name..'}/>
 
-				<AddButton/>
+				<AddButton handleAdd={this.toAddMenu}/>
 
 				<div className='table-div'>
 				<Table celled>
