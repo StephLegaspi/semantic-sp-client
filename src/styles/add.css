@@ -3,6 +3,7 @@
 	max-width: 80%;
 	margin-left: 12%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 10%;
 }
 
 .form-style-smaller{
@@ -10,6 +11,7 @@
 	max-width: 60%;
 	margin-left: 20%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 10%;
 }
 
 .relative {

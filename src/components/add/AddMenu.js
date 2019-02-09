@@ -30,7 +30,7 @@ export default class AddMenu extends Component {
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Main Course</label>
-                    <TextArea placeholder='Main Course' style={{ minHeight: 100 }} />
+                    <TextArea placeholder='e.g. Course1, Course2, Course3' style={{ minHeight: 100 }} />
                   </Form.Field>
                   <Form.Field>
                     <label>Appetizer</label>
