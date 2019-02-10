@@ -247,48 +247,7 @@ class App extends Component {
 																			<UserCustomers   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/add-product" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
-																			<AddProduct   {...props} />
-							             								</div>)}}> 
-			</Route>
-			<Route exact={true} path="/add-motif" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,1,0,0,0,0]} {...props} />
-																			<AddMotif   {...props} />
-							             								</div>)}}> 
-			</Route>
-			<Route exact={true} path="/add-menu" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
-																			<AddMenu   {...props} />
-							             								</div>)}}> 
-			</Route>
-			<Route exact={true} path="/add-admin" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0]} {...props} />
-																			<AddAdmin   {...props} />
-							             								</div>)}}> 
-			</Route>
-			<Route exact={true} path="/add-package" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
-																			<AddPackage   {...props} />
-							             								</div>)}}> 
-			</Route>
-			<Route exact={true} path="/add-question" render={(props) => {
-					             								return(
-							             								<div>
-							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
-																			<AddFAQ  {...props} />
-							             								</div>)}}> 
-			</Route>
+			
 			</Switch>
 
       	)}

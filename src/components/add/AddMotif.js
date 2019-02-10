@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment, Input, TextArea } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
-import HeaderBar from '../headerBar/HeaderBar.js'
-import BackButton from '../button/BackButton.js'
+import AddButton from '../button/AddButton.js'
 
 import '../../styles/add.css';
 import '../../styles/button.css';
 
 export default class AddMotif extends Component {
 
-  constructor() {
-    super();
-    this.GoBack = this.GoBack.bind(this);
+ constructor() {
+      super();
+      this.state = {
+        activeModal: false,
+      }
   }
 
-  GoBack(e) {
-    this.props.history.push('/motifs-table');
+  onModal = () => {
+    this.setState({activeModal: true});
+  }
+
+  cancel = () => {
+    this.setState({activeModal: false});
   }
 
   render(){
     return(
       <div>
-      <HeaderBar headerTitle={'Add Motif'}/>
-      <BackButton handleClick={this.GoBack}/>
-      <div className='form-style-smaller'>
-            <Form size='large'>
-              <Segment stacked>
+      <AddButton handleAdd={this.onModal}/>
+        {this.state.activeModal && (
+          <div className='add-modal'>
 
-                <Form.Field>
+            <Form className='form-style-smaller'>
+              <Form.Field>
                   <label>Event Motif Name</label>
                   <Input placeholder='Event Motif Name'/>
                 </Form.Field>
@@ -48,16 +52,13 @@ export default class AddMotif extends Component {
                           </label>
                       </div>
                   </Form.Field>
-                </Form.Group>   
+              </Form.Group> 
 
-
-                <Button id='signup-button'>
-                  Add
-                </Button>
-              </Segment>
-            </Form>
-      </div>
-      </div>
+              <Button type='submit' onClick={this.editDone} id='edit-button2'>Add</Button>
+              <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
+          </Form>
+          </div>)}
+        </div>
     );
   }
 }

@@ -5,7 +5,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import EditFAQ from '../edit/EditFAQ.js'
 import DeleteButton from '../button/DeleteButton.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import AddButton from '../button/AddButton.js'
+import AddFAQ from '../add/AddFAQ.js'
 
 import '../../styles/view.css';
 
@@ -13,12 +13,7 @@ class FAQS extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
-		this.toAddFAQ = this.toAddFAQ.bind(this);		
-	}
-
-	toAddFAQ(e) {
-		this.props.history.push('/add-question');
+		this.state = {}	
 	}
 
 	render() {
@@ -27,7 +22,7 @@ class FAQS extends Component {
 				<HeaderBar headerTitle={'FAQS'}/>
 				<SearchBarTable titleHolder={'Search question..'}/>
 
-				<AddButton handleAdd={this.toAddFAQ}/>
+				<AddFAQ/>
 
 				<div className='table-div'>
 				<Table celled>

@@ -5,7 +5,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
 import EditMenu from '../edit/EditMenu.js'
-import AddButton from '../button/AddButton.js'
+import AddMenu from '../add/AddMenu.js'
 
 import '../../styles/view.css';
 
@@ -16,11 +16,6 @@ class MenusTable extends Component {
 		this.state = {}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
-		this.toAddMenu = this.toAddMenu.bind(this);
-	}
-
-	toAddMenu(e) {
-		this.props.history.push('/add-menu');
 	}
 
 	render() {
@@ -29,7 +24,7 @@ class MenusTable extends Component {
 				<HeaderBar headerTitle={'Menus'}/>
 				<SearchBarTable titleHolder={'Search menu name..'}/>
 
-				<AddButton handleAdd={this.toAddMenu}/>
+				<AddMenu/>
 
 				<div className='table-div'>
 				<Table celled>

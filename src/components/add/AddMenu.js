@@ -1,33 +1,36 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment, Input, TextArea } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
-import HeaderBar from '../headerBar/HeaderBar.js'
-import BackButton from '../button/BackButton.js'
+import AddButton from '../button/AddButton.js'
 
 import '../../styles/add.css';
 import '../../styles/button.css';
 
-export default class AddMenu extends Component {
+export default class AddPackage extends Component {
 
-  constructor() {
-    super();
-    this.GoBack = this.GoBack.bind(this);
+   constructor() {
+      super();
+      this.state = {
+        activeModal: false,
+      }
   }
 
-  GoBack(e) {
-    this.props.history.push('/menus-table');
+  onModal = () => {
+    this.setState({activeModal: true});
+  }
+
+  cancel = () => {
+    this.setState({activeModal: false});
   }
 
   render(){
     return(
-     <div>
-      <HeaderBar headerTitle={'Add Menu'}/>
-      <BackButton handleClick={this.GoBack}/>
-      <div className='form-style-smaller'>     
-            <Form size='large'>
-              <Segment stacked>
-
-                <Form.Field>
+      <div>
+      <AddButton handleAdd={this.onModal}/>
+        {this.state.activeModal && (
+          <div className='add-modal'>
+            <Form className='form-style-longer'>
+              <Form.Field>
                   <label>Food Menu Name</label>
                   <Input placeholder='Food Menu Name'/>
                 </Form.Field>
@@ -78,14 +81,11 @@ export default class AddMenu extends Component {
                   </Form.Field>
                 </Form.Group>  
 
-                <Button id='signup-button'>
-                  Add
-                </Button>
-
-              </Segment>
-            </Form>
-      </div>
-      </div>
+              <Button type='submit' onClick={this.editDone} id='edit-button2'>Add</Button>
+              <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
+          </Form>
+          </div>)}
+        </div>
     );
   }
 }

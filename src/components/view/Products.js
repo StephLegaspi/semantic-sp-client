@@ -4,7 +4,7 @@ import { Dropdown, Tab } from 'semantic-ui-react'
 import ProductsTable from './ProductsTable.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import AddButton from '../button/AddButton.js'
+import AddProduct from '../add/AddProduct.js'
 
 import '../../styles/view.css';
 
@@ -27,14 +27,8 @@ class ViewProducts extends Component {
 			    menuItem: { key: 'rental', icon: 'newspaper', content: 'Products for rent', color: 'orange' },
 			    render: () => <Tab.Pane>  </Tab.Pane>,
 			  }
-			];
-		this.toAddProduct = this.toAddProduct.bind(this);	
+			];	
 	}
-
-	toAddProduct(e) {
-		this.props.history.push('/add-product');
-	}
-
 
 	render() {
 		return (
@@ -42,7 +36,7 @@ class ViewProducts extends Component {
 				<HeaderBar headerTitle={'Products'}/>
 				<SearchBarTable titleHolder={'Search product name..'}/>
 
-				<AddButton handleAdd={this.toAddProduct}/>
+				<AddProduct/>
 				
 				
       			<div class="ui fluid segment" id='upper-div5'>  

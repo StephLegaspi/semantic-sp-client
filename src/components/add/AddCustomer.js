@@ -18,7 +18,7 @@ export default class SignUp extends Component {
     return(
       <div> 
         <HeaderBar headerTitle={'Sign Up'}/>
-        <div className='form-style-smaller'>
+        <div className='form-style2'>
         
             
             <Form size='large'>

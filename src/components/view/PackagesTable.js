@@ -6,7 +6,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
 import EditPackage from '../edit/EditPackage.js'
-import AddButton from '../button/AddButton.js'
+import AddPackage from '../add/AddPackage.js'
 
 import '../../styles/view.css';
 
@@ -17,11 +17,6 @@ class PackagesTable extends Component {
 		this.state = {}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
-		this.toAddPackage = this.toAddPackage.bind(this);
-	}
-
-	toAddPackage(e) {
-		this.props.history.push('/add-package');
 	}
 
 	render() {
@@ -30,7 +25,7 @@ class PackagesTable extends Component {
 				<HeaderBar headerTitle={'Packages'}/>
 				<SearchBarTable titleHolder={'Search package name..'}/>
 
-				<AddButton handleAdd={this.toAddPackage}/>
+				<AddPackage/>
 
 				<div className='table-div'>
 				<Table celled>

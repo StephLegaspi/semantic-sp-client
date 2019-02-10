@@ -1,3 +1,13 @@
+.add-modal{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 100;
+}
+
 .form-style{
 	margin-top: 5%;
 	max-width: 80%;
@@ -6,12 +16,38 @@
 	margin-bottom: 10%;
 }
 
-.form-style-smaller{
-	margin-top: 1%;
+.form-style2{
+	margin-top: 5%;
 	max-width: 60%;
 	margin-left: 20%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	margin-bottom: 10%;
+}
+
+.add-modal .form-style-smaller{
+	position: absolute;
+	height: auto;
+	width: 60%;
+	top: 25%;
+	left: 20%;
+	border-radius: 3px;
+	overflow-y: scroll;
+	text-align: left;
+	background-color: white;
+	padding: 20px;
+}
+
+.add-modal .form-style-longer{
+	position: absolute;
+	height: 75%;
+	width: 60%;
+	top: 20%;
+	left: 20%;
+	border-radius: 3px;
+	overflow-y: scroll;
+	background-color: white;
+	padding: 20px;
+	text-align: left;
 }
 
 .relative {

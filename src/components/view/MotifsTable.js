@@ -5,7 +5,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
 import EditMotif from '../edit/EditMotif.js'
-import AddButton from '../button/AddButton.js'
+import AddMotif from '../add/AddMotif.js'
 
 import '../../styles/view.css';
 
@@ -16,11 +16,6 @@ class MotifsTable extends Component {
 		this.state = {}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
-		this.toAddMotif = this.toAddMotif.bind(this);
-	}
-
-	toAddMotif(e) {
-		this.props.history.push('/add-motif');
 	}
 
 	render() {
@@ -29,7 +24,7 @@ class MotifsTable extends Component {
 				<HeaderBar headerTitle={'Motifs'}/>
 				<SearchBarTable titleHolder={'Search motif name..'}/>
 
-				<AddButton handleAdd={this.toAddMotif}/>
+				<AddMotif/>
 
 				<div className='table-div'>
 				<Table celled>

@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment, Input } from 'semantic-ui-react'
+import { Button, Form, Input } from 'semantic-ui-react'
 
-import HeaderBar from '../headerBar/HeaderBar.js'
+import AddButton from '../button/AddButton.js'
 
 import '../../styles/add.css';
 import '../../styles/button.css';
 
-export default class AddAdmin extends Component {
+export default class AddPackage extends Component {
 
-  constructor() {
-    super();
+   constructor() {
+      super();
+      this.state = {
+        activeModal: false,
+      }
+  }
 
+  onModal = () => {
+    this.setState({activeModal: true});
+  }
+
+  cancel = () => {
+    this.setState({activeModal: false});
   }
 
   render(){
     return(
       <div>
-      <HeaderBar headerTitle={'Add Admin'}/>
-      <div className='form-style-smaller'>
-            
-            <Form size='large'>
-              <Segment stacked>
+    <AddButton handleAdd={this.onModal}/>
+        {this.state.activeModal && (
+          <div className='add-modal'>
+            <Form className='form-style-smaller'>
+                  
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>First name</label>
@@ -59,14 +69,12 @@ export default class AddAdmin extends Component {
                     <Input placeholder='Repeat Password'/>
                   </Form.Field>
                 </Form.Group>
-                <Button id='signup-button'>
-                  Add
-                </Button>
-              </Segment>
-            </Form>
-            
-      </div>
-      </div>
+
+              <Button type='submit' onClick={this.editDone} id='edit-button2'>Add</Button>
+              <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
+          </Form>
+          </div>)}
+        </div>
     );
   }
 }
