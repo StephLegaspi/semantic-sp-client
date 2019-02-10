@@ -17,6 +17,11 @@ class PackagesTable extends Component {
 		this.state = {}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.toAddPackage = this.toAddPackage.bind(this);
+	}
+
+	toAddPackage(e) {
+		this.props.history.push('/add-package');
 	}
 
 	render() {
@@ -25,7 +30,7 @@ class PackagesTable extends Component {
 				<HeaderBar headerTitle={'Packages'}/>
 				<SearchBarTable titleHolder={'Search package name..'}/>
 
-				<AddButton/>
+				<AddButton handleAdd={this.toAddPackage}/>
 
 				<div className='table-div'>
 				<Table celled>
