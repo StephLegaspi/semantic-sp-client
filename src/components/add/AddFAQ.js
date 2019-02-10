@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment, Input, TextArea } from 'semantic-ui-react'
+import { Button, Form, Segment, TextArea } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import BackButton from '../button/BackButton.js'

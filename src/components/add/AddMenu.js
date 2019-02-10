@@ -39,29 +39,29 @@ export default class AddMenu extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Appetizer</label>
-                    <TextArea placeholder='Appetizer' style={{ minHeight: 100 }} />
+                    <TextArea placeholder='e.g. Appetizer1, Appetizer2, Appetizer3' style={{ minHeight: 100 }} />
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Dessert</label>
-                    <TextArea placeholder='Dessert' style={{ minHeight: 100 }} />
+                    <TextArea placeholder='e.g. Dessert1, Dessert2, Dessert3' style={{ minHeight: 100 }} />
                   </Form.Field>
                   <Form.Field>
                     <label>Soup</label>
-                    <TextArea placeholder='Soup' style={{ minHeight: 100 }} />
+                    <TextArea placeholder='e.g. Soup1, Soup2, Soup3' style={{ minHeight: 100 }} />
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Beverage</label>
-                    <TextArea placeholder='Beverage' style={{ minHeight: 100 }} />
+                    <TextArea placeholder='e.g. Beverage1, Beverage2, Beverage3' style={{ minHeight: 100 }} />
                   </Form.Field>
                   <Form.Field>
                     <label>Others</label>
-                    <TextArea placeholder='Others' style={{ minHeight: 100 }} />
+                    <TextArea placeholder='e.g. Others1, Others2, Others3' style={{ minHeight: 100 }} />
                   </Form.Field>
                 </Form.Group>
 
