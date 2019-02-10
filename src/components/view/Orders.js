@@ -6,7 +6,7 @@ import OrderInfo from '../infoModal/OrderInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
-import EditButton from '../button/EditButton.js'
+import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
 
@@ -73,7 +73,7 @@ class ViewOrders extends Component {
 				        	Pending
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditButton/>
+				        	<EditOrder/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteButton/>
