@@ -6,7 +6,7 @@ import RentalInfo from '../infoModal/RentalInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
-import EditButton from '../button/EditButton.js'
+import EditOrderRental from '../edit/EditOrderRental.js'
 
 
 import '../../styles/view.css';
@@ -91,7 +91,7 @@ class ViewOrderRental extends Component {
 				        	<RentalInfo/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditButton/>
+				        	<EditOrderRental/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteButton/>
