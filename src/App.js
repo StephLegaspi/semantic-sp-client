@@ -282,7 +282,7 @@ class App extends Component {
 																			<AddPackage   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/add-faq" render={(props) => {
+			<Route exact={true} path="/add-question" render={(props) => {
 					             								return(
 							             								<div>
 							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />

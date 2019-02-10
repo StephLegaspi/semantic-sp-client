@@ -18,7 +18,7 @@ class FAQS extends Component {
 	}
 
 	toAddFAQ(e) {
-		this.props.history.push('/add-faq');
+		this.props.history.push('/add-question');
 	}
 
 	render() {
