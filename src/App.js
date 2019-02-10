@@ -13,6 +13,7 @@ import AddMenu from './components/add/AddMenu.js';
 import AddRequest from './components/add/AddRequest.js';
 import AddOrder from './components/add/AddOrder.js';
 import AddPackage from './components/add/AddPackage.js';
+import AddFAQ from './components/add/AddFAQ.js';
 
 import Logs from './components/view/Logs.js';
 import Orders from './components/view/Orders.js';
@@ -279,6 +280,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
 																			<AddPackage   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/add-faq" render={(props) => {
+					             								return(
+							             								<div>
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
+																			<AddFAQ  {...props} />
 							             								</div>)}}> 
 			</Route>
 			</Switch>

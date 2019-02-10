@@ -13,7 +13,12 @@ class FAQS extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}		
+		this.state = {}
+		this.toAddFAQ = this.toAddFAQ.bind(this);		
+	}
+
+	toAddFAQ(e) {
+		this.props.history.push('/add-faq');
 	}
 
 	render() {
@@ -22,7 +27,7 @@ class FAQS extends Component {
 				<HeaderBar headerTitle={'FAQS'}/>
 				<SearchBarTable titleHolder={'Search question..'}/>
 
-				<AddButton/>
+				<AddButton handleAdd={this.toAddFAQ}/>
 
 				<div className='table-div'>
 				<Table celled>
