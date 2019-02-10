@@ -3,7 +3,7 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 
 import ProductInfo from '../infoModal/ProductInfo.js'
 import DeleteButton from '../button/DeleteButton.js'
-import EditButton from '../button/EditButton.js'
+import EditInventory from '../edit/EditInventory.js'
 
 import '../../styles/view.css';
 
@@ -43,7 +43,7 @@ class InventoryTable extends Component {
 									<Table.Cell>cellll</Table.Cell>
 									<Table.Cell>cellll</Table.Cell>
 							        <Table.Cell textAlign='center'>
-							        	<EditButton/>
+							        	<EditInventory />
 							        </Table.Cell>
 							        <Table.Cell textAlign='center'>
 							        	<DeleteButton/>
