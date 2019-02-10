@@ -127,3 +127,11 @@
 	color: white;
 	margin-left: 55%;
 }
+
+#back-button{
+	margin-top: 3%;
+	background-color: #f89d28;
+	color: white;
+	height: 35px;
+	margin-left: 20%;
+}

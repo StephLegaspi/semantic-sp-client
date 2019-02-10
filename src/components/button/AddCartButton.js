@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 
 import '../../styles/button.css';
 
-class ViewButton extends Component{
+class AddCartButton extends Component{
 
 	callClick = () => {
 		this.props.handleAddtoCart();
@@ -20,4 +20,4 @@ class ViewButton extends Component{
 }
 
 
-export default ViewButton;
+export default AddCartButton;

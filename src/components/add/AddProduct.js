@@ -2,20 +2,31 @@ import React, { Component } from 'react';
 import { Button, Form, Segment, Input, Radio, Checkbox } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
+import BackButton from '../button/BackButton.js'
 
 import '../../styles/add.css';
 import '../../styles/button.css';
 
 export default class AddProduct extends Component {
+  constructor() {
+    super();
+
+    this.GoBack = this.GoBack.bind(this);
+  }
 
   state = {}
   handleChange = (e, { value }) => this.setState({ value });
+
+  GoBack(e) {
+    this.props.history.push('/products');
+  }
 
   render(){
     const { value } = this.state
     return(
       <div>
       <HeaderBar headerTitle={'Add Product'}/>
+      <BackButton handleClick={this.GoBack}/>
       <div className='form-style-smaller'>
             <Form size='large'>
               <Segment stacked>
