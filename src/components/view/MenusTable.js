@@ -4,7 +4,7 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
-import EditButton from '../button/EditButton.js'
+import EditMenu from '../edit/EditMenu.js'
 import AddButton from '../button/AddButton.js'
 
 import '../../styles/view.css';
@@ -49,7 +49,7 @@ class MenusTable extends Component {
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditButton/>
+				        	<EditMenu/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteButton/>

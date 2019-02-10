@@ -5,7 +5,7 @@ import PackageInfo from '../infoModal/PackageInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
-import EditButton from '../button/EditButton.js'
+import EditPackage from '../edit/EditPackage.js'
 import AddButton from '../button/AddButton.js'
 
 import '../../styles/view.css';
@@ -54,7 +54,7 @@ class PackagesTable extends Component {
 				        	<PackageInfo/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditButton/>
+				        	<EditPackage/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteButton/>

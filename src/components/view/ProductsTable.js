@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Icon, Menu, Table, Header, Image } from 'semantic-ui-react'
 
 import DeleteButton from '../button/DeleteButton.js'
-import EditButton from '../button/EditButton.js'
+import EditProduct from '../edit/EditProduct.js'
 
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'
@@ -45,7 +45,7 @@ class ProductsTable extends Component {
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditButton/>
+				        	<EditProduct/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteButton/>

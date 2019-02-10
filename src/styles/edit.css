@@ -1,0 +1,33 @@
+.edit-modal{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 100;
+}
+
+.edit-modal .forms{
+	position: absolute;
+	height: auto;
+	width: 60%;
+	top: 25%;
+	left: 20%;
+	border-radius: 3px;
+	overflow-y: scroll;
+	text-align: left;
+}
+
+.edit-modal .forms-long{
+	position: absolute;
+	height: 75%;
+	width: 60%;
+	top: 20%;
+	left: 20%;
+	border-radius: 3px;
+	overflow-y: scroll;
+	background-color: white;
+	padding: 20px;
+	text-align: left;
+}

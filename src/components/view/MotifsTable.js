@@ -4,7 +4,7 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
-import EditButton from '../button/EditButton.js'
+import EditMotif from '../edit/EditMotif.js'
 import AddButton from '../button/AddButton.js'
 
 import '../../styles/view.css';
@@ -49,7 +49,7 @@ class MotifsTable extends Component {
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditButton/>
+				        	<EditMotif/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteButton/>
@@ -60,14 +60,13 @@ class MotifsTable extends Component {
 				    <Table.Footer>
 				      <Table.Row>
 				        <Table.HeaderCell colSpan='11'>
-				          <Menu floated='right' pagination>
+				          <Menu floated='right' pagination >
 				            <Menu.Item as='a' icon>
 				              <Icon name='chevron left' />
 				            </Menu.Item>
 				            <Menu.Item as='a'>1</Menu.Item>
 				            <Menu.Item as='a'>2</Menu.Item>
 				            <Menu.Item as='a'>3</Menu.Item>
-				            <Menu.Item as='a'>4</Menu.Item>
 				            <Menu.Item as='a' icon>
 				              <Icon name='chevron right' />
 				            </Menu.Item>

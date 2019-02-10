@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
-import EditButton from '../button/EditButton.js'
+import EditContact from '../edit/EditContact.js'
 
 import '../../styles/view.css';
 
@@ -37,7 +37,7 @@ class ContactDetails extends Component {
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditButton/>
+				        	<EditContact/>
 				        </Table.Cell>
 				      </Table.Row>
 				    </Table.Body>
