@@ -35,8 +35,11 @@ class EditRequest extends Component {
 					<Form.Field width={8}>
 	                    <label>Request Status</label>
 	                     <Dropdown placeholder='Request Status' defaultValue='pending' search selection options={this.requestStatusOptions} />
-	                  </Form.Field>
-	                
+	                </Form.Field>
+	                <br/>
+	                <br/>
+	                <br/>
+	                <br/>
 				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>

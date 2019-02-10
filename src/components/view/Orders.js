@@ -5,7 +5,7 @@ import CustomerInfo from '../infoModal/CustomerInfo.js'
 import OrderInfo from '../infoModal/OrderInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
@@ -76,7 +76,7 @@ class ViewOrders extends Component {
 				        	<EditOrder/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>  
 				    </Table.Body>

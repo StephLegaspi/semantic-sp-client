@@ -146,3 +146,9 @@
 	background-color: #191167;
 	color: white;
 }
+
+#yes-button{
+	background-color: #f89d28;
+	color: white;
+	margin-left: 65%;
+}

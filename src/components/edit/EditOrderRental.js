@@ -43,7 +43,10 @@ class EditOrderRental extends Component {
 	                     <Dropdown placeholder='Rental Status' defaultValue='on-rent' search selection options={this.rentalStatusOptions} />
 	                  </Form.Field>
 	                </Form.Group>
-	                
+	                <br/>
+	                <br/>
+	                <br/>
+	                <br/>
 				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>

@@ -4,7 +4,7 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 import PackageInfo from '../infoModal/PackageInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import EditPackage from '../edit/EditPackage.js'
 import AddPackage from '../add/AddPackage.js'
 
@@ -52,7 +52,7 @@ class PackagesTable extends Component {
 				        	<EditPackage/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>  
 				    </Table.Body>

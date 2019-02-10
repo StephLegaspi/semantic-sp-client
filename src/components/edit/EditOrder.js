@@ -36,7 +36,10 @@ class EditOrder extends Component {
 	                    <label>Delivery Status</label>
 	                     <Dropdown placeholder='Delivery Status' defaultValue='pending' search selection options={this.deliveryStatusOptions} />
 	                  </Form.Field>
-	                
+	                <br/>
+	                <br/>
+	                <br/>
+	                <br/>
 				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>

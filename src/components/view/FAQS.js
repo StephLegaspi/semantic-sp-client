@@ -3,7 +3,7 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import EditFAQ from '../edit/EditFAQ.js'
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import AddFAQ from '../add/AddFAQ.js'
 
@@ -45,7 +45,7 @@ class FAQS extends Component {
 				        	<EditFAQ/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>
 				    </Table.Body>

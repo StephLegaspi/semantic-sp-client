@@ -9,7 +9,7 @@ import Beverage from '../infoModal/Beverage.js'
 import OtherMenu from '../infoModal/OtherMenu.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import EditMenu from '../edit/EditMenu.js'
 import AddMenu from '../add/AddMenu.js'
 
@@ -75,7 +75,7 @@ class MenusTable extends Component {
 				        	<EditMenu/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>  
 				    </Table.Body>

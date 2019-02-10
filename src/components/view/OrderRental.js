@@ -5,7 +5,7 @@ import OrderInfo from '../infoModal/OrderInfo.js'
 import RentalInfo from '../infoModal/RentalInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import EditOrderRental from '../edit/EditOrderRental.js'
 
 
@@ -94,7 +94,7 @@ class ViewOrderRental extends Component {
 				        	<EditOrderRental/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>   
 				    </Table.Body>

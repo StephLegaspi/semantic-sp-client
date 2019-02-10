@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Icon, Menu, Table, Header, Image } from 'semantic-ui-react'
 
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import EditProduct from '../edit/EditProduct.js'
 
 import '../../styles/view.css';
@@ -48,7 +48,7 @@ class ProductsTable extends Component {
 				        	<EditProduct/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>
 				    </Table.Body>

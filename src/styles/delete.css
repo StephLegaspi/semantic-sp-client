@@ -1,0 +1,23 @@
+.delete-modal{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 100;
+}
+
+.delete-modal .open-delete{
+	position: absolute;
+	height: auto;
+	width: 40%;
+	top: 40%;
+	left: 30%;
+	border-radius: 3px;
+	overflow-y: scroll;
+	padding: 20px;
+	text-align: left;
+	background-color: white;
+	text-align: center;
+}

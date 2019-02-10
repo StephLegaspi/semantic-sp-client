@@ -11,7 +11,7 @@ class DeleteButton extends Component{
 
 	render(){
 		return(
-			<Button circular id='delete-button'>
+			<Button circular id='delete-button' onClick={this.callDelete}>
 				<i class="trash large alternate icon"></i>
 			</Button>
 		);

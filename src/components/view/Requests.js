@@ -3,7 +3,7 @@ import { Dropdown, Icon, Menu, Table } from 'semantic-ui-react'
 
 import CustomerInfo from '../infoModal/CustomerInfo.js'
 import InclusionInfo from '../infoModal/InclusionInfo.js'
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import EditRequest from '../edit/EditRequest.js'
@@ -75,7 +75,7 @@ class ViewRequests extends Component {
 				        	<EditRequest/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>  
 				    </Table.Body>

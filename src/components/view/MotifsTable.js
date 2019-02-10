@@ -3,7 +3,7 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import DeleteButton from '../button/DeleteButton.js'
+import DeleteModal from '../delete/DeleteModal.js'
 import EditMotif from '../edit/EditMotif.js'
 import AddMotif from '../add/AddMotif.js'
 
@@ -47,7 +47,7 @@ class MotifsTable extends Component {
 				        	<EditMotif/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteButton/>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>  
 				    </Table.Body>
