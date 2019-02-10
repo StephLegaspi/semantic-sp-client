@@ -21,7 +21,6 @@
 }
 
 .custom-modal .open-box{
-	
 	background-color: white;
 	position: fixed;
 	height: 40%;
@@ -30,6 +29,7 @@
 	left: 30%;
 	overflow-y: scroll;
 	padding: 20px;
+
 }
 
 .custom-modal .close{

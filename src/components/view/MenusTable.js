@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Icon, Menu, Table } from 'semantic-ui-react'
 
+import MainCourse from '../infoModal/MainCourse.js'
+import Appetizer from '../infoModal/Appetizer.js'
+import Dessert from '../infoModal/Dessert.js'
+import Soup from '../infoModal/Soup.js'
+import Beverage from '../infoModal/Beverage.js'
+import OtherMenu from '../infoModal/OtherMenu.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteButton from '../button/DeleteButton.js'
@@ -27,12 +33,17 @@ class MenusTable extends Component {
 				<AddMenu/>
 
 				<div className='table-div'>
-				<Table celled>
+				<Table single line>
 				    <Table.Header>
 				      <Table.Row>
 				        <Table.HeaderCell >ID</Table.HeaderCell>
 				        <Table.HeaderCell >Menu Name</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '50%'}}>Description</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Main Course</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Appetizer</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Dessert</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Soup</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Beverage</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Others</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -42,7 +53,24 @@ class MenusTable extends Component {
 				      <Table.Row>
 				        <Table.Cell>cellll</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>
+				        	<MainCourse />
+				        </Table.Cell>
+				        <Table.Cell>
+				        	<Appetizer />
+				        </Table.Cell>
+				        <Table.Cell>
+				        	<Dessert />
+				        </Table.Cell>
+				        <Table.Cell>
+				        	<Soup />
+				        </Table.Cell>
+				        <Table.Cell>
+				        	<Beverage />
+				        </Table.Cell>
+				        <Table.Cell>
+				        	<OtherMenu />
+				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditMenu/>
 				        </Table.Cell>

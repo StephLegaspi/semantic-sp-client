@@ -6,14 +6,7 @@ import SignUp from './components/add/AddCustomer.js';
 import HomePage from './components/homepage/HomePage.js';
 import Contact from './components/contact/Contact.js';
 
-import AddAdmin from './components/add/AddAdmin.js';
-import AddProduct from './components/add/AddProduct.js';
-import AddMotif from './components/add/AddMotif.js';
-import AddMenu from './components/add/AddMenu.js';
 import AddRequest from './components/add/AddRequest.js';
-import AddOrder from './components/add/AddOrder.js';
-import AddPackage from './components/add/AddPackage.js';
-import AddFAQ from './components/add/AddFAQ.js';
 
 import Logs from './components/view/Logs.js';
 import Orders from './components/view/Orders.js';
