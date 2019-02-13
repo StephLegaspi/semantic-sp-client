@@ -4,9 +4,9 @@ import { Button, Image, Card } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import AddAdmin from '../add/AddAdmin.js'
+import CustomerProfile from '../infoModal/CustomerProfile.js'
 
 import '../../styles/view.css';
-import '../../styles/button.css';
 import img_tree from '../../images/tree.jpg'
 
 class UserAdmins extends Component {
@@ -35,7 +35,7 @@ class UserAdmins extends Component {
 				      <Card.Description>09498812448</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button size='small' id='profile-button'> View Profile </Button>
+				      <CustomerProfile/>
 				    </Card.Content>
 				</Card>
 

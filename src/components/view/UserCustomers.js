@@ -31,7 +31,7 @@ class UserCustomers extends Component {
 				      <Card.Description>09498812448</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <Button size='small' id='profile-button'> View Profile </Button>
+				      <Button size='small' id='profile-button'> View More </Button>
 				    </Card.Content>
 				</Card>
 
