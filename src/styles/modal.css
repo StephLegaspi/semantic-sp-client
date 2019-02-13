@@ -32,6 +32,23 @@
 
 }
 
+.custom-modal .open-profile{
+	position: fixed;
+	height: 40%;
+	width: 60%;
+	top: 40%;
+	left: 20%;
+}
+
+.custom-modal .close-profile{
+	position: fixed;
+	width: 10%;
+	top: 60%;
+	left: 45%;
+	background-color:  #f89d28;
+	color: white;
+}
+
 .custom-modal .close{
 	position: fixed;
 	width: 10%;
