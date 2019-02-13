@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Image, Card } from 'semantic-ui-react'
+import { Image, Card } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'

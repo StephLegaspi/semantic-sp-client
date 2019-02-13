@@ -152,3 +152,12 @@
 	color: white;
 	margin-left: 65%;
 }
+
+#deactivate-button{
+	background-color: #f89d28;
+	color: white;
+	height: 28px;
+	width: 30px;
+	padding-top: 3px;
+	padding-left: 10px;
+}

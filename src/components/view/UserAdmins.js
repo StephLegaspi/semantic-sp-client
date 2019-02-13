@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Image, Card } from 'semantic-ui-react'
+import { Image, Card } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import AddAdmin from '../add/AddAdmin.js'
+import EditAdmin from '../edit/EditAdmin.js'
+import DeactivateModal from '../delete/DeactivateModal.js'
 
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'
@@ -32,6 +34,15 @@ class UserAdmins extends Component {
 				      <Card.Meta>10066165</Card.Meta>
 				      <Card.Description>sylegaspi@up.edu.ph</Card.Description>
 				      <Card.Description>09498812448</Card.Description>
+				    </Card.Content>
+				    <Card.Content extra>
+				    	<div style={{float: 'left', marginLeft: '65%'}}>
+				      		<EditAdmin />
+				      	</div>
+				      	<div style={{marginLeft: '80%'}}>
+				      		<DeactivateModal/>
+				      	</div>
+				      	
 				    </Card.Content>
 				</Card>
 
