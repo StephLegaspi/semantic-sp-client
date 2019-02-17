@@ -39,6 +39,7 @@ import MenusTable from './components/view/MenusTable.js';
 import ContactDetails from './components/view/ContactDetails.js';
 import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
+import Dashboard from './components/dashboard/Dashboard.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
 
@@ -160,6 +161,13 @@ class App extends Component {
       	</Switch>
       	) : (
       		<Switch>
+      		<Route exact={true} path="/dashboard" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<Dashboard   {...props} />
+							             								</div>)}}> 
+			</Route>
       		<Route exact={true} path="/inventory-purchase" render={(props) => {
 					             								return(
 							             								<div>

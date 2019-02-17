@@ -8,6 +8,7 @@ class NavigationBar extends Component {
 	constructor(props){
 		super(props);
 
+		this.toDashboard = this.toDashboard.bind(this);
 		this.toProductsPurchase = this.toProductsPurchase.bind(this);
 		this.toProductsRental = this.toProductsRental.bind(this);
 		this.toInventoryPurchase = this.toInventoryPurchase.bind(this);
@@ -25,6 +26,10 @@ class NavigationBar extends Component {
 		this.toLogsAdmin = this.toLogsAdmin.bind(this);
 		this.toLogsCustomer = this.toLogsCustomer.bind(this);
 		this.toProfileAdmin = this.toProfileAdmin.bind(this);
+	}
+
+	toDashboard(e) {
+		this.props.history.push('/dashboard');
 	}
 
 	toInventoryPurchase(e) {
@@ -101,7 +106,7 @@ class NavigationBar extends Component {
 			        <Menu.Item className='logo-div'>
 			          <Image circular src={logo} className='logo-style' />
 			        </Menu.Item>
-			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'}>Dashboard</Menu.Item>
+			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'} onClick={this.toDashboard} >Dashboard</Menu.Item>
 			        <Dropdown item simple text='Inventory' id={(this.props.activePage[1] || this.props.activePage[2]) ? 'lighter': 'menu-font'}>
 				          <Dropdown.Menu>
 				          	<Dropdown.Item onClick={this.toInventoryPurchase}>Purchase</Dropdown.Item>
