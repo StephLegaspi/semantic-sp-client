@@ -9,10 +9,10 @@ const Login = () => (
   <div className='login-form'>
    
         <Header as='h2' id='font-blue' textAlign='center'>
-         <Image circular src={logo} style={{width: '80px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}/> Login as Administrator
+         <Image circular src={logo} id='logo-login'/>
         </Header>
         <Form>
-          <Segment>
+          <Segment id='login-form-style'>
             <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
             <Form.Input
               fluid
