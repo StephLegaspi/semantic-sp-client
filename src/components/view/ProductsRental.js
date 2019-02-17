@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Header, Image } from 'semantic-ui-react'
+import { Icon, Menu, Table, Header, Image, Dropdown } from 'semantic-ui-react'
 
 import DeleteModal from '../delete/DeleteModal.js'
 import EditProduct from '../edit/EditProduct.js'
+import HeaderBar from '../headerBar/HeaderBar.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
+import AddProduct from '../add/AddProduct.js'
 
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'
@@ -12,12 +15,30 @@ class ProductsTable extends Component {
 		super(props);
 
 		this.state = {}
+		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
 	render() {
 		return (
 			<div>
+				<HeaderBar headerTitle={'Rental'}/>
+				<SearchBarTable titleHolder={'Search product name..'}/>
 
+				<AddProduct/>
+				
+				
+      			<div class="ui fluid segment" id='upper-div5'>  
+					<label>
+					  Product Category: {' '}
+					  <Dropdown
+					    inline
+					    options={this.stateOptions}
+					    defaultValue={'1'}
+					  />
+					</label>
+      			</div>
+
+      			<div className='table-div'>
 					<Table celled>
 				    <Table.Header>
 				      <Table.Row>
@@ -70,6 +91,7 @@ class ProductsTable extends Component {
 				      </Table.Row>
 				    </Table.Footer>
 				</Table>
+				</div>
 						
 			</div>
 		);

@@ -8,7 +8,8 @@ class NavigationBar extends Component {
 	constructor(props){
 		super(props);
 
-		this.toProducts = this.toProducts.bind(this);
+		this.toProductsPurchase = this.toProductsPurchase.bind(this);
+		this.toProductsRental = this.toProductsRental.bind(this);
 		this.toInventoryPurchase = this.toInventoryPurchase.bind(this);
 		this.toInventoryRental = this.toInventoryRental.bind(this);
 		this.toOrders = this.toOrders.bind(this);
@@ -31,8 +32,12 @@ class NavigationBar extends Component {
 		this.props.history.push('/inventory-rental');
 	}
 
-	toProducts(e) {
-		this.props.history.push('/products');
+	toProductsPurchase(e) {
+		this.props.history.push('/products-purchase');
+	}
+
+	toProductsRental(e) {
+		this.props.history.push('/products-rental');
 	}
 
 	toOrders(e) {
@@ -102,7 +107,8 @@ class NavigationBar extends Component {
 			        <Menu.Item as='a'  id={this.props.activePage[4] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
 			        <Dropdown item simple text='Products' id={(this.props.activePage[5] || this.props.activePage[6]) ? 'lighter': 'menu-font'}>
 				          <Dropdown.Menu>
-				          	<Dropdown.Item onClick={this.toProducts}>Products</Dropdown.Item>
+				          	<Dropdown.Item onClick={this.toProductsPurchase}>Purchase</Dropdown.Item>
+				          	<Dropdown.Item onClick={this.toProductsRental}>Rental</Dropdown.Item>
 				          </Dropdown.Menu>
 				    </Dropdown>
 				            

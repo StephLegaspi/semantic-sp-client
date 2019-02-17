@@ -15,7 +15,8 @@ import InventoryRental from './components/view/InventoryRental.js';
 import OrderRental from './components/view/OrderRental.js';
 import ShoppingCart from './components/view/ShoppingCart.js';
 import Requests from './components/view/Requests.js';
-import Products from './components/view/Products.js';
+import ProductsPurchase from './components/view/ProductsPurchase.js';
+import ProductsRental from './components/view/ProductsRental.js';
 import UserCustomers from './components/view/UserCustomers.js';
 import UserAdmins from './components/view/UserAdmins.js';
 import Shop from './components/view/Shop.js';
@@ -192,11 +193,18 @@ class App extends Component {
 																			<Requests   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/products" render={(props) => {
+			<Route exact={true} path="/products-purchase" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0]} {...props} />
-																			<Products   {...props} />
+																			<ProductsPurchase   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/products-rental" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
+																			<ProductsRental   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/packages-table" render={(props) => {
