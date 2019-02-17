@@ -26,9 +26,8 @@ class ProductsTable extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Name</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Description</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Price</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Display Product</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				      </Table.Row>
 				    </Table.Header>
 
@@ -40,7 +39,6 @@ class ProductsTable extends Component {
 			                  <Image src={img_tree} rounded size='massive' />
 			                </Header>
 			            </Table.Cell>
-						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>
 						<Table.Cell>cellll</Table.Cell>

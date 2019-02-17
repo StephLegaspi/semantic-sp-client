@@ -32,14 +32,12 @@ class CustomerProfile extends Component {
 								<Table celled>
 							    <Table.Header>
 							      <Table.Row>
-							      	<Table.HeaderCell style={{width: '14%'}}>User ID</Table.HeaderCell>
 							        <Table.HeaderCell>Address</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Zip Code</Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 							    <Table.Body>
 							    	 <Table.Row>
-							    	 	<Table.Cell>cell</Table.Cell>
 								        <Table.Cell>cell</Table.Cell>
 								        <Table.Cell>YAAAAh</Table.Cell>
 								      </Table.Row>

@@ -18,6 +18,7 @@ class ViewProducts extends Component {
 		this.panes = [
 			  {
 			    menuItem: { key: 'purchase', icon: 'tasks', content: 'Products for purchase', color: 'orange' },
+			    
 			    render: () => 
 			    		<Tab.Pane> 
 							<ProductsTable/>    
@@ -29,6 +30,7 @@ class ViewProducts extends Component {
 			  }
 			];	
 	}
+
 
 	render() {
 		return (
@@ -45,7 +47,7 @@ class ViewProducts extends Component {
 					  <Dropdown
 					    inline
 					    options={this.stateOptions}
-					    defaultValue={this.stateOptions[0].value}
+					    defaultValue={'1'}
 					  />
 					</label>
       			</div>

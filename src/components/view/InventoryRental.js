@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table } from 'semantic-ui-react'
+import { Icon, Menu, Table, Dropdown } from 'semantic-ui-react'
 
+import HeaderBar from '../headerBar/HeaderBar.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
 import ProductInfo from '../infoModal/ProductInfo.js'
 import DeleteModal from '../delete/DeleteModal.js'
 import EditInventory from '../edit/EditInventory.js'
@@ -12,11 +14,28 @@ class InventoryTable extends Component {
 		super(props);
 
 		this.state = {}
+		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
 	render() {
 		return (
 			<div>
+				<HeaderBar headerTitle={'Rental'}/>
+				<SearchBarTable titleHolder={'Search product name..'}/>
+  				
+
+      			<div class="ui fluid segment" id='upper-div5'>  
+					<label>
+					  Product Category: {' '}
+					  <Dropdown
+					    inline
+					    options={this.stateOptions}
+					    defaultValue={this.stateOptions[0].value}
+					  />
+					</label>
+      			</div>
+
+      			<div className='table-div'>
 
 							<Table single line>
 							    <Table.Header>
@@ -69,7 +88,7 @@ class InventoryTable extends Component {
 							      </Table.Row>
 							    </Table.Footer>
 							</Table>
-						
+					</div>
 			</div>
 		);
 	}

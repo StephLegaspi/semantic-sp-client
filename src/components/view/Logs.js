@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Input, Select} from 'semantic-ui-react'
+import { Icon, Menu, Table} from 'semantic-ui-react'
 
+import HeaderBar from '../headerBar/HeaderBar.js'
+import DeleteModal from '../delete/DeleteModal.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
 
 import '../../styles/view.css';
 
-class ViewLogs extends Component {
+class Logs extends Component {
 	constructor(props){
 		super(props);
 		
@@ -18,16 +21,8 @@ class ViewLogs extends Component {
 	render() {
 		return (
 			<div>
-				<div id='search-bar'>
-					<Input style={{width: '40%'}} type='text' placeholder='Search by: ' action>
-					    <input />
-					    <Select compact options={this.options} defaultValue='user_ID' />
-					    <label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-								  <i class="search icon" style={{paddingRight: '5px', width:'20px'}}></i>
-								  Search
-						</label>
-					</Input>
-				</div>
+				<HeaderBar headerTitle={'Logs'}/>
+				<SearchBarTable titleHolder={'Search question..'}/>
 
 				<div className='table-div'>
 				<Table celled>
@@ -48,37 +43,9 @@ class ViewLogs extends Component {
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-							  <i class="trash alternate icon" style={{paddingRight: '5px', width:'20px'}}></i>
-							  Delete
-							</label>
+				        	<DeleteModal/>
 				        </Table.Cell>
 				      </Table.Row>
-				      <Table.Row>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-							  <i class="trash alternate icon" style={{paddingRight: '5px', width:'20px'}}></i>
-							  Delete
-							</label>
-				        </Table.Cell>
-				      </Table.Row>
-				      <Table.Row>
-				        <Table.Cell>1</Table.Cell>
-				        <Table.Cell>2</Table.Cell>
-				        <Table.Cell>3</Table.Cell>
-				        <Table.Cell>4</Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<label class="ui icon button" style={{backgroundColor: 'red', color:'white'}}>
-							  <i class="trash alternate icon" style={{paddingRight: '5px', width:'20px'}}></i>
-							  Delete
-							</label>
-				        </Table.Cell>
-				      </Table.Row>
-				      
 				    </Table.Body>
 
 				    <Table.Footer>
@@ -107,4 +74,4 @@ class ViewLogs extends Component {
 
 }
 
-export default ViewLogs;
+export default Logs;
