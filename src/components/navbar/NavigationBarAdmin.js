@@ -22,7 +22,8 @@ class NavigationBar extends Component {
 		this.toMenusTable = this.toMenusTable.bind(this);
 		this.toContactDetails = this.toContactDetails.bind(this);
 		this.toFAQS = this.toFAQS.bind(this);
-		this.toLogs = this.toLogs.bind(this);
+		this.toLogsAdmin = this.toLogsAdmin.bind(this);
+		this.toLogsCustomer = this.toLogsCustomer.bind(this);
 	}
 
 	toInventoryPurchase(e) {
@@ -80,8 +81,12 @@ class NavigationBar extends Component {
 		this.props.history.push('/faqs');
 	}
 
-	toLogs(e) {
-		this.props.history.push('/logs');
+	toLogsAdmin(e) {
+		this.props.history.push('/logs-admin');
+	}
+
+	toLogsCustomer(e) {
+		this.props.history.push('/logs-customer');
 	}
 
 	render() {
@@ -91,30 +96,32 @@ class NavigationBar extends Component {
 			        <Menu.Item className='logo-div'>
 			          <Image circular src={logo} className='logo-style' />
 			        </Menu.Item>
-
-			        <Dropdown item simple text='Inventory' id={(this.props.activePage[0] || this.props.activePage[1]) ? 'lighter': 'menu-font'}>
+			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'}>Dashboard</Menu.Item>
+			        <Dropdown item simple text='Inventory' id={(this.props.activePage[1] || this.props.activePage[2]) ? 'lighter': 'menu-font'}>
 				          <Dropdown.Menu>
 				          	<Dropdown.Item onClick={this.toInventoryPurchase}>Purchase</Dropdown.Item>
 				          	<Dropdown.Item onClick={this.toInventoryRental}>Rental</Dropdown.Item>
 				          </Dropdown.Menu>
 				    </Dropdown>
-			        <Dropdown item simple text='Orders' id={(this.props.activePage[2] || this.props.activePage[3])  ? 'lighter': 'menu-font'} >
+			        <Dropdown item simple text='Orders' id={(this.props.activePage[3] || this.props.activePage[4])  ? 'lighter': 'menu-font'} >
 				          <Dropdown.Menu>
 				            <Dropdown.Item onClick={this.toOrders}>Purchase</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toOrderRentals}>Rental</Dropdown.Item>
 				          </Dropdown.Menu>
 				    </Dropdown>
-			        <Menu.Item as='a'  id={this.props.activePage[4] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
-			        <Dropdown item simple text='Products' id={(this.props.activePage[5] || this.props.activePage[6]) ? 'lighter': 'menu-font'}>
-				          <Dropdown.Menu>
-				          	<Dropdown.Item onClick={this.toProductsPurchase}>Purchase</Dropdown.Item>
-				          	<Dropdown.Item onClick={this.toProductsRental}>Rental</Dropdown.Item>
-				          </Dropdown.Menu>
-				    </Dropdown>
+			        <Menu.Item as='a'  id={this.props.activePage[5] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
 				            
 			    	<Container>
-			    		<Dropdown item simple text='Data Management' id={(this.props.activePage[7] || this.props.activePage[8] || this.props.activePage[9] || this.props.activePage[10]) ? 'lighter': 'menu-font'} style={{marginLeft: '34%'}}>
+			    		<Dropdown item simple text='Data Management' id={(this.props.activePage[6] || this.props.activePage[7] || this.props.activePage[8] || this.props.activePage[9] || this.props.activePage[10] || this.props.activePage[11]) ? 'lighter': 'menu-font'} style={{marginLeft: '28%'}}>
 				          <Dropdown.Menu>
+				          	<Dropdown.Item>
+				              <i className='dropdown icon' />
+				              <span className='text'>Products</span>
+				              <Dropdown.Menu>
+				                <Dropdown.Item onClick={this.toProductsPurchase}>Purchase</Dropdown.Item>
+					          	<Dropdown.Item onClick={this.toProductsRental}>Rental</Dropdown.Item>
+				              </Dropdown.Menu>
+				            </Dropdown.Item>  	
 				          	<Dropdown.Item onClick={this.toPackagesTable}>Packages</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toMotifsTable}>Motifs</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toMenusTable}>Menus</Dropdown.Item>
@@ -122,14 +129,24 @@ class NavigationBar extends Component {
 				            <Dropdown.Item onClick={this.toFAQS}>FAQS</Dropdown.Item>
 				          </Dropdown.Menu>
 				        </Dropdown>		
-				       	<Dropdown item simple text='Users' id={(this.props.activePage[11] || this.props.activePage[12]) ? 'lighter': 'menu-font'}>
+				       	<Dropdown item simple text='Users' id={(this.props.activePage[12] || this.props.activePage[13]) ? 'lighter': 'menu-font'}>
 				          <Dropdown.Menu>
 				            <Dropdown.Item onClick={this.toUserAdmins}>Admin</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toUserCustomers}>Customer</Dropdown.Item>
 				          </Dropdown.Menu>
 				    	</Dropdown>
-				    	<Menu.Item as='a' id={this.props.activePage[13] ? 'lighter': 'menu-font'} onClick={this.toLogs}>Logs</Menu.Item>
-				        <Menu.Item as='a'>Account</Menu.Item>
+				    	<Dropdown item simple text='Logs' id={(this.props.activePage[14] || this.props.activePage[15]) ? 'lighter': 'menu-font'}>
+				          <Dropdown.Menu>
+				            <Dropdown.Item onClick={this.toLogsAdmin}>Admin </Dropdown.Item>
+				            <Dropdown.Item onClick={this.toLogsCustomer}>Customer</Dropdown.Item>
+				          </Dropdown.Menu>
+				    	</Dropdown>
+				        <Dropdown item simple text='Account' id={(this.props.activePage[16] || this.props.activePage[17]) ? 'lighter': 'menu-font'}>
+				          <Dropdown.Menu>
+				            <Dropdown.Item >Profile </Dropdown.Item>
+				            <Dropdown.Item >Logout</Dropdown.Item>
+				          </Dropdown.Menu>
+				    	</Dropdown>
      				</Container>
     			</Menu>
 			</div>

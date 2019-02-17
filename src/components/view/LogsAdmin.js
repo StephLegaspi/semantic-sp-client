@@ -21,18 +21,18 @@ class Logs extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderBar headerTitle={'Logs'}/>
-				<SearchBarTable titleHolder={'Search question..'}/>
+				<HeaderBar headerTitle={'Admin Logs'}/>
+				<SearchBarTable titleHolder={'Search admin ID..'}/>
 
 				<div className='table-div'>
 				<Table celled>
 				    <Table.Header>
 				      <Table.Row>
-				        <Table.HeaderCell style={{width: '15%'}}>Log ID</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '7%'}}>Log ID</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '7%'}}>Admin ID</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Action</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '15%'}}>User ID</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Timestamp</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '10%'}}></Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
 				    </Table.Header>
 

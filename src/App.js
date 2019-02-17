@@ -8,7 +8,8 @@ import Contact from './components/contact/Contact.js';
 
 import AddRequest from './components/add/AddRequest.js';
 
-import Logs from './components/view/Logs.js';
+import LogsAdmin from './components/view/LogsAdmin.js';
+import LogsCustomer from './components/view/LogsCustomer.js';
 import Orders from './components/view/Orders.js';
 import InventoryPurchase from './components/view/InventoryPurchase.js';
 import InventoryRental from './components/view/InventoryRental.js';
@@ -161,106 +162,113 @@ class App extends Component {
       		<Route exact={true} path="/inventory-purchase" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[1,0,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<InventoryPurchase   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/inventory-rental" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,1,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<InventoryRental   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/orders-purchase" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,1,0,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,1,0,0,0,0,0,0,0,0,0]} {...props} />
 																			<Orders   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/orders-rental" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,1,0,0,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,1,0,0,0,0,0,0,0,0]} {...props} />
 																			<OrderRental   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/requests" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,1,0,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0]} {...props} />
 																			<Requests   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/products-purchase" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,1,0,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
 																			<ProductsPurchase   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/products-rental" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,1,0,0,0,0,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,1,0,0,0,0]} {...props} />
 																			<ProductsRental   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/packages-table" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,1,0,0,0,0]} {...props} />
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
 																			<PackagesTable   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/motifs-table" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,1,0,0,0,0]} {...props} />
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
 																			<MotifsTable   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/menus-table" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0,0]} {...props} />
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
 																			<MenusTable   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/contact-details" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,1,0,0,0,0]} {...props} />
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
 																			<ContactDetails   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/faqs" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,1,0,0]} {...props} />
 																			<FAQS  {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/admins" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,1,0,0]} {...props} />
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
 																			<UserAdmins   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/customers" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,0,1]} {...props} />
 																			<UserCustomers   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/logs" render={(props) => {
+			<Route exact={true} path="/logs-admin" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,0,1]} {...props} />
-																			<Logs   {...props} />
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]} {...props} />
+																			<LogsAdmin   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/logs-customer" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]} {...props} />
+																			<LogsCustomer   {...props} />
 							             								</div>)}}> 
 			</Route>
 			

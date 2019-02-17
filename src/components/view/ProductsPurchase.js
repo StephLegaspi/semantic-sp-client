@@ -21,7 +21,7 @@ class ProductsTable extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderBar headerTitle={'Purchase'}/>
+				<HeaderBar headerTitle={'Purchase Products'}/>
 				<SearchBarTable titleHolder={'Search product name..'}/>
 
 				<AddProduct/>
