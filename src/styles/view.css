@@ -201,3 +201,22 @@
 	margin-top: 5%;
 	padding: 40px;
 }
+
+
+#img-profile{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	float: left;
+	margin-left: 15%;
+	width: 23%;
+	margin-top: 4%;
+	margin-bottom: 10%;
+}
+
+#info-profile{
+	float: right;
+	width: 42%;
+	margin-right: 15%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: 4%;
+	padding: 30px;
+}

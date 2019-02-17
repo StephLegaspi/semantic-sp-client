@@ -11,7 +11,7 @@ class ViewMoreButton extends Component{
 
 	render(){
 		return(
-			<Button size='small' id='profile-button' onClick={this.clickModal}> View More </Button>
+			<Button size='small' id='view-button'  onClick={this.clickModal}> View More </Button>
 		);
 	}
 }

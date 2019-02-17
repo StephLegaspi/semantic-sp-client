@@ -38,6 +38,7 @@ import MotifsTable from './components/view/MotifsTable.js';
 import MenusTable from './components/view/MenusTable.js';
 import ContactDetails from './components/view/ContactDetails.js';
 import FAQS from './components/view/FAQS.js';
+import ProfileAdmin from './components/view/ProfileAdmin.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
 
@@ -269,6 +270,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]} {...props} />
 																			<LogsCustomer   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/profile-admin" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]} {...props} />
+																			<ProfileAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
 			

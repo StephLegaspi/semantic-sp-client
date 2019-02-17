@@ -11,8 +11,8 @@ class DeactivateButton extends Component{
 
 	render(){
 		return(
-			<Button circular id='deactivate-button' onClick={this.callDeactivate}>
-				<i class="large ban icon"></i>
+			<Button id='generic-button' onClick={this.callDeactivate}>
+				Deactivate
 			</Button>
 		);
 	}

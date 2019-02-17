@@ -24,6 +24,7 @@ class NavigationBar extends Component {
 		this.toFAQS = this.toFAQS.bind(this);
 		this.toLogsAdmin = this.toLogsAdmin.bind(this);
 		this.toLogsCustomer = this.toLogsCustomer.bind(this);
+		this.toProfileAdmin = this.toProfileAdmin.bind(this);
 	}
 
 	toInventoryPurchase(e) {
@@ -89,6 +90,10 @@ class NavigationBar extends Component {
 		this.props.history.push('/logs-customer');
 	}
 
+	toProfileAdmin(e) {
+		this.props.history.push('/profile-admin');
+	}
+
 	render() {
 		return (
 			<div>
@@ -143,7 +148,7 @@ class NavigationBar extends Component {
 				    	</Dropdown>
 				        <Dropdown item simple text='Account' id={(this.props.activePage[16] || this.props.activePage[17]) ? 'lighter': 'menu-font'}>
 				          <Dropdown.Menu>
-				            <Dropdown.Item >Profile </Dropdown.Item>
+				            <Dropdown.Item onClick={this.toProfileAdmin}>Profile </Dropdown.Item>
 				            <Dropdown.Item >Logout</Dropdown.Item>
 				          </Dropdown.Menu>
 				    	</Dropdown>
