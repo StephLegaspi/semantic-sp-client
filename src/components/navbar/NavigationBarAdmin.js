@@ -14,10 +14,10 @@ class NavigationBar extends Component {
 		this.toInventoryPurchase = this.toInventoryPurchase.bind(this);
 		this.toInventoryRental = this.toInventoryRental.bind(this);
 		this.toOrders = this.toOrders.bind(this);
+		this.toOrderRentals = this.toOrderRentals.bind(this);
 		this.toRequests = this.toRequests.bind(this);
 		this.toUserCustomers = this.toUserCustomers.bind(this);
 		this.toUserAdmins = this.toUserAdmins.bind(this);
-		this.toOrderRentals = this.toOrderRentals.bind(this);
 		this.toPackagesTable = this.toPackagesTable.bind(this);
 		this.toMotifsTable = this.toMotifsTable.bind(this);
 		this.toMenusTable = this.toMenusTable.bind(this);

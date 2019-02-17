@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 
-import ModalButton from '../button/ModalButton.js'
+import '../../styles/button.css';
 import '../../styles/modal.css';
 
-class RentalInfo extends Component {
+class OutOfStockPurchase extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -25,18 +25,16 @@ class RentalInfo extends Component {
 	render() {
 		return (
 			<div>
-				<ModalButton handleClickModal={this.onModal}/>
+				<Button id='view-button-dashboard' onClick={this.onModal}> View Products </Button>
 					        {this.state.modal && (<div className='custom-modal'>
 								<div>
 								<div className="open">
 								<Table celled>
 							    <Table.Header>
 							      <Table.Row>
-							        <Table.HeaderCell style={{width: '20%'}}>Rental Duration</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '20%'}}>Rental Status</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '20%'}}>Rental Due Date</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '20%'}}>Returned Timestamp</Table.HeaderCell>
-							        
+							        <Table.HeaderCell style={{width: '20%'}}>Product ID</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '20%'}}>Product Name</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '10%'}}>Total Quantity</Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 							    <Table.Body>
@@ -44,7 +42,6 @@ class RentalInfo extends Component {
 								        <Table.Cell>cell</Table.Cell>
 								        <Table.Cell>YAAAAh</Table.Cell>
 								        <Table.Cell>Cell</Table.Cell>
-								     	<Table.Cell>Cell</Table.Cell>
 								      </Table.Row>
 							    </Table.Body>
 							    <Button className='close' onClick={this.onClose}> Close </Button>
@@ -58,4 +55,4 @@ class RentalInfo extends Component {
 
 }
 
-export default RentalInfo;
+export default OutOfStockPurchase;

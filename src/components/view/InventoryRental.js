@@ -45,7 +45,7 @@ class InventoryTable extends Component {
 							        <Table.HeaderCell style={{width: '20%'}}>Product Name</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '10%'}}>Total Quantity</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '10%'}}>No. of Remaining Items</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '20%'}}>Date of Stock Renewal</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '10%'}}>Number of Products On-rent</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 							      </Table.Row>
