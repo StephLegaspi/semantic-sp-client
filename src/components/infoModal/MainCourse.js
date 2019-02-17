@@ -27,24 +27,24 @@ class MainCourse extends Component {
 			<div>
 				<ModalButton handleClickModal={this.onModal}/>
 					        {this.state.modal && (<div className='custom-modal'>
-								<div>
+								
 									<div className="open-box">
 
 										<h1 className='title-font'> Main Course/s </h1>
-										<List style={{marginLeft: '5%', color:'#16163a'}}>
-										    <List.Item>
+										<List style={{marginLeft: '10%', color:'#16163a'}}>
+										    <List.Item >
 										      <List.Icon name='food' size='large'/>
-										      <List.Content>Main Courser</List.Content>
+										      <List.Content >Main Courser</List.Content>
 										    </List.Item>
 										    <List.Item>
 										      <List.Icon name='food' size='large'/>
 										      <List.Content>Main Course</List.Content>
 										    </List.Item>
-										  </List>
+										</List>
 								    	<Button  className='close' onClick={this.onClose}> Close </Button>
 								   
 								    </div>
-							    </div>
+							    
 								</div>)}
 			</div>
 		);

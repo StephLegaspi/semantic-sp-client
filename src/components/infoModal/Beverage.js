@@ -29,7 +29,7 @@ class Beverage extends Component {
 								<div>
 									<div className="open-box">
 										<h1 className='title-font'> Beverage/s </h1>
-										<List style={{marginLeft: '5%', color:'#16163a'}}>
+										<List style={{marginLeft: '10%', color:'#16163a'}}>
 										    <List.Item>
 										      <List.Icon name='food' size='large'/>
 										      <List.Content>Beverage</List.Content>
