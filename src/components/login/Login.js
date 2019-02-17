@@ -1,17 +1,18 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import './Add.css';
+import { Button, Form, Header, Image, Message, Segment } from 'semantic-ui-react'
+
+import logo from '../../images/logo.jpg'
+import '../../styles/login.css';
+import '../../styles/font.css';
 
 const Login = () => (
   <div className='login-form'>
    
-    <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h2' color='teal' textAlign='center'>
-          <Image src='/logo.png' /> Log-in to your account
+        <Header as='h2' id='font-blue' textAlign='center'>
+         <Image circular src={logo} style={{width: '80px', boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}/> Login as Administrator
         </Header>
-        <Form size='large'>
-          <Segment stacked>
+        <Form>
+          <Segment>
             <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
             <Form.Input
               fluid
@@ -21,16 +22,14 @@ const Login = () => (
               type='password'
             />
 
-            <Button color='teal' fluid size='large'>
+            <Button id='login-button' fluid size='large'>
               Login
             </Button>
           </Segment>
         </Form>
-        <Message>
-          New to us? <a>Sign Up</a>
+        <Message id='message-style'>
+          <a>Forgot Password?</a>
         </Message>
-      </Grid.Column>
-    </Grid>
   </div>
 )
 

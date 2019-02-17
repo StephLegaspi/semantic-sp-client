@@ -161,6 +161,12 @@ class App extends Component {
       	</Switch>
       	) : (
       		<Switch>
+      		<Route exact={true} path="/admin" render={(props) => {
+					             								return(
+							             								<div>
+																			<Login   {...props} />
+							             								</div>)}}> 
+			</Route>
       		<Route exact={true} path="/dashboard" render={(props) => {
 					             								return(
 							             								<div>
@@ -252,14 +258,14 @@ class App extends Component {
 																			<FAQS  {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/admins" render={(props) => {
+			<Route exact={true} path="/user-admins" render={(props) => {
 					             								return(
 							             								<div>
 							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
 																			<UserAdmins   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/customers" render={(props) => {
+			<Route exact={true} path="/user-customers" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,0,1]} {...props} />

@@ -60,11 +60,11 @@ class NavigationBar extends Component {
 	}
 
 	toUserCustomers(e) {
-		this.props.history.push('/customers');
+		this.props.history.push('/user-customers');
 	}
 
 	toUserAdmins(e) {
-		this.props.history.push('/admins');
+		this.props.history.push('/user-admins');
 	}
 
 	toPackagesTable(e) {
