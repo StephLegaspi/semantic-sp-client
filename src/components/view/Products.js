@@ -5,7 +5,6 @@ import ProductsTable from './ProductsTable.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import AddProduct from '../add/AddProduct.js'
-
 import '../../styles/view.css';
 
 class ViewProducts extends Component {
