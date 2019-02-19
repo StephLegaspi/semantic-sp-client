@@ -5,8 +5,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import OutOfStockPurchase from '../infoModal/OutOfStockPurchase.js'
 import OutOfStockRental from '../infoModal/OutOfStockRental.js'
 
-import '../../styles/view.css';
-import '../../styles/add.css';
+import '../../styles/font.css';
 import '../../styles/button.css';
 import '../../styles/dashboard.css';
 

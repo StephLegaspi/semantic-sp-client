@@ -21,3 +21,30 @@
 #container #btn:hover {
   background-color: black;
 }
+
+
+#div-homepage{
+	float: left;
+	width: 80%;
+	margin-left: 10%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: 4%;
+	margin-bottom: 4%;
+	padding: 30px;
+}
+
+#circle-homepage {
+    
+   /* behavior: url(PIE.htc);  remove if you don't care about IE8 */
+   background-color: blue;
+    width: 230px;
+    height: 230px;
+    padding: 87px 0px;
+
+    
+    text-align: center;
+    color: white;
+    font-size: 30px;
+
+    margin-left: 11%;
+}

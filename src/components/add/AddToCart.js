@@ -6,7 +6,7 @@ import AddCartButton from '../button/AddCartButton.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/add.css';
-import '../../styles/view.css';
+import '../../styles/font.css';
 import img_tree from '../../images/tree.jpg'
 
 

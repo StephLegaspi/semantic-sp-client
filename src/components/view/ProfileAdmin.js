@@ -6,7 +6,7 @@ import EditPassword from '../edit/EditPassword.js'
 import EditAdmin from '../edit/EditAdmin.js'
 
 import '../../styles/view.css';
-import '../../styles/add.css';
+import '../../styles/font.css';
 import img_tree from '../../images/tree.jpg'
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Header, Image, Segment, Icon, Button } from 'semantic-ui-react'
+import { Container, Header, Image, Segment, Icon, Button, Grid } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
@@ -18,24 +18,42 @@ const HomePage = () => (
       </Button>
     </Segment>
 
-    <Container text style={{ marginTop: '7em' }}>
-      <Header as='h1'>Semantic UI React Fixed Template</Header>
-      <p>This is a basic fixed menu template using fixed size containers.</p>
-      <p>
-        A text container is used for the main container, which is useful for single column layouts.
-      </p>
-      <p>This is a basic fixed menu template using fixed size containers.</p>
-      <p>This is a basic fixed menu template using fixed size containers.</p>
-      <p>This is a basic fixed menu template using fixed size containers.</p>
-      <p>This is a basic fixed menu template using fixed size containers.</p>
-      <p>This is a basic fixed menu template using fixed size containers.</p> 
-      <p>This is a basic fixed menu template using fixed size containers.</p> 
-      <p>This is a basic fixed menu template using fixed size containers.</p> 
-      <p>This is a basic fixed menu template using fixed size containers.</p> 
-    </Container>
+    <Segment vertical id='div-homepage'>
+          <p className='title-header'> Catering Packages</p>
+          <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
+          <Grid inverted divided stackable>
+            <Grid.Row>
+            <Grid.Column width={5} style={{marginLeft: '3%'}}>
+              <Button animated circular id='circle-homepage'>
+                <Button.Content visible>Next</Button.Content>
+                <Button.Content hidden>
+                  <Icon name='arrow right' />
+                </Button.Content>
+              </Button>
+            </Grid.Column>
 
+            <Grid.Column width={5}>
+              <Button animated circular id='circle-homepage'>
+                <Button.Content visible>Next</Button.Content>
+                <Button.Content hidden>
+                  <Icon name='arrow right' />
+                </Button.Content>
+              </Button>
+            </Grid.Column>
 
-    <Footer/>
+            <Grid.Column width={5}>
+              <Button animated circular id='circle-homepage'>
+                <Button.Content visible>Next</Button.Content>
+                <Button.Content hidden>
+                  <Icon name='arrow right' />
+                </Button.Content>
+              </Button>
+            </Grid.Column>
+
+            </Grid.Row>
+          </Grid>
+    </Segment>
+
   </div>
 )
 

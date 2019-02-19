@@ -6,6 +6,7 @@ import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
 import '../../styles/button.css';
+import '../../styles/font.css';
 import img from '../../images/header2.jpg'
 import sample_header from '../../images/header1.jpg'
 
