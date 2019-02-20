@@ -23,29 +23,32 @@ const HomePage = () => (
           <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
           <Grid inverted divided stackable>
             <Grid.Row>
-            <Grid.Column width={5} style={{marginLeft: '3%'}}>
+            <Grid.Column width={4} style={{marginLeft: '6%'}}>
               <Button animated circular id='circle-homepage'>
-                <Button.Content visible>Next</Button.Content>
-                <Button.Content hidden>
-                  <Icon name='arrow right' />
+                <Button.Content visible>Package 1</Button.Content>
+                <Button.Content visible className='label-font2'>P 1,750</Button.Content>
+                <Button.Content hidden className='label-font2'>
+                  View
                 </Button.Content>
               </Button>
             </Grid.Column>
 
-            <Grid.Column width={5}>
+            <Grid.Column width={4} style={{marginLeft: '3%'}}>
               <Button animated circular id='circle-homepage'>
-                <Button.Content visible>Next</Button.Content>
-                <Button.Content hidden>
-                  <Icon name='arrow right' />
+                <Button.Content visible>Package 1</Button.Content>
+                <Button.Content visible className='label-font2'>P 1,750</Button.Content>
+                <Button.Content hidden className='label-font2'>
+                  View
                 </Button.Content>
               </Button>
             </Grid.Column>
 
-            <Grid.Column width={5}>
+            <Grid.Column width={4} style={{marginLeft: '3%'}}>
               <Button animated circular id='circle-homepage'>
-                <Button.Content visible>Next</Button.Content>
-                <Button.Content hidden>
-                  <Icon name='arrow right' />
+                <Button.Content visible>Package 1</Button.Content>
+                <Button.Content visible className='label-font2'>P 1,750</Button.Content>
+                <Button.Content hidden className='label-font2'>
+                  View
                 </Button.Content>
               </Button>
             </Grid.Column>
