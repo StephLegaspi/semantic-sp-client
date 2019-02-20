@@ -57,6 +57,25 @@ const HomePage = () => (
           </Grid>
     </Segment>
 
+    <Segment vertical id='div-homepage'>
+          <p className='title-header'> Event Motifs</p>
+          <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
+         
+            <div style={{paddingLeft: '30px'}}>
+
+              <Image.Group size='large'>
+                <Image src={sample_header} />
+                <Image src={sample_header} />
+              </Image.Group>
+
+               <Image.Group size='large'>
+                <Image src={sample_header} />
+                <Image src={sample_header} />
+              </Image.Group>
+
+            </div>
+    </Segment>
+
   </div>
 )
 
