@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 
 import '../../styles/modal.css';
-import ViewMoreButton from '../button/ViewMoreButton.js'
+import ViewButton from '../button/ViewButton.js'
 
 class CustomerProfile extends Component {
 	constructor(props){
@@ -25,7 +25,7 @@ class CustomerProfile extends Component {
 	render() {
 		return (
 			<div>
-				<ViewMoreButton handleClickModal={this.onModal}/>
+				<ViewButton handleClickModal={this.onModal}/>
 					        {this.state.modal && (<div className='custom-modal'>
 								<div>
 								<div className="open-profile">
