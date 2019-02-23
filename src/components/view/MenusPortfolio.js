@@ -7,7 +7,6 @@ import Footer from '../footer/Footer.js'
 import '../../styles/view.css';
 import '../../styles/button.css';
 import '../../styles/font.css';
-import img from '../../images/food.jpg'
 
 
 class MenusPortfolio extends Component {
@@ -22,13 +21,8 @@ class MenusPortfolio extends Component {
 			<div>
 				
 				<HeaderBar headerTitle={'Menu 1'}/>
-				<div id='card-pics'>
-					<Card image={img} style={{width: '100%'}}/>
+				<div id='card-group'>
 					<Card.Group itemsPerRow={2} >
-					    <Card image={img}/>
-					    <Card image={img} />
-					    <Card image={img} />
-					    <Card image={img} />
 					    
 					    <Card id='card-menu'>
 				          <Card.Content>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Image, Card } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 
-import img_tree from '../../images/tree.jpg'
 import '../../styles/view.css';
 
 import ViewButton from '../button/ViewButton.js'
@@ -29,15 +28,14 @@ class Menus extends Component {
       			
       			<div id='card-div2'>
 				<Card.Group itemsPerRow={4}>
-				<Card id='card2'>
-				    <Card.Content>
-				      <Card.Header>Menu 1 </Card.Header>
-				    </Card.Content>
-					<Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
-				    <Card.Content extra>
-				      <ViewButton handleView={this.toMenusPortfolio}/>
-				    </Card.Content>
-				</Card>
+					<Card id='card'>
+						    <Card.Content>
+						      <Card.Header>Menu 1 </Card.Header>
+						    </Card.Content>
+						    <Card.Content extra>
+						    	<ViewButton handleView={this.toMenusPortfolio}/>
+						    </Card.Content>
+					</Card>
 				</Card.Group>
 				</div>
 

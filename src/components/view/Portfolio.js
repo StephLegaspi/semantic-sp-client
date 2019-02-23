@@ -5,6 +5,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
+import '../../styles/homepage.css';
 import '../../styles/button.css';
 import '../../styles/font.css';
 import img from '../../images/header2.jpg'
@@ -20,11 +21,11 @@ class Portfolio extends Component {
 	render() {
 		return (
 			<div>
-				<Segment id='container-header'>
+				<Segment id='container'>
 		         <HeaderBar headerTitle={'Portfolio'}/>
 				 <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
-		          <div id='desc-header2'>
-		            <p className='header-font2'> A blue-themed motif that comes with balloons of different arrangements, perfect for any kind of event.  </p>
+		          <div id='div-header'>
+		            <p className='header-font2' style={{marginTop: '29%'}}> For more than 10 years, we are committed to making our customers' dream events come true.  </p>
 		          </div>
 		        </Segment>
 
