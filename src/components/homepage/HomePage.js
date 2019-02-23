@@ -5,7 +5,9 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/homepage.css'
+import '../../styles/font.css'
 import sample_header from '../../images/header2.jpg'
+import logo from '../../images/logo.jpg'
 
 class HomePage extends Component {
   constructor(props){
@@ -151,6 +153,22 @@ class HomePage extends Component {
                 </div>
                 <Button id='homepage-button' > View More </Button>
         </Segment>
+
+        <Segment vertical id='div-homepage2'>
+        <p className='title-header-larger'> About Us</p>
+
+        <div class="ui fluid segment" id='img-homepage-holder'>
+          <Image circular src={logo} className='logo-pic'/>
+        </div>
+
+        <div class="ui fluid segment" id='about-div'>
+          <br/> <br/> 
+          <p className='paragraph-font'> 
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non nulla nunc. Aenean luctus neque et mauris congue lobortis. Sed vel finibus nibh. Sed feugiat nibh tristique, euismod lectus in, ullamcorper turpis. Aliquam odio eros, sollicitudin quis molestie nec, faucibus non sem. Morbi varius tortor nec orci tristique tempor. Etiam neque quam, mattis at tincidunt convallis, accumsan et dolor. Proin odio purus, placerat eget leo quis, facilisis ornare ipsum. Morbi varius tortor nec orci tristique tempor. Etiam neque quam, mattis at tincidunt convallis, accumsan et dolor. Proin odio purus, placerat eget leo quis, facilisis ornare ipsum.
+          </p>
+        </div>
+        </Segment>
+
 
       </div>
     );

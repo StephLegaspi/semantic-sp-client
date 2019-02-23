@@ -31,6 +31,7 @@
 	margin-top: 1%;
 	text-align: center;
 	padding: 30px;
+	border-color: white;
 }
 
 #circle-homepage {
@@ -84,3 +85,37 @@
 .container-img:hover .middle-img {
   opacity: 1;
 }
+
+
+
+
+#div-homepage2{
+	float: left;
+	width: 100%;
+	margin-top: 2%;
+	text-align: center;
+	border-color: white;
+}
+
+#img-homepage-holder{
+	border-color: white;
+	float: left;
+	margin-left: 10%;
+	width: 30%;
+}
+
+.logo-pic{
+	height: 350px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#about-div{
+	float: right;
+	width: 50%;
+	margin-right: 10%;
+	border-color: white;
+	padding: 30px;
+	height: 380px;
+}
+
+
