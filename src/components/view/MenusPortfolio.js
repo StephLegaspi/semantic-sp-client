@@ -6,6 +6,7 @@ import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
 import '../../styles/button.css';
+import '../../styles/font.css';
 import img from '../../images/food.jpg'
 
 
@@ -31,7 +32,7 @@ class MenusPortfolio extends Component {
 					    
 					    <Card id='card-menu'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Main Course</Card.Header>
+				            <Card.Header className='label-font2'>Main Course</Card.Header>
 				            <List style={{marginLeft: '35%'}}>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
@@ -46,7 +47,7 @@ class MenusPortfolio extends Component {
 				        </Card>
 				        <Card id='card-menu'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Appetizer</Card.Header>
+				            <Card.Header className='label-font2'>Appetizer</Card.Header>
 				            <List style={{marginLeft: '37%'}}>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
@@ -61,7 +62,7 @@ class MenusPortfolio extends Component {
 				        </Card>
 				        <Card id='card-menu'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Dessert</Card.Header>
+				            <Card.Header className='label-font2'>Dessert</Card.Header>
 				            <List style={{marginLeft: '40%'}}>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
@@ -76,7 +77,7 @@ class MenusPortfolio extends Component {
 				        </Card>
 				        <Card id='card-menu'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Soup</Card.Header>
+				            <Card.Header className='label-font2'>Soup</Card.Header>
 				            <List style={{marginLeft: '40%'}}>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
@@ -91,7 +92,7 @@ class MenusPortfolio extends Component {
 				        </Card>
 				        <Card id='card-menu'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Beverage</Card.Header>
+				            <Card.Header className='label-font2'>Beverage</Card.Header>
 				            <List style={{marginLeft: '37%'}}>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
@@ -106,7 +107,7 @@ class MenusPortfolio extends Component {
 				        </Card>
 				        <Card id='card-menu'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Others</Card.Header>
+				            <Card.Header className='label-font2'>Others</Card.Header>
 				            <List style={{marginLeft: '39%'}}>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
@@ -122,7 +123,7 @@ class MenusPortfolio extends Component {
 
 					    <Card id='card-request'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Browse through our catering packages and see what fits your needs and budget.</Card.Header>
+				            <Card.Header id='card-header'>Browse through our catering packages and see what fits your needs and budget.</Card.Header>
 				            <Button  size='small' id='card-button'> 
 				            	<Icon name='gift' size='large'/>
 				            View Packages </Button>
@@ -130,7 +131,7 @@ class MenusPortfolio extends Component {
 				        </Card>
 				         <Card id='card-request'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Having trouble organizing and designing your event? Let us do the job for you.</Card.Header>
+				            <Card.Header id='card-header'>Having trouble organizing and designing your event? Let us do the job for you.</Card.Header>
 				            <Button  size='small' id='card-button'> 
 				            	<Icon name='file text' size='large'/>
 				            Request Package </Button>
