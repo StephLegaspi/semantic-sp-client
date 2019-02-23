@@ -25,7 +25,12 @@ class OutOfStockRental extends Component {
 	render() {
 		return (
 			<div>
-				<Button id='view-button-dashboard' onClick={this.onModal}> View Products </Button>
+				<Button animated circular id='circle-dashboard' onClick={this.onModal}>
+                    <Button.Content visible id='circle-visible'>10</Button.Content>
+                    <Button.Content hidden className='label-font2'>
+                      View
+                    </Button.Content>
+                  </Button>
 					        {this.state.modal && (<div className='custom-modal'>
 								<div>
 								<div className="open">

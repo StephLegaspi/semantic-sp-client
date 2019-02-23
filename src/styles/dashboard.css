@@ -23,7 +23,24 @@
     margin-left: 11%;
 }
 
+
+#circle-dashboard {
+	background-color: #191167;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    color: white;
+    
+    margin-left: 11%;
+}
+
+#circle-visible{
+	padding: 10px 30px;
+	font-size: 80px;
+}
+
 #div-dashboard2{
+
 	float: right;
 	width: 32%;
 	margin-right: 10%;

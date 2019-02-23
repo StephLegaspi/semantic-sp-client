@@ -44,12 +44,10 @@ class Dashboard extends Component {
               		<Grid.Row>
               			<Grid.Column width={8} >
 							<p className='body-font'>  Products for Purchase: </p>
-							<div className='count'> 10 </div>
 							<OutOfStockPurchase />
 						</Grid.Column>
 						<Grid.Column width={8}>
 							<p className='body-font'>  Products for Rental: </p>
-							<div className='count'> 10 </div>
 							<OutOfStockRental />
 						</Grid.Column>
 					</Grid.Row>
@@ -59,8 +57,13 @@ class Dashboard extends Component {
 				<div class="ui fluid segment" id='div-dashboard2'>
 					<p className='title-header'> Requests</p>
 					<p className='body-font'>  Number of requests that are still pending: </p>
-					<div className='count' style={{marginLeft: '22%', marginTop: '10%'}}> 10 </div>
-					<Button id='view-button-dashboard' style={{marginLeft: '35%'}} onClick={this.toRequests}> View Requests </Button>
+					<br/>
+					<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toRequests}>
+	                    <Button.Content visible id='circle-visible'>10</Button.Content>
+	                    <Button.Content hidden className='label-font2'>
+	                      View
+                    	</Button.Content>
+                	</Button>
 				</div>
 
 				
@@ -71,13 +74,21 @@ class Dashboard extends Component {
               		<Grid.Row>
               			<Grid.Column width={8} >
 							<p className='body-font'>  For Purchase: </p>
-							<div className='count'> 10 </div>
-							<Button id='view-button-dashboard' onClick={this.toOrders}> View Orders </Button>
+							<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toOrders}>
+			                    <Button.Content visible id='circle-visible'>10</Button.Content>
+				                    <Button.Content hidden className='label-font2'>
+				                      View
+			                    </Button.Content>
+			                </Button>
 						</Grid.Column>
 						<Grid.Column width={8}>
 							<p className='body-font'>  For Rental: </p>
-							<div className='count'> 10 </div>
-							<Button id='view-button-dashboard' onClick={this.toOrderRentals}> View Orders </Button>
+							<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toOrderRentals}>
+			                    <Button.Content visible id='circle-visible'>10</Button.Content>
+				                    <Button.Content hidden className='label-font2'>
+				                      View
+			                    </Button.Content>
+			                </Button>
 						</Grid.Column>
 					</Grid.Row>
 					</Grid>
@@ -86,8 +97,13 @@ class Dashboard extends Component {
 				<div class="ui fluid segment" id='div-dashboard2' style={{marginTop: '3%'}}>
 					<p className='title-header'> Rental</p>
 					<p className='body-font'>  Number of rental products that are already due: </p>
-					<div className='count' style={{marginLeft: '22%', marginTop: '10%'}}> 10 </div>
-					<Button id='view-button-dashboard' style={{marginLeft: '38%'}} onClick={this.toOrderRentals}> View Orders </Button>
+					<br/>
+					<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toOrderRentals}>
+			                    <Button.Content visible id='circle-visible'>10</Button.Content>
+				                    <Button.Content hidden className='label-font2'>
+				                      View
+			                    </Button.Content>
+			        </Button>
 				</div>
 
 			
