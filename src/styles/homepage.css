@@ -37,7 +37,7 @@
 	top: 33%;
 	left: 60%;
 	width: 50%;
-	background-color: rgb(25,17,103, 0.8);
+	background-color: rgb(74, 78, 84, 0.8);
 	text-align: center;
 	padding: 15px;
 	width: 400px;
@@ -45,11 +45,7 @@
     border-radius: 50%;
 }
 
-.header-font{
-	color: white;
-	font-size: 40px;
-	font-weight: 900;
-}
+
 
 #container #btn:hover {
   background-color: #afa5a5;

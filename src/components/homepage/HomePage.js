@@ -29,7 +29,7 @@ class HomePage extends Component {
           <HeaderBar headerTiltle={''}/>
           <Image size='large' src={sample_header} id='header-img'/>
           <div id='div-header'>
-            <p className='header-font' style={{marginTop: '18%'}}> Let us help you plan and organize your dream event. </p>
+            <p className='header-font' style={{marginTop: '22%'}}> Let us help you plan and organize your dream event. </p>
           </div>
           <Button size='large' id='btn'>
               <Icon name='file text' size='medium'/>

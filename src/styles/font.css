@@ -29,6 +29,7 @@
 }
 
 .label-font2{
+	color: white;
 	text-align: center;
 	margin-top: 5%;
 	font-size: 22px;
@@ -44,6 +45,19 @@
 }
 
 #card-header{
+	color: #16163a;
 	text-align: center;
 	margin-bottom: 5%;
+}
+
+.header-font{
+	color: white;
+	font-size: 32px;
+	font-weight: 900;
+}
+
+.header-font2{
+	color: white;
+	font-size: 28px;
+	font-weight: 300;
 }

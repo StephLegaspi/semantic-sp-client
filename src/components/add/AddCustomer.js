@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment, Input } from 'semantic-ui-react'
+import { Button, Form, Input } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
@@ -21,8 +21,7 @@ export default class SignUp extends Component {
         <div className='form-style2'>
         
             
-            <Form size='large'>
-              <Segment stacked>
+            <Form >
 
                 <Form.Group widths='equal'>
                   <Form.Field>
@@ -75,7 +74,7 @@ export default class SignUp extends Component {
                 <Button id='signup-button'>
                   Sign Up
                 </Button>
-              </Segment>
+
             </Form>
         </div>
 

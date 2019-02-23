@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, Icon, Image} from 'semantic-ui-react'
+import { Button, Card, Icon, Image, Segment} from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
@@ -19,9 +19,14 @@ class MotifsPortfolio extends Component {
 	render() {
 		return (
 			<div>
+				<Segment id='container-header'>
+		          <HeaderBar headerTitle={'Motif 1'}/>
+				  <Image size='large' src={img} style={{ minWidth:'100%'}}/>
+		          <div id='desc-header'>
+		            <p className='header-font2'> A blue-themed motif that comes with balloons of different arrangements, perfect for any kind of event.  </p>
+		          </div>
+		        </Segment>
 				
-				<HeaderBar headerTitle={'Motif 1'}/>
-				<Image size='large' src={img} style={{ minWidth:'100%', marginBottom: '5%'}}/>
 				<div id='card-pics'>
 					<Card.Group itemsPerRow={2} >
 					    <Card image={img}/>

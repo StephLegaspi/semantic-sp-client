@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Input, Dropdown} from 'semantic-ui-react'
+import { Form, Input, Dropdown} from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -36,8 +36,8 @@ export default class AddRequest extends Component {
         <div className='form-style'>
         
             
-            <Form size='large'>
-              <Segment stacked>
+            <Form>
+              
 
                 <Form.Group widths='equal'>
                   <Form.Field>
@@ -108,7 +108,7 @@ export default class AddRequest extends Component {
                 </Form.Group>
 
                 <SendButton/>
-              </Segment>
+              
             </Form>
          
         </div>

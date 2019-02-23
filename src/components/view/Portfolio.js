@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Image, Card, Icon} from 'semantic-ui-react'
+import { Button, Image, Card, Icon, Segment} from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
@@ -20,9 +20,16 @@ class Portfolio extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderBar headerTitle={'Portfolio'}/>
-				<Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
-				<p className='title-header'> Weddings</p>
+				<Segment id='container-header'>
+		         <HeaderBar headerTitle={'Portfolio'}/>
+				 <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
+		          <div id='desc-header2'>
+		            <p className='header-font2'> A blue-themed motif that comes with balloons of different arrangements, perfect for any kind of event.  </p>
+		          </div>
+		        </Segment>
+
+				
+				<p className='title-header-larger'> Weddings</p>
 				<div id='card-pics'>
 					<Card image={img} style={{width: '100%'}}/>
 					<Card.Group itemsPerRow={2} >
@@ -34,7 +41,7 @@ class Portfolio extends Component {
 	  				</Card.Group>
 				</div>
 
-				<p className='title-header'> Debuts</p>
+				<p className='title-header-larger'> Debuts</p>
 				<div id='card-pics'>
 					<Card image={img} style={{width: '100%'}}/>
 					<Card.Group itemsPerRow={2} >
@@ -46,7 +53,7 @@ class Portfolio extends Component {
 	  				</Card.Group>
 				</div>
 
-				<p className='title-header'> Others</p>
+				<p className='title-header-larger'> Others</p>
 				<div id='card-pics'>
 					<Card image={img} style={{width: '100%'}}/>
 					<Card.Group itemsPerRow={2} >
@@ -57,7 +64,7 @@ class Portfolio extends Component {
 					    
 					    <Card id='card-request'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Browse through our catering packages and see what fits your needs and budget.</Card.Header>
+				            <Card.Header id='card-header'>Browse through our catering packages and see what fits your needs and budget.</Card.Header>
 				            <Button  size='small' id='card-button'> 
 				            	<Icon name='gift' size='large'/>
 				            View Packages </Button>
@@ -65,7 +72,7 @@ class Portfolio extends Component {
 				        </Card>
 				         <Card id='card-request'>
 				          <Card.Content>
-				            <Card.Header className='card-header'>Having trouble organizing and designing your event? Let us do the job for you.</Card.Header>
+				            <Card.Header id='card-header'>Having trouble organizing and designing your event? Let us do the job for you.</Card.Header>
 				            <Button  size='small' id='card-button'> 
 				            	<Icon name='file text' size='large'/>
 				            Request Package </Button>
