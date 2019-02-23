@@ -158,3 +158,10 @@
 	background-color: #191167;
 	color: white;
 }
+
+#homepage-button{
+	background-color: #f89d28;
+	color: white;
+	padding: 12px 50px;
+	margin-top: 4%;
+}	
