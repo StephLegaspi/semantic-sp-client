@@ -77,17 +77,77 @@ class HomePage extends Component {
               <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
              
                 <div style={{paddingLeft: '30px'}}>
+                  <Image.Group size='large'>
+                    <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
+
+                     <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
+                  </Image.Group>
 
                   <Image.Group size='large'>
-                    <Image src={sample_header} onClick={this.toMotifsPortfolio}/>
-                    <Image src={sample_header} />
+                    <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
+
+                     <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
+                  </Image.Group>
+                </div>
+                <Button id='homepage-button' > View More </Button>
+        </Segment>
+
+        <Segment vertical id='div-homepage'>
+              <p className='title-header'> Food Menus </p>
+              <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
+             
+                <div style={{paddingLeft: '30px'}}>
+                  <Image.Group size='large'>
+                    <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
+
+                     <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
                   </Image.Group>
 
-                   <Image.Group size='large'>
-                    <Image src={sample_header} />
-                    <Image src={sample_header} />
-                  </Image.Group>
+                  <Image.Group size='large'>
+                    <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
 
+                     <div class="container-img">
+                      <Image src={sample_header} id="style-img"/>
+                      <div class="middle-img">
+                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      </div>
+                    </div>
+                  </Image.Group>
                 </div>
                 <Button id='homepage-button' > View More </Button>
         </Segment>
