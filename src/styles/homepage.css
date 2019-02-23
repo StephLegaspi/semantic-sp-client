@@ -25,9 +25,26 @@
 
 #div-homepage{
 	float: left;
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 1%;
+	text-align: center;
+	padding: 30px;
+	border-color: white;
+}
+
+#div-homepage-whole{
+	float: left;
+	width: 100%;
+	margin-top: 2%;
+	text-align: center;
+	border-color: white;
+}
+
+#div-homepage-smaller{
+	float: left;
 	width: 80%;
 	margin-left: 10%;
-	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 	margin-top: 1%;
 	text-align: center;
 	padding: 30px;
@@ -35,18 +52,12 @@
 }
 
 #circle-homepage {
-    
-   /* behavior: url(PIE.htc);  remove if you don't care about IE8 */
 	background-color: #191167;
     width: 230px;
     height: 230px;
-
-    
     text-align: center;
     color: white;
     font-size: 30px;
-
-    margin-left: 11%;
 }
 
 
@@ -62,9 +73,10 @@
 #style-img {
   opacity: 1;
   display: block;
-
+  border-radius: 10px;
   transition: .5s ease;
   backface-visibility: hidden;
+  width: 100%;
 }
 
 .middle-img {
@@ -89,13 +101,7 @@
 
 
 
-#div-homepage2{
-	float: left;
-	width: 100%;
-	margin-top: 2%;
-	text-align: center;
-	border-color: white;
-}
+
 
 #img-homepage-holder{
 	border-color: white;

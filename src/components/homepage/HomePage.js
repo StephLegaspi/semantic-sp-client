@@ -34,13 +34,13 @@ class HomePage extends Component {
           </Button>
         </Segment>
 
-        <Segment vertical id='div-homepage'>
+        <Segment vertical id='div-homepage-smaller'>
               <p className='title-header'> Catering Packages</p>
               <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
               <Grid inverted divided stackable>
                 <Grid.Row>
-                <Grid.Column width={4} style={{marginLeft: '6%'}}>
-                  <Button animated circular id='circle-homepage'>
+                <Grid.Column width={4} style={{marginLeft: '10%'}}>
+                  <Button animated circular id='circle-homepage' >
                     <Button.Content visible>Package 1</Button.Content>
                     <Button.Content visible className='label-font2'>P 1,750</Button.Content>
                     <Button.Content hidden className='label-font2'>
@@ -49,8 +49,8 @@ class HomePage extends Component {
                   </Button>
                 </Grid.Column>
 
-                <Grid.Column width={4} style={{marginLeft: '3%'}}>
-                  <Button animated circular id='circle-homepage'>
+                <Grid.Column width={4} >
+                  <Button animated circular id='circle-homepage' style={{marginLeft: '5%'}}>
                     <Button.Content visible>Package 1</Button.Content>
                     <Button.Content visible className='label-font2'>P 1,750</Button.Content>
                     <Button.Content hidden className='label-font2'>
@@ -59,8 +59,8 @@ class HomePage extends Component {
                   </Button>
                 </Grid.Column>
 
-                <Grid.Column width={4} style={{marginLeft: '3%'}}>
-                  <Button animated circular id='circle-homepage'>
+                 <Grid.Column width={4} >
+                  <Button animated circular id='circle-homepage' style={{marginLeft: '10%'}}>
                     <Button.Content visible>Package 1</Button.Content>
                     <Button.Content visible className='label-font2'>P 1,750</Button.Content>
                     <Button.Content hidden className='label-font2'>
@@ -78,8 +78,8 @@ class HomePage extends Component {
               <p className='title-header'> Event Motifs</p>
               <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
              
-                <div style={{paddingLeft: '30px'}}>
-                  <Image.Group size='large'>
+                <div>
+                  <Image.Group >
                     <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
@@ -95,7 +95,7 @@ class HomePage extends Component {
                     </div>
                   </Image.Group>
 
-                  <Image.Group size='large'>
+                  <Image.Group size='big'>
                     <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
@@ -119,7 +119,7 @@ class HomePage extends Component {
               <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
              
                 <div style={{paddingLeft: '30px'}}>
-                  <Image.Group size='large'>
+                  <Image.Group size='big'>
                     <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
@@ -135,7 +135,7 @@ class HomePage extends Component {
                     </div>
                   </Image.Group>
 
-                  <Image.Group size='large'>
+                  <Image.Group size='big'>
                     <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
@@ -154,7 +154,7 @@ class HomePage extends Component {
                 <Button id='homepage-button' > View More </Button>
         </Segment>
 
-        <Segment vertical id='div-homepage2'>
+        <Segment vertical id='div-homepage-whole'>
         <p className='title-header-larger'> About Us</p>
 
         <div class="ui fluid segment" id='img-homepage-holder'>
