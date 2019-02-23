@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Image, Card, Dropdown } from 'semantic-ui-react'
+import { Image, Card, Dropdown, Button } from 'semantic-ui-react'
 
 import SearchBarShop from '../searchBar/SearchBarShop.js'
-import ViewButton from '../button/ViewButton.js'
 import CartButton from '../button/CartButton.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
+import '../../styles/button.css';
 import img_tree from '../../images/tree.jpg'
 
 class Shop extends Component {
@@ -56,7 +56,12 @@ class Shop extends Component {
 						    </Card.Content>
 						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
-						      <ViewButton handleView={this.toAddToCart}/>
+						       <Button animated  id='view-button' onClick={this.toAddToCart}>
+						       		<Button.Content visible>View</Button.Content>
+						       		 <Button.Content hidden>
+				                       <i class="cart icon"></i>
+				                    </Button.Content>
+						       </Button>
 						    </Card.Content>
 						</Card>
 						</Card.Group>

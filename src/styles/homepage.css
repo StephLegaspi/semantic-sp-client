@@ -5,11 +5,11 @@
 
 #container #btn{
 	position: absolute;
-	top: 50%;
-	left: 50%;
+	top: 70%;
+	left: 76%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
-	background-color: #555;
+	background-color: #f89d28;
 	color: white;
 	font-size: 16px;
 	padding: 12px 24px;
@@ -18,37 +18,8 @@
 	border-radius: 5px;
 }
 
-#container #btn:hover {
-  background-color: black;
-}
-
-
-#div-homepage{
-	float: left;
-	width: 90%;
-	margin-left: 5%;
-	margin-top: 1%;
-	text-align: center;
-	padding: 30px;
-	border-color: white;
-}
-
-#div-homepage-whole{
-	float: left;
-	width: 100%;
-	margin-top: 2%;
-	text-align: center;
-	border-color: white;
-}
-
-#div-homepage-smaller{
-	float: left;
-	width: 80%;
-	margin-left: 10%;
-	margin-top: 1%;
-	text-align: center;
-	padding: 30px;
-	border-color: white;
+#header-img{
+	min-width: 100%;
 }
 
 #circle-homepage {
@@ -59,6 +30,62 @@
     color: white;
     font-size: 30px;
 }
+
+
+#container #div-header{
+	position: absolute;
+	top: 33%;
+	left: 60%;
+	width: 50%;
+	background-color: rgb(25,17,103, 0.8);
+	text-align: center;
+	padding: 15px;
+	width: 400px;
+    height: 400px;
+    border-radius: 50%;
+}
+
+.header-font{
+	color: white;
+	font-size: 40px;
+	font-weight: 900;
+}
+
+#container #btn:hover {
+  background-color: #afa5a5;
+}
+
+
+#div-homepage{
+	float: left;
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 1%;
+	text-align: center;
+	padding: 30px;
+	border: none;
+}
+
+#div-homepage-whole{
+	float: left;
+	width: 100%;
+	margin-top: 3%;
+	text-align: center;
+	border: none;
+	margin-bottom: 10%;
+}
+
+#div-homepage-smaller{
+	float: left;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 1%;
+	text-align: center;
+	padding: 30px;
+	border: none;
+}
+
+
 
 
 
@@ -104,10 +131,10 @@
 
 
 #img-homepage-holder{
-	border-color: white;
 	float: left;
 	margin-left: 10%;
 	width: 30%;
+	border: none;
 }
 
 .logo-pic{
@@ -119,9 +146,9 @@
 	float: right;
 	width: 50%;
 	margin-right: 10%;
-	border-color: white;
+	border: none;
 	padding: 30px;
-	height: 380px;
+	height: 378px;
 }
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Image, Segment, Icon, Button, Grid } from 'semantic-ui-react'
+import { Image, Segment, Icon, Button, Grid } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
@@ -27,10 +27,13 @@ class HomePage extends Component {
       <div>    
         <Segment id='container'>
           <HeaderBar headerTiltle={''}/>
-          <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
-          <Button primary size='huge' id='btn'>
-              Get Started
-              <Icon name='right arrow' />
+          <Image size='large' src={sample_header} id='header-img'/>
+          <div id='div-header'>
+            <p className='header-font' style={{marginTop: '18%'}}> Let us help you plan and organize your dream event. </p>
+          </div>
+          <Button size='large' id='btn'>
+              <Icon name='file text' size='medium'/>
+              Request Package
           </Button>
         </Segment>
 
@@ -169,6 +172,9 @@ class HomePage extends Component {
         </div>
         </Segment>
 
+        <div style={{clear: 'both'}}>
+          <Footer/>
+        </div>
 
       </div>
     );
