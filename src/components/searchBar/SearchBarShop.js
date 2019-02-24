@@ -3,7 +3,7 @@ import { Input } from 'semantic-ui-react'
 
 import '../../styles/search-bar.css';
 
-class HeaderBar extends Component {
+class SearchBarShop extends Component {
 	constructor(props){
 		super(props);
 
@@ -30,4 +30,4 @@ class HeaderBar extends Component {
 
 }
 
-export default HeaderBar;
+export default SearchBarShop;

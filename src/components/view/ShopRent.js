@@ -10,22 +10,22 @@ import '../../styles/header-bar.css';
 import '../../styles/button.css';
 import img_tree from '../../images/tree.jpg'
 
-class Shop extends Component {
+class ShopRent extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {}
-		this.toAddToCart = this.toAddToCart.bind(this);
-		this.toShoppingCart = this.toShoppingCart.bind(this);
+		this.toAddToCartRent = this.toAddToCartRent.bind(this);
+		this.toShoppingCartRent = this.toShoppingCartRent.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
-	toAddToCart(e) {
-		this.props.history.push('/add-to-cart/purchase');
+	toAddToCartRent(e) {
+		this.props.history.push('/add-to-cart/rent');
 	}
 
-	toShoppingCart(e) {
-		this.props.history.push('/shopping-cart/purchase');
+	toShoppingCartRent(e) {
+		this.props.history.push('/shopping-cart/rent');
 	}
 
 	render() {
@@ -33,8 +33,8 @@ class Shop extends Component {
 			<div>
 				<div id='bar'>  
 					<SearchBarShop/>
-					<CartButton handleClick={this.toShoppingCart}/>
-					<h1 id='bar-title'> Purchase </h1>
+					<CartButton handleClick={this.toShoppingCartRent}/>
+					<h1 id='bar-title'> Rent </h1>
       			</div>
 
       			<div class="ui fluid segment" id='upper-div4'>  
@@ -58,7 +58,7 @@ class Shop extends Component {
 						    </Card.Content>
 						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
-						       <Button animated  id='view-button' onClick={this.toAddToCart}>
+						       <Button animated  id='view-button' onClick={this.toAddToCartRent}>
 						       		<Button.Content visible>View</Button.Content>
 						       		 <Button.Content hidden>
 				                       <i class="cart icon"></i>
@@ -80,4 +80,4 @@ class Shop extends Component {
 
 }
 
-export default Shop;
+export default ShopRent;

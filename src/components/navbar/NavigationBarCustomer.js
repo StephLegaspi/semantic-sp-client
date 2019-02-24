@@ -10,6 +10,7 @@ class NavigationBar extends Component {
 
 		this.toHomePage = this.toHomePage.bind(this);
 		this.toShop = this.toShop.bind(this);
+		this.toShopRent = this.toShopRent.bind(this);
 		this.toPackages = this.toPackages.bind(this);
 		this.toMotifs = this.toMotifs.bind(this);
 		this.toMenus = this.toMenus.bind(this);
@@ -24,7 +25,11 @@ class NavigationBar extends Component {
 	}
 
 	toShop(e) {
-		this.props.history.push('/shop');
+		this.props.history.push('/shop/purchase');
+	}
+
+	toShopRent(e) {
+		this.props.history.push('/shop/rent');
 	}
 
 	toPackages(e) {
@@ -63,20 +68,25 @@ class NavigationBar extends Component {
 			        </Menu.Item>
 
 			        <Menu.Item as='a'  id={this.props.activePage[0] ? 'lighter': 'menu-font'} onClick={this.toHomePage}>Home</Menu.Item>
-			        <Menu.Item as='a'  id={this.props.activePage[1] ? 'lighter': 'menu-font'} onClick={this.toShop}>Shop</Menu.Item>
-			        <Dropdown item simple text='Catering Services' id={(this.props.activePage[2] || this.props.activePage[3] || this.props.activePage[4]) ? 'lighter': 'menu-font'}>
+			        <Dropdown item simple text='Shop' id={(this.props.activePage[1] || this.props.activePage[2]) ? 'lighter': 'menu-font'}>
+			          <Dropdown.Menu>
+			            <Dropdown.Item onClick={this.toShop}>Purchase</Dropdown.Item>
+			            <Dropdown.Item onClick={this.toShopRent}>Rent</Dropdown.Item>
+			          </Dropdown.Menu>
+			        </Dropdown>
+			        <Dropdown item simple text='Catering Services' id={(this.props.activePage[3] || this.props.activePage[4] || this.props.activePage[5]) ? 'lighter': 'menu-font'}>
 			          <Dropdown.Menu>
 			            <Dropdown.Item onClick={this.toPackages}>Packages</Dropdown.Item>
 			            <Dropdown.Item  onClick={this.toMotifs}>Motifs</Dropdown.Item>
 			            <Dropdown.Item  onClick={this.toMenus}>Food Menus</Dropdown.Item>
 			          </Dropdown.Menu>
 			        </Dropdown>
-			        <Menu.Item as='a' id={this.props.activePage[5] ? 'lighter': 'menu-font'} onClick={this.toRequest}>Request Package</Menu.Item>
+			        <Menu.Item as='a' id={this.props.activePage[6] ? 'lighter': 'menu-font'} onClick={this.toRequest}>Request Package</Menu.Item>
 			         
 			    	<Container>
-				        <Menu.Item as='a'  id={this.props.activePage[6] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '42%'}} >Portfolio</Menu.Item>
-				        <Menu.Item as='a' id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
-				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toSignUp}>Sign Up</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '39.5%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
+				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toSignUp}>Sign Up</Menu.Item>
 				        <Menu.Item as='a'>Login</Menu.Item>
      				</Container>
     			</Menu>
