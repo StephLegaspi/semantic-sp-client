@@ -5,6 +5,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
+import '../../styles/font.css';
 
 
 class PackageInclusion extends Component {

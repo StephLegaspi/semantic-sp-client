@@ -4,6 +4,7 @@ import { Container, Grid, Header, Segment, Icon, Button } from 'semantic-ui-reac
 
 import ContactButton from '../button/ContactButton.js'
 import RequestButton from '../button/RequestButton.js'
+import FAQButton from '../button/FAQButton.js'
 
 import '../../styles/footer.css'
 
@@ -15,6 +16,7 @@ class Footer extends Component {
 
     this.toContactUs = this.toContactUs.bind(this);
     this.toRequest = this.toRequest.bind(this);
+    this.toFAQs = this.toFAQs.bind(this);
   }
 
   toContactUs(e) {
@@ -22,6 +24,9 @@ class Footer extends Component {
   }
   toRequest(e) {
     this.props.history.push('/request-package');
+  }
+  toFAQs(e) {
+    this.props.history.push('/FAQs');
   }
 
   render() {
@@ -31,7 +36,7 @@ class Footer extends Component {
           <Container>
             <Grid inverted divided stackable>
               <Grid.Row>
-                <Grid.Column width={5} style={{marginLeft: '6%'}}>
+                <Grid.Column width={4} >
                   <Header inverted as='h4' content='Contact Us' style={{marginLeft: '15%'}} />
                   <div>
                     <Icon name='phone' size='big'/>
@@ -51,7 +56,7 @@ class Footer extends Component {
                   </div>
                 </Grid.Column>
 
-                <Grid.Column width={5} className='footer-div'>
+                <Grid.Column width={4} className='footer-div'>
                   <Header inverted as='h4' content='How can we help you?' />
                   <div>
                     <label> For inquiries, feel free to send us a message.</label>
@@ -61,15 +66,28 @@ class Footer extends Component {
                   </div>
                 </Grid.Column>
 
-                <Grid.Column width={5} className='footer-div'>
+                <Grid.Column width={4} className='footer-div'>
                   <Header inverted as='h4' content='Request for Catering Package' />
                   <div>
                     <label> Fill up the request form and we will get back to you as soon as we can.</label>
                   </div>
+                  <br/>
                   <div>
                     <RequestButton handleClicked={this.toRequest}/>
                   </div>
                 </Grid.Column>
+
+                 <Grid.Column width={4} className='footer-div'>
+                  <Header inverted as='h4' content='Frequently Asked Questions' />
+                  <div>
+                    <label> Got any questions? We might have answers for that. </label>
+                  </div>
+                  <br/>
+                  <div>
+                    <FAQButton handleClicked={this.toFAQs}/>
+                  </div>
+                </Grid.Column>
+
               </Grid.Row>
             </Grid>
           </Container>

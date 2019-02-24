@@ -34,6 +34,7 @@ import Portfolio from './components/view/Portfolio.js';
 import PackageInclusion from './components/view/PackageInclusion.js'
 import AddToCartPurchase from './components/add/AddToCart.js';
 import AddToCartRent from './components/add/AddToCartRent.js';
+import FAQsPage from './components/view/FAQsPage.js';
 
 import NavigationBarAdmin from './components/navbar/NavigationBarAdmin.js';
 import PackagesTable from './components/view/PackagesTable.js';
@@ -180,6 +181,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
 																			<PackageInclusion   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/FAQs" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0]}/>
+																			<FAQsPage   {...props} />
 							             								</div>)}}> 
 			</Route>
       	</Switch>
