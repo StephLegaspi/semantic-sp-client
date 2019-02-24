@@ -27,7 +27,7 @@ class ViewRequests extends Component {
 				<HeaderBar headerTitle={'Requests'}/>
 				<SearchBarTable titleHolder={'Search customer name..'}/>
 
-				<div class="ui fluid segment" id='upper-div6'> 
+				<div class="ui fluid segment" id='upper-div3'> 
       				<label>
 					  Request Status: {' '}
 					  <Dropdown

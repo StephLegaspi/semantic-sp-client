@@ -37,7 +37,7 @@ class Shop extends Component {
 					<h1 id='bar-title'> Purchase </h1>
       			</div>
 
-      			<div class="ui fluid segment" id='upper-div4'>  
+      			<div class="ui fluid segment" id='upper-div1'>  
 					<label>
 					  Product Category: {' '}
 					  <Dropdown

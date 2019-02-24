@@ -24,7 +24,7 @@ class InventoryTable extends Component {
 				<SearchBarTable titleHolder={'Search product name..'}/>
   				
 
-      			<div class="ui fluid segment" id='upper-div5'>  
+      			<div class="ui fluid segment" id='upper-div2'>  
 					<label>
 					  Product Category: {' '}
 					  <Dropdown

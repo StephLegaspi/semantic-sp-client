@@ -28,7 +28,7 @@ class ViewOrderRental extends Component {
 				<HeaderBar headerTitle={'Rental Orders'}/>
 				<SearchBarTable titleHolder={'Search customer name..'}/>
 
-				<div class="ui fluid segment" id='upper-div6'>
+				<div class="ui fluid segment" id='upper-div3'>
       				<label>
 					  Delivery Status: {' '}
 					  <Dropdown
@@ -39,7 +39,7 @@ class ViewOrderRental extends Component {
 					</label>
       			</div>
 
-      			<div class="ui fluid segment" id='upper-div7'>  
+      			<div class="ui fluid segment" id='upper-div4'>  
 					<label>
 					  Rental Status: {' '}
 					  <Dropdown

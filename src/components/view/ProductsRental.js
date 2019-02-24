@@ -27,7 +27,7 @@ class ProductsTable extends Component {
 				<AddProduct/>
 				
 				
-      			<div class="ui fluid segment" id='upper-div5'>  
+      			<div class="ui fluid segment" id='upper-div2'>  
 					<label>
 					  Product Category: {' '}
 					  <Dropdown

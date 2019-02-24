@@ -26,7 +26,7 @@ class ViewOrders extends Component {
 				<SearchBarTable titleHolder={'Search customer name..'}/>
 
 
-				<div class="ui fluid segment" id='upper-div6'>
+				<div class="ui fluid segment" id='upper-div3'>
       				<label>
 					  Delivery Status: {' '}
 					  <Dropdown

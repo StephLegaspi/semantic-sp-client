@@ -18,35 +18,8 @@
 }
 
 
+
 #upper-div1 {
-	height: 46px;
-	width: 26.5%;
-	padding-top: 8px;
-	margin-top: 3%;
-	margin-left: 10%;
-	float: left;
-}
-#upper-div2{
-	height: 46px;
-	width: 20%;
-	margin-top: 3%;
-	margin-left: 2%;
-	float: left;
-	position: relative;
-	padding-top: 13px;
-}
-
-#upper-div3{
-	height: 46px;
-	width: 20%;
-	margin-top: 3%;
-	margin-left: 5%;
-	float: left;
-	position: relative;
-	padding-top: 13px;
-}
-
-#upper-div4 {
 	width: 19%;
 	height: 46px;
 	margin-top: 3%;
@@ -54,7 +27,7 @@
 	padding-top: 13px;
 }
 
-#upper-div5 {
+#upper-div2 {
 	float: left;
 	position: absolute;
 	width: 19%;
@@ -64,7 +37,7 @@
 	padding-top: 13px;
 }
 
-#upper-div6 {
+#upper-div3 {
 	float: left;
 	position: absolute;
 	width: 19%;
@@ -74,7 +47,7 @@
 	padding-top: 13px;
 }
 
-#upper-div7 {
+#upper-div4 {
 	float: left;
 	position: absolute;
 	width: 19%;
@@ -85,16 +58,6 @@
 }
 
 
-
-
-
-#upper-button{
-	background-color: red;
-	color: white;
-	height: 28px;
-	padding-top: 7px;
-	margin-left: 3%;
-}
 
 #order-summary{
 	margin-top: 5%;

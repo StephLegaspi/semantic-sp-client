@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Input, Form, Segment, TextArea } from 'semantic-ui-react'
+import { Icon, Input, Form, TextArea } from 'semantic-ui-react'
 
 import '../../styles/contact.css';
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -40,11 +40,10 @@ class Contact extends Component {
 				
 				<div className='form-div'>
 					<label> Do you have any inquiries? Send us a message. </label>
-					<br></br>
+					<br/> <br/>
 					<div id='form-contact'>
 			          
 			            <Form size='large'>
-			              <Segment stacked>
 
 			                <Form.Group widths='equal'>
 			                  <Form.Field>
@@ -78,8 +77,6 @@ class Contact extends Component {
 			                </Form.Field>
 
 			                <SendButton/>
-
-			              </Segment>
 			            </Form>
 			          
 			        </div>
