@@ -32,8 +32,9 @@ class Portfolio extends Component {
 		          </div>
 		        </Segment>
 
-				
-				<p className='title-header-larger'> Weddings</p>
+				<div id='header-color'>
+					<p className='portfolio-font'> Weddings</p>
+				</div>
 				<div id='card-pics'>
 					<Card image={img} style={{width: '100%'}}/>
 					<Card.Group itemsPerRow={2} >
@@ -45,7 +46,9 @@ class Portfolio extends Component {
 	  				</Card.Group>
 				</div>
 
-				<p className='title-header-larger'> Debuts</p>
+				<div id='header-color'>
+					<p className='portfolio-font'> Debuts</p>
+				</div>
 				<div id='card-pics'>
 					<Card image={img} style={{width: '100%'}}/>
 					<Card.Group itemsPerRow={2} >
@@ -57,7 +60,9 @@ class Portfolio extends Component {
 	  				</Card.Group>
 				</div>
 
-				<p className='title-header-larger'> Others</p>
+				<div id='header-color'>
+					<p className='portfolio-font'> Others</p>
+				</div>
 				<div id='card-pics'>
 					<Card image={img} style={{width: '100%'}}/>
 					<Card.Group itemsPerRow={2} >
