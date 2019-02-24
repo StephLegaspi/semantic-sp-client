@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import { Button, Icon, Header } from 'semantic-ui-react'
 
 import '../../styles/card.css';
@@ -11,6 +12,11 @@ class CardPackage extends Component {
 		super(props);
 
 		this.state = {}
+		this.toPackages = this.toPackages.bind(this);
+	}
+
+	toPackages(e) {
+	    this.props.history.push('/packages');
 	}
 
 	render() {
@@ -21,7 +27,7 @@ class CardPackage extends Component {
 				 		<Icon name='gift' size='massive'/>
 				 	</div>
 					<Header id='card-header'>Browse through our catering packages and see what fits your needs and budget.</Header>
-					<Button  size='small' id='card-button'> 
+					<Button  size='small' id='card-button' onClick={this.toPackages}> 
 				    	<Icon name='gift' size='large'/>
 				    	View Packages 
 					</Button>
@@ -33,4 +39,4 @@ class CardPackage extends Component {
 
 }
 
-export default CardPackage;
+export default withRouter(CardPackage);

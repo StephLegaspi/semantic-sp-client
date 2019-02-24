@@ -16,10 +16,40 @@ class HomePage extends Component {
     this.state = {}
 
     this.toMotifsPortfolio = this.toMotifsPortfolio.bind(this);
+    this.toRequestPackage = this.toRequestPackage.bind(this);
+    this.toPackages = this.toPackages.bind(this);
+    this.toMotifs = this.toMotifs.bind(this);
+    this.toMenus = this.toMenus.bind(this);
+    this.toMenuPortfolio = this.toMenuPortfolio.bind(this);
+    this.toPackageInclusion = this.toPackageInclusion.bind(this);
   }
 
   toMotifsPortfolio(e) {
     this.props.history.push('/motif-portfolio');
+  }
+
+  toRequestPackage(e) {
+    this.props.history.push('/request-package');
+  }
+
+  toPackages(e) {
+    this.props.history.push('/packages');
+  }
+
+  toMotifs(e) {
+    this.props.history.push('/motifs');
+  }
+
+  toMenus(e) {
+    this.props.history.push('/menus');
+  }
+
+  toMenuPortfolio(e) {
+    this.props.history.push('/menu-portfolio');
+  }
+
+  toPackageInclusion(e) {
+    this.props.history.push('/package-inclusion');
   }
 
   render() {
@@ -31,7 +61,7 @@ class HomePage extends Component {
           <div id='div-header'>
             <p className='header-font' style={{marginTop: '22%'}}> Let us help you plan and organize your dream event. </p>
           </div>
-          <Button size='large' id='btn'>
+          <Button size='large' id='btn' onClick={this.toRequestPackage}>
               <Icon name='file text' size='medium'/>
               Request Package
           </Button>
@@ -43,7 +73,7 @@ class HomePage extends Component {
               <Grid inverted divided stackable>
                 <Grid.Row>
                 <Grid.Column width={4} style={{marginLeft: '10%'}}>
-                  <Button animated circular id='circle-homepage' >
+                  <Button animated circular id='circle-homepage' onClick={this.toPackageInclusion} >
                     <Button.Content visible>Package 1</Button.Content>
                     <Button.Content visible className='label-font2'>P 1,750</Button.Content>
                     <Button.Content hidden className='label-font2'>
@@ -53,7 +83,7 @@ class HomePage extends Component {
                 </Grid.Column>
 
                 <Grid.Column width={4} >
-                  <Button animated circular id='circle-homepage' style={{marginLeft: '5%'}}>
+                  <Button animated circular id='circle-homepage' onClick={this.toPackageInclusion} style={{marginLeft: '5%'}}>
                     <Button.Content visible>Package 1</Button.Content>
                     <Button.Content visible className='label-font2'>P 1,750</Button.Content>
                     <Button.Content hidden className='label-font2'>
@@ -63,7 +93,7 @@ class HomePage extends Component {
                 </Grid.Column>
 
                  <Grid.Column width={4} >
-                  <Button animated circular id='circle-homepage' style={{marginLeft: '10%'}}>
+                  <Button animated circular id='circle-homepage' onClick={this.toPackageInclusion} style={{marginLeft: '10%'}}>
                     <Button.Content visible>Package 1</Button.Content>
                     <Button.Content visible className='label-font2'>P 1,750</Button.Content>
                     <Button.Content hidden className='label-font2'>
@@ -74,7 +104,7 @@ class HomePage extends Component {
 
                 </Grid.Row>
               </Grid>
-              <Button id='homepage-button' > View More </Button>
+              <Button id='homepage-button' onClick={this.toPackages}> View More </Button>
         </Segment>
 
         <Segment vertical id='div-homepage'>
@@ -114,7 +144,7 @@ class HomePage extends Component {
                     </div>
                   </Image.Group>
                 </div>
-                <Button id='homepage-button' > View More </Button>
+                <Button id='homepage-button' onClick={this.toMotifs}> View More </Button>
         </Segment>
 
         <Segment vertical id='div-homepage'>
@@ -126,14 +156,14 @@ class HomePage extends Component {
                     <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
                       </div>
                     </div>
 
                      <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
                       </div>
                     </div>
                   </Image.Group>
@@ -142,19 +172,19 @@ class HomePage extends Component {
                     <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
                       </div>
                     </div>
 
                      <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
                       <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
                       </div>
                     </div>
                   </Image.Group>
                 </div>
-                <Button id='homepage-button' > View More </Button>
+                <Button id='homepage-button' onClick={this.toMenus}> View More </Button>
         </Segment>
 
         <Segment vertical id='div-homepage-whole'>

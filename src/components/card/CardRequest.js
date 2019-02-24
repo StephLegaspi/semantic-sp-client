@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import { Button, Icon, Header } from 'semantic-ui-react'
 
 import '../../styles/card.css';
@@ -11,6 +12,11 @@ class CardRequest extends Component {
 		super(props);
 
 		this.state = {}
+		this.toRequestPackage = this.toRequestPackage.bind(this);
+	}
+
+	toRequestPackage(e) {
+	    this.props.history.push('/request-package');
 	}
 
 	render() {
@@ -20,7 +26,7 @@ class CardRequest extends Component {
 				 		<Icon name='file text' size='massive'/>
 				 	</div>
 				    <Header id='card-header'>Having trouble organizing and designing your event? Let us do the job for you.</Header>
-				    <Button  size='small' id='card-button'> 
+				    <Button  size='small' id='card-button' onClick={this.toRequestPackage}> 
 				     	<Icon name='file text' size='large'/>
 				        Request Package 
 				    </Button>
@@ -31,4 +37,4 @@ class CardRequest extends Component {
 
 }
 
-export default CardRequest;
+export default withRouter(CardRequest);
