@@ -18,6 +18,7 @@ class NavigationBar extends Component {
 		this.toContactUs = this.toContactUs.bind(this);
 		this.toSignUp = this.toSignUp.bind(this);
 		this.toPortfolio = this.toPortfolio.bind(this);
+		this.toLogin = this.toLogin.bind(this);
 	}
 
 	toHomePage(e) {
@@ -59,6 +60,10 @@ class NavigationBar extends Component {
 		this.props.history.push('/sign-up');
 	}
 
+	toLogin(e) {
+		this.props.history.push('/login/customer');
+	}
+
 	render() {
 		return (
 			<div>
@@ -87,7 +92,7 @@ class NavigationBar extends Component {
 				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '39.5%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toSignUp}>Sign Up</Menu.Item>
-				        <Menu.Item as='a'>Login</Menu.Item>
+				        <Menu.Item as='a'id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toLogin}>Login</Menu.Item>
      				</Container>
     			</Menu>
 			</div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //user-defined
-import Login from './components/login/Login.js';
+import LoginAdmin from './components/login/LoginAdmin.js';
+import LoginCustomer from './components/login/LoginCustomer.js';
 
 import SignUp from './components/add/AddCustomer.js';
 import HomePage from './components/homepage/HomePage.js';
@@ -190,13 +191,20 @@ class App extends Component {
 																			<FAQsPage   {...props} />
 							             								</div>)}}> 
 			</Route>
+			<Route exact={true} path="/login/customer" render={(props) => {
+					             								return(
+							             								<div>
+							             									<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
+																			<LoginCustomer   {...props} />
+							             								</div>)}}> 
+			</Route>
       	</Switch>
       	) : (
       		<Switch>
       		<Route exact={true} path="/admin" render={(props) => {
 					             								return(
 							             								<div>
-																			<Login   {...props} />
+																			<LoginAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
       		<Route exact={true} path="/dashboard" render={(props) => {
