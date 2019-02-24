@@ -1,0 +1,22 @@
+#card-request{
+	margin-top: 5%;
+	margin-left: 1%;
+	padding: 50px;
+	position: relative;
+	float: left;
+	width: 48%;
+}
+
+#icon-holder{
+	position: absolute;
+	float: left;
+	top: 10%;
+	left: 7%;
+	width: 50%;
+	background-color: #a00303;
+	padding: 40px 35px;
+	width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    color: white;
+}

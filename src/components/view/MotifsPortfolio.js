@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Card, Icon, Image, Segment} from 'semantic-ui-react'
+import { Card, Image, Segment} from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
+import CardPackage from '../card/CardPackage.js'
+import CardRequest from '../card/CardRequest.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
@@ -33,22 +35,9 @@ class MotifsPortfolio extends Component {
 					    <Card image={img} />
 					    <Card image={img} />
 					    <Card image={img} />
-					    <Card id='card-request'>
-				          <Card.Content>
-				            <Card.Header id='card-header'>Browse through our catering packages and see what fits your needs and budget.</Card.Header>
-				            <Button  size='small' id='card-button'> 
-				            	<Icon name='gift' size='large'/>
-				            View Packages </Button>
-				          </Card.Content>
-				        </Card>
-				         <Card id='card-request'>
-				          <Card.Content>
-				            <Card.Header id='card-header'>Having trouble organizing and designing your event? Let us do the job for you.</Card.Header>
-				            <Button  size='small' id='card-button'> 
-				            	<Icon name='file text' size='large'/>
-				            Request Package </Button>
-				          </Card.Content>
-				        </Card>
+					    
+					    <CardPackage/>
+				        <CardRequest />
 	  				</Card.Group>
 				</div>
 
