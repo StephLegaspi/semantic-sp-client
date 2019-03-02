@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Dropdown } from 'semantic-ui-react'
+import { Icon, Menu, Table } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
@@ -23,17 +23,6 @@ class InventoryTable extends Component {
 				<HeaderBar headerTitle={'Rental'}/>
 				<SearchBarTable titleHolder={'Search product name..'}/>
   				
-
-      			<div class="ui fluid segment" id='upper-div2'>  
-					<label>
-					  Product Category: {' '}
-					  <Dropdown
-					    inline
-					    options={this.stateOptions}
-					    defaultValue={this.stateOptions[0].value}
-					  />
-					</label>
-      			</div>
 
       			<div className='table-div'>
 
