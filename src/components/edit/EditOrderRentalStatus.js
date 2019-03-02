@@ -6,14 +6,14 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
-class EditOrderRental extends Component {
+class EditOrderRentalStatus extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			activeModal: false,
 		}
 
-		this.deliveryStatusOptions = [{ key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.rentalStatusOptions = [ { key: 'on-rent', value: 'on-rent', text: 'On-rent' }, { key: 'returned', value: 'returned', text: 'Returned' }]
 	}
 
 	onModal = () => {
@@ -31,13 +31,10 @@ class EditOrderRental extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-	      		
-					
 	                  <Form.Field width={8}>
-	                    <label>Delivery Status</label>
-	                     <Dropdown placeholder='Delivery Status' defaultValue='pending' search selection options={this.deliveryStatusOptions} />
+	                    <label>Rental Status</label>
+	                     <Dropdown placeholder='Rental Status' defaultValue='on-rent' search selection options={this.rentalStatusOptions} />
 	                  </Form.Field>
-
 	                <br/>
 	                <br/>
 	                <br/>
@@ -51,4 +48,4 @@ class EditOrderRental extends Component {
 	}
 }
 
-export default EditOrderRental;
+export default EditOrderRentalStatus;
