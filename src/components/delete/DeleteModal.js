@@ -22,6 +22,11 @@ class DeleteModal extends Component {
 		this.setState({activeModal: false});
 	}
 
+	clickDelete = () => {
+		this.props.deleteData(this.props.pkg_id);
+		this.setState({activeModal: false});
+	}
+
 	render(){
 		return(
 		<div>
@@ -32,7 +37,7 @@ class DeleteModal extends Component {
 
 					<h4> Are you sure you want to delete this? </h4>
 	                <br/>
-				    <Button type='submit'  id='yes-button'>Yes</Button>
+				    <Button type='submit' onClick={this.clickDelete} id='yes-button'>Yes</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>No</Button>
 				</div>
 	      	</div>)}

@@ -57,6 +57,23 @@ class PackagesTable extends Component {
         })
     }
 
+    deletePackage = (id) => {
+    	fetch(`http://localhost:3001/v1/packages/`+ id,{
+		      method: "DELETE"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				if(result.status){
+					console.log("Successfully deleted package");
+				}
+				this.update();
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+    }
 
 
 	render() {
@@ -93,7 +110,7 @@ class PackagesTable extends Component {
 					        	<EditPackage pkg_id={pkg.id} handleUpdate={this.update}/>
 					        </Table.Cell>
 					        <Table.Cell textAlign='center'>
-					        	<DeleteModal/>
+					        	<DeleteModal pkg_id={pkg.id} deleteData={this.deletePackage}/>
 					        </Table.Cell>
 					      </Table.Row> 
 					)} 
