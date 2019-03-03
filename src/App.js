@@ -46,17 +46,18 @@ import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
 import Dashboard from './components/dashboard/Dashboard.js';
 
-import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
+import {Switch, Route, withRouter, BrowserRouter as Router, Redirect} from 'react-router-dom';
 
 class App extends Component {
+	
   
-  constructor() {
-	super();
-	this.state = {
-	  	curr_user: 0
-	}
+	constructor() {
+		super();
+		this.state = {
+		  	curr_user: 0
+		}
 
-  }
+	}
 
   render() {
     return (

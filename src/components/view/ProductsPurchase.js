@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Menu, Table, Header, Image, Dropdown } from 'semantic-ui-react'
+import { Icon, Menu, Table, Header, Image } from 'semantic-ui-react'
 
 import DeleteModal from '../delete/DeleteModal.js'
 import EditProduct from '../edit/EditProduct.js'
@@ -14,9 +14,26 @@ class ProductsTable extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
-		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
+		this.state = {
+			data: []
+		}
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/products/purchase', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -25,18 +42,7 @@ class ProductsTable extends Component {
 				<SearchBarTable titleHolder={'Search product name..'}/>
 
 				<AddProduct/>
-				
-				
-      			<div class="ui fluid segment" id='upper-div2'>  
-					<label>
-					  Product Category: {' '}
-					  <Dropdown
-					    inline
-					    options={this.stateOptions}
-					    defaultValue={'1'}
-					  />
-					</label>
-      			</div>
+			
 
       			<div className='table-div'>
 					<Table celled>
@@ -53,23 +59,23 @@ class ProductsTable extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
-				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
-						<Table.Cell>
-			                <Header as='h4' image>
+				    {this.state.data.map(product =>
+			          
+			          <Table.Row>
+			            <Table.Cell>{product.id}</Table.Cell>
+			            <Table.Cell>
+			            	<Header as='h4' image>
 			                  <Image src={img_tree} rounded size='massive' />
 			                </Header>
 			            </Table.Cell>
-						<Table.Cell>cellll</Table.Cell>
-						<Table.Cell>cellll</Table.Cell>
-						<Table.Cell>cellll</Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<EditProduct/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
-				        </Table.Cell>
+			            <Table.Cell>{product.name}</Table.Cell>
+			            <Table.Cell>{product.description}</Table.Cell>
+			            <Table.Cell>{product.price}</Table.Cell>
+			            <Table.Cell><EditProduct/></Table.Cell>
+			            <Table.Cell><DeleteModal/></Table.Cell>
+
 				      </Table.Row>
+			        )}
 				    </Table.Body>
 
 				    <Table.Footer>
