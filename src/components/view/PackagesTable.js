@@ -15,7 +15,11 @@ class PackagesTable extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			package_name: "",
+			package_price: 0.0,
+			package_inclusion: []
+			
 		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
@@ -53,6 +57,8 @@ class PackagesTable extends Component {
         })
     }
 
+
+
 	render() {
 		return (
 			<div>
@@ -84,7 +90,7 @@ class PackagesTable extends Component {
 					        	<PackageInfo pkg_id={pkg.id}/>
 					        </Table.Cell>
 					        <Table.Cell textAlign='center'>
-					        	<EditPackage/>
+					        	<EditPackage pkg_id={pkg.id} handleUpdate={this.update}/>
 					        </Table.Cell>
 					        <Table.Cell textAlign='center'>
 					        	<DeleteModal/>
