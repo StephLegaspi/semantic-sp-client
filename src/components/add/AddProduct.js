@@ -14,9 +14,6 @@ export default class AddProduct extends Component {
     }
   }
 
-  state = {}
-  handleChange = (e, { value }) => this.setState({ value });
-
   onModal = () => {
     this.setState({activeModal: true});
   }
@@ -26,7 +23,6 @@ export default class AddProduct extends Component {
   }
 
   render(){
-    const { value } = this.state
     return(
     <div>
     <AddButton handleAdd={this.onModal}/>
@@ -66,24 +62,6 @@ export default class AddProduct extends Component {
                         </div>
                     </Form.Field>
                   </Form.Group>   
-
-                  <Form.Group inline>
-                    <label>Available for: </label>
-                    <Form.Field
-                      control={Radio}
-                      label='Sale'
-                      value='sale'
-                      checked={value === 'sale'}
-                      onChange={this.handleChange}
-                    />
-                    <Form.Field
-                      control={Radio}
-                      label='Rent'
-                      value='rent'
-                      checked={value === 'rent'}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Group>
 
                   <Form.Group inline>
                     <label>Display Product: </label>
