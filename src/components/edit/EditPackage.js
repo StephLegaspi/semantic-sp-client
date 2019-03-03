@@ -14,6 +14,7 @@ class EditPackage extends Component {
 		}
 	}
 
+	
 	onModal = () => {
 		this.setState({activeModal: true});
 	}
