@@ -12,8 +12,16 @@ export default class AddMotif extends Component {
       super();
       this.state = {
         activeModal: false,
+        name: "",
+        description: ""
       }
+
+      this.handleNameChange = this.handleNameChange.bind(this);
+      this.handleDescChange = this.handleDescChange.bind(this);
   }
+
+  handleNameChange(e) { this.setState({name: e.target.value}); }
+  handleDescChange(e) { this.setState({description: e.target.value}); }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -21,6 +29,28 @@ export default class AddMotif extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+  }
+
+  handleSubmit = () => {
+        const motif = JSON.stringify({name: this.state.name, description: this.state.description})
+       
+        fetch(`http://localhost:3001/v1/event_motifs`,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: motif
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status){
+            this.setState({activeModal: false})
+            this.props.handleUpdate()
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
   }
 
   render(){
@@ -33,12 +63,12 @@ export default class AddMotif extends Component {
             <Form className='form-style-smaller'>
               <Form.Field>
                   <label>Event Motif Name</label>
-                  <Input placeholder='Event Motif Name'/>
+                  <Input placeholder='Event Motif Name' onChange={this.handleNameChange}/>
                 </Form.Field>
 
                 <Form.Field>
                   <label>Description</label>
-                  <TextArea placeholder='Description' style={{ minHeight: 100 }} />
+                  <TextArea placeholder='Description' style={{ minHeight: 100 }} onChange={this.handleDescChange}/>
                 </Form.Field>
 
                 <Form.Group inline>
@@ -54,7 +84,7 @@ export default class AddMotif extends Component {
                   </Form.Field>
               </Form.Group> 
 
-              <Button type='submit' onClick={this.editDone} id='edit-button2'>Add</Button>
+              <Button type='submit' onClick={this.handleSubmit} id='edit-button2'>Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
           </Form>
           </div>)}

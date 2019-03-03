@@ -23,7 +23,7 @@ class DeleteModal extends Component {
 	}
 
 	clickDelete = () => {
-		this.props.deleteData(this.props.pkg_id);
+		this.props.deleteData(this.props.data_id);
 		this.setState({activeModal: false});
 	}
 
