@@ -13,6 +13,22 @@ class PackageInfo extends Component {
 		}
 	}
 
+	componentDidMount(){
+	
+		fetch(`http://localhost:3001/v1/packages/inclusions/`+ this.props.pkg_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
 
 	onModal = () => {
 		this.setState({modal: true});
@@ -31,16 +47,15 @@ class PackageInfo extends Component {
 									<div className="open-box">
 
 										<h1 className='title-font'> Inclusions </h1>
+
+										{this.state.data.map(pkg =>
 										<List style={{marginLeft: '5%', color:'#16163a'}}>
 										    <List.Item>
 										      <List.Icon name='plus' size='large'/>
-										      <List.Content>Appetizer</List.Content>
+										      <List.Content>{pkg.inclusion}</List.Content>
 										    </List.Item>
-										    <List.Item>
-										      <List.Icon name='plus' size='large'/>
-										      <List.Content>Appetizer</List.Content>
-										    </List.Item>
-										  </List>
+										</List>
+										)}
 								    	<Button  className='close' onClick={this.onClose}> Close </Button>
 								   
 								    </div>

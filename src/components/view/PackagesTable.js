@@ -14,10 +14,44 @@ class PackagesTable extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}		
+		this.state = {
+			data: []
+		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/packages', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/packages', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -25,7 +59,7 @@ class PackagesTable extends Component {
 				<HeaderBar headerTitle={'Packages'}/>
 				<SearchBarTable titleHolder={'Search package name..'}/>
 
-				<AddPackage/>
+				<AddPackage handleUpdate={this.update}/>
 
 				<div className='table-div'>
 				<Table celled>
@@ -41,20 +75,22 @@ class PackagesTable extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
-				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	<PackageInfo/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<EditPackage/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
-				        </Table.Cell>
-				      </Table.Row>  
+				    {this.state.data.map(pkg =>
+					      <Table.Row>
+					        <Table.Cell>{pkg.id}</Table.Cell>
+					        <Table.Cell>{pkg.name}</Table.Cell>
+					        <Table.Cell>{pkg.price}</Table.Cell>
+					        <Table.Cell>
+					        	<PackageInfo pkg_id={pkg.id}/>
+					        </Table.Cell>
+					        <Table.Cell textAlign='center'>
+					        	<EditPackage/>
+					        </Table.Cell>
+					        <Table.Cell textAlign='center'>
+					        	<DeleteModal/>
+					        </Table.Cell>
+					      </Table.Row> 
+					)} 
 				    </Table.Body>
 
 				    <Table.Footer>
