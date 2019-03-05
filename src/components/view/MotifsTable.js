@@ -52,24 +52,6 @@ class MotifsTable extends Component {
         })
     }
 
-    deleteMotif = (id) => {
-    	fetch(`http://localhost:3001/v1/event_motifs/`+ id,{
-		      method: "DELETE"
-		    })
-			.then((response) => {
-				return response.json()
-			})
-			.then((result) => {
-				if(result.status){
-					console.log("Successfully deleted motif");
-				}
-				this.update();
-			})
-			.catch((e) => {
-				console.log(e)
-			})
-    }
-
 	render() {
 		return (
 			<div>
@@ -100,7 +82,7 @@ class MotifsTable extends Component {
 					        	<EditMotif motif_id={motif.id} handleUpdate={this.update}/>
 					        </Table.Cell>
 					        <Table.Cell textAlign='center'>
-					        	<DeleteModal data_id={motif.id} deleteData={this.deleteMotif}/>
+					        	<DeleteModal data_id={motif.id} table_name={'event_motifs'} handleUpdate={this.update}/>
 					        </Table.Cell>
 					    </Table.Row>  
 					)} 

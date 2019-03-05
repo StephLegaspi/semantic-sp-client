@@ -51,24 +51,6 @@ class ProductsTable extends Component {
         })
     }
 
-    deleteProduct = (id) => {
-    	fetch(`http://localhost:3001/v1/products/`+ id,{
-		      method: "DELETE"
-		    })
-			.then((response) => {
-				return response.json()
-			})
-			.then((result) => {
-				if(result.status){
-					console.log("Successfully deleted product");
-				}
-				this.update();
-			})
-			.catch((e) => {
-				console.log(e)
-			})
-    }
-
 	render() {
 		return (
 			<div>
@@ -107,7 +89,7 @@ class ProductsTable extends Component {
 			            <Table.Cell>{product.price}</Table.Cell>
 			            <Table.Cell><EditProduct/></Table.Cell>
 			            <Table.Cell>
-			            	<DeleteModal data_id={product.id} deleteData={this.deleteProduct}/>
+			            	<DeleteModal data_id={product.id} table_name={'products'} handleUpdate={this.update}/>
 			            </Table.Cell>
 
 				      </Table.Row>

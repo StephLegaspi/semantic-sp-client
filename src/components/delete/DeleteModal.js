@@ -22,10 +22,25 @@ class DeleteModal extends Component {
 		this.setState({activeModal: false});
 	}
 
-	clickDelete = () => {
-		this.props.deleteData(this.props.data_id);
-		this.setState({activeModal: false});
-	}
+
+	deleteData = () => {
+    	fetch(`http://localhost:3001/v1/`+ this.props.table_name + `/` + this.props.data_id,{
+		      method: "DELETE"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				if(result.status){
+					console.log("Successfully deleted data");
+				}
+				this.setState({activeModal: false});
+				this.props.handleUpdate();
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+    }
 
 	render(){
 		return(
@@ -37,7 +52,7 @@ class DeleteModal extends Component {
 
 					<h4> Are you sure you want to delete this? </h4>
 	                <br/>
-				    <Button type='submit' onClick={this.clickDelete} id='yes-button'>Yes</Button>
+				    <Button type='submit' onClick={this.deleteData} id='yes-button'>Yes</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>No</Button>
 				</div>
 	      	</div>)}
