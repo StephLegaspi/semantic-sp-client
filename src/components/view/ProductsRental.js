@@ -35,6 +35,22 @@ class ProductsTable extends Component {
         })
     }
 
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/products/rental', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
@@ -72,7 +88,9 @@ class ProductsTable extends Component {
 			            <Table.Cell>{product.description}</Table.Cell>
 			            <Table.Cell>{product.price}</Table.Cell>
 			            <Table.Cell><EditProduct/></Table.Cell>
-			            <Table.Cell><DeleteModal/></Table.Cell>
+			            <Table.Cell>
+			            	<DeleteModal data_id={product.id} table_name={'products'} handleUpdate={this.update}/>
+			            </Table.Cell>
 
 				      </Table.Row>
 			        )}

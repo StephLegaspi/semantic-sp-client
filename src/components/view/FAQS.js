@@ -13,8 +13,42 @@ class FAQS extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}	
+		this.state = {
+			data: []
+		}	
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/FAQs', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/FAQs', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -22,7 +56,7 @@ class FAQS extends Component {
 				<HeaderBar headerTitle={'FAQS'}/>
 				<SearchBarTable titleHolder={'Search question..'}/>
 
-				<AddFAQ/>
+				<AddFAQ handleUpdate={this.update}/>
 
 				<div className='table-div'>
 				<Table celled>
@@ -37,17 +71,19 @@ class FAQS extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
+				    {this.state.data.map(faq =>
 				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>{faq.id}</Table.Cell>
+				        <Table.Cell>{faq.question}</Table.Cell>
+				        <Table.Cell>{faq.answer}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditFAQ/>
+				        	<EditFAQ faq_id={faq.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
+				        	<DeleteModal data_id={faq.id} table_name={'FAQs'} handleUpdate={this.update}/>
 				        </Table.Cell>
 				      </Table.Row>
+				    )}
 				    </Table.Body>
 
 				    <Table.Footer>

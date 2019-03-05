@@ -19,8 +19,8 @@ class EditMotif extends Component {
       	this.handleDescChange = this.handleDescChange.bind(this);
 	}
 
-	handleNameChange = (e) =>  this.setState({name: e.target.value});
-  	handleDescChange = (e) =>  this.setState({description: e.target.value});
+	handleNameChange(e) {this.setState({name: e.target.value}); }
+  	handleDescChange(e) {this.setState({description: e.target.value}); }
 
 	onModal = () => {
 		this.getData(this.props.motif_id);
