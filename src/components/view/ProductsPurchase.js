@@ -57,7 +57,7 @@ class ProductsTable extends Component {
 				<HeaderBar headerTitle={'Purchase Products'}/>
 				<SearchBarTable titleHolder={'Search product name..'}/>
 
-				<AddProduct/>
+				<AddProduct handleUpdate={this.update} category={'purchase'}/>
 			
 
       			<div className='table-div'>
