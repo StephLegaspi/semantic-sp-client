@@ -15,6 +15,7 @@ class ProductInfo extends Component {
 
 
 	onModal = () => {
+		this.updateProducts();
 		this.setState({modal: true});
 	}
 
