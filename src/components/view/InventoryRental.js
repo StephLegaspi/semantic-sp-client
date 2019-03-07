@@ -4,7 +4,6 @@ import { Icon, Menu, Table } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import ProductInfo from '../infoModal/ProductInfo.js'
-import DeleteModal from '../delete/DeleteModal.js'
 import EditInventory from '../edit/EditInventory.js'
 
 import '../../styles/view.css';
@@ -70,7 +69,6 @@ class InventoryTable extends Component {
 							        <Table.HeaderCell style={{width: '10%'}}>No. of Remaining Items</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Date of Stock Renewal</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 
@@ -87,9 +85,6 @@ class InventoryTable extends Component {
 									<Table.Cell>{inventory.renewal_timestamp}</Table.Cell>
 							        <Table.Cell textAlign='center'>
 							        	<EditInventory handleUpdate={this.update} data={inventory}/>
-							        </Table.Cell>
-							        <Table.Cell textAlign='center'>
-							        	<DeleteModal/>
 							        </Table.Cell>
 							      </Table.Row>
 							    )}
