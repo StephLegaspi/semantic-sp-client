@@ -69,6 +69,7 @@ class ProductsTable extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Name</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Description</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Price</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Available for display</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -87,7 +88,10 @@ class ProductsTable extends Component {
 			            <Table.Cell>{product.name}</Table.Cell>
 			            <Table.Cell>{product.description}</Table.Cell>
 			            <Table.Cell>{product.price}</Table.Cell>
-			            <Table.Cell><EditProduct/></Table.Cell>
+			            <Table.Cell>{product.display_product ? "Yes" : "No"}</Table.Cell>
+			            <Table.Cell>
+			            	<EditProduct handleUpdate={this.update} data={product}/>
+			            </Table.Cell>
 			            <Table.Cell>
 			            	<DeleteModal data_id={product.id} table_name={'products'} handleUpdate={this.update}/>
 			            </Table.Cell>

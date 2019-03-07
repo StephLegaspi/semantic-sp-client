@@ -24,9 +24,9 @@ class EditPackage extends Component {
       	this.handleInclusionChange = this.handleInclusionChange.bind(this);
 	}
 
-	handleNameChange = (e) =>  this.setState({name: e.target.value});
-  	handlePriceChange = (e) =>  this.setState({price: e.target.value});
-  	handleInclusionChange = (e) =>  this.setState({inclusion: e.target.value});
+	handleNameChange(e) {this.setState({name: e.target.value}); }
+  	handlePriceChange(e) {this.setState({price: e.target.value}); }
+  	handleInclusionChange(e) {this.setState({inclusion: e.target.value}); }
 
 	onModal = () => {
 		this.getData(this.props.pkg_id);
