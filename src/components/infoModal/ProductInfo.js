@@ -22,6 +22,39 @@ class ProductInfo extends Component {
 		this.setState({modal: false})
 	}
 
+	componentDidMount(){
+	
+		fetch(`http://localhost:3001/v1/products/`+ this.props.prod_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
+	updateProducts = () => {
+		fetch(`http://localhost:3001/v1/products/`+ this.props.prod_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
 	render() {
 		return (
 			<div>
@@ -37,23 +70,17 @@ class ProductInfo extends Component {
 							        <Table.HeaderCell style={{width: '30%'}}>Price</Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
+
 							    <Table.Body>
+							    {this.state.data.map(product =>
 							    	 <Table.Row>
-								        <Table.Cell>cell</Table.Cell>
-								        <Table.Cell>YAAAAh</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
+								        <Table.Cell>{product.id}</Table.Cell>
+								        <Table.Cell>{product.description}</Table.Cell>
+								        <Table.Cell>{product.price}</Table.Cell>
 								      </Table.Row>
-								      <Table.Row>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								      </Table.Row>
-								      <Table.Row>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								      </Table.Row> 
+							    )}
 							    </Table.Body>
+
 							    <Button className='close' onClick={this.onClose}> Close </Button>
 							    </Table>
 							    </div>

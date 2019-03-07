@@ -78,7 +78,7 @@ class InventoryTable extends Component {
 							      <Table.Row>
 							        <Table.Cell>{inventory.id}</Table.Cell>
 							        <Table.Cell>
-								       <ProductInfo/>
+								       <ProductInfo prod_id={inventory.product_id}/>
 									</Table.Cell>
 									<Table.Cell>{inventory.name}</Table.Cell>
 									<Table.Cell>{inventory.total_quantity}</Table.Cell>
