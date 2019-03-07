@@ -86,7 +86,7 @@ class InventoryTable extends Component {
 									<Table.Cell>{inventory.remaining}</Table.Cell>
 									<Table.Cell>{inventory.renewal_timestamp}</Table.Cell>
 							        <Table.Cell textAlign='center'>
-							        	<EditInventory />
+							        	<EditInventory handleUpdate={this.update} data={inventory}/>
 							        </Table.Cell>
 							        <Table.Cell textAlign='center'>
 							        	<DeleteModal/>
