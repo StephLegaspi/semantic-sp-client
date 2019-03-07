@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'semantic-ui-react';
+import { DateInput } from 'semantic-ui-calendar-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -11,7 +12,14 @@ class EditInventory extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
+			date: ''
 		}
+	}
+
+	handleChange = (event, {name, value}) => {
+	    if (this.state.hasOwnProperty(name)) {
+	      this.setState({ [name]: value });
+	    }
 	}
 
 	onModal = () => {
@@ -35,16 +43,19 @@ class EditInventory extends Component {
 	                    <Input placeholder='Total Quantity'/>
 	                  </Form.Field>
 	                  <Form.Field>
-	                    <label>No. of Remaining Items</label>
-	                    <Input placeholder='No. of Remaining Items'/>
-	                  </Form.Field>
+	                    <label>Date of Stock Renewal</label>
+	                    <DateInput
+	                      name="date"
+	                      placeholder="Event Date"
+	                      value={this.state.date}
+	                      iconPosition="left"
+	                      onChange={this.handleChange}
+	                    />
+	                </Form.Field>
 	                </Form.Group>
 
 	                
-	                <Form.Field width={8}>
-	                    <label>Date of Stock Renewal</label>
-	                    <Input placeholder='Date of Stock Renewal'/>
-	                </Form.Field>
+	                
 	                
 				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
