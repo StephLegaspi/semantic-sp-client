@@ -29,8 +29,8 @@ class EditPackage extends Component {
   	handleInclusionChange(e) {this.setState({inclusion: e.target.value}); }
 
 	onModal = () => {
-		this.getData(this.props.pkg_id);
-		this.getInclusion(this.props.pkg_id);
+		this.getData(this.props.data.id);
+		this.getInclusion(this.props.data.id);
 		this.setState({activeModal: true});
 	}
 
@@ -40,23 +40,11 @@ class EditPackage extends Component {
 
 	getData = (id) => {
 
-		fetch(`http://localhost:3001/v1/packages/`+ id,{
-		      headers: { 'Content-Type': 'application/json' },
-		      method: "GET"
-		    })
-			.then((response) => {
-				return response.json()
-			})
-			.then((result) => {
-				this.setState({data_result: result.data[0]})
-				this.setState({name: this.state.data_result.name})
-				this.setState({price: this.state.data_result.price})
-				this.getInclusion(id)
-				this.setState({inclusion: this.state.inclusion_string})
-			})
-			.catch((e) => {
-				console.log(e)
-			})
+		this.setState({name: this.props.data.name})
+		this.setState({price: this.props.data.price})
+		this.getInclusion(id)
+		this.setState({inclusion: this.state.inclusion_string})
+
 		
 	}
 
@@ -92,7 +80,7 @@ class EditPackage extends Component {
 
         const pkg = JSON.stringify({name: this.state.name, price: this.state.price, inclusion: this.state.inclusion})
        
-        fetch(`http://localhost:3001/v1/packages/` + this.props.pkg_id,{
+        fetch(`http://localhost:3001/v1/packages/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
             method: "PUT",
             body: pkg
@@ -105,8 +93,8 @@ class EditPackage extends Component {
             this.props.handleUpdate()
             this.setState({activeModal: false})
           }
-          this.getData(this.props.pkg_id)
-          this.getInclusion(this.props.pkg_id)
+          this.getData(this.props.data.id)
+          this.getInclusion(this.props.data.id)
         })
         .catch((e) => {
           console.log(e)
@@ -123,11 +111,11 @@ class EditPackage extends Component {
 					<Form.Group widths='equal'>
 	                  <Form.Field>
 	                    <label>Package Name</label>
-	                    <Input placeholder='name' defaultValue={this.state.data_result.name} onChange={this.handleNameChange}/>
+	                    <Input placeholder='name' defaultValue={this.props.data.name} onChange={this.handleNameChange}/>
 	                  </Form.Field>
 	                  <Form.Field>
 	                    <label>Price</label>
-	                    <Input defaultValue={this.state.data_result.price} onChange={this.handlePriceChange}/>
+	                    <Input defaultValue={this.props.data.price} onChange={this.handlePriceChange}/>
 	                  </Form.Field>
 	                </Form.Group>
 

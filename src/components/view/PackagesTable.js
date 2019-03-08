@@ -85,7 +85,7 @@ class PackagesTable extends Component {
 					        	<PackageInfo pkg_id={pkg.id}/>
 					        </Table.Cell>
 					        <Table.Cell textAlign='center'>
-					        	<EditPackage pkg_id={pkg.id} handleUpdate={this.update}/>
+					        	<EditPackage data={pkg} handleUpdate={this.update}/>
 					        </Table.Cell>
 					        <Table.Cell textAlign='center'>
 					        	<DeleteModal data_id={pkg.id} table_name={'packages'} handleUpdate={this.update}/>
