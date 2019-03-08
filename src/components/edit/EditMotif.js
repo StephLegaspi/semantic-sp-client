@@ -11,7 +11,6 @@ class EditMotif extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
-			data_result: [],
 			name: "",
 	        description: ""
 		}
@@ -23,7 +22,7 @@ class EditMotif extends Component {
   	handleDescChange(e) {this.setState({description: e.target.value}); }
 
 	onModal = () => {
-		this.getData(this.props.motif_id);
+		this.getData();
 		this.setState({activeModal: true});
 	}
 
@@ -31,30 +30,16 @@ class EditMotif extends Component {
 		this.setState({activeModal: false});
 	}
 
-	getData = (id) => {
-
-		fetch(`http://localhost:3001/v1/event_motifs/`+ id,{
-		      headers: { 'Content-Type': 'application/json' },
-		      method: "GET"
-		    })
-			.then((response) => {
-				return response.json()
-			})
-			.then((result) => {
-				this.setState({data_result: result.data[0]})
-				this.setState({name: this.state.data_result.name})
-				this.setState({description: this.state.data_result.description})
-			})
-			.catch((e) => {
-				console.log(e)
-			})
+	getData = () => {
+		this.setState({name: this.props.data.name})
+		this.setState({description: this.props.data.description})
 	}
 
 	submitEdit = () => {
 
         const motif = JSON.stringify({name: this.state.name, description: this.state.description})
        
-        fetch(`http://localhost:3001/v1/event_motifs/` + this.props.motif_id,{
+        fetch(`http://localhost:3001/v1/event_motifs/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
             method: "PUT",
             body: motif
@@ -67,7 +52,7 @@ class EditMotif extends Component {
             this.props.handleUpdate()
             this.setState({activeModal: false})
           }
-          this.getData(this.props.motif_id)
+          this.getData()
         })
         .catch((e) => {
           console.log(e)
@@ -83,12 +68,12 @@ class EditMotif extends Component {
 	      		<Form className='forms'>
 					<Form.Field>
 	                  <label>Event Motif Name</label>
-	                  <Input placeholder='Event Motif Name' defaultValue={this.state.data_result.name} onChange={this.handleNameChange}/>
+	                  <Input placeholder='Event Motif Name' defaultValue={this.props.data.name} onChange={this.handleNameChange}/>
 	                </Form.Field>
 
 	                <Form.Field>
 	                  <label>Description</label>
-	                  <TextArea placeholder={this.state.data_result.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} />
+	                  <TextArea placeholder={this.props.data.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} />
 	                </Form.Field>
 
 	                <Form.Group inline>

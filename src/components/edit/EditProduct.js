@@ -11,7 +11,6 @@ class EditProduct extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
-			data_result: [],
 			name: "",
     		price: "",
     		description: "",

@@ -79,7 +79,7 @@ class MotifsTable extends Component {
 					        <Table.Cell>{motif.name}</Table.Cell>
 					        <Table.Cell>{motif.description}</Table.Cell>
 					        <Table.Cell textAlign='center'>
-					        	<EditMotif motif_id={motif.id} handleUpdate={this.update}/>
+					        	<EditMotif data={motif} handleUpdate={this.update}/>
 					        </Table.Cell>
 					        <Table.Cell textAlign='center'>
 					        	<DeleteModal data_id={motif.id} table_name={'event_motifs'} handleUpdate={this.update}/>
