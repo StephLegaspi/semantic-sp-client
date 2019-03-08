@@ -74,7 +74,7 @@ class UserAdmins extends Component {
 				    </Card.Content>
 				    <Card.Content extra>
 				      	<div style={{marginLeft: '55%'}}>		      	
-				      		{admin.active ? <DeactivateModal/> : <ActivateModal/>}      
+				      		{admin.active ? <DeactivateModal data_id={admin.id} handleUpdate={this.update}/> : <ActivateModal data_id={admin.id} handleUpdate={this.update}/>}      
 				      	</div>
 				      	
 				    </Card.Content>

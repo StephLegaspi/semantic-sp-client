@@ -22,6 +22,26 @@ class DeactivateModal extends Component {
 		this.setState({activeModal: false});
 	}
 
+	submitEdit = () => {
+       
+        fetch(`http://localhost:3001/v1/administrators/deactivate/` + this.props.data_id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "PUT"
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status){
+            this.props.handleUpdate()
+            this.setState({activeModal: false})
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  	}
+
 	render(){
 		return(
 		<div>
@@ -30,9 +50,9 @@ class DeactivateModal extends Component {
 	      	<div className='delete-modal'>
 	      		<div className='open-delete'>
 
-					<h4> Are you sure you want to deactivate this? </h4>
+					<h4> Are you sure you want to deactivate {this.props.data_id}? </h4>
 	                <br/>
-				    <Button type='submit'  id='yes-button'>Yes</Button>
+				    <Button type='submit' onClick={this.submitEdit} id='yes-button'>Yes</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>No</Button>
 				</div>
 	      	</div>)}
