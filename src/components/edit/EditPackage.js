@@ -12,7 +12,6 @@ class EditPackage extends Component {
 		this.state = {
 			activeModal: false,
 			inclusion_arr: [],
-			inclusion_string: "",
 			name: "",
 	        price: "",
 	        inclusion: ""
@@ -29,7 +28,6 @@ class EditPackage extends Component {
 
 	onModal = () => {
 		this.getData(this.props.data.id);
-		this.getInclusion(this.props.data.id);
 		this.setState({activeModal: true});
 	}
 
@@ -39,10 +37,9 @@ class EditPackage extends Component {
 
 	getData = (id) => {
 
-		this.setState({name: this.props.data.name})
-		this.setState({price: this.props.data.price})
-		this.getInclusion(id)
-		this.setState({inclusion: this.state.inclusion_string})
+		this.setState({name: this.props.data.name});
+		this.setState({price: this.props.data.price});
+		this.getInclusion(id);
 
 		
 	}
@@ -54,7 +51,7 @@ class EditPackage extends Component {
 		for(i=1; i<(this.state.inclusion_arr.length); i++){
 			stringInclusion = stringInclusion + ", " + this.state.inclusion_arr[i].inclusion;
 		}
-		this.setState({inclusion_string: stringInclusion})
+		this.setState({inclusion: stringInclusion})
 	}	
 
 	getInclusion = (id) => {
@@ -93,7 +90,6 @@ class EditPackage extends Component {
             this.setState({activeModal: false})
           }
           this.getData(this.props.data.id)
-          this.getInclusion(this.props.data.id)
         })
         .catch((e) => {
           console.log(e)
@@ -120,7 +116,7 @@ class EditPackage extends Component {
 
 	               <Form.Field>
 	                  <label>Inclusions</label>
-	                  <Input defaultValue={this.state.inclusion_string} onChange={this.handleInclusionChange}/>
+	                  <Input defaultValue={this.state.inclusion} onChange={this.handleInclusionChange}/>
 	                </Form.Field>
 	                
 				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
