@@ -107,10 +107,10 @@ class MenusTable extends Component {
 				        	<OtherMenu menu_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditMenu/>
+				        	<EditMenu data={menu} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
+				        	<DeleteModal data_id={menu.id} table_name={'food_menus'} handleUpdate={this.update}/>
 				        </Table.Cell>
 				      </Table.Row>
 				    )}  

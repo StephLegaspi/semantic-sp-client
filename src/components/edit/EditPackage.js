@@ -11,7 +11,6 @@ class EditPackage extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
-			data_result: [],
 			inclusion_arr: [],
 			inclusion_string: "",
 			name: "",
