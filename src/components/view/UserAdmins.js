@@ -57,7 +57,7 @@ class UserAdmins extends Component {
 				<HeaderBar headerTitle={'Admins'}/>
 				<SearchBarTable titleHolder={'Search customer name..'}/>
 
-				<AddAdmin/>
+				<AddAdmin handleUpdate={this.update}/>
 
       			<div id='card-div'>
 				<Card.Group itemsPerRow={4}>
