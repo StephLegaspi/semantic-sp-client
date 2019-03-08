@@ -10,8 +10,42 @@ class ContactDetails extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}		
+		this.state = {
+			data: []
+		}		
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/contact_details', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/contact_details', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -31,15 +65,17 @@ class ContactDetails extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
+				    {this.state.data.map(contact =>
 				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>{contact.telephone_number}</Table.Cell>
+				        <Table.Cell>{contact.mobile_number}</Table.Cell>
+				        <Table.Cell>{contact.email_address}</Table.Cell>
+				        <Table.Cell>{contact.business_address}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditContact/>
+				        	<EditContact data={contact} handleUpdate={this.update}/>
 				        </Table.Cell>
 				      </Table.Row>
+				    )}
 				    </Table.Body>
 
 				</Table>
