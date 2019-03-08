@@ -77,7 +77,7 @@ class FAQS extends Component {
 				        <Table.Cell>{faq.question}</Table.Cell>
 				        <Table.Cell>{faq.answer}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditFAQ faq_id={faq.id} handleUpdate={this.update}/>
+				        	<EditFAQ data={faq} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal data_id={faq.id} table_name={'FAQs'} handleUpdate={this.update}/>

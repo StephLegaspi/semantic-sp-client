@@ -11,7 +11,6 @@ class EditFAQ extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
-			data_result: [],
 			question: "",
         	answer: ""
 		}
@@ -24,7 +23,7 @@ class EditFAQ extends Component {
 	handleAnswerChange(e){ this.setState({answer: e.target.value}); }
 
 	onModal = () => {
-		this.getData(this.props.faq_id);
+		this.getData();
 		this.setState({activeModal: true});
 	}
 
@@ -32,30 +31,17 @@ class EditFAQ extends Component {
 		this.setState({activeModal: false});
 	}
 
-	getData = (id) => {
+	getData = () => {
 
-		fetch(`http://localhost:3001/v1/FAQs/`+ id,{
-		      headers: { 'Content-Type': 'application/json' },
-		      method: "GET"
-		    })
-			.then((response) => {
-				return response.json()
-			})
-			.then((result) => {
-				this.setState({data_result: result.data[0]})
-				this.setState({question: this.state.data_result.question})
-				this.setState({answer: this.state.data_result.answer})
-			})
-			.catch((e) => {
-				console.log(e)
-			})
+		this.setState({question: this.props.data.question})
+		this.setState({answer: this.props.data.answer})
 	}
 
 	submitEdit = () => {
 
         const faq = JSON.stringify({question: this.state.question, answer: this.state.answer})
        
-        fetch(`http://localhost:3001/v1/FAQs/` + this.props.faq_id,{
+        fetch(`http://localhost:3001/v1/FAQs/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
             method: "PUT",
             body: faq
@@ -68,7 +54,7 @@ class EditFAQ extends Component {
             this.props.handleUpdate()
             this.setState({activeModal: false})
           }
-          this.getData(this.props.faq_id)
+          this.getData()
         })
         .catch((e) => {
           console.log(e)
@@ -85,11 +71,11 @@ class EditFAQ extends Component {
 	      		<Form className='forms'>
 					<Form.Field>
 	                    <label>Question</label>
-	                    <TextArea placeholder={this.state.data_result.question} style={{ minHeight: 100 }} onChange={this.handleQuestionChange}/>
+	                    <TextArea placeholder={this.props.data.question} style={{ minHeight: 100 }} onChange={this.handleQuestionChange}/>
 	                  </Form.Field>
 	                  <Form.Field>
 	                    <label>Answer</label>
-	                    <TextArea placeholder={this.state.data_result.answer} style={{ minHeight: 100 }} onChange={this.handleAnswerChange}/>
+	                    <TextArea placeholder={this.props.data.answer} style={{ minHeight: 100 }} onChange={this.handleAnswerChange}/>
 	                  </Form.Field>
 
 				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
