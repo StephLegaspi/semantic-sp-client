@@ -13,7 +13,40 @@ class OtherMenu extends Component {
 		}
 	}
 
+	componentDidMount(){
+		fetch(`http://localhost:3001/v1/food_menus/others/`+ this.props.menu_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
+	updateOthers = () => {
+		fetch(`http://localhost:3001/v1/food_menus/others/`+ this.props.menu_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
 	onModal = () => {
+		this.updateOthers();
 		this.setState({modal: true});
 	}
 
@@ -29,16 +62,16 @@ class OtherMenu extends Component {
 								<div>
 									<div className="open-box">
 										<h1 className='title-font'> Other/s </h1>
+
+										{this.state.data.map(menu =>
 										<List style={{marginLeft: '10%', color:'#16163a'}}>
 										    <List.Item>
 										      <List.Icon name='food' size='large'/>
-										      <List.Content>Other</List.Content>
+										      <List.Content>{menu.inclusion}</List.Content>
 										    </List.Item>
-										    <List.Item>
-										      <List.Icon name='food' size='large'/>
-										      <List.Content>Other</List.Content>
-										    </List.Item>
-										  </List>
+										</List>
+										)}
+
 								    	<Button  className='close' onClick={this.onClose}> Close </Button>
 								    </div>
 							    </div>

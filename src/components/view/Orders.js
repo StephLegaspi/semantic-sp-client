@@ -14,10 +14,44 @@ class ViewOrders extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}		
+		this.state = {
+			data: []
+		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/orders/purchase', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/orders/purchase', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -56,29 +90,29 @@ class ViewOrders extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
+				    {this.state.data.map(order =>
 				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
+				        <Table.Cell>{order.id}</Table.Cell>
 				        <Table.Cell>
 					       <CustomerInfo/>
 						</Table.Cell>
 						<Table.Cell>
 					       <OrderInfo/>
 						</Table.Cell>
+				        <Table.Cell>{order.delivery_address}</Table.Cell>
+				        <Table.Cell>{order.zip_code}</Table.Cell>
+				        <Table.Cell>{order.order_timestamp}</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
 				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
+				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrder/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>
 				        </Table.Cell>
-				      </Table.Row>  
+				      </Table.Row> 
+				    )} 
 				    </Table.Body>
 
 				    <Table.Footer>
