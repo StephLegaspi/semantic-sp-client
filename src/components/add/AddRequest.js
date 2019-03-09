@@ -14,7 +14,6 @@ export default class AddRequest extends Component {
     super(props);
  
     this.state = {
-      date: '',
       package_options: [],
       package_options2: [],
 
@@ -22,17 +21,72 @@ export default class AddRequest extends Component {
       motif_options2: [],
 
       menu_options: [],
-      menu_options2: []
+      menu_options2: [],
+      
+      date: '',
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      email_address: '',
+      contact_number: '',
+      event_type: '',
+      number_of_persons: '',
+      event_location: '',
+      package_id: '',
+      motif_id: '',
+      menu_id: ''
 
     };
 
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleMiddleNameChange = this.handleMiddleNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleContactChange = this.handleContactChange.bind(this);
+    this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
+    this.handleEventLocationChange = this.handleEventLocationChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handlePackageChange = this.handlePackageChange.bind(this);
+    this.handleMotifChange = this.handleMotifChange.bind(this);
+    this.handleMenuChange = this.handleMenuChange.bind(this);
+    this.handlePersonsChange = this.handlePersonsChange.bind(this);
+
+    this.stateOptions = [
+      {text: 'Debut', value: 'debut'},
+      {text: 'Wedding', value: 'wedding'}
+    ]
   }
+
+  handleFirstNameChange(e) { this.setState({first_name: e.target.value}); }
+  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value}); }
+  handleLastNameChange(e) { this.setState({last_name: e.target.value}); }
+  handleEmailChange(e) { this.setState({email_address: e.target.value}); }
+  handleContactChange(e) { this.setState({contact_number: e.target.value}); }
+  handleEventLocationChange(e) { this.setState({event_location: e.target.value}); }
+  handlePersonsChange(e) { this.setState({number_of_persons: e.target.value}); }
  
-  handleChange = (event, {name, value}) => {
+  handleDateChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
     }
   }
+
+  handlePackageChange = (e, { value }) => {
+    this.setState({package_id: value});
+  }
+
+  handleMotifChange = (e, { value }) => {
+    this.setState({motif_id: value});
+  }
+
+  handleMenuChange = (e, { value }) => {
+    this.setState({menu_id: value});
+  }
+
+  handleEventTypeChange = (e, { value }) => {
+    this.setState({menu_id: value});
+  }
+
 
   componentDidMount() {
         let self = this;
@@ -79,12 +133,46 @@ export default class AddRequest extends Component {
         })
   }
 
+  handleSubmit = () => {
+        console.log("clicked");
+        const request = JSON.stringify({
+            customer_first_name: this.state.first_name, 
+            customer_middle_name: this.state.middle_name,
+            customer_last_name: this.state.last_name,
+            customer_email: this.state.email_address,
+            customer_contact_number: this.state.contact_number,
+            event_date: this.state.date,
+            event_location: this.state.event_location,
+            number_of_persons: this.state.number_of_persons,
+            package_id: this.state.package_id,
+            menu_id: this.state.menu_id,
+            motif_id: this.state.motif_id
+        })
+       
+        fetch(`http://localhost:3001/v1/requests`,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: request
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status){
+            console.log("Successfully added request");
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  }
+
   setPackageOptions = () => {
       var pkg_options=[];
       var option_obj = {value: '', text: ''};
       var i;
       for(i=0; i<this.state.package_options.length; i++){
-        option_obj['value'] = this.state.package_options[i].name;
+        option_obj['value'] = this.state.package_options[i].id;
         option_obj['text'] = this.state.package_options[i].name;
         pkg_options.push(option_obj);
         option_obj = {value: '', text: ''}
@@ -97,7 +185,7 @@ export default class AddRequest extends Component {
       var option_obj = {value: '', text: ''};
       var i;
       for(i=0; i<this.state.motif_options.length; i++){
-        option_obj['value'] = this.state.motif_options[i].name;
+        option_obj['value'] = this.state.motif_options[i].id;
         option_obj['text'] = this.state.motif_options[i].name;
         motif_options.push(option_obj);
         option_obj = {value: '', text: ''}
@@ -110,7 +198,7 @@ export default class AddRequest extends Component {
       var option_obj = {value: '', text: ''};
       var i;
       for(i=0; i<this.state.menu_options.length; i++){
-        option_obj['value'] = this.state.menu_options[i].name;
+        option_obj['value'] = this.state.menu_options[i].id;
         option_obj['text'] = this.state.menu_options[i].name;
         menu_options.push(option_obj);
         option_obj = {value: '', text: ''}
@@ -131,33 +219,33 @@ export default class AddRequest extends Component {
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>First Name</label>
-                    <Input placeholder='First Name'/>
+                    <Input placeholder='First Name' onChange={this.handleFirstNameChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Middle Name</label>
-                    <Input placeholder='Middle Name'/>
+                    <Input placeholder='Middle Name' onChange={this.handleMiddleNameChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Last Name</label>
-                    <Input placeholder='Last Name'/>
+                    <Input placeholder='Last Name' onChange={this.handleLastNameChange}/>
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Email Address</label>
-                    <Input placeholder='Email Address'/>
+                    <Input placeholder='Email Address' onChange={this.handleEmailChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Contact Number</label>
-                    <Input placeholder='Contact Number'/>
+                    <Input placeholder='Contact Number' onChange={this.handleContactChange}/>
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Event Type</label>
-                    <Dropdown placeholder='Event Type' search selection options={this.stateOptions} />
+                    <Dropdown placeholder='Event Type' search selection options={this.stateOptions} onChange={this.handleEventTypeChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Event Date</label>
@@ -166,37 +254,37 @@ export default class AddRequest extends Component {
                       placeholder="Event Date"
                       value={this.state.date}
                       iconPosition="left"
-                      onChange={this.handleChange}
+                      onChange={this.handleDateChange}
                     />
                   </Form.Field>
                   <Form.Field>
                     <label>No. of Persons</label>
-                    <Input placeholder='No. of Persons'/>
+                    <Input placeholder='No. of Persons' onChange={this.handlePersonsChange}/>
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Field>
                   <label>Venue Address</label>
-                  <Input placeholder='Venue Address'/>
+                  <Input placeholder='Venue Address' onChange={this.handleEventLocationChange}/>
                 </Form.Field>
 
                  
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Catering Package</label>
-                    <Dropdown placeholder='Catering Package' search selection options={this.state.package_options2} />
+                    <Dropdown placeholder='Catering Package' search selection options={this.state.package_options2} onChange={this.handlePackageChange} />
                   </Form.Field>
                   <Form.Field>
                     <label>Event Motif</label>
-                    <Dropdown placeholder='Event Motif' search selection options={this.state.motif_options2} />
+                    <Dropdown placeholder='Event Motif' search selection options={this.state.motif_options2} onChange={this.handleMotifChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Food Menu</label>
-                    <Dropdown placeholder='Food Menu' search selection options={this.state.menu_options2} />
+                    <Dropdown placeholder='Food Menu' search selection options={this.state.menu_options2} onChange={this.handleMenuChange}/>
                   </Form.Field>
                 </Form.Group>
 
-                <SendButton/>
+                <SendButton handleAdd={this.handleSubmit}/>
               
             </Form>
          
