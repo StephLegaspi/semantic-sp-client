@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Image, Card } from 'semantic-ui-react'
+import { Image, Card,Input } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
-import SearchBarTable from '../searchBar/SearchBarTable.js'
 import AddAdmin from '../add/AddAdmin.js'
 import DeactivateModal from '../edit/DeactivateModal.js'
 import ActivateModal from '../edit/ActivateModal.js'
 
+import SearchBarButton from '../button/SearchBarButton.js'
+
 import '../../styles/view.css';
+import '../../styles/search-bar.css';
 import img_tree from '../../images/tree.jpg'
 
 class UserAdmins extends Component {
@@ -15,8 +17,15 @@ class UserAdmins extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			first_name: ""
 		}
+		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+	}
+
+	handleFirstNameChange(e) { 
+		this.setState({first_name: e.target.value}); 
+		console.log(this.state.first_name);
 	}
 
 	componentDidMount() {
@@ -51,11 +60,32 @@ class UserAdmins extends Component {
         })
     }
 
+    searchName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/administrators/search/' + this.state.first_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Admins'}/>
-				<SearchBarTable titleHolder={'Search customer name..'}/>
+				<div id='search-bar3'>
+					<Input style={{width: '40%'}} type='text' placeholder='Search administrator name' action>
+					    <input onChange={this.handleFirstNameChange}/>
+					    <SearchBarButton handleSearch={this.searchName}/>
+					</Input>
+				</div>
 
 				<AddAdmin handleUpdate={this.update}/>
 
