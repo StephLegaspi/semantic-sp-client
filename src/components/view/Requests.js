@@ -95,7 +95,7 @@ class ViewRequests extends Component {
 					       <CustomerInfo customer_id={request.customer_id}/>
 						</Table.Cell>
 						<Table.Cell>
-					       <InclusionInfo request_id={request.id} package_id={request.package_id} motif_id={request.motif_id} menu_id={request.menu_id}/>
+					       <InclusionInfo request_id={request.id}/>
 						</Table.Cell>
 				        <Table.Cell>{request.event_date}</Table.Cell>
 				        <Table.Cell>{request.event_location}</Table.Cell>
@@ -106,7 +106,7 @@ class ViewRequests extends Component {
 				        	<EditRequest/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
+				        	<DeleteModal data_id={request.id} table_name={'requests'} handleUpdate={this.update}/>
 				        </Table.Cell>
 				      </Table.Row>
 				    )}  
