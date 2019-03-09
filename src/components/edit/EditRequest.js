@@ -11,10 +11,18 @@ class EditRequest extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
+			status: this.props.data.status
 		}
 
-		this.requestStatusOptions = [{ key: 'pending', value: 'pending', text: 'Pending' }, { key: 'success', value: 'success', text: 'Successful' }, { key: 'unsuccessful', value: 'unsuccessful', text: 'Unsuccessful' } ]
+		this.handleStatusChange = this.handleStatusChange.bind(this);
+
+		this.requestStatusOptions = [{ key: 'pending', value: 'Pending', text: 'Pending' }, { key: 'successful', value: 'Successful', text: 'Successful' }, { key: 'unsuccessful', value: 'Unsuccessful', text: 'Unsuccessful' } ]
 	}
+
+	handleStatusChange = (e, { value }) => {
+	    this.setState({status: value});
+	}
+
 
 	onModal = () => {
 		this.setState({activeModal: true});
@@ -23,6 +31,29 @@ class EditRequest extends Component {
 	cancel = () => {
 		this.setState({activeModal: false});
 	}
+
+	submitEdit = () => {
+
+        const request = JSON.stringify({status: this.state.status})
+       
+        fetch(`http://localhost:3001/v1/requests/` + this.props.data.id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "PUT",
+            body: request
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status){
+            this.props.handleUpdate()
+            this.setState({activeModal: false})
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  }
 
 	render(){
 		return(
@@ -34,13 +65,13 @@ class EditRequest extends Component {
 
 					<Form.Field width={8}>
 	                    <label>Request Status</label>
-	                     <Dropdown placeholder='Request Status' defaultValue='pending' search selection options={this.requestStatusOptions} />
+	                     <Dropdown placeholder='Request Status' defaultValue={this.props.data.status} search selection options={this.requestStatusOptions} onChange={this.handleStatusChange}/>
 	                </Form.Field>
 	                <br/>
 	                <br/>
 	                <br/>
 	                <br/>
-				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
+				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}

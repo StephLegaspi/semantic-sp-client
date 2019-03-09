@@ -103,7 +103,7 @@ class ViewRequests extends Component {
 				        <Table.Cell>{request.request_timestamp}</Table.Cell>
 				        <Table.Cell>{request.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditRequest/>
+				        	<EditRequest data={request} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal data_id={request.id} table_name={'requests'} handleUpdate={this.update}/>
