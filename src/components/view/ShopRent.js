@@ -14,7 +14,9 @@ class ShopRent extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			data: []
+		}
 		this.toAddToCartRent = this.toAddToCartRent.bind(this);
 		this.toShoppingCartRent = this.toShoppingCartRent.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
@@ -27,6 +29,22 @@ class ShopRent extends Component {
 	toShoppingCartRent(e) {
 		this.props.history.push('/shopping-cart/rent');
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/products/rental', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -51,10 +69,11 @@ class ShopRent extends Component {
       			<div>
 			    	<div id='card-div2'>
 						<Card.Group itemsPerRow={4}>
+						{this.state.data.map(product =>
 						<Card id='card2'>
 							<Card.Content>
-						      <Card.Header>Stephanie Legaspi </Card.Header>
-						      <Card.Description >P 30.00 /pc</Card.Description>
+						      <Card.Header>{product.name}</Card.Header>
+						      <Card.Description >P {product.price}/pc</Card.Description>
 						    </Card.Content>
 						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
@@ -66,6 +85,7 @@ class ShopRent extends Component {
 						       </Button>
 						    </Card.Content>
 						</Card>
+						)}
 						</Card.Group>
 					</div> 
 			    </div>
