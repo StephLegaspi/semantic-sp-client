@@ -14,11 +14,18 @@ export default class AddRequest extends Component {
     super(props);
  
     this.state = {
-      date: ''
+      date: '',
+      package_options: [],
+      package_options2: [],
+
+      motif_options: [],
+      motif_options2: [],
+
+      menu_options: [],
+      menu_options2: []
 
     };
 
-    this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
   }
  
   handleChange = (event, {name, value}) => {
@@ -27,7 +34,89 @@ export default class AddRequest extends Component {
     }
   }
 
-  
+  componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/packages/names', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({package_options: result.data});
+            self.setPackageOptions();
+        }).catch(err => {
+          console.log(err);
+        })
+
+        fetch('http://localhost:3001/v1/event_motifs/names', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({motif_options: result.data});
+            self.setMotifOptions();
+        }).catch(err => {
+          console.log(err);
+        })
+
+        fetch('http://localhost:3001/v1/food_menus/names', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({menu_options: result.data});
+            self.setMenuOptions();
+        }).catch(err => {
+          console.log(err);
+        })
+  }
+
+  setPackageOptions = () => {
+      var pkg_options=[];
+      var option_obj = {value: '', text: ''};
+      var i;
+      for(i=0; i<this.state.package_options.length; i++){
+        option_obj['value'] = this.state.package_options[i].name;
+        option_obj['text'] = this.state.package_options[i].name;
+        pkg_options.push(option_obj);
+        option_obj = {value: '', text: ''}
+      }
+      this.setState({package_options2: pkg_options});
+  }
+
+  setMotifOptions = () => {
+      var motif_options=[];
+      var option_obj = {value: '', text: ''};
+      var i;
+      for(i=0; i<this.state.motif_options.length; i++){
+        option_obj['value'] = this.state.motif_options[i].name;
+        option_obj['text'] = this.state.motif_options[i].name;
+        motif_options.push(option_obj);
+        option_obj = {value: '', text: ''}
+      }
+      this.setState({motif_options2: motif_options});
+  }
+
+  setMenuOptions = () => {
+      var menu_options=[];
+      var option_obj = {value: '', text: ''};
+      var i;
+      for(i=0; i<this.state.menu_options.length; i++){
+        option_obj['value'] = this.state.menu_options[i].name;
+        option_obj['text'] = this.state.menu_options[i].name;
+        menu_options.push(option_obj);
+        option_obj = {value: '', text: ''}
+      }
+      this.setState({menu_options2: menu_options});
+  }
 
   render(){
     return(
@@ -95,15 +184,15 @@ export default class AddRequest extends Component {
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Catering Package</label>
-                    <Dropdown placeholder='Catering Package' search selection options={this.stateOptions} />
+                    <Dropdown placeholder='Catering Package' search selection options={this.state.package_options2} />
                   </Form.Field>
                   <Form.Field>
                     <label>Event Motif</label>
-                    <Dropdown placeholder='Event Motif' search selection options={this.stateOptions} />
+                    <Dropdown placeholder='Event Motif' search selection options={this.state.motif_options2} />
                   </Form.Field>
                   <Form.Field>
                     <label>Food Menu</label>
-                    <Dropdown placeholder='Food Menu' search selection options={this.stateOptions} />
+                    <Dropdown placeholder='Food Menu' search selection options={this.state.menu_options2} />
                   </Form.Field>
                 </Form.Group>
 
