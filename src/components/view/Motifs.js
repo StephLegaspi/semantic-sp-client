@@ -13,7 +13,9 @@ class Motifs extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			data: []
+		}
 
 		this.toMotifsPortfolio = this.toMotifsPortfolio.bind(this);
 	}
@@ -21,6 +23,22 @@ class Motifs extends Component {
 	toMotifsPortfolio(e) {
 		this.props.history.push('/motif-portfolio');
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/event_motifs', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -30,15 +48,17 @@ class Motifs extends Component {
       			
       			<div id='card-div2'>
 				<Card.Group itemsPerRow={4}>
+				{this.state.data.map(motif =>
 				<Card id='card2'>
 				    <Card.Content>
-				      <Card.Header>Motif 1 </Card.Header>
+				      <Card.Header>{motif.name}</Card.Header>
 				    </Card.Content>
 					<Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 				    <Card.Content extra>
 				    	<ViewButton handleView={this.toMotifsPortfolio}/>
 				    </Card.Content>
 				</Card>
+				)}
 				</Card.Group>
 				</div>
 
