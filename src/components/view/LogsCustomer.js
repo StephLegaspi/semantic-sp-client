@@ -79,7 +79,7 @@ class Logs extends Component {
 				        <Table.Cell>{log.action}</Table.Cell>
 				        <Table.Cell>{log.log_timestamp}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
+				        	<DeleteModal data_id={log.id} table_name={'logs'} handleUpdate={this.update}/>
 				        </Table.Cell>
 				      </Table.Row>
 				   	)}
