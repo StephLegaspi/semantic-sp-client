@@ -36,6 +36,22 @@ class ProfileAdmin extends Component {
         })
     }
 
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/administrators/profile', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
@@ -46,8 +62,7 @@ class ProfileAdmin extends Component {
 				</div>
 
 				{this.state.data.map(admin =>
-				<div class="ui fluid segment" id='info-profile'>
-				
+				<div class="ui fluid segment" id='info-profile'>		
 					<p className='title-header'> {admin.first_name + " " + admin.middle_name + " " + admin.last_name}</p>
 					<p className='body-font'> ID: {admin.id} </p>
 					
@@ -64,10 +79,9 @@ class ProfileAdmin extends Component {
 							<EditPassword/>
 						</div>
 						<div style={{marginLeft: '95%'}}>
-							<EditAdmin/>
+							<EditAdmin data={admin} handleUpdate={this.update}/>
 						</div>
-					</div>
-				
+					</div>	
 				</div>
 				)}
 				
