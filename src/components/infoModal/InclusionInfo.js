@@ -10,9 +10,7 @@ class InclusionInfo extends Component {
 		this.state = {
 			modal: false,
 			data: [],
-			package_name: '',
-			motif_name: '',
-			menu_name: ''
+            inclusions: ''
 		}
 	}
 
@@ -40,7 +38,7 @@ class InclusionInfo extends Component {
         	console.log(err);
         })
 
-        fetch('http://localhost:3001/v1/packages/' + this.props.package_id, {
+        fetch('http://localhost:3001/v1/requests/inclusion/' + this.props.request_id, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -48,35 +46,9 @@ class InclusionInfo extends Component {
             }
             return response.json();
         }).then(function(result) {
-            self.setState({package_name: result.data[0].name});
+            self.setState({inclusions: result.data[0]});
         }).catch(err => {
-        	console.log(err);
-        })
-
-        fetch('http://localhost:3001/v1/event_motifs/' + this.props.motif_id, {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({motif_name: result.data[0].name});
-        }).catch(err => {
-        	console.log(err);
-        })
-
-        fetch('http://localhost:3001/v1/food_menus/' + this.props.menu_id, {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({menu_name: result.data[0].name});
-        }).catch(err => {
-        	console.log(err);
+            console.log(err);
         })
     }
 
@@ -99,9 +71,9 @@ class InclusionInfo extends Component {
 							    <Table.Body>
 							    {this.state.data.map(request =>
 							    	 <Table.Row>
-								        <Table.Cell>{request.package_id} - {this.state.package_name}</Table.Cell>
-								        <Table.Cell>{request.motif_id} - {this.state.motif_name}</Table.Cell>
-								        <Table.Cell>{request.menu_id} - {this.state.menu_name}</Table.Cell>
+								        <Table.Cell>{request.package_id} - {this.state.inclusions.Package}</Table.Cell>
+								        <Table.Cell>{request.motif_id} - {this.state.inclusions.EventMotif}</Table.Cell>
+								        <Table.Cell>{request.menu_id} - {this.state.inclusions.FoodMenu}</Table.Cell>
 								      </Table.Row> 
 								)}      
 							    </Table.Body>
