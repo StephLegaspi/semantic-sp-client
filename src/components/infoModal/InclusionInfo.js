@@ -9,7 +9,10 @@ class InclusionInfo extends Component {
 		super(props);
 		this.state = {
 			modal: false,
-			data: []
+			data: [],
+			package_name: '',
+			motif_name: '',
+			menu_name: ''
 		}
 	}
 
@@ -21,6 +24,61 @@ class InclusionInfo extends Component {
 	onClose = () => {
 		this.setState({modal: false})
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/requests/' + this.props.request_id, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+
+        fetch('http://localhost:3001/v1/packages/' + this.props.package_id, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({package_name: result.data[0].name});
+        }).catch(err => {
+        	console.log(err);
+        })
+
+        fetch('http://localhost:3001/v1/event_motifs/' + this.props.motif_id, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({motif_name: result.data[0].name});
+        }).catch(err => {
+        	console.log(err);
+        })
+
+        fetch('http://localhost:3001/v1/food_menus/' + this.props.menu_id, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({menu_name: result.data[0].name});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -37,23 +95,17 @@ class InclusionInfo extends Component {
 							        <Table.HeaderCell style={{width: '20%'}}>Food Menu</Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
+
 							    <Table.Body>
+							    {this.state.data.map(request =>
 							    	 <Table.Row>
-								        <Table.Cell>Cell3</Table.Cell>
-								        <Table.Cell>Cell3</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								      </Table.Row>
-								      <Table.Row>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								      </Table.Row>
-								      <Table.Row>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
+								        <Table.Cell>{request.package_id} - {this.state.package_name}</Table.Cell>
+								        <Table.Cell>{request.motif_id} - {this.state.motif_name}</Table.Cell>
+								        <Table.Cell>{request.menu_id} - {this.state.menu_name}</Table.Cell>
 								      </Table.Row> 
+								)}      
 							    </Table.Body>
+
 							    <Button className='close' onClick={this.onClose}> Close </Button>
 							    </Table>
 							    </div>

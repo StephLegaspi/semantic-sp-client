@@ -15,11 +15,43 @@ class ViewRequests extends Component {
 		super(props);
 
 		this.state = {
-			
+			data: []
 		}
 	
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'success', value: 'success', text: 'Successful' }, { key: 'unsuccessful', value: 'unsuccessful', text: 'Unsuccessful' } ]
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/requests', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/requests', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -56,28 +88,28 @@ class ViewRequests extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
+				    {this.state.data.map(request =>
 				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
+				        <Table.Cell>{request.id}</Table.Cell>
 				        <Table.Cell>
-					       <CustomerInfo/>
+					       <CustomerInfo customer_id={request.customer_id}/>
 						</Table.Cell>
 						<Table.Cell>
-					       <InclusionInfo/>
+					       <InclusionInfo request_id={request.id} package_id={request.package_id} motif_id={request.motif_id} menu_id={request.menu_id}/>
 						</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
+				        <Table.Cell>{request.event_date}</Table.Cell>
+				        <Table.Cell>{request.event_location}</Table.Cell>
+				        <Table.Cell>{request.number_of_persons}</Table.Cell>
+				        <Table.Cell>{request.request_timestamp}</Table.Cell>
+				        <Table.Cell>{request.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditRequest/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>
 				        </Table.Cell>
-				      </Table.Row>  
+				      </Table.Row>
+				    )}  
 				    </Table.Body>
 
 				    <Table.Footer>

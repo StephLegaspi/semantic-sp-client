@@ -54,7 +54,7 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-		  	curr_user: 1
+		  	curr_user: 0
 		}
 
 	}
