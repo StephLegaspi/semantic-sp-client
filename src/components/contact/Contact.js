@@ -10,33 +10,58 @@ class Contact extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			telephone_number: '',
+			mobile_number: '',
+			email_address: '',
+			business_address: ''
+		}
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 
 	}
 
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/contact_details', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({telephone_number: result.data[0].telephone_number});
+            self.setState({mobile_number: result.data[0].mobile_number});
+            self.setState({email_address: result.data[0].email_address});
+            self.setState({business_address: result.data[0].business_address});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
+				
 				<HeaderBar headerTitle={'Contact Us'}/>
+
 				<div className='contact-div-top'>
 					<Icon name='phone' size='big'/>
-					<label> +63 949 881 2448 </label>
+					<label> {this.state.telephone_number} </label>
 				</div>
 				<div className='contact-div'>
 					<Icon name='mobile alternate' size='big'/>
-					<label> +63 949 881 2448 </label>
+					<label> {this.state.mobile_number} </label>
 				</div>
 				<div className='contact-div'>
 					<Icon name='envelope' size='large'/>
-                	<label> leirajane@gmail.com </label>
+                	<label> {this.state.email_address} </label>
 				</div>
 				<div className='contact-div'>
 					<Icon name='location arrow' size='big'/>
-					<label> Pembo, Makati </label>
+					<label> {this.state.business_address} </label>
 				</div>
-
 				
 				<div className='form-div'>
 					<label> Do you have any inquiries? Send us a message. </label>
