@@ -11,16 +11,50 @@ class EditInventory extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
+			total_quantity: '',
+			date: ''
 		}
+		this.handleQuantityChange = this.handleQuantityChange.bind(this);
 	}
 
+	handleQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
+
 	onModal = () => {
+		this.getData();
 		this.setState({activeModal: true});
 	}
 
 	cancel = () => {
 		this.setState({activeModal: false});
 	}
+
+	getData = () => {
+		this.setState({total_quantity: this.props.data.total_quantity})
+	}
+
+	submitEdit = () => {
+
+        const inventory = JSON.stringify({total_quantity: this.state.total_quantity})
+       
+        fetch(`http://localhost:3001/v1/inventories/` + this.props.data.id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "PUT",
+            body: inventory
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status){
+            this.props.handleUpdate()
+            this.setState({activeModal: false})
+          }
+          this.getData()
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  	}
 
 	render(){
 		return(
@@ -29,24 +63,12 @@ class EditInventory extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-					<Form.Group widths='equal'>
-	                  <Form.Field>
+	                  <Form.Field width={8}>
 	                    <label>Total Quantity</label>
-	                    <Input placeholder='Total Quantity'/>
+	                    <Input placeholder='Total Quantity'defaultValue={this.props.data.total_quantity} onChange={this.handleQuantityChange}/>
 	                  </Form.Field>
-	                  <Form.Field>
-	                    <label>No. of Remaining Items</label>
-	                    <Input placeholder='No. of Remaining Items'/>
-	                  </Form.Field>
-	                </Form.Group>
-
 	                
-	                <Form.Field width={8}>
-	                    <label>Date of Stock Renewal</label>
-	                    <Input placeholder='Date of Stock Renewal'/>
-	                </Form.Field>
-	                
-				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
+				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}

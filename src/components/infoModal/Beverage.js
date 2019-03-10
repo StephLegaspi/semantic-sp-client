@@ -13,7 +13,40 @@ class Beverage extends Component {
 		}
 	}
 
+	componentDidMount(){
+		fetch(`http://localhost:3001/v1/food_menus/beverage/`+ this.props.menu_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
+	updateBeverage = () => {
+		fetch(`http://localhost:3001/v1/food_menus/beverage/`+ this.props.menu_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
 	onModal = () => {
+		this.updateBeverage();
 		this.setState({modal: true});
 	}
 
@@ -29,16 +62,16 @@ class Beverage extends Component {
 								<div>
 									<div className="open-box">
 										<h1 className='title-font'> Beverage/s </h1>
+
+										{this.state.data.map(menu =>
 										<List style={{marginLeft: '10%', color:'#16163a'}}>
 										    <List.Item>
 										      <List.Icon name='food' size='large'/>
-										      <List.Content>Beverage</List.Content>
+										      <List.Content>{menu.inclusion}</List.Content>
 										    </List.Item>
-										    <List.Item>
-										      <List.Icon name='food' size='large'/>
-										      <List.Content>Beverage</List.Content>
-										    </List.Item>
-										  </List>
+										</List>
+										)}
+
 								    	<Button  className='close' onClick={this.onClose}> Close </Button>
 								    </div>
 							    </div>

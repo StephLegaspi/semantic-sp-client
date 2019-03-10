@@ -30,7 +30,24 @@ class PackageInfo extends Component {
 			})
 	}
 
+	updateInclusion = () => {
+		fetch(`http://localhost:3001/v1/packages/inclusions/`+ this.props.pkg_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
 	onModal = () => {
+		this.updateInclusion();
 		this.setState({modal: true});
 	}
 

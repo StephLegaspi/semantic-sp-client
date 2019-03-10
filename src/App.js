@@ -54,7 +54,7 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-		  	curr_user: 0
+		  	curr_user: 1
 		}
 
 	}
@@ -150,7 +150,7 @@ class App extends Component {
 																			<MenusPortfolio   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/add-to-cart/purchase" render={(props) => {
+			<Route exact={true} path="/add-to-cart/purchase/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>

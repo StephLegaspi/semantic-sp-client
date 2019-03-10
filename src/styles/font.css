@@ -35,6 +35,12 @@
 	font-size: 22px;
 }
 
+.circle-font{
+	color: white;
+	text-align: center;
+	font-size: 90px;
+}
+
 .title-header-larger{
 	text-align: center;
 	color: #16163a;

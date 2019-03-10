@@ -133,8 +133,8 @@ class NavigationBar extends Component {
 				              </Dropdown.Menu>
 				            </Dropdown.Item>  	
 				          	<Dropdown.Item onClick={this.toPackagesTable}>Packages</Dropdown.Item>
-				            <Dropdown.Item onClick={this.toMotifsTable}>Motifs</Dropdown.Item>
-				            <Dropdown.Item onClick={this.toMenusTable}>Menus</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toMotifsTable}>Event Motifs</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toMenusTable}>Food Menus</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toContactDetails}>Contact</Dropdown.Item>
 				            <Dropdown.Item onClick={this.toFAQS}>FAQS</Dropdown.Item>
 				          </Dropdown.Menu>

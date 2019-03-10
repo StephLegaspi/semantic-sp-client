@@ -13,7 +13,40 @@ class Soup extends Component {
 		}
 	}
 
+	componentDidMount(){
+		fetch(`http://localhost:3001/v1/food_menus/soup/`+ this.props.menu_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
+	updateSoup = () => {
+		fetch(`http://localhost:3001/v1/food_menus/soup/`+ this.props.menu_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
 	onModal = () => {
+		this.updateSoup();
 		this.setState({modal: true});
 	}
 
@@ -29,16 +62,16 @@ class Soup extends Component {
 								<div>
 									<div className="open-box">
 										<h1 className='title-font'> Soup/s </h1>
+
+										{this.state.data.map(menu =>
 										<List style={{marginLeft: '10%', color:'#16163a'}}>
 										    <List.Item>
 										      <List.Icon name='food' size='large'/>
-										      <List.Content>Soup</List.Content>
+										      <List.Content>{menu.inclusion}</List.Content>
 										    </List.Item>
-										    <List.Item>
-										      <List.Icon name='food' size='large'/>
-										      <List.Content>Soup</List.Content>
-										    </List.Item>
-										  </List>
+										</List>
+										)}
+
 								    	<Button  className='close' onClick={this.onClose}> Close </Button>
 								    </div>
 							    </div>

@@ -14,7 +14,7 @@ export default class AddPackage extends Component {
         activeModal: false,
         name: "",
         price: "",
-        inclusion: []
+        inclusion: ""
       }
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handlePriceChange = this.handlePriceChange.bind(this);

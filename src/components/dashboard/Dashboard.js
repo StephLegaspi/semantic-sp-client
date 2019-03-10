@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Segment, Grid, Button } from 'semantic-ui-react'
+import { Segment, Grid } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
-import OutOfStockPurchase from '../infoModal/OutOfStockPurchase.js'
-import OutOfStockRental from '../infoModal/OutOfStockRental.js'
+import OutOfStock from '../infoModal/OutOfStock.js'
+import DashboardCircle from '../button/DashboardCircle.js'
 
 import '../../styles/font.css';
 import '../../styles/button.css';
@@ -44,11 +44,11 @@ class Dashboard extends Component {
               		<Grid.Row>
               			<Grid.Column width={8} >
 							<p className='body-font'>  Products for Purchase: </p>
-							<OutOfStockPurchase />
+							<OutOfStock category={'purchase'}/>
 						</Grid.Column>
 						<Grid.Column width={8}>
 							<p className='body-font'>  Products for Rental: </p>
-							<OutOfStockRental />
+							<OutOfStock category={'rental'}/>
 						</Grid.Column>
 					</Grid.Row>
 					</Grid>
@@ -58,12 +58,7 @@ class Dashboard extends Component {
 					<p className='title-header'> Requests</p>
 					<p className='body-font'>  Number of requests that are still pending: </p>
 					<br/>
-					<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toRequests}>
-	                    <Button.Content visible id='circle-visible'>10</Button.Content>
-	                    <Button.Content hidden className='label-font2'>
-	                      View
-                    	</Button.Content>
-                	</Button>
+					<DashboardCircle handleClick={this.toRequests} route={'requests/pending-count'}/>
 				</div>
 
 				
@@ -73,22 +68,12 @@ class Dashboard extends Component {
 					<Grid inverted divided stackable>
               		<Grid.Row>
               			<Grid.Column width={8} >
-							<p className='body-font'>  For Purchase: </p>
-							<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toOrders}>
-			                    <Button.Content visible id='circle-visible'>10</Button.Content>
-				                    <Button.Content hidden className='label-font2'>
-				                      View
-			                    </Button.Content>
-			                </Button>
+							<p className='body-font'>  Orders for Purchase: </p>
+							<DashboardCircle handleClick={this.toOrders} route={'orders/purchase/pending-count'}/>
 						</Grid.Column>
 						<Grid.Column width={8}>
-							<p className='body-font'>  For Rental: </p>
-							<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toOrderRentals}>
-			                    <Button.Content visible id='circle-visible'>10</Button.Content>
-				                    <Button.Content hidden className='label-font2'>
-				                      View
-			                    </Button.Content>
-			                </Button>
+							<p className='body-font'>  Orders for Rental: </p>
+							<DashboardCircle handleClick={this.toOrderRentals} route={'orders/rental/pending-count'}/>
 						</Grid.Column>
 					</Grid.Row>
 					</Grid>
@@ -98,12 +83,7 @@ class Dashboard extends Component {
 					<p className='title-header'> Rental</p>
 					<p className='body-font'>  Number of rental products that are already due: </p>
 					<br/>
-					<Button animated circular id='circle-dashboard' style={{marginLeft: '20%'}} onClick={this.toOrderRentals}>
-			                    <Button.Content visible id='circle-visible'>10</Button.Content>
-				                    <Button.Content hidden className='label-font2'>
-				                      View
-			                    </Button.Content>
-			        </Button>
+					<DashboardCircle handleClick={this.toOrderRentals} route={'orders/rental/pending-count'}/>
 				</div>
 
 			

@@ -12,8 +12,42 @@ class UserCustomers extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			data: []
+		}
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/customers', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/customers', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -23,19 +57,21 @@ class UserCustomers extends Component {
 
       			<div id='card-div'>
 				<Card.Group itemsPerRow={4}>
+
+				{this.state.data.map(customer =>
 				<Card id='card'>
 				    <Image src={img_tree} rounded size='small' />
 				    <Card.Content>
-				      <Card.Header>Stephanie Legaspi </Card.Header>
-				      <Card.Meta>10066165</Card.Meta>
-				      <Card.Description>sylegaspi@up.edu.ph</Card.Description>
-				      <Card.Description>09498812448</Card.Description>
+				      <Card.Header>{customer.first_name + " " + customer.middle_name + " " + customer.last_name} </Card.Header>
+				      <Card.Meta>ID: {customer.id}</Card.Meta>
+				      <Card.Description>Email: {customer.email_address}</Card.Description>
+				      <Card.Description>Contact Number: {customer.contact_number}</Card.Description>
 				    </Card.Content>
 				    <Card.Content extra>
-				      <CustomerProfile />
+				      <CustomerProfile customer_id={customer.id}/>
 				    </Card.Content>
 				</Card>
-
+				)}
 			
 				</Card.Group>
 				</div>

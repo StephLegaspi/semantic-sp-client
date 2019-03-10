@@ -11,11 +11,47 @@ class Logs extends Component {
 	constructor(props){
 		super(props);
 		
+		this.state = {
+			data: []
+		}
+
 		this.options = [
 		  { key: 'user_ID', text: 'User ID', value: 'user_ID' },
 		  { key: 'timestamp', text: 'Timestamp', value: 'timestamp' },
 		]
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/logs/admin', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/logs/admin', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 
 	render() {
@@ -37,15 +73,17 @@ class Logs extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
+				    {this.state.data.map(log =>
 				      <Table.Row>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>{log.id}</Table.Cell>
+				        <Table.Cell>{log.user_id}</Table.Cell>
+				        <Table.Cell>{log.action}</Table.Cell>
+				        <Table.Cell>{log.log_timestamp}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
+				        	<DeleteModal data_id={log.id} table_name={'logs'} handleUpdate={this.update}/>
 				        </Table.Cell>
 				      </Table.Row>
+				    )}
 				    </Table.Body>
 
 				    <Table.Footer>

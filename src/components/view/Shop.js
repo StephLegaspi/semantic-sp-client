@@ -3,6 +3,7 @@ import { Image, Card, Dropdown, Button } from 'semantic-ui-react'
 
 import SearchBarShop from '../searchBar/SearchBarShop.js'
 import CartButton from '../button/CartButton.js'
+import ShopButton from '../button/ShopButton.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
@@ -14,19 +15,37 @@ class Shop extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			data: [],
+		}
 		this.toAddToCart = this.toAddToCart.bind(this);
 		this.toShoppingCart = this.toShoppingCart.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
-	toAddToCart(e) {
-		this.props.history.push('/add-to-cart/purchase');
+	toAddToCart(id) {
+		this.props.history.push('/add-to-cart/purchase/' + id);
 	}
 
 	toShoppingCart(e) {
 		this.props.history.push('/shopping-cart/purchase');
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/products/purchase', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -51,21 +70,18 @@ class Shop extends Component {
       			<div>
 			    	<div id='card-div2'>
 						<Card.Group itemsPerRow={4}>
+						{this.state.data.map(product =>
 						<Card id='card2'>
 							<Card.Content>
-						      <Card.Header>Stephanie Legaspi </Card.Header>
-						      <Card.Description >P 30.00 /pc</Card.Description>
+						      <Card.Header>{product.name}</Card.Header>
+						      <Card.Description >P {product.price} /pc</Card.Description>
 						    </Card.Content>
 						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
-						       <Button animated  id='view-button' onClick={this.toAddToCart}>
-						       		<Button.Content visible>View</Button.Content>
-						       		 <Button.Content hidden>
-				                       <i class="cart icon"></i>
-				                    </Button.Content>
-						       </Button>
+						       <ShopButton handleView={this.toAddToCart} prod_id={product.id}/>
 						    </Card.Content>
 						</Card>
+						)}
 						</Card.Group>
 					</div> 
 			    </div>

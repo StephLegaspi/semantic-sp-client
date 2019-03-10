@@ -12,13 +12,31 @@ class Menus extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			data: []
+		}
 		this.toMenusPortfolio = this.toMenusPortfolio.bind(this);
 	}
 
 	toMenusPortfolio(e) {
 		this.props.history.push('/menu-portfolio');
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/food_menus', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -28,14 +46,16 @@ class Menus extends Component {
       			
       			<div id='card-div2'>
 				<Card.Group itemsPerRow={4}>
+				{this.state.data.map(menu =>
 					<Card id='card'>
 						    <Card.Content>
-						      <Card.Header>Menu 1 </Card.Header>
+						      <Card.Header>{menu.name}</Card.Header>
 						    </Card.Content>
 						    <Card.Content extra>
 						    	<ViewButton handleView={this.toMenusPortfolio}/>
 						    </Card.Content>
 					</Card>
+				)}
 				</Card.Group>
 				</div>
 

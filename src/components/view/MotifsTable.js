@@ -13,10 +13,44 @@ class MotifsTable extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}		
+		this.state = {
+			data: []
+		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/event_motifs', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/event_motifs', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -24,7 +58,7 @@ class MotifsTable extends Component {
 				<HeaderBar headerTitle={'Motifs'}/>
 				<SearchBarTable titleHolder={'Search motif name..'}/>
 
-				<AddMotif/>
+				<AddMotif handleUpdate={this.update}/>
 
 				<div className='table-div'>
 				<Table celled>
@@ -39,17 +73,19 @@ class MotifsTable extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
-				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<EditMotif/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
-				        </Table.Cell>
-				      </Table.Row>  
+				    {this.state.data.map(motif =>
+					    <Table.Row>
+					        <Table.Cell>{motif.id}</Table.Cell>
+					        <Table.Cell>{motif.name}</Table.Cell>
+					        <Table.Cell>{motif.description}</Table.Cell>
+					        <Table.Cell textAlign='center'>
+					        	<EditMotif data={motif} handleUpdate={this.update}/>
+					        </Table.Cell>
+					        <Table.Cell textAlign='center'>
+					        	<DeleteModal data_id={motif.id} table_name={'event_motifs'} handleUpdate={this.update}/>
+					        </Table.Cell>
+					    </Table.Row>  
+					)} 
 				    </Table.Body>
 
 				    <Table.Footer>

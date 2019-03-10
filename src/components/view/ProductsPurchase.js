@@ -35,13 +35,29 @@ class ProductsTable extends Component {
         })
     }
 
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/products/purchase', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Purchase Products'}/>
 				<SearchBarTable titleHolder={'Search product name..'}/>
 
-				<AddProduct/>
+				<AddProduct handleUpdate={this.update} category={'purchase'}/>
 			
 
       			<div className='table-div'>
@@ -53,6 +69,7 @@ class ProductsTable extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Name</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Description</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Price</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Available for display</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -60,7 +77,6 @@ class ProductsTable extends Component {
 
 				    <Table.Body>
 				    {this.state.data.map(product =>
-			          
 			          <Table.Row>
 			            <Table.Cell>{product.id}</Table.Cell>
 			            <Table.Cell>
@@ -71,8 +87,13 @@ class ProductsTable extends Component {
 			            <Table.Cell>{product.name}</Table.Cell>
 			            <Table.Cell>{product.description}</Table.Cell>
 			            <Table.Cell>{product.price}</Table.Cell>
-			            <Table.Cell><EditProduct/></Table.Cell>
-			            <Table.Cell><DeleteModal/></Table.Cell>
+			            <Table.Cell>{product.display_product ? "Yes" : "No"}</Table.Cell>
+			            <Table.Cell>
+			            	<EditProduct handleUpdate={this.update} data={product}/>
+			            </Table.Cell>
+			            <Table.Cell>
+			            	<DeleteModal data_id={product.id} table_name={'products'} handleUpdate={this.update}/>
+			            </Table.Cell>
 
 				      </Table.Row>
 			        )}

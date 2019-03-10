@@ -2,49 +2,30 @@
 	float: left;
 	width: 45%;
 	margin-left: 10%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border: none;
 	margin-top: 4%;
 	padding: 30px;
 }
 
-.count {
-    border-radius: 50%;
-   /* behavior: url(PIE.htc);  remove if you don't care about IE8 */
 
-    width: 200px;
-    height: 200px;
-    padding: 87px 0px;
-
-    background: #191167;
-    text-align: center;
-    color: white;
-    font-size: 80px;
-
-    margin-left: 11%;
-}
 
 
 #circle-dashboard {
+    padding-top: 12%;
 	background-color: #191167;
     width: 200px;
     height: 200px;
-    text-align: center;
     color: white;
     
-    margin-left: 11%;
+    margin-left: 18%;
 }
 
-#circle-visible{
-	padding: 10px 30px;
-	font-size: 80px;
-}
 
 #div-dashboard2{
-
 	float: right;
 	width: 32%;
 	margin-right: 10%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border: none;
 	margin-top: 4%;
 	padding: 30px;
 }

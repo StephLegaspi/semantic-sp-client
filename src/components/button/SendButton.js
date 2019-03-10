@@ -6,12 +6,12 @@ import '../../styles/button.css';
 class SendButton extends Component{
 
 	callClick = () => {
-		this.props.handleAddtoCart();
+		this.props.handleAdd();
 	}
 
 	render(){
 		return(
-			<Button id='send-button'>
+			<Button id='send-button' onClick={this.callClick}>
 			    Send
 			 </Button>
 		);

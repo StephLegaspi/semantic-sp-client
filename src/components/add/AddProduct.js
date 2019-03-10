@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Radio, Checkbox } from 'semantic-ui-react'
+import { Button, Form, Input, Checkbox } from 'semantic-ui-react'
 
 import AddButton from '../button/AddButton.js'
 
@@ -11,11 +11,25 @@ export default class AddProduct extends Component {
     super();
     this.state = {
       activeModal: false,
+      name: "",
+      price: "",
+      total_quantity: "",
+      description: "",
+      display_product: 0
     }
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleTotalQuantityChange = this.handleTotalQuantityChange.bind(this);
+    this.handleDisplayChange = this.handleDisplayChange.bind(this);
   }
 
-  state = {}
-  handleChange = (e, { value }) => this.setState({ value });
+  handleNameChange(e) { this.setState({name: e.target.value}); }
+  handlePriceChange(e) { this.setState({price: e.target.value}); }
+  handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
+  handleDescriptionChange(e) { this.setState({description: e.target.value}); }
+  handleDisplayChange(e) { this.setState({display_product: 1}); }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -25,8 +39,29 @@ export default class AddProduct extends Component {
     this.setState({activeModal: false});
   }
 
+  handleSubmit = () => {
+        const prod = JSON.stringify({name: this.state.name, price: this.state.price, total_quantity: this.state.total_quantity, description: this.state.description,display_product: this.state.display_product})
+       
+        fetch(`http://localhost:3001/v1/products/` + this.props.category ,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: prod
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status){
+            this.setState({activeModal: false})
+            this.props.handleUpdate()
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  }
+
   render(){
-    const { value } = this.state
     return(
     <div>
     <AddButton handleAdd={this.onModal}/>
@@ -35,23 +70,23 @@ export default class AddProduct extends Component {
             <Form className='form-style-smaller'>
           <Form.Field>
                     <label>Product Name</label>
-                    <Input placeholder='Product Name'/>
+                    <Input placeholder='Product Name'onChange={this.handleNameChange}/>
                   </Form.Field>
 
                   <Form.Group widths='equal'>
                     <Form.Field>
                       <label>Price</label>
-                      <Input placeholder='Price'/>
+                      <Input placeholder='Price' onChange={this.handlePriceChange}/>
                     </Form.Field>
                     <Form.Field>
                       <label>Total Quantity</label>
-                      <Input placeholder='Total Quantity'/>
+                      <Input placeholder='Total Quantity' onChange={this.handleTotalQuantityChange}/>
                     </Form.Field>
                   </Form.Group>
 
                   <Form.Field>
                       <label>Description</label>
-                      <Input placeholder='Description'/>
+                      <Input placeholder='Description' onChange={this.handleDescriptionChange}/>
                     </Form.Field>
 
                   <Form.Group inline>
@@ -68,31 +103,13 @@ export default class AddProduct extends Component {
                   </Form.Group>   
 
                   <Form.Group inline>
-                    <label>Available for: </label>
-                    <Form.Field
-                      control={Radio}
-                      label='Sale'
-                      value='sale'
-                      checked={value === 'sale'}
-                      onChange={this.handleChange}
-                    />
-                    <Form.Field
-                      control={Radio}
-                      label='Rent'
-                      value='rent'
-                      checked={value === 'rent'}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Group>
-
-                  <Form.Group inline>
                     <label>Display Product: </label>
                     <Form.Field>
-                      <Checkbox toggle />
+                      <Checkbox slider onChange={this.handleDisplayChange}/>
                     </Form.Field>
                   </Form.Group>
 
-            <Button type='submit' onClick={this.editDone} id='edit-button2'>Add</Button>
+            <Button type='submit' onClick={this.handleSubmit} id='edit-button2'>Add</Button>
             <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
         </Form>
           </div>)}

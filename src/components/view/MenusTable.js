@@ -19,10 +19,44 @@ class MenusTable extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}		
+		this.state = {
+			data: []
+		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/food_menus', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/food_menus', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -30,7 +64,7 @@ class MenusTable extends Component {
 				<HeaderBar headerTitle={'Menus'}/>
 				<SearchBarTable titleHolder={'Search menu name..'}/>
 
-				<AddMenu/>
+				<AddMenu handleUpdate={this.update}/>
 
 				<div className='table-div'>
 				<Table single line>
@@ -50,34 +84,36 @@ class MenusTable extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
+				    {this.state.data.map(menu =>
 				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>{menu.id}</Table.Cell>
+				        <Table.Cell>{menu.name}</Table.Cell>
 				        <Table.Cell>
-				        	<MainCourse />
+				        	<MainCourse menu_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell>
-				        	<Appetizer />
+				        	<Appetizer menu_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell>
-				        	<Dessert />
+				        	<Dessert menu_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell>
-				        	<Soup />
+				        	<Soup menu_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell>
-				        	<Beverage />
+				        	<Beverage menu_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell>
-				        	<OtherMenu />
+				        	<OtherMenu menu_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditMenu/>
+				        	<EditMenu data={menu} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
+				        	<DeleteModal data_id={menu.id} table_name={'food_menus'} handleUpdate={this.update}/>
 				        </Table.Cell>
-				      </Table.Row>  
+				      </Table.Row>
+				    )}  
 				    </Table.Body>
 
 				    <Table.Footer>

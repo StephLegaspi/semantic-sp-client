@@ -11,16 +11,56 @@ class EditFAQ extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
+			question: "",
+        	answer: ""
 		}
+
+		this.handleQuestionChange = this.handleQuestionChange.bind(this);
+    	this.handleAnswerChange = this.handleAnswerChange.bind(this);
 	}
 
+	handleQuestionChange(e){ this.setState({question: e.target.value}); }
+	handleAnswerChange(e){ this.setState({answer: e.target.value}); }
+
 	onModal = () => {
+		this.getData();
 		this.setState({activeModal: true});
 	}
 
 	cancel = () => {
 		this.setState({activeModal: false});
 	}
+
+	getData = () => {
+
+		this.setState({question: this.props.data.question})
+		this.setState({answer: this.props.data.answer})
+	}
+
+	submitEdit = () => {
+
+        const faq = JSON.stringify({question: this.state.question, answer: this.state.answer})
+       
+        fetch(`http://localhost:3001/v1/FAQs/` + this.props.data.id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "PUT",
+            body: faq
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status){
+            this.props.handleUpdate()
+            this.setState({activeModal: false})
+          }
+          this.getData()
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+ 	}
+
 
 	render(){
 		return(
@@ -31,14 +71,14 @@ class EditFAQ extends Component {
 	      		<Form className='forms'>
 					<Form.Field>
 	                    <label>Question</label>
-	                    <TextArea placeholder='Question' style={{ minHeight: 100 }} />
+	                    <TextArea placeholder={this.props.data.question} style={{ minHeight: 100 }} onChange={this.handleQuestionChange}/>
 	                  </Form.Field>
 	                  <Form.Field>
 	                    <label>Answer</label>
-	                    <TextArea placeholder='Answer' style={{ minHeight: 100 }} />
+	                    <TextArea placeholder={this.props.data.answer} style={{ minHeight: 100 }} onChange={this.handleAnswerChange}/>
 	                  </Form.Field>
 
-				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
+				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
