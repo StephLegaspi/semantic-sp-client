@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Card, Dropdown, Button } from 'semantic-ui-react'
+import { Image, Card, Dropdown} from 'semantic-ui-react'
 
 import SearchBarShop from '../searchBar/SearchBarShop.js'
 import CartButton from '../button/CartButton.js'

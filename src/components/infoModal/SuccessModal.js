@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 
-import DeleteButton from '../button/DeleteButton.js'
-
 import '../../styles/delete.css';
 import '../../styles/button.css';
 
