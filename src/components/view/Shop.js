@@ -78,7 +78,7 @@ class Shop extends Component {
 						    </Card.Content>
 						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
-						       <ShopButton handleView={this.toAddToCart} prod_id={product.id}/>
+						       <ShopButton handleView={this.toAddToCart} data_id={product.id}/>
 						    </Card.Content>
 						</Card>
 						)}

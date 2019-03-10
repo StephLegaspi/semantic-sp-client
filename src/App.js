@@ -178,7 +178,7 @@ class App extends Component {
 																			<ShoppingCartRent   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/package-inclusion" render={(props) => {
+			<Route exact={true} path="/package-inclusion/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>

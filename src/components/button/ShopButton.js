@@ -6,7 +6,7 @@ import '../../styles/button.css';
 class ShopButton extends Component{
 
 	callClick = () => {
-		this.props.handleView(this.props.prod_id);
+		this.props.handleView(this.props.data_id);
 	}
 
 	render(){

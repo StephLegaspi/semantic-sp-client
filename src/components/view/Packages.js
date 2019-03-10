@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card } from 'semantic-ui-react'
 
-import ViewButton from '../button/ViewButton.js'
+import ShopButton from '../button/ShopButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
@@ -18,8 +18,8 @@ class Packages extends Component {
 		this.toPackageInclusion = this.toPackageInclusion.bind(this);
 	}
 
-	toPackageInclusion(e) {
-		this.props.history.push('/package-inclusion');
+	toPackageInclusion(id) {
+		this.props.history.push('/package-inclusion/' + id);
 	}
 
 	componentDidMount() {
@@ -50,10 +50,10 @@ class Packages extends Component {
 					<Card id='card'>
 					    <Card.Content>
 					      <Card.Header>{pkg.name} </Card.Header>
-					      <Card.Description>{pkg.price}</Card.Description>
+					      <Card.Description>P {pkg.price}</Card.Description>
 					    </Card.Content>
 					    <Card.Content extra>
-					    	<ViewButton handleView={this.toPackageInclusion}/>
+					    	<ShopButton handleView={this.toPackageInclusion} data_id={pkg.id}/>
 					    </Card.Content>
 					</Card>
 					)}
