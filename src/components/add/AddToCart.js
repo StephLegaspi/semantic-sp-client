@@ -37,9 +37,9 @@ class AddToCart extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({prod_id: this.props.match.params.id});
         let self = this;
-        fetch('http://localhost:3001/v1/products/' + self.state.prod_id ,{
+    
+        fetch('http://localhost:3001/v1/products/' + self.props.match.params.id ,{
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -48,11 +48,12 @@ class AddToCart extends Component {
             return response.json();
         }).then(function(result) {
             self.setState({data: result.data});
+            self.setState({prod_id: result.data[0].id});
         }).catch(err => {
         	console.log(err);
         })
 
-        fetch('http://localhost:3001/v1/products/' + self.state.prod_id + '/color' ,{
+        fetch('http://localhost:3001/v1/products/' + self.props.match.params.id + '/color' ,{
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -89,8 +90,8 @@ class AddToCart extends Component {
   	}
 
   	addCartProduct = () => {
-		/*ADD SHOPPING CART PRODUCTS*/
-		const prod = JSON.stringify({
+		    /*ADD SHOPPING CART PRODUCTS*/
+		    const prod = JSON.stringify({
             product_quantity: this.state.product_quantity, 
             product_color_id: this.state.product_color_id,
             shopping_cart_id : this.state.cart_id,
