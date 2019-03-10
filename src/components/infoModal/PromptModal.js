@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import '../../styles/delete.css';
 import '../../styles/button.css';
 
-class DeleteModal extends Component {
+class PromptModal extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -15,7 +15,7 @@ class DeleteModal extends Component {
 
 	cancel = () => {
 		this.setState({activeModal: false});
-		this.props.changeSuccess();
+		this.props.changePrompt();
 	}
 
 	render(){
@@ -25,7 +25,7 @@ class DeleteModal extends Component {
 	      	<div className='delete-modal'>
 	      		<div className='open-delete'>
 
-					<h4> Request has been successfuly sent! </h4>
+					<h4> {this.props.message} </h4>
 	                <br/>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Okay</Button>
 				</div>
@@ -35,4 +35,4 @@ class DeleteModal extends Component {
 	}
 }
 
-export default DeleteModal;
+export default PromptModal;

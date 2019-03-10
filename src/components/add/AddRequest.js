@@ -5,7 +5,7 @@ import { DateInput } from 'semantic-ui-calendar-react';
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
 import Footer from '../footer/Footer.js'
-import SuccessModal from '../infoModal/SuccessModal.js'
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 
@@ -306,7 +306,7 @@ export default class AddRequest extends Component {
                 </Form.Group>
 
                 <SendButton handleAdd={this.handleSubmit}/>
-                {this.state.success ? <SuccessModal changeSuccess={this.setSuccess} modalStatus={true}/> : ''}
+                {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Request has been successfuly sent!'}/> : ''}
             </Form>
          
         </div>
