@@ -12,7 +12,7 @@ import '../../styles/view.css';
 import '../../styles/search-bar.css';
 import img_tree from '../../images/tree.jpg'
 
-class UserAdmins extends Component {
+class SearchAdmin extends Component {
 	constructor(props){
 		super(props);
 
@@ -26,6 +26,7 @@ class UserAdmins extends Component {
 
 	toSearchAdmin() {
 		this.props.history.push('/user-admins/search/' + this.state.first_name);
+		this.update()
 	}
 
 	handleFirstNameChange(e) { 
@@ -34,7 +35,8 @@ class UserAdmins extends Component {
 
 	componentDidMount() {
         let self = this;
-        fetch('http://localhost:3001/v1/administrators', {
+
+        fetch('http://localhost:3001/v1/administrators/search/' + self.props.match.params.name, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -50,7 +52,7 @@ class UserAdmins extends Component {
 
     update = () => {
         let self = this;
-        fetch('http://localhost:3001/v1/administrators', {
+        fetch('http://localhost:3001/v1/administrators/search/' + self.state.first_name, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -63,6 +65,7 @@ class UserAdmins extends Component {
         	console.log(err);
         })
     }
+
 
 	render() {
 		return (
@@ -108,4 +111,4 @@ class UserAdmins extends Component {
 
 }
 
-export default UserAdmins;
+export default SearchAdmin;

@@ -45,6 +45,7 @@ import ContactDetails from './components/view/ContactDetails.js';
 import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
 import Dashboard from './components/dashboard/Dashboard.js';
+import SearchAdmin from './components/view/SearchAdmin.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router, Redirect} from 'react-router-dom';
 
@@ -54,7 +55,7 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-		  	curr_user: 1
+		  	curr_user: 0
 		}
 
 	}
@@ -304,6 +305,13 @@ class App extends Component {
 							             								<div>
 							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
 																			<UserAdmins   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/user-admins/search/:name" render={(props) => {
+					             								return(
+							             								<div>
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
+																			<SearchAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/user-customers" render={(props) => {
