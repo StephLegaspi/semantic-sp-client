@@ -11,7 +11,7 @@ class AddCartButton extends Component{
 
 	render(){
 		return(
-			<Button class="ui labeled icon button" id='checkout-button'>
+			<Button class="ui labeled icon button" id='checkout-button' onClick={this.callClick}>
 			              <i class="cart icon"></i>
 			              Add to cart
 			 </Button>
