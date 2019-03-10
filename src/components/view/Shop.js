@@ -3,6 +3,7 @@ import { Image, Card, Dropdown, Button } from 'semantic-ui-react'
 
 import SearchBarShop from '../searchBar/SearchBarShop.js'
 import CartButton from '../button/CartButton.js'
+import ShopButton from '../button/ShopButton.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
@@ -15,15 +16,15 @@ class Shop extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
 		}
 		this.toAddToCart = this.toAddToCart.bind(this);
 		this.toShoppingCart = this.toShoppingCart.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
-	toAddToCart(e) {
-		this.props.history.push('/add-to-cart/purchase');
+	toAddToCart(id) {
+		this.props.history.push('/add-to-cart/purchase/' + id);
 	}
 
 	toShoppingCart(e) {
@@ -77,12 +78,7 @@ class Shop extends Component {
 						    </Card.Content>
 						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
-						       <Button animated  id='view-button' onClick={this.toAddToCart}>
-						       		<Button.Content visible>View</Button.Content>
-						       		 <Button.Content hidden>
-				                       <i class="cart icon"></i>
-				                    </Button.Content>
-						       </Button>
+						       <ShopButton handleView={this.toAddToCart} prod_id={product.id}/>
 						    </Card.Content>
 						</Card>
 						)}
