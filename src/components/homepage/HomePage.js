@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Image, Segment, Icon, Button, Grid } from 'semantic-ui-react'
 
+import ShopButton from '../button/ShopButton.js'
+import CircularButton from '../button/CircularButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 
@@ -13,7 +15,12 @@ class HomePage extends Component {
   constructor(props){
     super(props);
 
-    this.state = {}
+    this.state = {
+      packages_data: [],
+      motifs_data: [],
+      menus_data: [],
+      package_id: ''
+    }
 
     this.toMotifsPortfolio = this.toMotifsPortfolio.bind(this);
     this.toRequestPackage = this.toRequestPackage.bind(this);
@@ -24,8 +31,8 @@ class HomePage extends Component {
     this.toPackageInclusion = this.toPackageInclusion.bind(this);
   }
 
-  toMotifsPortfolio(e) {
-    this.props.history.push('/motif-portfolio');
+  toMotifsPortfolio(id) {
+    this.props.history.push('/motif-portfolio/' +id);
   }
 
   toRequestPackage(e) {
@@ -44,12 +51,54 @@ class HomePage extends Component {
     this.props.history.push('/menus');
   }
 
-  toMenuPortfolio(e) {
-    this.props.history.push('/menu-portfolio');
+  toMenuPortfolio(id) {
+    this.props.history.push('/menu-portfolio/' + id);
   }
 
-  toPackageInclusion(e) {
-    this.props.history.push('/package-inclusion');
+  toPackageInclusion(id) {
+    this.props.history.push('/package-inclusion/' + id);
+  }
+
+  componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/packages/three', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({packages_data: result.data});
+        }).catch(err => {
+          console.log(err);
+        })
+
+        fetch('http://localhost:3001/v1/event_motifs/four', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({motifs_data: result.data});
+        }).catch(err => {
+          console.log(err);
+        })
+
+        fetch('http://localhost:3001/v1/food_menus/three', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({menus_data: result.data});
+        }).catch(err => {
+          console.log(err);
+        })
   }
 
   render() {
@@ -70,38 +119,15 @@ class HomePage extends Component {
         <Segment vertical id='div-homepage-smaller'>
               <p className='title-header'> Catering Packages</p>
               <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
-              <Grid inverted divided stackable>
+
+
+              <Grid inverted divided stackable style={{marginLeft: '5%'}}>
                 <Grid.Row>
-                <Grid.Column width={4} style={{marginLeft: '10%'}}>
-                  <Button animated circular id='circle-homepage' onClick={this.toPackageInclusion} >
-                    <Button.Content visible>Package 1</Button.Content>
-                    <Button.Content visible className='label-font2'>P 1,750</Button.Content>
-                    <Button.Content hidden className='label-font2'>
-                      View
-                    </Button.Content>
-                  </Button>
+                {this.state.packages_data.map(pkg =>
+                <Grid.Column width={4} style={{marginLeft: '4%'}}>
+                  <CircularButton handleClick={this.toPackageInclusion} data={pkg} category={'package'}/>
                 </Grid.Column>
-
-                <Grid.Column width={4} >
-                  <Button animated circular id='circle-homepage' onClick={this.toPackageInclusion} style={{marginLeft: '5%'}}>
-                    <Button.Content visible>Package 1</Button.Content>
-                    <Button.Content visible className='label-font2'>P 1,750</Button.Content>
-                    <Button.Content hidden className='label-font2'>
-                      View
-                    </Button.Content>
-                  </Button>
-                </Grid.Column>
-
-                 <Grid.Column width={4} >
-                  <Button animated circular id='circle-homepage' onClick={this.toPackageInclusion} style={{marginLeft: '10%'}}>
-                    <Button.Content visible>Package 1</Button.Content>
-                    <Button.Content visible className='label-font2'>P 1,750</Button.Content>
-                    <Button.Content hidden className='label-font2'>
-                      View
-                    </Button.Content>
-                  </Button>
-                </Grid.Column>
-
+                )}
                 </Grid.Row>
               </Grid>
               <Button id='homepage-button' onClick={this.toPackages}> View More </Button>
@@ -112,79 +138,34 @@ class HomePage extends Component {
               <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
              
                 <div>
+                  {this.state.motifs_data.map(motif =>
                   <Image.Group >
                     <div class="container-img">
                       <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
-                      </div>
-                    </div>
-
-                     <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
+                      <div className="middle-img">
+                        <ShopButton handleView={this.toMotifsPortfolio} data_id={motif.id}/>
                       </div>
                     </div>
                   </Image.Group>
-
-                  <Image.Group size='big'>
-                    <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
-                      </div>
-                    </div>
-
-                     <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMotifsPortfolio}> View </Button>
-                      </div>
-                    </div>
-                  </Image.Group>
+                  )}
                 </div>
                 <Button id='homepage-button' onClick={this.toMotifs}> View More </Button>
         </Segment>
 
-        <Segment vertical id='div-homepage'>
-              <p className='title-header'> Food Menus </p>
+        <Segment vertical id='div-homepage-smaller'>
+              <p className='title-header'> Food Menus</p>
               <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
-             
-                <div style={{paddingLeft: '30px'}}>
-                  <Image.Group size='big'>
-                    <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
-                      </div>
-                    </div>
 
-                     <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
-                      </div>
-                    </div>
-                  </Image.Group>
-
-                  <Image.Group size='big'>
-                    <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
-                      </div>
-                    </div>
-
-                     <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
-                      <div class="middle-img">
-                        <Button id='homepage-button2' onClick={this.toMenuPortfolio}> View </Button>
-                      </div>
-                    </div>
-                  </Image.Group>
-                </div>
-                <Button id='homepage-button' onClick={this.toMenus}> View More </Button>
+              <Grid inverted divided stackable style={{marginLeft: '5%'}}>
+                <Grid.Row>
+                {this.state.menus_data.map(menu =>
+                <Grid.Column width={4} style={{marginLeft: '4%'}}>
+                  <CircularButton handleClick={this.toMenuPortfolio} data={menu} category={'menu'}/>
+                </Grid.Column>
+                )}
+                </Grid.Row>
+              </Grid>
+              <Button id='homepage-button' onClick={this.toMenus}> View More </Button>
         </Segment>
 
         <Segment vertical id='div-homepage-whole'>
