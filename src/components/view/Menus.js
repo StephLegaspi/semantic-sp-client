@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react'
 
 import '../../styles/view.css';
 
-import ViewButton from '../button/ViewButton.js'
+import ShopButton from '../button/ShopButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
@@ -18,8 +18,8 @@ class Menus extends Component {
 		this.toMenusPortfolio = this.toMenusPortfolio.bind(this);
 	}
 
-	toMenusPortfolio(e) {
-		this.props.history.push('/menu-portfolio');
+	toMenusPortfolio(id) {
+		this.props.history.push('/menu-portfolio/' + id);
 	}
 
 	componentDidMount() {
@@ -52,7 +52,7 @@ class Menus extends Component {
 						      <Card.Header>{menu.name}</Card.Header>
 						    </Card.Content>
 						    <Card.Content extra>
-						    	<ViewButton handleView={this.toMenusPortfolio}/>
+						    	<ShopButton handleView={this.toMenusPortfolio} data_id={menu.id}/>
 						    </Card.Content>
 					</Card>
 				)}

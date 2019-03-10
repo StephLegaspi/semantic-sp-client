@@ -143,7 +143,7 @@ class App extends Component {
 																			<MotifsPortfolio   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/menu-portfolio" render={(props) => {
+			<Route exact={true} path="/menu-portfolio/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
