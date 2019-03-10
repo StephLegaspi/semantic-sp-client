@@ -14,7 +14,7 @@ class ShopButton extends Component{
 			<Button animated  id='view-button' onClick={this.callClick} >
 						       		<Button.Content visible>View</Button.Content>
 						       		 <Button.Content hidden>
-				                       <i class="cart icon"></i>
+				                       <i class="magnify icon"></i>
 				                    </Button.Content>
 			 </Button>
 		);

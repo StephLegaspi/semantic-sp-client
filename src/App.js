@@ -136,7 +136,7 @@ class App extends Component {
 																			<SignUp   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/motif-portfolio" render={(props) => {
+			<Route exact={true} path="/motif-portfolio/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,1,0,0,0,0,0]}/>

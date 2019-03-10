@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Card } from 'semantic-ui-react'
 
-import ViewButton from '../button/ViewButton.js'
+import ShopButton from '../button/ShopButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
@@ -20,8 +20,8 @@ class Motifs extends Component {
 		this.toMotifsPortfolio = this.toMotifsPortfolio.bind(this);
 	}
 
-	toMotifsPortfolio(e) {
-		this.props.history.push('/motif-portfolio');
+	toMotifsPortfolio(id) {
+		this.props.history.push('/motif-portfolio/' + id);
 	}
 
 	componentDidMount() {
@@ -55,7 +55,7 @@ class Motifs extends Component {
 				    </Card.Content>
 					<Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 				    <Card.Content extra>
-				    	<ViewButton handleView={this.toMotifsPortfolio}/>
+				    	<ShopButton handleView={this.toMotifsPortfolio} data_id={motif.id}/>
 				    </Card.Content>
 				</Card>
 				)}
