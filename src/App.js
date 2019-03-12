@@ -105,6 +105,7 @@ class App extends Component {
 																			<SearchPackage   {...props} />
 							             								</div>)}}> 
 			</Route>
+			
 			<Route exact={true} path="/motifs" render={(props) => {
 					             								return(
 							             								<div>
