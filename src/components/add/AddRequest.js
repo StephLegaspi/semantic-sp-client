@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Dropdown} from 'semantic-ui-react'
+import { Form, Input, Dropdown, Message} from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -235,7 +235,11 @@ export default class AddRequest extends Component {
         
             
             <Form>
-              
+                <Message 
+                  error
+                  header="blabla"
+                  content="blaaaaaaaaaa"
+                />
 
                 <Form.Group widths='equal'>
                   <Form.Field>

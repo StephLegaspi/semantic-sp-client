@@ -6,7 +6,7 @@ import AddAdmin from '../add/AddAdmin.js'
 import DeactivateModal from '../edit/DeactivateModal.js'
 import ActivateModal from '../edit/ActivateModal.js'
 
-import SearchBarButton from '../button/SearchBarButton.js'
+import SearchBarTable from '../searchBar/SearchBarTable.js'
 
 import '../../styles/view.css';
 import '../../styles/search-bar.css';
@@ -68,12 +68,7 @@ class UserAdmins extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Admins'}/>
-				<div id='search-bar3'>
-					<Input style={{width: '40%'}} type='text' placeholder='Search administrator name' action>
-					    <input onChange={this.handleFirstNameChange}/>
-					    <SearchBarButton handleSearch={this.toSearchAdmin}/>
-					</Input>
-				</div>
+				<SearchBarTable titleHolder={'Search admin name..'} searchData={this.toSearchAdmin} inputChange={this.handleFirstNameChange}/>
 
 				<AddAdmin handleUpdate={this.update}/>
 
