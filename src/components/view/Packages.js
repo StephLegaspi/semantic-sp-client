@@ -49,22 +49,6 @@ class Packages extends Component {
         })
     }
 
-    update = () => {
-        let self = this;
-        fetch('http://localhost:3001/v1/packages', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({data: result.data});
-        }).catch(err => {
-        	console.log(err);
-        })
-    }
-
 	render() {
 		return (
 			<div>

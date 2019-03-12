@@ -9,7 +9,7 @@ import SearchBar from '../searchBar/SearchBar.js'
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'
 
-class Motifs extends Component {
+class SearchMotif extends Component {
 	constructor(props){
 		super(props);
 
@@ -33,11 +33,28 @@ class Motifs extends Component {
 
 	toSearchMotif() {
 		this.props.history.push('/motifs/search/' + this.state.motif_name);
+		this.update();
 	}
 
 	componentDidMount() {
         let self = this;
-        fetch('http://localhost:3001/v1/event_motifs', {
+        fetch('http://localhost:3001/v1/event_motifs/search/' + self.props.match.params.name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/event_motifs/search/' + self.state.motif_name, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -80,4 +97,4 @@ class Motifs extends Component {
 
 }
 
-export default Motifs;
+export default SearchMotif;
