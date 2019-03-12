@@ -12,8 +12,26 @@ class FAQsPage extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			data: []
+		}
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/FAQs', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -22,20 +40,14 @@ class FAQsPage extends Component {
 
 				<div class="ui fluid segment" id='faqs-holder'>
 					<List as='ul'>
+					{this.state.data.map(faq =>
 						<List.Item>
-							<List.Content as='li' className='paragraph-font'>How do I order?</List.Content>
+							<List.Content as='li' className='paragraph-font'>{faq.question}?</List.Content>
 							<List.Content>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lectus massa, varius tincidunt tortor scelerisque, condimentum lacinia lorem. Ut vestibulum eget nibh id gravida. Mauris luctus tincidunt tempus. Integer molestie leo ante, gravida varius mauris imperdiet vel. Pellentesque enim mauris, consequat ac lobortis eu, elementum nec tortor. 
+								{faq.answer}
 							</List.Content>
 						</List.Item>
-
-						<List.Item>
-							<List.Content as='li' className='paragraph-font'>How do I order?</List.Content>
-							<List.Content>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lectus massa, varius tincidunt tortor scelerisque, condimentum lacinia lorem. Ut vestibulum eget nibh id gravida. Mauris luctus tincidunt tempus. Integer molestie leo ante, gravida varius mauris imperdiet vel. Pellentesque enim mauris, consequat ac lobortis eu, elementum nec tortor. 
-							</List.Content>
-						</List.Item>
-						
+					)}
 					</List>
 				</div>
 				
