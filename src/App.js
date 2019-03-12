@@ -45,10 +45,10 @@ import ContactDetails from './components/view/ContactDetails.js';
 import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
 import Dashboard from './components/dashboard/Dashboard.js';
-import SearchAdmin from './components/view/SearchAdmin.js';
-import SearchPackage from './components/view/SearchPackage.js';
-import SearchMotif from './components/view/SearchMotif.js';
-import SearchMenu from './components/view/SearchMenu.js';
+import SearchAdmin from './components/search/SearchAdmin.js';
+import SearchPackage from './components/search/SearchPackage.js';
+import SearchMotif from './components/search/SearchMotif.js';
+import SearchMenu from './components/search/SearchMenu.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router, Redirect} from 'react-router-dom';
 
