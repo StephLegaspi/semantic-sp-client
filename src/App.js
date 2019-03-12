@@ -48,6 +48,7 @@ import Dashboard from './components/dashboard/Dashboard.js';
 import SearchAdmin from './components/view/SearchAdmin.js';
 import SearchPackage from './components/view/SearchPackage.js';
 import SearchMotif from './components/view/SearchMotif.js';
+import SearchMenu from './components/view/SearchMenu.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router, Redirect} from 'react-router-dom';
 
@@ -123,6 +124,13 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
 																			<Menus   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/menus/search/:name" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
+																			<SearchMenu   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/request-package" render={(props) => {

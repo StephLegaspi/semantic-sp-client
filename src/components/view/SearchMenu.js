@@ -8,7 +8,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
-class Menus extends Component {
+class SearchMenu extends Component {
 	constructor(props){
 		super(props);
 
@@ -25,18 +25,34 @@ class Menus extends Component {
 		this.props.history.push('/menu-portfolio/' + id);
 	}
 
-
 	handleMenuChange(e) { 
 		this.setState({menu_name: e.target.value});
 	}
 
 	toSearchMenu() {
 		this.props.history.push('/menus/search/' + this.state.menu_name);
+		this.update();
 	}
 
 	componentDidMount() {
         let self = this;
-        fetch('http://localhost:3001/v1/food_menus', {
+        fetch('http://localhost:3001/v1/food_menus/search/' + self.props.match.params.name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/food_menus/search/' + self.state.menu_name, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -78,4 +94,4 @@ class Menus extends Component {
 
 }
 
-export default Menus;
+export default SearchMenu;
