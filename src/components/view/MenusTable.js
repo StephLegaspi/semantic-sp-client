@@ -20,10 +20,21 @@ class MenusTable extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			menu_name: ""
 		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+	}
+
+	handleMenuChange = (e) => {
+	    this.setState({ menu_name: e.target.value},() => { 
+	    	if(this.state.menu_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
 	componentDidMount() {
@@ -58,11 +69,27 @@ class MenusTable extends Component {
         })
     }
 
+    searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/food_menus/search/' + self.state.menu_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Menus'}/>
-				<SearchBarTable titleHolder={'Search menu name..'}/>
+				<SearchBarTable titleHolder={'Search menu name..'} searchData={this.searchByName} inputChange={this.handleMenuChange}/>
 
 				<AddMenu handleUpdate={this.update}/>
 

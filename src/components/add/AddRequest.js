@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Input, Dropdown} from 'semantic-ui-react'
+import { Form, Input, Dropdown, Message} from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
 import Footer from '../footer/Footer.js'
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 
@@ -34,7 +35,8 @@ export default class AddRequest extends Component {
       event_location: '',
       package_id: '',
       motif_id: '',
-      menu_id: ''
+      menu_id: '',
+      success: false
 
     };
 
@@ -84,7 +86,11 @@ export default class AddRequest extends Component {
   }
 
   handleEventTypeChange = (e, { value }) => {
-    this.setState({menu_id: value});
+    this.setState({event_type: value});
+  }
+
+  setSuccess = () => {
+    this.setState({success: false});
   }
 
 
@@ -142,6 +148,7 @@ export default class AddRequest extends Component {
             customer_email: this.state.email_address,
             customer_contact_number: this.state.contact_number,
             event_date: this.state.date,
+            event_type: this.state.event_type,
             event_location: this.state.event_location,
             number_of_persons: this.state.number_of_persons,
             package_id: this.state.package_id,
@@ -158,8 +165,22 @@ export default class AddRequest extends Component {
           return response.json()
         })
         .then((result) => {
-          if(result.status){
+          if(result.status === 200){
             console.log("Successfully added request");
+            this.setState({first_name: ''});
+            this.setState({middle_name: ''});
+            this.setState({last_name: ''});
+            this.setState({email_address: ''});
+            this.setState({contact_number: ''});
+            this.setState({date: ''});
+            this.setState({event_type: ''});
+            this.setState({event_location: ''});
+            this.setState({number_of_persons: ''});
+            this.setState({package_id: ''});
+            this.setState({menu_id: ''});
+            this.setState({motif_id: ''});
+
+            this.setState({success: true});
           }
         })
         .catch((e) => {
@@ -214,38 +235,42 @@ export default class AddRequest extends Component {
         
             
             <Form>
-              
+                <Message 
+                  error
+                  header="blabla"
+                  content="blaaaaaaaaaa"
+                />
 
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>First Name</label>
-                    <Input placeholder='First Name' onChange={this.handleFirstNameChange}/>
+                    <Input placeholder='First Name' value={this.state.first_name} onChange={this.handleFirstNameChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Middle Name</label>
-                    <Input placeholder='Middle Name' onChange={this.handleMiddleNameChange}/>
+                    <Input placeholder='Middle Name' value={this.state.middle_name} onChange={this.handleMiddleNameChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Last Name</label>
-                    <Input placeholder='Last Name' onChange={this.handleLastNameChange}/>
+                    <Input placeholder='Last Name' value={this.state.last_name} onChange={this.handleLastNameChange}/>
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Email Address</label>
-                    <Input placeholder='Email Address' onChange={this.handleEmailChange}/>
+                    <Input placeholder='Email Address' value={this.state.email_address} onChange={this.handleEmailChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Contact Number</label>
-                    <Input placeholder='Contact Number' onChange={this.handleContactChange}/>
+                    <Input placeholder='Contact Number' value={this.state.contact_number} onChange={this.handleContactChange}/>
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Event Type</label>
-                    <Dropdown placeholder='Event Type' search selection options={this.stateOptions} onChange={this.handleEventTypeChange}/>
+                    <Dropdown placeholder='Event Type' search selection options={this.stateOptions} value={this.state.event_type} onChange={this.handleEventTypeChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Event Date</label>
@@ -259,33 +284,33 @@ export default class AddRequest extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>No. of Persons</label>
-                    <Input placeholder='No. of Persons' onChange={this.handlePersonsChange}/>
+                    <Input placeholder='No. of Persons' value={this.state.number_of_persons} onChange={this.handlePersonsChange}/>
                   </Form.Field>
                 </Form.Group>
 
                 <Form.Field>
                   <label>Venue Address</label>
-                  <Input placeholder='Venue Address' onChange={this.handleEventLocationChange}/>
+                  <Input placeholder='Venue Address' value={this.state.event_location} onChange={this.handleEventLocationChange}/>
                 </Form.Field>
 
                  
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Catering Package</label>
-                    <Dropdown placeholder='Catering Package' search selection options={this.state.package_options2} onChange={this.handlePackageChange} />
+                    <Dropdown placeholder='Catering Package' search selection options={this.state.package_options2} value={this.state.package_id} onChange={this.handlePackageChange} />
                   </Form.Field>
                   <Form.Field>
                     <label>Event Motif</label>
-                    <Dropdown placeholder='Event Motif' search selection options={this.state.motif_options2} onChange={this.handleMotifChange}/>
+                    <Dropdown placeholder='Event Motif' search selection options={this.state.motif_options2} value={this.state.motif_id} onChange={this.handleMotifChange}/>
                   </Form.Field>
                   <Form.Field>
                     <label>Food Menu</label>
-                    <Dropdown placeholder='Food Menu' search selection options={this.state.menu_options2} onChange={this.handleMenuChange}/>
+                    <Dropdown placeholder='Food Menu' search selection options={this.state.menu_options2} value={this.state.menu_id} onChange={this.handleMenuChange}/>
                   </Form.Field>
                 </Form.Group>
 
                 <SendButton handleAdd={this.handleSubmit}/>
-              
+                {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Request has been successfuly sent!'}/> : ''}
             </Form>
          
         </div>

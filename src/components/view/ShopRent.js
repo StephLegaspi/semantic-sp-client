@@ -15,11 +15,22 @@ class ShopRent extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			product_name: ""
 		}
 		this.toAddToCartRent = this.toAddToCartRent.bind(this);
 		this.toShoppingCartRent = this.toShoppingCartRent.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
+	}
+
+	handleProductChange = (e) => {
+	    this.setState({ product_name: e.target.value},() => { 
+	    	if(this.state.product_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
 	toAddToCartRent(e) {
@@ -46,11 +57,43 @@ class ShopRent extends Component {
         })
     }
 
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/products/rental', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/products-rental/search/' + self.state.product_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<div id='bar'>  
-					<SearchBarShop/>
+					<SearchBarShop searchData={this.searchByName} inputChange={this.handleProductChange}/>
 					<CartButton handleClick={this.toShoppingCartRent}/>
 					<h1 id='bar-title'> Rent </h1>
       			</div>

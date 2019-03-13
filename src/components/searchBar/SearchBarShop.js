@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Input } from 'semantic-ui-react'
 
+import SearchBarButton from '../button/SearchBarButton.js'
+
 import '../../styles/search-bar.css';
 
 class SearchBarShop extends Component {
@@ -16,10 +18,9 @@ class SearchBarShop extends Component {
 				
 				<div id='search-bar2'>
 					<Input style={{width: '500px'}} type='text' placeholder='Search product name.. ' action>
-						   <input />
-						   <label class="ui icon button" style={{backgroundColor: '#f89d28', color:'white'}}>
-							<i class="large search icon" style={{paddingRight: '5px', width:'20px'}}></i>  
-						</label>
+						   <input onChange={this.props.inputChange}/>
+					    	<SearchBarButton handleSearch={this.props.searchData}/> 
+						
 					</Input>
 				</div>
 				

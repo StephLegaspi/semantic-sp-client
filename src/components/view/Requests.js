@@ -10,7 +10,7 @@ import EditRequest from '../edit/EditRequest.js'
 
 import '../../styles/view.css';
 
-class ViewRequests extends Component {
+class Requests extends Component {
 	constructor(props){
 		super(props);
 
@@ -139,4 +139,4 @@ class ViewRequests extends Component {
 
 }
 
-export default ViewRequests;
+export default Requests;

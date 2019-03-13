@@ -13,8 +13,19 @@ class InventoryTable extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			product_name: ""
 		}
+	}
+
+	handleProductChange = (e) => {
+	    this.setState({ product_name: e.target.value},() => { 
+	    	if(this.state.product_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
 	componentDidMount() {
@@ -49,11 +60,27 @@ class InventoryTable extends Component {
         })
     }
 
+     searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/inventories/search/' + self.state.product_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Purchase'}/>
-				<SearchBarTable titleHolder={'Search product name..'}/>
+				<SearchBarTable titleHolder={'Search product name..'} searchData={this.searchByName} inputChange={this.handleProductChange}/>
 
 
       			<div className='table-div'>

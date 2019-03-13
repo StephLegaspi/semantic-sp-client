@@ -45,6 +45,10 @@ import ContactDetails from './components/view/ContactDetails.js';
 import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
 import Dashboard from './components/dashboard/Dashboard.js';
+import SearchAdmin from './components/search/SearchAdmin.js';
+import SearchPackage from './components/search/SearchPackage.js';
+import SearchMotif from './components/search/SearchMotif.js';
+import SearchMenu from './components/search/SearchMenu.js';
 
 import {Switch, Route, withRouter, BrowserRouter as Router, Redirect} from 'react-router-dom';
 
@@ -94,6 +98,14 @@ class App extends Component {
 																			<Packages   {...props} />
 							             								</div>)}}> 
 			</Route>
+			<Route exact={true} path="/packages/search/:name" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
+																			<SearchPackage   {...props} />
+							             								</div>)}}> 
+			</Route>
+			
 			<Route exact={true} path="/motifs" render={(props) => {
 					             								return(
 							             								<div>
@@ -101,11 +113,25 @@ class App extends Component {
 																			<Motifs   {...props} />
 							             								</div>)}}> 
 			</Route>
+			<Route exact={true} path="/motifs/search/:name" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
+																			<SearchMotif   {...props} />
+							             								</div>)}}> 
+			</Route>
 			<Route exact={true} path="/menus" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
 																			<Menus   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/menus/search/:name" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
+																			<SearchMenu   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/request-package" render={(props) => {
@@ -136,14 +162,14 @@ class App extends Component {
 																			<SignUp   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/motif-portfolio" render={(props) => {
+			<Route exact={true} path="/motif-portfolio/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,1,0,0,0,0,0]}/>
 																			<MotifsPortfolio   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/menu-portfolio" render={(props) => {
+			<Route exact={true} path="/menu-portfolio/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
@@ -178,7 +204,7 @@ class App extends Component {
 																			<ShoppingCartRent   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/package-inclusion" render={(props) => {
+			<Route exact={true} path="/package-inclusion/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
@@ -304,6 +330,13 @@ class App extends Component {
 							             								<div>
 							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
 																			<UserAdmins   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/user-admins/search/:name" render={(props) => {
+					             								return(
+							             								<div>
+							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,0,0,1,0]} {...props} />
+																			<SearchAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/user-customers" render={(props) => {

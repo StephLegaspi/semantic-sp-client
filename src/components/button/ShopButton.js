@@ -6,7 +6,7 @@ import '../../styles/button.css';
 class ShopButton extends Component{
 
 	callClick = () => {
-		this.props.handleView(this.props.prod_id);
+		this.props.handleView(this.props.data_id);
 	}
 
 	render(){
@@ -14,7 +14,7 @@ class ShopButton extends Component{
 			<Button animated  id='view-button' onClick={this.callClick} >
 						       		<Button.Content visible>View</Button.Content>
 						       		 <Button.Content hidden>
-				                       <i class="cart icon"></i>
+				                       <i class="magnify icon"></i>
 				                    </Button.Content>
 			 </Button>
 		);

@@ -15,11 +15,40 @@ class PackagesTable extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			package_name: ""
 		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+
+		
 	}
+
+	handlePackageChange = (e) => {
+	    this.setState({ package_name: e.target.value},() => { 
+	    	if(this.state.package_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
+	}
+
+	searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/packages/search/' + self.state.package_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	componentDidMount() {
         let self = this;
@@ -58,7 +87,7 @@ class PackagesTable extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Packages'}/>
-				<SearchBarTable titleHolder={'Search package name..'}/>
+				<SearchBarTable titleHolder={'Search package name..'} searchData={this.searchByName} inputChange={this.handlePackageChange}/>
 
 				<AddPackage handleUpdate={this.update}/>
 

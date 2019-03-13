@@ -6,13 +6,13 @@ import AddAdmin from '../add/AddAdmin.js'
 import DeactivateModal from '../edit/DeactivateModal.js'
 import ActivateModal from '../edit/ActivateModal.js'
 
-import SearchBarTable from '../searchBar/SearchBarTable.js'
+import SearchBarButton from '../button/SearchBarButton.js'
 
 import '../../styles/view.css';
 import '../../styles/search-bar.css';
 import img_tree from '../../images/tree.jpg'
 
-class UserAdmins extends Component {
+class SearchAdmin extends Component {
 	constructor(props){
 		super(props);
 
@@ -26,6 +26,7 @@ class UserAdmins extends Component {
 
 	toSearchAdmin() {
 		this.props.history.push('/user-admins/search/' + this.state.first_name);
+		this.update()
 	}
 
 	handleFirstNameChange(e) { 
@@ -34,7 +35,8 @@ class UserAdmins extends Component {
 
 	componentDidMount() {
         let self = this;
-        fetch('http://localhost:3001/v1/administrators', {
+
+        fetch('http://localhost:3001/v1/administrators/search/' + self.props.match.params.name, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -50,7 +52,7 @@ class UserAdmins extends Component {
 
     update = () => {
         let self = this;
-        fetch('http://localhost:3001/v1/administrators', {
+        fetch('http://localhost:3001/v1/administrators/search/' + self.state.first_name, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -64,11 +66,17 @@ class UserAdmins extends Component {
         })
     }
 
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Admins'}/>
-				<SearchBarTable titleHolder={'Search admin name..'} searchData={this.toSearchAdmin} inputChange={this.handleFirstNameChange}/>
+				<div id='search-bar3'>
+					<Input style={{width: '40%'}} type='text' placeholder='Search administrator name' action>
+					    <input onChange={this.handleFirstNameChange}/>
+					    <SearchBarButton handleSearch={this.toSearchAdmin}/>
+					</Input>
+				</div>
 
 				<AddAdmin handleUpdate={this.update}/>
 
@@ -103,4 +111,4 @@ class UserAdmins extends Component {
 
 }
 
-export default UserAdmins;
+export default SearchAdmin;
