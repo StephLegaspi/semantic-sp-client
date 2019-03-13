@@ -14,10 +14,21 @@ class MotifsTable extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			motif_name: ""
 		}		
 
 		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+	}
+
+	handleMotifChange = (e) => {
+	    this.setState({ motif_name: e.target.value},() => { 
+	    	if(this.state.motif_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
 	componentDidMount() {
@@ -52,11 +63,27 @@ class MotifsTable extends Component {
         })
     }
 
+    searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/event_motifs/search/' + self.state.motif_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Motifs'}/>
-				<SearchBarTable titleHolder={'Search motif name..'}/>
+				<SearchBarTable titleHolder={'Search motif name..'} searchData={this.searchByName} inputChange={this.handleMotifChange}/>
 
 				<AddMotif handleUpdate={this.update}/>
 
