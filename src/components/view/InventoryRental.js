@@ -63,7 +63,7 @@ class InventoryTable extends Component {
 
     searchByName = () => {
         let self = this;
-        fetch('http://localhost:3001/v1/products/search/' + self.state.product_name, {
+        fetch('http://localhost:3001/v1/inventories-rental/search/' + self.state.product_name, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
