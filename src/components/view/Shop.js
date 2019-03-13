@@ -17,10 +17,21 @@ class Shop extends Component {
 
 		this.state = {
 			data: [],
+			product_name: ""
 		}
 		this.toAddToCart = this.toAddToCart.bind(this);
 		this.toShoppingCart = this.toShoppingCart.bind(this);
 		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
+	}
+
+	handleProductChange = (e) => {
+	    this.setState({ product_name: e.target.value},() => { 
+	    	if(this.state.product_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
 	toAddToCart(id) {
@@ -47,11 +58,43 @@ class Shop extends Component {
         })
     }
 
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/products/purchase', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/products-purchase/search/' + self.state.product_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<div id='bar'>  
-					<SearchBarShop/>
+					<SearchBarShop searchData={this.searchByName} inputChange={this.handleProductChange}/>
 					<CartButton handleClick={this.toShoppingCart}/>
 					<h1 id='bar-title'> Purchase </h1>
       			</div>
