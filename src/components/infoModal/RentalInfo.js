@@ -24,6 +24,23 @@ class RentalInfo extends Component {
 		this.setState({modal: false})
 	}
 
+	componentDidMount(){
+	
+		fetch(`http://localhost:3001/v1/order_rentals/`+ this.props.order_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
 	render() {
 		return (
 			<div>
@@ -41,17 +58,21 @@ class RentalInfo extends Component {
 							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
+
 							    <Table.Body>
+							    {this.state.data.map(order =>
 							    	 <Table.Row>
-								        <Table.Cell>cell</Table.Cell>
-								        <Table.Cell>YAAAA</Table.Cell>
+								        <Table.Cell>{order.rental_duration}</Table.Cell>
+								        <Table.Cell>{order.rental_status}</Table.Cell>
 								        <Table.Cell>Cell</Table.Cell>
-								     	<Table.Cell>Cell</Table.Cell>
+								     	<Table.Cell>{order.returned_timestamp}</Table.Cell>
 								     	<Table.Cell>
 								     		<EditOrderRentalStatus/>
 								     	</Table.Cell>
 								      </Table.Row>
+								)}
 							    </Table.Body>
+
 							    <Button className='close' onClick={this.onClose}> Close </Button>
 							    </Table>
 							    </div>

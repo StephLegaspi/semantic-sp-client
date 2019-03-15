@@ -11,16 +11,50 @@ import EditOrderRental from '../edit/EditOrderRental.js'
 
 import '../../styles/view.css';
 
-class ViewOrderRental extends Component {
+class OrderRental extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = {}
+		this.state = {
+			data: []
+		}
 		
 		this.deliveryStatusOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
 		this.rentalStatusOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'on-rent', value: 'on-rent', text: 'On-rent' }, { key: 'returned', value: 'returned', text: 'Returned' }]
 
 	}
+
+	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/orders/rental', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/orders/rental', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	render() {
 		return (
@@ -57,11 +91,11 @@ class ViewOrderRental extends Component {
 				        <Table.HeaderCell style={{width: '5%'}}>ID</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Customer Information</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Orders</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '20%'}}>Delivery Address</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Zip Code</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Order Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Items</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '20%'}}>Delivery Address</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Zip Code</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Rental Information</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
@@ -71,24 +105,23 @@ class ViewOrderRental extends Component {
 				    </Table.Header>
 
 				    <Table.Body>
+				    {this.state.data.map(order =>
 				      <Table.Row>
-				        <Table.Cell>cellll</Table.Cell>
+				        <Table.Cell>{order.id}</Table.Cell>
 				        <Table.Cell>
-					       <CustomerInfo/>
+					       <CustomerInfo customer_id={order.customer_id}/>
 						</Table.Cell>
 						<Table.Cell>
-					       <OrderInfo/>
+					       <OrderInfo cart_id={order.shopping_cart_id}/>
 						</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>{order.delivery_address}</Table.Cell>
+				        <Table.Cell>{order.zip_code}</Table.Cell>
+				        <Table.Cell>{order.order_timestamp}</Table.Cell>
+				        <Table.Cell>{order.total_bill}</Table.Cell>
+				        <Table.Cell>{order.total_items}</Table.Cell>
+				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell>
-				        	Pending
-				        </Table.Cell>
-				        <Table.Cell>
-				        	<RentalInfo/>
+				        	<RentalInfo order_id={order.id}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrderRental/>
@@ -96,7 +129,8 @@ class ViewOrderRental extends Component {
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>
 				        </Table.Cell>
-				      </Table.Row>   
+				      </Table.Row> 
+				    )}  
 				    </Table.Body>
 
 				    <Table.Footer>
@@ -125,4 +159,4 @@ class ViewOrderRental extends Component {
 
 }
 
-export default ViewOrderRental;
+export default OrderRental;
