@@ -21,7 +21,7 @@ class AddToCart extends Component {
 			color_options: [],
 
 			product_color_id: '',
-			product_quantity: '',
+			product_quantity: 1,
 			cart_id: '',
 
       has_cart: '',
@@ -93,7 +93,7 @@ class AddToCart extends Component {
     }
 
     findCart = () => {
-        fetch(`http://localhost:3001/v1/shopping_carts/` + this.state.cust_id,{
+        fetch(`http://localhost:3001/v1/shopping_carts/purchase/` + this.state.cust_id,{
             headers: { 'Content-Type': 'application/json' },
             method: "GET"
         })
@@ -216,7 +216,7 @@ class AddToCart extends Component {
 					<br/>
 					<div className='div-label'>
 						<label className='label-font'> Quantity: </label>
-						<Input type='number' min={1} onChange={this.handleQuantityChange} style={{marginLeft: '14%'}}/>
+						<Input type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '14%'}}/>
 					</div>
 					<br/>
 					<div className='div-label'>

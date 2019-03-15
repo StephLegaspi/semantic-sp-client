@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Image, Card, Dropdown, Button } from 'semantic-ui-react'
+import { Image, Card, Dropdown } from 'semantic-ui-react'
 
 import SearchBarShop from '../searchBar/SearchBarShop.js'
 import CartButton from '../button/CartButton.js'
+import ShopButton from '../button/ShopButton.js'
 import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
@@ -33,8 +34,8 @@ class ShopRent extends Component {
 	    })
 	}
 
-	toAddToCartRent(e) {
-		this.props.history.push('/add-to-cart/rent');
+	toAddToCartRent(id) {
+		this.props.history.push('/add-to-cart/rent/' +id);
 	}
 
 	toShoppingCartRent(e) {
@@ -120,12 +121,7 @@ class ShopRent extends Component {
 						    </Card.Content>
 						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
-						       <Button animated  id='view-button' onClick={this.toAddToCartRent}>
-						       		<Button.Content visible>View</Button.Content>
-						       		 <Button.Content hidden>
-				                       <i class="cart icon"></i>
-				                    </Button.Content>
-						       </Button>
+						       <ShopButton handleView={this.toAddToCartRent} data_id={product.id}/>
 						    </Card.Content>
 						</Card>
 						)}

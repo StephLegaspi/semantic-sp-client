@@ -183,7 +183,7 @@ class App extends Component {
 																			<AddToCartPurchase   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/add-to-cart/rent" render={(props) => {
+			<Route exact={true} path="/add-to-cart/rent/:id" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,1,0,0,0,0,0,0,0,0]}/>

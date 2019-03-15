@@ -67,7 +67,7 @@ class ShoppingCart extends Component {
   getCart = () => {
         let self = this;
 
-        fetch(`http://localhost:3001/v1/shopping_carts/` + this.state.cust_id,{
+        fetch(`http://localhost:3001/v1/shopping_carts/shopping_carts/purchase/` + this.state.cust_id,{
             headers: { 'Content-Type': 'application/json' },
             method: "GET"
         })
