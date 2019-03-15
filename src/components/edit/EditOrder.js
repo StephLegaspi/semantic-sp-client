@@ -11,18 +11,56 @@ class EditOrder extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
+			status: ''
 		}
 
-		this.deliveryStatusOptions = [{ key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.handleStatusChange = this.handleStatusChange.bind(this);
+
+		this.deliveryStatusOptions = [{ key: 'pending', value: 'Pending', text: 'Pending' }, { key: 'on-delivery', value: 'On-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'Delivered', text: 'Delivered' } ]
+	}
+
+	handleStatusChange = (e, { value }) => {
+	    this.setState({status: value});
 	}
 
 	onModal = () => {
+		this.getData();
 		this.setState({activeModal: true});
 	}
 
 	cancel = () => {
 		this.setState({activeModal: false});
 	}
+
+	getData = () => {
+
+		this.setState({status: this.props.status_delivery});
+		
+	}
+
+	submitEdit = () => {
+
+        const order = JSON.stringify({status: this.state.status})
+       
+        fetch(`http://localhost:3001/v1//orders/purchase/` + this.props.order_id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "PUT",
+            body: order
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status===200){
+            this.props.handleUpdate()
+            this.setState({activeModal: false})
+          	this.getData()
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  	}
 
 	render(){
 		return(
@@ -34,13 +72,13 @@ class EditOrder extends Component {
 
 					<Form.Field width={8}>
 	                    <label>Delivery Status</label>
-	                     <Dropdown placeholder='Delivery Status' defaultValue='pending' search selection options={this.deliveryStatusOptions} />
+	                     <Dropdown placeholder='Delivery Status' defaultValue={this.state.status} search selection options={this.deliveryStatusOptions} onChange={this.handleStatusChange}/>
 	                  </Form.Field>
 	                <br/>
 	                <br/>
 	                <br/>
 	                <br/>
-				    <Button type='submit' onClick={this.editDone} id='edit-button2'>Edit</Button>
+				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
