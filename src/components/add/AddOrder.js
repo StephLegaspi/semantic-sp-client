@@ -52,7 +52,7 @@ export default class AddOrder extends Component {
   handleSubmit = () => {
         const order = JSON.stringify({consignee_first_name: this.state.first_name, consignee_middle_name: this.state.middle_name, consignee_last_name: this.state.last_name, consignee_email: this.state.email_address, consignee_contact_number: this.state.contact_number, delivery_address: this.state.delivery_address, zip_code: this.state.zip_code, shopping_cart_id: this.props.id_cart})
        
-        fetch(`http://localhost:3001/v1/orders/purchase`,{
+        fetch(`http://localhost:3001/v1/orders/` + this.props.table_name,{
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
             body: order
