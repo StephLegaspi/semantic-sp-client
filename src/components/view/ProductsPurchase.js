@@ -6,6 +6,7 @@ import EditProduct from '../edit/EditProduct.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import AddProduct from '../add/AddProduct.js'
+import ProductColor from '../infoModal/ProductColor.js'
 
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'
@@ -97,6 +98,7 @@ class ProductsTable extends Component {
 				        <Table.HeaderCell style={{width: '20%'}}>Description</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Price</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Available for display</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Product Color/s</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -115,6 +117,9 @@ class ProductsTable extends Component {
 			            <Table.Cell>{product.description}</Table.Cell>
 			            <Table.Cell>{product.price}</Table.Cell>
 			            <Table.Cell>{product.display_product ? "Yes" : "No"}</Table.Cell>
+			            <Table.Cell>
+					        	<ProductColor prod_id={product.id}/>
+					        </Table.Cell>
 			            <Table.Cell>
 			            	<EditProduct handleUpdate={this.update} data={product}/>
 			            </Table.Cell>
