@@ -5,6 +5,7 @@ import { Image, Dropdown, Input } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
 import Footer from '../footer/Footer.js'
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 import '../../styles/font.css';
@@ -30,9 +31,11 @@ class AddToCartRent extends Component {
 
 			has_cart: '',
 			session_id: '',
-			cust_id: ''
+			cust_id: '',
 
-	    };
+      success: false
+
+    };
 		this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
@@ -42,7 +45,7 @@ class AddToCartRent extends Component {
 	    }
 	}*/
 
-	handleColorChange = (e, { value }) => {
+    handleColorChange = (e, { value }) => {
   	    this.setState({product_color_id: value});
   	}
 
@@ -53,6 +56,11 @@ class AddToCartRent extends Component {
   	handleDurationChange = (e, { value }) => {
   	    this.setState({rental_duration: value});
   	}
+
+    setSuccess = () => {
+      this.setState({success: false});
+      this.props.history.push('/shop/rent');
+    }
 
   	componentDidMount() {
         let self = this;
@@ -192,6 +200,7 @@ class AddToCartRent extends Component {
         .then((result) => {
           if(result.status === 200){
             console.log("Successfully added product to shopping cart");
+            this.setState({success: true});
           }
         })
         .catch((e) => {
@@ -246,6 +255,7 @@ class AddToCartRent extends Component {
 					</div>
 					<div className='div-label'>
 						<AddCartButton handleAddtoCart={this.handleSubmit}/>
+            {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
 					</div>
 				</div>
 				)}
