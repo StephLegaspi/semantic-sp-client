@@ -7,6 +7,8 @@ import DeleteModal from '../delete/DeleteModal.js'
 import EditCartProductPurchase from '../edit/EditCartProductPurchase.js'
 
 import '../../styles/view.css';
+import '../../styles/font.css';
+import '../../styles/button.css';
 import img_tree from '../../images/tree.jpg'
 
 class ShoppingCart extends Component {
@@ -17,7 +19,10 @@ class ShoppingCart extends Component {
       cust_id: "",
       session_id: "",
       cart_id: "",
-      data: []
+      data: [],
+
+      total_bill: '',
+      total_items: ''
     }
     this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
   }
@@ -71,6 +76,8 @@ class ShoppingCart extends Component {
         })
         .then((result) => {
           self.setState({cart_id: result.data[0].id});
+          self.setState({total_bill: result.data[0].total_bill});
+          self.setState({total_items: result.data[0].total_items});
           self.getCartProducts();
         })
         .catch((e) => {
@@ -130,7 +137,7 @@ class ShoppingCart extends Component {
               <Table.Cell>{prod.product_quantity}</Table.Cell>
               <Table.Cell>{prod.price}</Table.Cell>
               <Table.Cell textAlign='center'>
-                <EditCartProductPurchase data={prod} handleUpdate={this.getCartProducts}/>
+                <EditCartProductPurchase data={prod} handleUpdateProducts={this.getCartProducts} handleUpdateCart={this.getCart}/>
               </Table.Cell>
               <Table.Cell textAlign='center'>
                 <DeleteModal/>
@@ -142,11 +149,16 @@ class ShoppingCart extends Component {
 
         <Card id='order-summary'>
           <Card.Content>
-            <Card.Header>ORDER SUMMARY</Card.Header>
-            <Card.Description>Total number of items: </Card.Description>
-            <Card.Description>Total price: </Card.Description>
+            <Card.Header style={{textAlign: 'center'}}>ORDER SUMMARY</Card.Header>
+            <Card.Description style={{marginLeft: '23%'}}>Total number of items: 
+              <label className='label-font' style={{marginLeft: '10%'}}>{this.state.total_items} </label> 
+            </Card.Description>
 
-            <button className="ui labeled icon button" id='checkout-button2'>
+            <Card.Description style={{marginLeft: '23%'}}>Total price: 
+              <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
+            </Card.Description>
+
+            <button style={{marginLeft: '34%'}} className="ui labeled icon button" id='checkout-button2'>
               <i className="cart icon"></i>
               Checkout
             </button>

@@ -88,7 +88,8 @@ class EditCartProductPurchase extends Component {
         })
         .then((result) => {
           if(result.status){
-            this.props.handleUpdate()
+            this.props.handleUpdateProducts();
+            this.props.handleUpdateCart();
             this.setState({activeModal: false})
           }
           this.getData()
