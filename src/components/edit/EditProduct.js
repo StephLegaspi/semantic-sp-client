@@ -14,17 +14,21 @@ class EditProduct extends Component {
 			name: "",
     		price: "",
     		description: "",
-    		display_product: ""
+    		display_product: "",
+    		color_arr: [],
+    		colors: ""
 		}
 		this.handleNameChange = this.handleNameChange.bind(this);
 	    this.handlePriceChange = this.handlePriceChange.bind(this);
 	    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
 	    this.handleDisplayChange = this.handleDisplayChange.bind(this);
+	    this.handleColorChange = this.handleColorChange.bind(this);
 	}
 
 	handleNameChange(e) { this.setState({name: e.target.value}); }
   	handlePriceChange(e) { this.setState({price: e.target.value}); }
   	handleDescriptionChange(e) { this.setState({description: e.target.value}); }
+  	handleColorChange(e) {this.setState({colors: e.target.value}); }
   	handleDisplayChange(e) { 
   		if(this.state.display_product){
   			this.setState({display_product: 0}); 
@@ -34,7 +38,7 @@ class EditProduct extends Component {
   	}
 
 	onModal = () => {
-		this.getData();
+		this.getData(this.props.data.id);
 		this.setState({activeModal: true});
 	}
 
@@ -42,18 +46,45 @@ class EditProduct extends Component {
 		this.setState({activeModal: false});
 	}
 
-	getData = () => {
+	getData = (id) => {
 
 		this.setState({name: this.props.data.name})
 		this.setState({price: this.props.data.price})
 		this.setState({description: this.props.data.description})
 		this.setState({display_product: this.props.data.display_product})
-		
+		this.getColors(id);
+	}
+
+	concatColors = () => {
+		var stringInclusion = this.state.color_arr[0].product_color;
+		var i;
+
+		for(i=1; i<(this.state.color_arr.length); i++){
+			stringInclusion = stringInclusion + ", " + this.state.color_arr[i].product_color;
+		}
+		this.setState({colors: stringInclusion})
+	}	
+
+	getColors = (id) => {
+		fetch(`http://localhost:3001/v1/products/colors/`+ id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({color_arr: result.data})
+				this.concatColors();
+			})
+			.catch((e) => {
+				console.log(e)
+			})		
 	}
 
 	submitEdit = () => {
 
-        const prod = JSON.stringify({name: this.state.name, price: this.state.price, description: this.state.description, display_product: this.state.display_product})
+        const prod = JSON.stringify({name: this.state.name, price: this.state.price, description: this.state.description, display_product: this.state.display_product, product_color: this.state.colors})
        
         fetch(`http://localhost:3001/v1/products/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
@@ -68,7 +99,7 @@ class EditProduct extends Component {
             this.props.handleUpdate()
             this.setState({activeModal: false})
           }
-          this.getData()
+          this.getData(this.props.data.id)
         })
         .catch((e) => {
           console.log(e)
@@ -98,6 +129,11 @@ class EditProduct extends Component {
 	                    <label>Description</label>
 	                    <Input placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange}/>
 	                 </Form.Field>
+
+	                 <Form.Field>
+	                  <label>Color/s</label>
+	                  <Input defaultValue={this.state.colors} onChange={this.handleColorChange}/>
+	                </Form.Field>
 
 	                <Form.Group inline>
 	                  <label>Product Image: </label>
