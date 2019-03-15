@@ -4,7 +4,7 @@ import { Table, Image, Header, Card } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import DeleteModal from '../delete/DeleteModal.js'
-import EditPackage from '../edit/EditPackage.js'
+import EditCartProductPurchase from '../edit/EditCartProductPurchase.js'
 
 import '../../styles/view.css';
 import img_tree from '../../images/tree.jpg'
@@ -130,7 +130,7 @@ class ShoppingCart extends Component {
               <Table.Cell>{prod.product_quantity}</Table.Cell>
               <Table.Cell>{prod.price}</Table.Cell>
               <Table.Cell textAlign='center'>
-                <EditPackage/>
+                <EditCartProductPurchase data={prod} handleUpdate={this.getCartProducts}/>
               </Table.Cell>
               <Table.Cell textAlign='center'>
                 <DeleteModal/>
