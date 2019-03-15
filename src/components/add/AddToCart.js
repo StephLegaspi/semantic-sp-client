@@ -104,7 +104,6 @@ class AddToCart extends Component {
           if(result.status === 404){
             this.setState({has_cart: 0});
             this.addShoppingCart();
-            this.addCartProduct();
           }else{
             this.setState({has_cart: 1});
             this.setState({cart_id: result.data[0].id});
@@ -149,6 +148,7 @@ class AddToCart extends Component {
           if(result.status){
             console.log("Successfully added shopping cart");
             this.setState({cart_id: result.data.insertId});
+            this.addCartProduct();
           }
         })
         .catch((e) => {
