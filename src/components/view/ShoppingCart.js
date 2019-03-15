@@ -4,6 +4,7 @@ import { Table, Image, Header, Card } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import DeleteModal from '../delete/DeleteModal.js'
+import AddOrder from '../add/AddOrder.js'
 import EditCartProductPurchase from '../edit/EditCartProductPurchase.js'
 
 import '../../styles/view.css';
@@ -157,10 +158,7 @@ class ShoppingCart extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <button style={{marginLeft: '34%'}} className="ui labeled icon button" id='checkout-button2'>
-              <i className="cart icon"></i>
-              Checkout
-            </button>
+            <AddOrder id_cart={this.state.cart_id}/>
           </Card.Content>
         </Card>
         </div>
