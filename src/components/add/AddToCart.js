@@ -4,6 +4,7 @@ import { Image, Dropdown, Input } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
 import Footer from '../footer/Footer.js'
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 import '../../styles/font.css';
@@ -26,7 +27,9 @@ class AddToCart extends Component {
 
       has_cart: '',
       session_id: '',
-      cust_id: ''
+      cust_id: '',
+
+      success: false
 		}
 		this.handleColorChange = this.handleColorChange.bind(this);
 	}
@@ -38,6 +41,11 @@ class AddToCart extends Component {
   	handleQuantityChange = (e, { value }) => {
   	    this.setState({product_quantity: value});
   	}
+
+    setSuccess = () => {
+      this.setState({success: false});
+      this.props.history.push('/shop/purchase');
+    }
 
     componentDidMount() {
         let self = this;
@@ -176,6 +184,7 @@ class AddToCart extends Component {
         .then((result) => {
           if(result.status === 200){
             console.log("Successfully added product to shopping cart");
+            this.setState({success: true});
           }
         })
         .catch((e) => {
@@ -225,6 +234,7 @@ class AddToCart extends Component {
 					</div>
 					<div className='div-label'>
 						<AddCartButton handleAddtoCart={this.handleSubmit}/>
+            {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
 					</div>
 				</div>
 				)}
