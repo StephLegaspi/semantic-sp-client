@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
 //user-defined
 import LoginAdmin from './components/login/LoginAdmin.js';
 import LoginCustomer from './components/login/LoginCustomer.js';
@@ -50,7 +51,6 @@ import SearchPackage from './components/search/SearchPackage.js';
 import SearchMotif from './components/search/SearchMotif.js';
 import SearchMenu from './components/search/SearchMenu.js';
 
-import {Switch, Route, withRouter, BrowserRouter as Router, Redirect} from 'react-router-dom';
 
 class App extends Component {
 	
