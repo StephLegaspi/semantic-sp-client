@@ -24,7 +24,6 @@ class ShoppingCart extends Component {
       total_bill: '',
       total_items: ''
     }
-    this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
   }
 
   componentDidMount() {
@@ -67,7 +66,7 @@ class ShoppingCart extends Component {
   getCart = () => {
         let self = this;
 
-        fetch(`http://localhost:3001/v1/shopping_carts/shopping_carts/purchase/` + this.state.cust_id,{
+        fetch(`http://localhost:3001/v1/shopping_carts/purchase/` + this.state.cust_id,{
             headers: { 'Content-Type': 'application/json' },
             method: "GET"
         })
