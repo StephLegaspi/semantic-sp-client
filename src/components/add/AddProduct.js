@@ -15,7 +15,8 @@ export default class AddProduct extends Component {
       price: "",
       total_quantity: "",
       description: "",
-      display_product: 0
+      display_product: 0,
+      color_list: ""
     }
 
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -23,6 +24,7 @@ export default class AddProduct extends Component {
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleTotalQuantityChange = this.handleTotalQuantityChange.bind(this);
     this.handleDisplayChange = this.handleDisplayChange.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
   }
 
   handleNameChange(e) { this.setState({name: e.target.value}); }
@@ -30,6 +32,7 @@ export default class AddProduct extends Component {
   handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
   handleDescriptionChange(e) { this.setState({description: e.target.value}); }
   handleDisplayChange(e) { this.setState({display_product: 1}); }
+  handleColorChange(e) { this.setState({color_list: e.target.value}); }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -40,7 +43,7 @@ export default class AddProduct extends Component {
   }
 
   handleSubmit = () => {
-        const prod = JSON.stringify({name: this.state.name, price: this.state.price, total_quantity: this.state.total_quantity, description: this.state.description,display_product: this.state.display_product})
+        const prod = JSON.stringify({name: this.state.name, price: this.state.price, total_quantity: this.state.total_quantity, description: this.state.description,display_product: this.state.display_product, product_color: this.state.color_list})
        
         fetch(`http://localhost:3001/v1/products/` + this.props.category ,{
             headers: { 'Content-Type': 'application/json' },
@@ -87,7 +90,12 @@ export default class AddProduct extends Component {
                   <Form.Field>
                       <label>Description</label>
                       <Input placeholder='Description' onChange={this.handleDescriptionChange}/>
-                    </Form.Field>
+                  </Form.Field>
+
+                  <Form.Field>
+                    <label>Color/s</label>
+                    <Input placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange}/>
+                  </Form.Field>
 
                   <Form.Group inline>
                     <label>Product Image: </label>

@@ -15,10 +15,21 @@ class Requests extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			status: "All"
 		}
 	
-		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'success', value: 'success', text: 'Successful' }, { key: 'unsuccessful', value: 'unsuccessful', text: 'Unsuccessful' } ]
+		this.stateOptions = [ {value: 'All', text: 'All' }, {value: 'Pending', text: 'Pending' }, { value: 'Successful', text: 'Successful' }, {value: 'Unsuccessful', text: 'Unsuccessful' } ]
+	}
+
+	handleStatusChange = (e, { value }) => {
+	    this.setState({ status: value},() => { 
+	    	if(this.state.status === "All"){
+	    		this.update();	
+	    	}else{
+	    		this.searchByStatus(); 
+	    	}
+	    })
 	}
 
 	componentDidMount() {
@@ -53,6 +64,22 @@ class Requests extends Component {
         })
     }
 
+    searchByStatus = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/requests/status/' + self.state.status, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
@@ -64,8 +91,9 @@ class Requests extends Component {
 					  Request Status: {' '}
 					  <Dropdown
 					    inline
-					    options={this.stateOptions}
-					    defaultValue='all'
+					    options={this.stateOptions} 
+					    value={this.state.status} 
+					    onChange={this.handleStatusChange}
 					  />
 					</label>
       			</div>

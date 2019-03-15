@@ -4,6 +4,7 @@ import { Image, Dropdown, Input } from 'semantic-ui-react'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
 import Footer from '../footer/Footer.js'
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 import '../../styles/font.css';
@@ -21,22 +22,32 @@ class AddToCart extends Component {
 			color_options: [],
 
 			product_color_id: '',
-			product_quantity: '',
-			cart_id: ''
+			product_quantity: 1,
+			cart_id: '',
+
+      has_cart: '',
+      session_id: '',
+      cust_id: '',
+
+      success: false
 		}
 		this.handleColorChange = this.handleColorChange.bind(this);
 	}
 
-	handleColorChange = (e, { value }) => {
-		console.log(value);
-	    this.setState({product_color_id: value});
-	}
+  	handleColorChange = (e, { value }) => {
+  	    this.setState({product_color_id: value});
+  	}
 
-	handleQuantityChange = (e, { value }) => {
-	    this.setState({product_quantity: value});
-	}
+  	handleQuantityChange = (e, { value }) => {
+  	    this.setState({product_quantity: value});
+  	}
 
-	componentDidMount() {
+    setSuccess = () => {
+      this.setState({success: false});
+      this.props.history.push('/shop/purchase');
+    }
+
+    componentDidMount() {
         let self = this;
     
         fetch('http://localhost:3001/v1/products/' + self.props.match.params.id ,{
@@ -53,7 +64,7 @@ class AddToCart extends Component {
         	console.log(err);
         })
 
-        fetch('http://localhost:3001/v1/products/' + self.props.match.params.id + '/color' ,{
+        fetch('http://localhost:3001/v1/products/colors/' + self.props.match.params.id ,{
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -66,10 +77,74 @@ class AddToCart extends Component {
         }).catch(err => {
         	console.log(err);
         })
+
+        this.getSession();
+        
+    }
+
+    getSession = () => {
+        let self = this;
+
+        fetch(`http://localhost:3001/v1/session`,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "GET"
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          self.setState({session_id: result.session_id});
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
+
+    findCart = () => {
+        fetch(`http://localhost:3001/v1/shopping_carts/purchase/` + this.state.cust_id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "GET"
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status === 404){
+            this.setState({has_cart: 0});
+            this.addShoppingCart();
+          }else{
+            this.setState({has_cart: 1});
+            this.setState({cart_id: result.data[0].id});
+            this.addCartProduct();
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+
     }
 
     handleSubmit = () => {
-		/*ADD SHOPPING CART FIRST*/       
+        let self = this;
+
+        fetch('http://localhost:3001/v1/customers/users/' + self.state.session_id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "GET"
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          self.setState({cust_id: result.data[0].id});
+          self.findCart();
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  	}
+
+    addShoppingCart = () => {
+        /*ADD SHOPPING CART FIRST*/       
         fetch(`http://localhost:3001/v1/shopping_carts/purchase`,{
             headers: { 'Content-Type': 'application/json' },
             method: "POST"
@@ -87,7 +162,7 @@ class AddToCart extends Component {
         .catch((e) => {
           console.log(e)
         })
-  	}
+    }
 
   	addCartProduct = () => {
 		    /*ADD SHOPPING CART PRODUCTS*/
@@ -109,6 +184,7 @@ class AddToCart extends Component {
         .then((result) => {
           if(result.status === 200){
             console.log("Successfully added product to shopping cart");
+            this.setState({success: true});
           }
         })
         .catch((e) => {
@@ -149,7 +225,7 @@ class AddToCart extends Component {
 					<br/>
 					<div className='div-label'>
 						<label className='label-font'> Quantity: </label>
-						<Input type='number' min={1} onChange={this.handleQuantityChange} style={{marginLeft: '14%'}}/>
+						<Input type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '14%'}}/>
 					</div>
 					<br/>
 					<div className='div-label'>
@@ -158,6 +234,7 @@ class AddToCart extends Component {
 					</div>
 					<div className='div-label'>
 						<AddCartButton handleAddtoCart={this.handleSubmit}/>
+            {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
 					</div>
 				</div>
 				)}
