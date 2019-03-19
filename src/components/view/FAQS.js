@@ -14,9 +14,36 @@ class FAQS extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			question: ""
 		}	
 	}
+
+	handleQuestionChange = (e) => {
+	    this.setState({ question: e.target.value},() => { 
+	    	if(this.state.question === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByQuestion(); 
+	    	}
+	    })
+	}
+
+	searchByQuestion = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/FAQs/' + self.state.question, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	componentDidMount() {
         let self = this;
@@ -54,7 +81,7 @@ class FAQS extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'FAQS'}/>
-				<SearchBarTable titleHolder={'Search question..'}/>
+				<SearchBarTable titleHolder={'Search question..'} searchData={this.searchByQuestion} inputChange={this.handleQuestionChange}/>
 
 				<AddFAQ handleUpdate={this.update}/>
 
