@@ -22,6 +22,23 @@ class OrderInfo extends Component {
 		this.setState({modal: false})
 	}
 
+	componentDidMount(){
+	
+		fetch(`http://localhost:3001/v1/shopping_cart/products/`+ this.props.cart_id,{
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				this.setState({data: result.data})
+			})
+			.catch((e) => {
+				console.log(e)
+			})
+	}
+
 	render() {
 		return (
 			<div>
@@ -38,26 +55,18 @@ class OrderInfo extends Component {
 							        <Table.HeaderCell style={{width: '15%'}}>Total Price</Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
+
 							    <Table.Body>
+							    {this.state.data.map(order =>
 							    	 <Table.Row>
-								        <Table.Cell>Cell3</Table.Cell>
-								        <Table.Cell>Cell3</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
+								        <Table.Cell>{order.name}</Table.Cell>
+								        <Table.Cell>{order.product_color_name}</Table.Cell>
+								        <Table.Cell>{order.product_quantity}</Table.Cell>
+								        <Table.Cell>{order.product_total_price}</Table.Cell>
 								      </Table.Row>
-								      <Table.Row>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								      </Table.Row>
-								      <Table.Row>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
-								      </Table.Row> 
+								)}
 							    </Table.Body>
+
 							    <Button className='close' onClick={this.onClose}> Close </Button>
 							    </Table>
 							    </div>

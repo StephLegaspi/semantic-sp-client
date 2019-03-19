@@ -10,7 +10,7 @@ import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
 
-class ViewOrders extends Component {
+class Orders extends Component {
 	constructor(props){
 		super(props);
 
@@ -94,19 +94,19 @@ class ViewOrders extends Component {
 				      <Table.Row>
 				        <Table.Cell>{order.id}</Table.Cell>
 				        <Table.Cell>
-					       <CustomerInfo/>
+					       <CustomerInfo customer_id={order.customer_id}/>
 						</Table.Cell>
 						<Table.Cell>
-					       <OrderInfo/>
+					       <OrderInfo cart_id={order.shopping_cart_id}/>
 						</Table.Cell>
 				        <Table.Cell>{order.delivery_address}</Table.Cell>
 				        <Table.Cell>{order.zip_code}</Table.Cell>
 				        <Table.Cell>{order.order_timestamp}</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
-				        <Table.Cell>Cell</Table.Cell>
+				        <Table.Cell>{order.total_items}</Table.Cell>
+				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditOrder/>
+				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>
@@ -141,4 +141,4 @@ class ViewOrders extends Component {
 
 }
 
-export default ViewOrders;
+export default Orders;
