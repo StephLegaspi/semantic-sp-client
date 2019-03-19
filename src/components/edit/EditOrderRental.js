@@ -51,26 +51,29 @@ class EditOrder extends Component {
     }
 
 	submitEdit = () => {
-
-        const order = JSON.stringify({rental_status: this.state.status})
-       
-        fetch(`http://localhost:3001/v1/orders/rental/` + this.props.order_id,{
-            headers: { 'Content-Type': 'application/json' },
-            method: "PUT",
-            body: order
-          })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          if(result.status===200){
-            this.props.handleUpdate()
-            this.setState({activeModal: false})
-          }
-        })
-        .catch((e) => {
-          console.log(e)
-        })
+		if(this.state.status === 'Returned'){
+	        const order = JSON.stringify({rental_status: this.state.status})
+	       
+	        fetch(`http://localhost:3001/v1/orders/rental/` + this.props.order_id,{
+	            headers: { 'Content-Type': 'application/json' },
+	            method: "PUT",
+	            body: order
+	          })
+	        .then((response) => {
+	          return response.json()
+	        })
+	        .then((result) => {
+	          if(result.status===200){
+	            this.props.handleUpdate()
+	            this.setState({activeModal: false})
+	          }
+	        })
+	        .catch((e) => {
+	          console.log(e)
+	        })
+	    }else{
+	    	this.setState({activeModal: false})
+	    }
   	}
 
 	render(){

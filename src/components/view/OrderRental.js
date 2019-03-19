@@ -6,7 +6,6 @@ import RentalInfo from '../infoModal/RentalInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteModal from '../delete/DeleteModal.js'
-import EditOrderRental from '../edit/EditOrderRental.js'
 import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
@@ -100,7 +99,6 @@ class OrderRental extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Rental Information</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Delivery Status</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Rental Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 
 				      </Table.Row>
@@ -127,9 +125,6 @@ class OrderRental extends Component {
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update}/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<EditOrderRental order_id={order.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>
