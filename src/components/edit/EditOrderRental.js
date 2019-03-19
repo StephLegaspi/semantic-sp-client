@@ -16,9 +16,7 @@ class EditOrder extends Component {
 		}
 
 		this.handleStatusChange = this.handleStatusChange.bind(this);
-
-		this.deliveryStatusOptions = [{ key: 'pending', value: 'Pending', text: 'Pending' }, { key: 'on-delivery', value: 'On-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'Delivered', text: 'Delivered' } ]
-		this.rentalStatusOptions = [{ value: 'Pending', text: 'Pending' }, { value: 'On-rent', text: 'On-rent' }, { value: 'Returned', text: 'Returned' } ]
+		this.rentalStatusOptions = [{ value: 'On-rent', text: 'On-rent' }, { value: 'Returned', text: 'Returned' } ]
 	}
 
 	handleStatusChange = (e, { value }) => {
@@ -35,7 +33,7 @@ class EditOrder extends Component {
 	}
 
 	getData = () => {
-        fetch(`http://localhost:3001/v1/order_rentals/limit/`+ this.props.order_id,{
+        fetch(`http://localhost:3001/v1/order_rentals/`+ this.props.order_id,{
 		      headers: { 'Content-Type': 'application/json' },
 		      method: "GET"
 		    })
@@ -44,7 +42,7 @@ class EditOrder extends Component {
 			})
 			.then((result) => {
 				this.setState({status: result.data[0].rental_status})
-				console.log(this.state.status)
+				
 			})
 			.catch((e) => {
 				console.log(e)
@@ -69,7 +67,6 @@ class EditOrder extends Component {
           if(result.status===200){
             this.props.handleUpdate()
             this.setState({activeModal: false})
-          	this.getData()
           }
         })
         .catch((e) => {

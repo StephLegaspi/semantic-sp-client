@@ -76,7 +76,7 @@ class EditCartProductPurchase extends Component {
   	}
 
 	submitEdit = () => {
-       const prod = JSON.stringify({product_quantity: this.state.quantity, product_color_id: this.state.product_color, rental_duration: 0})
+       const prod = JSON.stringify({product_quantity: this.state.quantity, product_color_id: this.state.product_color})
        
         fetch(`http://localhost:3001/v1/shopping_cart/products/` + this.props.data.sc_id,{
             headers: { 'Content-Type': 'application/json' },

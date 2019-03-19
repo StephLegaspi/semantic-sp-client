@@ -16,7 +16,7 @@ class OrderRental extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
 		}
 		
 		this.deliveryStatusOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
@@ -55,6 +55,7 @@ class OrderRental extends Component {
         	console.log(err);
         })
     }
+
 
 	render() {
 		return (

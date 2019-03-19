@@ -26,7 +26,6 @@ class AddToCartRent extends Component {
 
 			product_color_id: '',
 			product_quantity: 1,
-			rental_duration: 1,
 			cart_id: '',
 
 			has_cart: '',
@@ -53,9 +52,6 @@ class AddToCartRent extends Component {
   	    this.setState({product_quantity: value});
   	}
 
-  	handleDurationChange = (e, { value }) => {
-  	    this.setState({rental_duration: value});
-  	}
 
     setSuccess = () => {
       this.setState({success: false});
@@ -185,8 +181,7 @@ class AddToCartRent extends Component {
             product_quantity: this.state.product_quantity, 
             product_color_id: this.state.product_color_id,
             shopping_cart_id : this.state.cart_id,
-            product_id: this.state.prod_id,
-            rental_duration: this.state.rental_duration
+            product_id: this.state.prod_id
         })
 
         fetch(`http://localhost:3001/v1/shopping_cart/products/rental`,{
@@ -244,10 +239,6 @@ class AddToCartRent extends Component {
 					<div className='div-label'>
 						<label className='label-font'> Quantity: </label>
 						<Input type='number' defaultValue={this.state.product_quantity} min={1} onChange={this.handleQuantityChange} style={{marginLeft: '17%'}}/>
-					</div>
-					<div className='div-label'>
-						<label className='label-font'> Rental Duration: </label>
-						<Input type='number' defaultValue={this.state.rental_duration} min={1} onChange={this.handleDurationChange} style={{marginLeft: '5%'}}/>
 					</div>
 					<div className='div-label'>
 						<label className='label-font'> Description: </label>

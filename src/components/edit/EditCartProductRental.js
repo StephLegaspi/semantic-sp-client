@@ -14,17 +14,14 @@ class EditCartProductRental extends Component {
 			colors_arr: [],
 			color_options: [],
 			product_color: "",
-      quantity: "",
-      rental_duration: ""
+      quantity: ""
 		}
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
-    this.handleDurationChange = this.handleDurationChange.bind(this);
 	}
 
 	handleQuantityChange(e) {this.setState({quantity: e.target.value}); }
-  handleDurationChange(e) {this.setState({rental_duration: e.target.value}); }
 	handleColorChange = (e, { value }) => {
   	    this.setState({product_color: value});
   }
@@ -42,7 +39,6 @@ class EditCartProductRental extends Component {
 	getData = () => {
 		this.setState({quantity: this.props.data.product_quantity});
 		this.setState({product_color: this.props.data.product_color_name});
-    this.setState({rental_duration: this.props.data.rental_duration});
 	}
 
 
@@ -78,7 +74,7 @@ class EditCartProductRental extends Component {
   	}
 
 	submitEdit = () => {
-       const prod = JSON.stringify({product_quantity: this.state.quantity, product_color_id: this.state.product_color, rental_duration: this.state.rental_duration})
+       const prod = JSON.stringify({product_quantity: this.state.quantity, product_color_id: this.state.product_color})
        
         fetch(`http://localhost:3001/v1/shopping_cart/products/` + this.props.data.sc_id,{
             headers: { 'Content-Type': 'application/json' },
@@ -117,10 +113,6 @@ class EditCartProductRental extends Component {
 						          <Input type='number' min={1} defaultValue={this.state.quantity} onChange={this.handleQuantityChange}/>
                   </Form.Field>
               </Form.Group>
-              <Form.Field width={8}>
-                      <label> Rental Duration: </label>
-                      <Input type='number' min={1} defaultValue={this.state.rental_duration} onChange={this.handleDurationChange}/>
-              </Form.Field>
               <br/> <br/> <br/>
               <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
