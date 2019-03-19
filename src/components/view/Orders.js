@@ -68,7 +68,7 @@ class Orders extends Component {
 
         fetch('http://localhost:3001/v1/orders/purchase/' + self.state.order_id, {
         	headers: { 'Content-Type': 'application/json' },
-            method: 'POSt',
+            method: 'POST',
             body: stat
         }).then(function(response) {
             if (response.status >= 400) {
