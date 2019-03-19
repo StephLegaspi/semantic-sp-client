@@ -36,7 +36,9 @@ class Orders extends Component {
 	handleIDChange = (e) => {
 	    this.setState({ order_id: e.target.value},() => { 
 	    	if(this.state.order_id === ""){
-	    		this.update();	
+	    		/*this.update();*/
+	    		this.getByStatus();	
+	    		/*this.handleStatusChange();*/
 	    	}else{
 	    		this.searchByID(); 
 	    	}
@@ -61,8 +63,13 @@ class Orders extends Component {
 
     searchByID = () => {
         let self = this;
+
+        const stat = JSON.stringify({status: this.state.delivery_status})
+
         fetch('http://localhost:3001/v1/orders/purchase/' + self.state.order_id, {
-            method: 'GET'
+        	headers: { 'Content-Type': 'application/json' },
+            method: 'POSt',
+            body: stat
         }).then(function(response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
