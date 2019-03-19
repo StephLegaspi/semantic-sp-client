@@ -16,7 +16,7 @@ class OrderRental extends Component {
 		super(props);
 
 		this.state = {
-			data: [],
+			data: []
 		}
 		
 		this.deliveryStatusOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
@@ -27,17 +27,18 @@ class OrderRental extends Component {
 	componentDidMount() {
         let self = this;
         fetch('http://localhost:3001/v1/orders/rental', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({data: result.data});
-        }).catch(err => {
-        	console.log(err);
-        })
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "GET"
+		    })
+			.then((response) => {
+				return response.json()
+			})
+			.then((result) => {
+				self.setState({data: result.data});
+			})
+			.catch((e) => {
+				console.log(e)
+			})
     }
 
     update = () => {
@@ -126,7 +127,7 @@ class OrderRental extends Component {
 				        	<RentalInfo order_id={order.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update}/>
+				        	<EditOrder status_delivery={order.status} status_rental={this.state.rental_status} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrderRental order_id={order.id} handleUpdate={this.update}/>

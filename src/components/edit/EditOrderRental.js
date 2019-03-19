@@ -41,7 +41,7 @@ class EditOrder extends Component {
 				return response.json()
 			})
 			.then((result) => {
-				this.setState({status: result.data[0].rental_status})
+				this.setState({status: result.data[0].rental_status});
 				
 			})
 			.catch((e) => {
