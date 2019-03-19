@@ -11,8 +11,7 @@ class EditOrder extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
-			status: '',
-			data: []
+			status: ''
 		}
 
 		this.handleStatusChange = this.handleStatusChange.bind(this);
