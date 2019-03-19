@@ -7,7 +7,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteModal from '../delete/DeleteModal.js'
 import EditOrderRental from '../edit/EditOrderRental.js'
-
+import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
 
@@ -98,7 +98,8 @@ class OrderRental extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Rental Information</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Delivery Status</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Rental Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 
 				      </Table.Row>
@@ -121,10 +122,13 @@ class OrderRental extends Component {
 				        <Table.Cell>{order.total_items}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell>
-				        	<RentalInfo order_id={order.id}/>
+				        	<RentalInfo order_id={order.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditOrderRental/>
+				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update}/>
+				        </Table.Cell>
+				        <Table.Cell textAlign='center'>
+				        	<EditOrderRental order_id={order.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>
@@ -135,7 +139,7 @@ class OrderRental extends Component {
 
 				    <Table.Footer>
 				      <Table.Row>
-				        <Table.HeaderCell colSpan='12'>
+				        <Table.HeaderCell colSpan='13'>
 				          <Menu floated='right' pagination>
 				            <Menu.Item as='a' icon>
 				              <Icon name='chevron left' />

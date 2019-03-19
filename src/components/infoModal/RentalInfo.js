@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 
 import ModalButton from '../button/ModalButton.js'
-import EditOrderRentalStatus from '../edit/EditOrderRentalStatus.js'
+
 
 import '../../styles/modal.css';
 
@@ -55,7 +55,6 @@ class RentalInfo extends Component {
 							        <Table.HeaderCell style={{width: '20%'}}>Rental Status</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Rental Due Date</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Returned Timestamp</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 
@@ -66,9 +65,6 @@ class RentalInfo extends Component {
 								        <Table.Cell>{order.rental_status}</Table.Cell>
 								        <Table.Cell>Cell</Table.Cell>
 								     	<Table.Cell>{order.returned_timestamp}</Table.Cell>
-								     	<Table.Cell>
-								     		<EditOrderRentalStatus/>
-								     	</Table.Cell>
 								      </Table.Row>
 								)}
 							    </Table.Body>
