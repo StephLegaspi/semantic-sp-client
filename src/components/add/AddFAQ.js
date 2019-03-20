@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, TextArea } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 import AddButton from '../button/AddButton.js'
 
@@ -13,14 +13,21 @@ class AddFAQ extends Component {
       this.state = {
         activeModal: false,
         question: "",
-        answer: ""
+        answer: "",
+
+        question_error: '',
+        answer_error: '',
+
+        form_complete: '',
+        prompt_message: '',
+        prompt_header: ''
       }
       this.handleQuestionChange = this.handleQuestionChange.bind(this);
       this.handleAnswerChange = this.handleAnswerChange.bind(this);
   }
 
-  handleQuestionChange(e){ this.setState({question: e.target.value}); }
-  handleAnswerChange(e){ this.setState({answer: e.target.value}); }
+  handleQuestionChange(e){ this.setState({question: e.target.value, question_error: false}); }
+  handleAnswerChange(e){ this.setState({answer: e.target.value, answer_error: false}); }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -28,6 +35,30 @@ class AddFAQ extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+  }
+
+  checkForm = () => {
+    var error = false;
+
+    if(this.state.question === ''){
+      this.setState({question_error: true});
+      error=true;
+    }
+    if(this.state.answer === ''){
+      this.setState({answer_error: true});
+      error=true;
+    }
+
+
+    if(error){
+      this.setState({form_complete: false});
+      this.setState({prompt_header: 'Incomplete Information'}); 
+      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+    }else{
+      this.setState({form_complete: true});
+      this.handleSubmit();
+    }
+
   }
 
   handleSubmit = () => {
@@ -59,16 +90,12 @@ class AddFAQ extends Component {
         {this.state.activeModal && (
           <div className='add-modal'>
             <Form className='form-style-smaller'>
-                  <Form.Field>
-                    <label>Question</label>
-                    <TextArea placeholder='Question' style={{ minHeight: 100 }} onChange={this.handleQuestionChange}/>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Answer</label>
-                    <TextArea placeholder='Answer' style={{ minHeight: 100 }} onChange={this.handleAnswerChange}/>
-                  </Form.Field>
-
-              <Button type='submit' onClick={this.handleSubmit} id='edit-button2'>Add</Button>
+                 
+              <Form.TextArea required label='Question' placeholder='Question' style={{ minHeight: 100 }} onChange={this.handleQuestionChange} error={this.state.question_error}/>
+                  
+              <Form.TextArea required label='Answer' placeholder='Answer' style={{ minHeight: 100 }} onChange={this.handleAnswerChange} error={this.state.answer_error}/>
+                  
+              <Button type='submit' onClick={this.checkForm} id='edit-button2'>Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
           </Form>
           </div>)}
