@@ -97,6 +97,13 @@ export default class AddPackage extends Component {
     }else{
       this.setState({form_complete: true});
       this.handleSubmit();
+      this.setState({name: ''});
+      this.setState({main_course: ''});
+      this.setState({appetizer: ''});
+      this.setState({dessert: ''});
+      this.setState({soup: ''});
+      this.setState({beverage: ''});
+      this.setState({others: ''});
     }
 
   }

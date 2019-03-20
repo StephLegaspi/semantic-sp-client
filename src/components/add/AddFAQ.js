@@ -57,6 +57,8 @@ class AddFAQ extends Component {
     }else{
       this.setState({form_complete: true});
       this.handleSubmit();
+      this.setState({question: ''});
+      this.setState({answer: ''});
     }
 
   }
