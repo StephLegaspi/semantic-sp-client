@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Checkbox } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
 import AddButton from '../button/AddButton.js'
 
@@ -16,7 +16,18 @@ export default class AddProduct extends Component {
       total_quantity: "",
       description: "",
       display_product: 0,
-      color_list: ""
+      color_list: "",
+
+      name_error: '',
+      price_error: '',
+      total_quantity_error: '',
+      description_error: '',
+      display_product_error: '',
+      color_list_error: '',
+
+      form_complete: '',
+      prompt_message: '',
+      prompt_header: ''
     }
 
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -27,12 +38,12 @@ export default class AddProduct extends Component {
     this.handleColorChange = this.handleColorChange.bind(this);
   }
 
-  handleNameChange(e) { this.setState({name: e.target.value}); }
-  handlePriceChange(e) { this.setState({price: e.target.value}); }
-  handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
-  handleDescriptionChange(e) { this.setState({description: e.target.value}); }
-  handleDisplayChange(e) { this.setState({display_product: 1}); }
-  handleColorChange(e) { this.setState({color_list: e.target.value}); }
+  handleNameChange(e) { this.setState({name: e.target.value, name_error: false}); }
+  handlePriceChange(e) { this.setState({price: e.target.value, price_error: false}); }
+  handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value, total_quantity_error: false}); }
+  handleDescriptionChange(e) { this.setState({description: e.target.value, description_error: false}); }
+  handleDisplayChange(e) { this.setState({display_product: 1, display_product_error: false}); }
+  handleColorChange(e) { this.setState({color_list: e.target.value, color_list_error: false}); }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -40,6 +51,52 @@ export default class AddProduct extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+  }
+
+  checkForm = () => {
+    var error = false;
+
+    if(this.state.name === ''){
+      this.setState({name_error: true});
+      error=true;
+    }
+    if(this.state.price === ''){
+      this.setState({price_error: true});
+      error=true;
+    }
+    if(this.state.total_quantity === ''){
+      this.setState({total_quantity_error: true});
+      error=true;
+    }
+    if(this.state.description === ''){
+      this.setState({description_error: true});
+      error=true;
+    }
+    if(this.state.display_product === ''){
+      this.setState({display_product_error: true});
+      error=true;
+    }
+    if(this.state.color_list === ''){
+      this.setState({color_list_error: true});
+      error=true;
+    }
+
+
+    if(error){
+      this.setState({form_complete: false});
+      this.setState({prompt_header: 'Incomplete Information'}); 
+      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+    }else{
+      this.setState({form_complete: true});
+      this.handleSubmit();
+      this.setState({name: ''});
+      this.setState({price: ''});
+      this.setState({total_quantity: ''});
+      this.setState({description: ''});
+      this.setState({display_product: 0});
+      this.setState({color_list: ''});
+    }
+
   }
 
   handleSubmit = () => {
@@ -71,31 +128,17 @@ export default class AddProduct extends Component {
         {this.state.activeModal && (
           <div className='add-modal'>
             <Form className='form-style-smaller'>
-          <Form.Field>
-                    <label>Product Name</label>
-                    <Input placeholder='Product Name'onChange={this.handleNameChange}/>
-                  </Form.Field>
-
+                  
+                  <Form.Input required label='Product Name' placeholder='Product Name'onChange={this.handleNameChange} error={this.state.name_error}/>
+                  
                   <Form.Group widths='equal'>
-                    <Form.Field>
-                      <label>Price</label>
-                      <Input placeholder='Price' onChange={this.handlePriceChange}/>
-                    </Form.Field>
-                    <Form.Field>
-                      <label>Total Quantity</label>
-                      <Input placeholder='Total Quantity' onChange={this.handleTotalQuantityChange}/>
-                    </Form.Field>
+                      <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
+                      <Form.Input required label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
                   </Form.Group>
 
-                  <Form.Field>
-                      <label>Description</label>
-                      <Input placeholder='Description' onChange={this.handleDescriptionChange}/>
-                  </Form.Field>
+                  <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-                  <Form.Field>
-                    <label>Color/s</label>
-                    <Input placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange}/>
-                  </Form.Field>
+                  <Form.Input required label='Color/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
 
                   <Form.Group inline>
                     <label>Product Image: </label>
@@ -112,12 +155,17 @@ export default class AddProduct extends Component {
 
                   <Form.Group inline>
                     <label>Display Product: </label>
-                    <Form.Field>
-                      <Checkbox slider onChange={this.handleDisplayChange}/>
-                    </Form.Field>
+                    <Form.Checkbox required slider onChange={this.handleDisplayChange} error={this.state.display_product_error}/>
                   </Form.Group>
 
-            <Button type='submit' onClick={this.handleSubmit} id='edit-button2'>Add</Button>
+            {(this.state.form_complete===false) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+                : ''}
+
+            <Button type='submit' onClick={this.checkForm} id='edit-button2'>Add</Button>
             <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
         </Form>
           </div>)}
