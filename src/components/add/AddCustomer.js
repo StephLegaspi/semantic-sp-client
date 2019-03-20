@@ -22,7 +22,9 @@ export default class SignUp extends Component {
       repeatpass_error: '',
       address_error: '',
       zipcode_error: '',
+      
       form_complete: '',
+      form_error_pass: '',
 
       first_name: '',
       middle_name: '',
@@ -32,7 +34,10 @@ export default class SignUp extends Component {
       passsword: '',
       repeat_password: '',
       address: '',
-      zip_code: ''
+      zip_code: '',
+
+      prompt_message: '',
+      prompt_header: ''
     }
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -57,50 +62,66 @@ export default class SignUp extends Component {
   handleZipCodeChange(e) { this.setState({zip_code: e.target.value, zipcode_error: false}); }
 
   checkForm = () => {
-    var error;
+    var error = false;
+    var match_error = false;
 
     if(this.state.first_name === ''){
       this.setState({fname_error: true});
-      error=true
+      error=true;
     }
     if(this.state.middle_name === ''){
       this.setState({mname_error: true});
-      error=true
+      error=true;
     }
     if(this.state.last_name === ''){
       this.setState({lname_error: true});
-      error=true
+      error=true;
     }
     if(this.state.email_address === ''){
       this.setState({email_error: true});
-      error=true
+      error=true;
     }
     if(this.state.contact_number === ''){
       this.setState({contact_error: true});
-      error=true
+      error=true;
     }
     if(this.state.passsword === ''){
       this.setState({password_error: true});
-      error=true
+      error=true;
     }
     if(this.state.repeat_password === ''){
       this.setState({repeatpass_error: true});
-      error=true
+      error=true;
     }
     if(this.state.address === ''){
       this.setState({address_error: true});
-      error=true
+      error=true;
     }
     if(this.state.zip_code === ''){
       this.setState({zipcode_error: true});
-      error=true
+      error=true;
     }
+
 
     if(error){
       this.setState({form_complete: false});
+      this.setState({prompt_header: 'Incomplete Information'}); 
+      this.setState({prompt_message: 'Please fill up all the fields.'});  
     }else{
       this.setState({form_complete: true});
     }
+
+    if(this.state.passsword !== this.state.repeat_password){
+      match_error = true;
+    }
+    if(match_error){
+      this.setState({form_error_pass: false});
+      this.setState({prompt_header: 'Passwords do not match'});
+      this.setState({prompt_message: 'Please re-type password.'});  
+    }else{
+      this.setState({form_error_pass: true});
+    }
+
   }
 
   render(){
@@ -133,10 +154,10 @@ export default class SignUp extends Component {
                   <Form.Input width={3} fluid label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} error={this.state.zipcode_error} />
                 </Form.Group>
 
-                {this.state.form_complete===false ?
+                {(this.state.form_complete===false || this.state.form_error_pass===false) ?
                   <Message
-                    header='Incomplete Information'
-                    content='Please fill up all the fields.'
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
                   />
                 : ''}
                 <Button id='signup-button' onClick={this.checkForm}>
