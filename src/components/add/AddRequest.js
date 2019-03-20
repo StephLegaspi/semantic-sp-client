@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Dropdown, Message} from 'semantic-ui-react'
+import { Form, Message} from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -36,7 +36,24 @@ export default class AddRequest extends Component {
       package_id: '',
       motif_id: '',
       menu_id: '',
-      success: false
+      success: false,
+
+      fname_error: '',
+      mname_error: '',
+      lname_error: '',
+      email_error: '',
+      contact_error: '',
+      event_type_error: '',
+      num_persons_error: '',
+      event_location_error: '',
+      package_error: '',
+      motif_error: '',
+      menu_error: '',
+      date_error: '',
+
+      form_complete: '',
+      prompt_message: '',
+      prompt_header: ''
 
     };
 
@@ -59,34 +76,34 @@ export default class AddRequest extends Component {
     ]
   }
 
-  handleFirstNameChange(e) { this.setState({first_name: e.target.value}); }
-  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value}); }
-  handleLastNameChange(e) { this.setState({last_name: e.target.value}); }
-  handleEmailChange(e) { this.setState({email_address: e.target.value}); }
-  handleContactChange(e) { this.setState({contact_number: e.target.value}); }
-  handleEventLocationChange(e) { this.setState({event_location: e.target.value}); }
-  handlePersonsChange(e) { this.setState({number_of_persons: e.target.value}); }
+  handleFirstNameChange(e) { this.setState({first_name: e.target.value, fname_error: false}); }
+  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value, mname_error: false}); }
+  handleLastNameChange(e) { this.setState({last_name: e.target.value, lname_error: false}); }
+  handleEmailChange(e) { this.setState({email_address: e.target.value, email_error: false}); }
+  handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
+  handleEventLocationChange(e) { this.setState({event_location: e.target.value, event_location_error: false}); }
+  handlePersonsChange(e) { this.setState({number_of_persons: e.target.value, num_persons_error: false}); }
  
   handleDateChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
-      this.setState({ [name]: value });
+      this.setState({ [name]: value, date_error: false });
     }
   }
 
   handlePackageChange = (e, { value }) => {
-    this.setState({package_id: value});
+    this.setState({package_id: value, package_error: false});
   }
 
   handleMotifChange = (e, { value }) => {
-    this.setState({motif_id: value});
+    this.setState({motif_id: value, motif_error: false});
   }
 
   handleMenuChange = (e, { value }) => {
-    this.setState({menu_id: value});
+    this.setState({menu_id: value, menu_error: false});
   }
 
   handleEventTypeChange = (e, { value }) => {
-    this.setState({event_type: value});
+    this.setState({event_type: value, event_type_error: false});
   }
 
   setSuccess = () => {
@@ -139,8 +156,71 @@ export default class AddRequest extends Component {
         })
   }
 
+  checkForm = () => {
+    var error = false;
+
+    if(this.state.first_name === ''){
+      this.setState({fname_error: true});
+      error=true;
+    }
+    if(this.state.middle_name === ''){
+      this.setState({mname_error: true});
+      error=true;
+    }
+    if(this.state.last_name === ''){
+      this.setState({lname_error: true});
+      error=true;
+    }
+    if(this.state.email_address === ''){
+      this.setState({email_error: true});
+      error=true;
+    }
+    if(this.state.contact_number === ''){
+      this.setState({contact_error: true});
+      error=true;
+    }
+    if(this.state.event_type === ''){
+      this.setState({event_type_error: true});
+      error=true;
+    }
+    if(this.state.number_of_persons === ''){
+      this.setState({num_persons_error: true});
+      error=true;
+    }
+    if(this.state.event_location === ''){
+      this.setState({event_location_error: true});
+      error=true;
+    }
+    if(this.state.package_id === ''){
+      this.setState({package_error: true});
+      error=true;
+    }
+    if(this.state.motif_id === ''){
+      this.setState({motif_error: true});
+      error=true;
+    }
+    if(this.state.menu_id === ''){
+      this.setState({menu_error: true});
+      error=true;
+    }
+    if(this.state.date === ''){
+      this.setState({date_error: true});
+      error=true;
+    }
+
+
+    if(error){
+      this.setState({form_complete: false});
+      this.setState({prompt_header: 'Incomplete Information'}); 
+      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+    }else{
+      this.setState({form_complete: true});
+      this.handleSubmit();
+    }
+
+  }
+
   handleSubmit = () => {
-        console.log("clicked");
         const request = JSON.stringify({
             customer_first_name: this.state.first_name, 
             customer_middle_name: this.state.middle_name,
@@ -231,85 +311,52 @@ export default class AddRequest extends Component {
     return(
       <div>
         <HeaderBar headerTitle={'Request Package'}/>
-        <div className='form-style'>
-        
-            
+        <div className='form-style'>  
             <Form>
-                <Message 
-                  error
-                  header="blabla"
-                  content="blaaaaaaaaaa"
-                />
 
                 <Form.Group widths='equal'>
-                  <Form.Field>
-                    <label>First Name</label>
-                    <Input placeholder='First Name' value={this.state.first_name} onChange={this.handleFirstNameChange}/>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Middle Name</label>
-                    <Input placeholder='Middle Name' value={this.state.middle_name} onChange={this.handleMiddleNameChange}/>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Last Name</label>
-                    <Input placeholder='Last Name' value={this.state.last_name} onChange={this.handleLastNameChange}/>
-                  </Form.Field>
+                  <Form.Input fluid required label='First name' placeholder='First name' value={this.state.first_name} onChange={this.handleFirstNameChange} error={this.state.fname_error} />
+                  <Form.Input fluid required label='Middle name' placeholder='Middle name' value={this.state.middle_name} onChange={this.handleMiddleNameChange} error={this.state.mname_error} />
+                  <Form.Input fluid required label='Last name' placeholder='Last name' value={this.state.last_name} onChange={this.handleLastNameChange} error={this.state.lname_error} />
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Field>
-                    <label>Email Address</label>
-                    <Input placeholder='Email Address' value={this.state.email_address} onChange={this.handleEmailChange}/>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Contact Number</label>
-                    <Input placeholder='Contact Number' value={this.state.contact_number} onChange={this.handleContactChange}/>
-                  </Form.Field>
+                  <Form.Input fluid required label='Email Address' placeholder='Email Address' value={this.state.email_address} onChange={this.handleEmailChange} error={this.state.email_error} />
+                  <Form.Input fluid required label='Contact Number' placeholder='Contact Number' value={this.state.contact_number} onChange={this.handleContactChange} error={this.state.contact_error} />
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Field>
-                    <label>Event Type</label>
-                    <Dropdown placeholder='Event Type' search selection options={this.stateOptions} value={this.state.event_type} onChange={this.handleEventTypeChange}/>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Event Date</label>
+                  <Form.Dropdown required label='Event Type' placeholder='Event Type' search selection options={this.stateOptions} value={this.state.event_type} onChange={this.handleEventTypeChange} error={this.state.event_type_error}/>
+                  <Form.Field required error={this.state.date_error}>
+                    <label >Event Date</label>
                     <DateInput
                       name="date"
                       placeholder="Event Date"
                       value={this.state.date}
                       iconPosition="left"
                       onChange={this.handleDateChange}
+                      
                     />
                   </Form.Field>
-                  <Form.Field>
-                    <label>No. of Persons</label>
-                    <Input placeholder='No. of Persons' value={this.state.number_of_persons} onChange={this.handlePersonsChange}/>
-                  </Form.Field>
+                  <Form.Field required control='input' type='number' min={1} label='No. of Persons' placeholder='No. of Persons' value={this.state.number_of_persons} onChange={this.handlePersonsChange} error={this.state.num_persons_error}/>
                 </Form.Group>
 
-                <Form.Field>
-                  <label>Venue Address</label>
-                  <Input placeholder='Venue Address' value={this.state.event_location} onChange={this.handleEventLocationChange}/>
-                </Form.Field>
-
+                <Form.Input required label='Venue Address' placeholder='Venue Address' value={this.state.event_location} onChange={this.handleEventLocationChange} error={this.state.event_location_error}/>
                  
                 <Form.Group widths='equal'>
-                  <Form.Field>
-                    <label>Catering Package</label>
-                    <Dropdown placeholder='Catering Package' search selection options={this.state.package_options2} value={this.state.package_id} onChange={this.handlePackageChange} />
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Event Motif</label>
-                    <Dropdown placeholder='Event Motif' search selection options={this.state.motif_options2} value={this.state.motif_id} onChange={this.handleMotifChange}/>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Food Menu</label>
-                    <Dropdown placeholder='Food Menu' search selection options={this.state.menu_options2} value={this.state.menu_id} onChange={this.handleMenuChange}/>
-                  </Form.Field>
+                  <Form.Dropdown required label='Catering Package' placeholder='Catering Package' search selection options={this.state.package_options2} value={this.state.package_id} onChange={this.handlePackageChange} error={this.state.package_error}/>
+                  <Form.Dropdown required label='Event Motif' placeholder='Event Motif' search selection options={this.state.motif_options2} value={this.state.motif_id} onChange={this.handleMotifChange} error={this.state.motif_error}/>
+                  <Form.Dropdown required label='Food Menu' placeholder='Food Menu' search selection options={this.state.menu_options2} value={this.state.menu_id} onChange={this.handleMenuChange} error={this.state.menu_error}/>
                 </Form.Group>
 
-                <SendButton handleAdd={this.handleSubmit}/>
+                {(this.state.form_complete===false || this.state.form_error_pass===false) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+                : ''}
+
+                <SendButton handleAdd={this.checkForm}/>
                 {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Request has been successfuly sent!'}/> : ''}
             </Form>
          
