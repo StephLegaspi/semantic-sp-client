@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
 import AddButton from '../button/AddButton.js'
 
@@ -94,7 +94,14 @@ class AddFAQ extends Component {
               <Form.TextArea required label='Question' placeholder='Question' style={{ minHeight: 100 }} onChange={this.handleQuestionChange} error={this.state.question_error}/>
                   
               <Form.TextArea required label='Answer' placeholder='Answer' style={{ minHeight: 100 }} onChange={this.handleAnswerChange} error={this.state.answer_error}/>
-                  
+              
+              {(this.state.form_complete===false) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+                : ''}
+
               <Button type='submit' onClick={this.checkForm} id='edit-button2'>Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
           </Form>

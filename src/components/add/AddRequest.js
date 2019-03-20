@@ -349,7 +349,7 @@ export default class AddRequest extends Component {
                   <Form.Dropdown required label='Food Menu' placeholder='Food Menu' search selection options={this.state.menu_options2} value={this.state.menu_id} onChange={this.handleMenuChange} error={this.state.menu_error}/>
                 </Form.Group>
 
-                {(this.state.form_complete===false || this.state.form_error_pass===false) ?
+                {(this.state.form_complete===false) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}
