@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -14,7 +14,16 @@ class EditContact extends Component {
 			telephone_number: "",
 			mobile_number: "",
 			email_address: "",
-			business_address: ""
+			business_address: "",
+
+			telephone_number_error: false,
+    		mobile_number_error: false,
+    		email_address_error: false,
+    		business_address_error: false,
+
+	        form_complete: '',
+	        prompt_message: '',
+	        prompt_header: ''
 		}
 		this.handleTelephoneChange = this.handleTelephoneChange.bind(this);
 		this.handleMobileChange = this.handleMobileChange.bind(this);
@@ -41,6 +50,46 @@ class EditContact extends Component {
 		this.setState({mobile_number: this.props.data.mobile_number})
 		this.setState({email_address: this.props.data.email_address})
 		this.setState({business_address: this.props.data.business_address})
+	}
+
+	checkForm = () => {
+	    var error = false;
+
+	    if(this.state.telephone_number === ''){
+	      this.setState({telephone_number_error: true});
+	      error=true;
+	    }
+	    if(this.state.mobile_number === ''){
+	      this.setState({mobile_number_error: true});
+	      error=true;
+	    }
+	    if(this.state.email_address === ''){
+	      this.setState({email_address_error: true});
+	      error=true;
+	    }
+	    if(this.state.business_address === ''){
+	      this.setState({business_address_error: true});
+	      error=true;
+	    }
+
+	    if(error){
+	      this.setState({form_complete: false});
+	      this.setState({prompt_header: 'Incomplete Information'}); 
+	      this.setState({prompt_message: 'Please fill up all the fields.'});  
+	    }else{
+	      this.setState({form_complete: true});
+	      this.submitEdit();
+	      this.setState({telephone_number: ''});
+	      this.setState({mobile_number: ''});
+	      this.setState({email_address: ''});
+	      this.setState({business_address: ''});
+
+	      this.setState({telephone_number_error: ''});
+	      this.setState({mobile_number_error: ''});
+	      this.setState({email_address_error: ''});
+	      this.setState({business_address_error: ''});
+	    }
+
 	}
 
 	submitEdit = () => {
@@ -75,27 +124,23 @@ class EditContact extends Component {
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
 	      			<Form.Group widths='equal'>
-						<Form.Field>
-		                  <label>Telephone Number</label>
-		                  <Input placeholder='Telephone Number' defaultValue={this.props.data.telephone_number} onChange={this.handleTelephoneChange}/>
-		                </Form.Field>
-		                <Form.Field>
-		                  <label>Mobile Number</label>
-		                  <Input placeholder='Mobile Number' defaultValue={this.props.data.mobile_number} onChange={this.handleMobileChange}/>
-		                </Form.Field>
-		            </Form.Group>
-		            <Form.Group widths='equal'>
-		                <Form.Field>
-		                  <label>Email Address</label>
-		                  <Input placeholder='Email Address' defaultValue={this.props.data.email_address} onChange={this.handleEmailChange}/>
-		                </Form.Field>
-		                <Form.Field>
-		                  <label>Business Address</label>
-		                  <Input placeholder='Business Address' defaultValue={this.props.data.business_address} onChange={this.handleAddressChange}/>
-		                </Form.Field>
+		                <Form.Input label='Telephone Number' placeholder='Telephone Number' defaultValue={this.props.data.telephone_number} onChange={this.handleTelephoneChange} error={this.state.telephone_number_error}/>
+		                <Form.Input label='Mobile Number' placeholder='Mobile Number' defaultValue={this.props.data.mobile_number} onChange={this.handleMobileChange} error={this.state.mobile_number_error}/>
 		            </Form.Group>
 
-				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+		            <Form.Group widths='equal'>
+		                <Form.Input label='Email Address' placeholder='Email Address' defaultValue={this.props.data.email_address} onChange={this.handleEmailChange} error={this.state.email_address_error}/>
+		                 <Form.Input label='Business Address' placeholder='Business Address' defaultValue={this.props.data.business_address} onChange={this.handleAddressChange} error={this.state.business_address_error}/>
+		            </Form.Group>
+
+		            {(this.state.form_complete===false) ?
+	                  <Message
+	                    header={this.state.prompt_header}
+	                    content={this.state.prompt_message}
+	                  />
+	                : ''}
+
+				    <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
