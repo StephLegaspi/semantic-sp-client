@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -14,7 +14,15 @@ class EditPackage extends Component {
 			inclusion_arr: [],
 			name: "",
 	        price: "",
-	        inclusion: ""
+	        inclusion: "",
+
+	        name_error: false,
+    		price_error: false,
+    		inclusion_error: false,
+
+    		form_complete: '',
+	        prompt_message: '',
+	        prompt_header: ''
 		}
 
 		this.handleNameChange = this.handleNameChange.bind(this);
@@ -71,6 +79,39 @@ class EditPackage extends Component {
 			})		
 	}
 
+	checkForm = () => {
+	    var error = false;
+
+	    if(this.state.name === ''){
+	      this.setState({name_error: true});
+	      error=true;
+	    }
+	    if(this.state.price === ''){
+	      this.setState({price_error: true});
+	      error=true;
+	    }
+	    if(this.state.inclusion === ''){
+	      this.setState({inclusion_error: true});
+	      error=true;
+	    }
+
+	    if(error){
+	      this.setState({form_complete: false});
+	      this.setState({prompt_header: 'Incomplete Information'}); 
+	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	    }else{
+	      this.setState({form_complete: true});
+	      this.submitEdit();
+	      this.setState({name: ''});
+	      this.setState({price: ''});
+	      this.setState({inclusion: ''});
+
+	      this.setState({name_error: ''});
+	      this.setState({price_error: ''});
+	      this.setState({inclusion_error: ''});
+	    }
+
+	}
 
 	submitEdit = () => {
 
@@ -104,22 +145,20 @@ class EditPackage extends Component {
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
 					<Form.Group widths='equal'>
-	                  <Form.Field>
-	                    <label>Package Name</label>
-	                    <Input placeholder='name' defaultValue={this.props.data.name} onChange={this.handleNameChange}/>
-	                  </Form.Field>
-	                  <Form.Field>
-	                    <label>Price</label>
-	                    <Input defaultValue={this.props.data.price} onChange={this.handlePriceChange}/>
-	                  </Form.Field>
+	                    <Form.Input required label='Package Name' placeholder='name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
+	                    <Form.Input required label='Price' defaultValue={this.props.data.price} onChange={this.handlePriceChange} error={this.state.price_error}/>
 	                </Form.Group>
+	             
+	                <Form.Input required label='Inclusions' defaultValue={this.state.inclusion} onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
+	                	
+	                {(this.state.form_complete===false) ?
+	                  <Message
+	                    header={this.state.prompt_header}
+	                    content={this.state.prompt_message}
+	                  />
+	                : ''}
 
-	               <Form.Field>
-	                  <label>Inclusions</label>
-	                  <Input defaultValue={this.state.inclusion} onChange={this.handleInclusionChange}/>
-	                </Form.Field>
-	                
-				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+				    <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
