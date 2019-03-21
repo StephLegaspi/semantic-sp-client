@@ -281,7 +281,7 @@ class EditMenu extends Component {
 	    if(error){
 	      this.setState({form_complete: false});
 	      this.setState({prompt_header: 'Incomplete Information'}); 
-	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
 	      this.submitEdit();
@@ -335,21 +335,21 @@ class EditMenu extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-	                <Form.Input required label='Food Menu' placeholder='Food Menu Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
+	                <Form.Input label='Food Menu' placeholder='Food Menu Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
 
 	                <Form.Group widths='equal'>
-	                    <Form.Input required label='Main Course' defaultValue={this.state.main_course} onChange={this.handleMainCourseChange} error={this.state.main_course_error}/>
-	                    <Form.Input required label='Appetizer' defaultValue={this.state.appetizer} onChange={this.handleAppetizerChange} error={this.state.appetizer_error}/>
+	                    <Form.Input label='Main Course' defaultValue={this.state.main_course} onChange={this.handleMainCourseChange} error={this.state.main_course_error}/>
+	                    <Form.Input label='Appetizer' defaultValue={this.state.appetizer} onChange={this.handleAppetizerChange} error={this.state.appetizer_error}/>
 	                </Form.Group>
 
 	                <Form.Group widths='equal'>
-	                    <Form.Input required label='Dessert' defaultValue={this.state.dessert} onChange={this.handleDessertChange} error={this.state.dessert_error}/>
-	                    <Form.Input required label='Soup' defaultValue={this.state.soup} onChange={this.handleSoupChange} error={this.state.soup_error}/>
+	                    <Form.Input label='Dessert' defaultValue={this.state.dessert} onChange={this.handleDessertChange} error={this.state.dessert_error}/>
+	                    <Form.Input label='Soup' defaultValue={this.state.soup} onChange={this.handleSoupChange} error={this.state.soup_error}/>
 	                </Form.Group>
 
 	                <Form.Group widths='equal'>
-	                	<Form.Input required label='Beverage' defaultValue={this.state.beverage} onChange={this.handleBeverageChange} error={this.state.beverage_error}/>
-	                    <Form.Input required label='Others' defaultValue={this.state.others} onChange={this.handleOthersChange} error={this.state.others_error}/>
+	                	<Form.Input label='Beverage' defaultValue={this.state.beverage} onChange={this.handleBeverageChange} error={this.state.beverage_error}/>
+	                    <Form.Input label='Others' defaultValue={this.state.others} onChange={this.handleOthersChange} error={this.state.others_error}/>
 	                </Form.Group>
 
 	                <Form.Group inline>

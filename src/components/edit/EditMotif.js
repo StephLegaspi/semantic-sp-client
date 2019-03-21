@@ -57,7 +57,7 @@ class EditMotif extends Component {
 	    if(error){
 	      this.setState({form_complete: false});
 	      this.setState({prompt_header: 'Incomplete Information'}); 
-	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
 	      this.submitEdit();
@@ -100,9 +100,9 @@ class EditMotif extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-	                <Form.Input required label='Event Motif' placeholder='Event Motif Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
+	                <Form.Input label='Event Motif' placeholder='Event Motif Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
 
-	                <Form.TextArea required label='Description' placeholder={this.props.data.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} error={this.state.description_error}/>
+	                <Form.TextArea label='Description' placeholder={this.props.data.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} error={this.state.description_error}/>
 
 	                <Form.Group inline>
 	                  <label>Display Image: </label>

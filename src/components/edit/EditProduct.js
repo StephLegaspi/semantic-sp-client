@@ -120,7 +120,7 @@ class EditProduct extends Component {
 	    if(error){
 	      this.setState({form_complete: false});
 	      this.setState({prompt_header: 'Incomplete Information'}); 
-	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
 	      this.submitEdit();
@@ -172,13 +172,13 @@ class EditProduct extends Component {
 	      		<Form className='forms'>
 					
 	                <Form.Group widths='equal'>
-		                <Form.Input required label='Product Name' placeholder='Product Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
-		                <Form.Input required label='Price' placeholder='Price' defaultValue={this.props.data.price} onChange={this.handlePriceChange} error={this.state.price_error}/>
+		                <Form.Input label='Product Name' placeholder='Product Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
+		                <Form.Input label='Price' placeholder='Price' defaultValue={this.props.data.price} onChange={this.handlePriceChange} error={this.state.price_error}/>
 	                </Form.Group>
 
-	                <Form.Input required label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
+	                <Form.Input label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-	               <Form.Input required label='Color/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>
+	               <Form.Input label='Color/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>
 
 	                <Form.Group inline>
 	                  <label>Product Image: </label>

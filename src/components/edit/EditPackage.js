@@ -98,7 +98,7 @@ class EditPackage extends Component {
 	    if(error){
 	      this.setState({form_complete: false});
 	      this.setState({prompt_header: 'Incomplete Information'}); 
-	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
 	      this.submitEdit();
@@ -145,11 +145,11 @@ class EditPackage extends Component {
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
 					<Form.Group widths='equal'>
-	                    <Form.Input required label='Package Name' placeholder='name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
-	                    <Form.Input required label='Price' defaultValue={this.props.data.price} onChange={this.handlePriceChange} error={this.state.price_error}/>
+	                    <Form.Input label='Package Name' placeholder='name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
+	                    <Form.Input label='Price' defaultValue={this.props.data.price} onChange={this.handlePriceChange} error={this.state.price_error}/>
 	                </Form.Group>
 	             
-	                <Form.Input required label='Inclusions' defaultValue={this.state.inclusion} onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
+	                <Form.Input label='Inclusions' defaultValue={this.state.inclusion} onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
 	                	
 	                {(this.state.form_complete===false) ?
 	                  <Message
