@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -29,7 +29,19 @@ class EditMenu extends Component {
 			beverage_arr: [],
 
 			others: "",
-			others_arr: []
+			others_arr: [],
+
+			name_error: false,
+			main_course_error: false,
+			appetizer_error: false,
+			dessert_error: false,
+			soup_error: false,
+			beverage_error: false,
+			others_error: false,
+
+			form_complete: '',
+	        prompt_message: '',
+	        prompt_header: ''
 		}
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handleMainCourseChange = this.handleMainCourseChange.bind(this);
@@ -234,6 +246,64 @@ class EditMenu extends Component {
 			})		
 	}
 
+	checkForm = () => {
+	    var error = false;
+
+	    if(this.state.name === ''){
+	      this.setState({name_error: true});
+	      error=true;
+	    }
+	    if(this.state.main_course === ''){
+	      this.setState({main_course_error: true});
+	      error=true;
+	    }
+	    if(this.state.appetizer === ''){
+	      this.setState({appetizer_error: true});
+	      error=true;
+	    }
+	    if(this.state.dessert === ''){
+	      this.setState({dessert_error: true});
+	      error=true;
+	    }
+	    if(this.state.soup === ''){
+	      this.setState({soup_error: true});
+	      error=true;
+	    }
+	    if(this.state.beverage === ''){
+	      this.setState({beverage_error: true});
+	      error=true;
+	    }
+	    if(this.state.others === ''){
+	      this.setState({others_error: true});
+	      error=true;
+	    }
+
+	    if(error){
+	      this.setState({form_complete: false});
+	      this.setState({prompt_header: 'Incomplete Information'}); 
+	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	    }else{
+	      this.setState({form_complete: true});
+	      this.submitEdit();
+	      this.setState({name: ''});
+	      this.setState({main_course: ''});
+	      this.setState({appetizer: ''});
+	      this.setState({dessert: ''});
+	      this.setState({soup: ''});
+	      this.setState({beverage: ''});
+	      this.setState({others: ''});
+
+	      this.setState({name_error: ''});
+	      this.setState({main_course_error: ''});
+	      this.setState({appetizer_error: ''});
+	      this.setState({dessert_error: ''});
+	      this.setState({soup_error: ''});
+	      this.setState({beverage_error: ''});
+	      this.setState({others_error: ''});
+	    }
+
+	}
+
 	submitEdit = () => {
         const menu = JSON.stringify({name: this.state.name, main_course: this.state.main_course, appetizer: this.state.appetizer, dessert: this.state.dessert, soup: this.state.soup, beverage: this.state.beverage, others: this.state.others})
 
@@ -265,42 +335,21 @@ class EditMenu extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-					<Form.Field>
-	                  <label>Food Menu Name</label>
-	                  <Input placeholder='Food Menu Name' defaultValue={this.props.data.name} onChange={this.handleNameChange}/>
-	                </Form.Field>
+	                <Form.Input label='Food Menu' placeholder='Food Menu Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
 
 	                <Form.Group widths='equal'>
-	                  <Form.Field>
-	                    <label>Main Course</label>
-	                    <Input defaultValue={this.state.main_course} onChange={this.handleMainCourseChange}/>
-	                  </Form.Field>
-	                  <Form.Field>
-	                    <label>Appetizer</label>
-	                    <Input defaultValue={this.state.appetizer} onChange={this.handleAppetizerChange}/>
-	                  </Form.Field>
+	                    <Form.Input label='Main Course' defaultValue={this.state.main_course} onChange={this.handleMainCourseChange} error={this.state.main_course_error}/>
+	                    <Form.Input label='Appetizer' defaultValue={this.state.appetizer} onChange={this.handleAppetizerChange} error={this.state.appetizer_error}/>
 	                </Form.Group>
 
 	                <Form.Group widths='equal'>
-	                  <Form.Field>
-	                    <label>Dessert</label>
-	                    <Input defaultValue={this.state.dessert} onChange={this.handleDessertChange}/>
-	                  </Form.Field>
-	                  <Form.Field>
-	                    <label>Soup</label>
-	                    <Input defaultValue={this.state.soup} onChange={this.handleSoupChange}/>
-	                  </Form.Field>
+	                    <Form.Input label='Dessert' defaultValue={this.state.dessert} onChange={this.handleDessertChange} error={this.state.dessert_error}/>
+	                    <Form.Input label='Soup' defaultValue={this.state.soup} onChange={this.handleSoupChange} error={this.state.soup_error}/>
 	                </Form.Group>
 
 	                <Form.Group widths='equal'>
-	                  <Form.Field>
-	                    <label>Beverage</label>
-	                    <Input defaultValue={this.state.beverage} onChange={this.handleBeverageChange}/>
-	                  </Form.Field>
-	                  <Form.Field>
-	                    <label>Others</label>
-	                    <Input defaultValue={this.state.others} onChange={this.handleOthersChange}/>
-	                  </Form.Field>
+	                	<Form.Input label='Beverage' defaultValue={this.state.beverage} onChange={this.handleBeverageChange} error={this.state.beverage_error}/>
+	                    <Form.Input label='Others' defaultValue={this.state.others} onChange={this.handleOthersChange} error={this.state.others_error}/>
 	                </Form.Group>
 
 	                <Form.Group inline>
@@ -315,7 +364,15 @@ class EditMenu extends Component {
 	                      </div>
 	                  </Form.Field>
 	                </Form.Group> 
-				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+
+	                {(this.state.form_complete===false) ?
+	                  <Message
+	                    header={this.state.prompt_header}
+	                    content={this.state.prompt_message}
+	                  />
+	                : ''}
+
+				    <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
