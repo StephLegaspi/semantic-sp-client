@@ -100,9 +100,9 @@ class EditMotif extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-	                <Form.Input label='Event Motif' placeholder='Event Motif Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
+	                <Form.Input required label='Event Motif' placeholder='Event Motif Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
 
-	                <Form.TextArea label='Description' placeholder={this.props.data.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} error={this.state.description_error}/>
+	                <Form.TextArea required label='Description' placeholder={this.props.data.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} error={this.state.description_error}/>
 
 	                <Form.Group inline>
 	                  <label>Display Image: </label>
