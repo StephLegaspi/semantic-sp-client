@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Dropdown, Input } from 'semantic-ui-react'
-/*import { DateInput } from 'semantic-ui-calendar-react';*/
+import { Image, Form, Message } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
@@ -17,10 +16,10 @@ class AddToCartRent extends Component {
 		super(props);
 
 		this.state = {
-	    	date: '',
+	    date: '',
 
-	    	data: [],
-	    	prod_id: '',
+	    data: [],
+	    prod_id: '',
 			colors_arr: [],
 			color_options: [],
 
@@ -32,20 +31,19 @@ class AddToCartRent extends Component {
 			session_id: '',
 			cust_id: '',
 
-      success: false
+      success: false,
+
+      product_color_error: '',
+      form_complete: '',
+      prompt_message: '',
+      prompt_header: ''
 
     };
 		this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
-	/*handleChange = (event, {name, value}) => {
-	    if (this.state.hasOwnProperty(name)) {
-	      this.setState({ [name]: value });
-	    }
-	}*/
-
     handleColorChange = (e, { value }) => {
-  	    this.setState({product_color_id: value});
+  	    this.setState({product_color_id: value, product_color_error: false});
   	}
 
   	handleQuantityChange = (e, { value }) => {
@@ -91,6 +89,26 @@ class AddToCartRent extends Component {
 
         this.getSession();
         
+    }
+
+    checkForm = () => {
+      var error = false;
+
+      if(this.state.product_color_id === ''){
+        this.setState({product_color_error: true});
+        error=true;
+      }
+
+
+      if(error){
+        this.setState({form_complete: false});
+        this.setState({prompt_header: 'Incomplete Information'}); 
+        this.setState({prompt_message: 'Please fill up all the required fields.'});  
+      }else{
+        this.setState({form_complete: true});
+        this.handleSubmit();
+      }
+
     }
 
     getSession = () => {
@@ -232,20 +250,25 @@ class AddToCartRent extends Component {
 					<div className='div-label'>
 						<label className='label-font'> Number of items available: </label>
 					</div>
+          <br/>
+					<Form>
+            <Form.Dropdown required label='Product Color' placeholder='Color' search selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
+
+            <Form.Input required label='Quantity' type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
+
+            <label> Description: </label>
+            <p style={{marginLeft: '25%'}}> {product.description}</p>
+          </Form>
+
+          {(this.state.form_complete===false) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+          : ''}
+
 					<div className='div-label'>
-						<label className='label-font'> Product Color: </label>
-						<Dropdown pplaceholder='Color' search selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '8%'}}/>
-					</div>
-					<div className='div-label'>
-						<label className='label-font'> Quantity: </label>
-						<Input type='number' defaultValue={this.state.product_quantity} min={1} onChange={this.handleQuantityChange} style={{marginLeft: '17%'}}/>
-					</div>
-					<div className='div-label'>
-						<label className='label-font'> Description: </label>
-						<p style={{marginLeft: '25%'}}> blaknkfnhghvsckbsdkbcksbvisbdcbsibk</p>
-					</div>
-					<div className='div-label'>
-						<AddCartButton handleAddtoCart={this.handleSubmit}/>
+						<AddCartButton handleAddtoCart={this.checkForm}/>
             {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
 					</div>
 				</div>
