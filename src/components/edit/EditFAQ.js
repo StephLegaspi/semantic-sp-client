@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, TextArea } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -69,14 +69,9 @@ class EditFAQ extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-					<Form.Field>
-	                    <label>Question</label>
-	                    <TextArea placeholder={this.props.data.question} style={{ minHeight: 100 }} onChange={this.handleQuestionChange}/>
-	                  </Form.Field>
-	                  <Form.Field>
-	                    <label>Answer</label>
-	                    <TextArea placeholder={this.props.data.answer} style={{ minHeight: 100 }} onChange={this.handleAnswerChange}/>
-	                  </Form.Field>
+					<Form.TextArea label='Question' placeholder={this.props.data.question} style={{ minHeight: 100 }} onChange={this.handleQuestionChange}/>
+
+	                 <Form.TextArea label='Answer' placeholder={this.props.data.answer} style={{ minHeight: 100 }} onChange={this.handleAnswerChange}/>
 
 				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
