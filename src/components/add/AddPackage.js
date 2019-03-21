@@ -102,11 +102,11 @@ export default class AddPackage extends Component {
           <div className='add-modal'>
             <Form className='form-style-smaller'>
                 <Form.Group widths='equal'>
-                  <Form.Input label='Package Name' placeholder='Package Name' onChange={this.handleNameChange} error={this.state.name_error}/>
-                  <Form.Input label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
+                  <Form.Input required label='Package Name' placeholder='Package Name' onChange={this.handleNameChange} error={this.state.name_error}/>
+                  <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
                 </Form.Group>
 
-                <Form.TextArea label='Inclusions' placeholder='e.g. Inclusion1, Inclusion2, Inclusion3' style={{ minHeight: 100 }}  onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
+                <Form.TextArea required label='Inclusions' placeholder='e.g. Inclusion1, Inclusion2, Inclusion3' style={{ minHeight: 100 }}  onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
 
               {(this.state.form_complete===false) ?
                   <Message
