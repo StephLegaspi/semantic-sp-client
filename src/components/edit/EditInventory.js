@@ -13,7 +13,7 @@ class EditInventory extends Component {
 			activeModal: false,
 			total_quantity: '',
 
-			total_quantity_error: '',
+			total_quantity_error: false,
 	        form_complete: '',
 	        prompt_message: '',
 	        prompt_header: ''
@@ -21,7 +21,7 @@ class EditInventory extends Component {
 		this.handleQuantityChange = this.handleQuantityChange.bind(this);
 	}
 
-	handleQuantityChange(e) { this.setState({total_quantity: e.target.value, total_quantity_error: false}); }
+	handleQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
 
 	onModal = () => {
 		this.getData();
@@ -39,7 +39,7 @@ class EditInventory extends Component {
 	checkForm = () => {
 	    var error = false;
 
-	    if(this.total_quantity === ''){
+	    if(this.state.total_quantity === ''){
 	      this.setState({total_quantity_error: true});
 	      error=true;
 	    }
@@ -52,6 +52,7 @@ class EditInventory extends Component {
 	      this.setState({form_complete: true});
 	      this.submitEdit();
 	      this.setState({total_quantity: ''});
+	      this.setState({total_quantity_error: ''});
 	    }
 
 	}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Checkbox } from 'semantic-ui-react';
+import { Form, Button, Checkbox, Message } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -16,7 +16,17 @@ class EditProduct extends Component {
     		description: "",
     		display_product: "",
     		color_arr: [],
-    		colors: ""
+    		colors: "",
+
+    		name_error: false,
+    		price_error: false,
+    		description_error: false,
+    		display_product_error: false,
+    		colors_error: false,
+
+	        form_complete: '',
+	        prompt_message: '',
+	        prompt_header: ''
 		}
 		this.handleNameChange = this.handleNameChange.bind(this);
 	    this.handlePriceChange = this.handlePriceChange.bind(this);
@@ -82,6 +92,53 @@ class EditProduct extends Component {
 			})		
 	}
 
+	checkForm = () => {
+	    var error = false;
+
+	    if(this.state.name === ''){
+	      this.setState({name_error: true});
+	      error=true;
+	    }
+	    if(this.state.price === ''){
+	    	console.log('pumasokkk');
+	      this.setState({price_error: true});
+	      error=true;
+	    }
+	    if(this.state.description === ''){
+	      this.setState({description_error: true});
+	      error=true;
+	    }
+	    if(this.state.display_product === ''){
+	      this.setState({display_product_error: true});
+	      error=true;
+	    }
+	    if(this.state.colors === ''){
+	      this.setState({colors_error: true});
+	      error=true;
+	    }
+
+	    if(error){
+	      this.setState({form_complete: false});
+	      this.setState({prompt_header: 'Incomplete Information'}); 
+	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	    }else{
+	      this.setState({form_complete: true});
+	      this.submitEdit();
+	      this.setState({name: ''});
+	      this.setState({price: ''});
+	      this.setState({description: ''});
+	      this.setState({display_product: ''});
+	      this.setState({colors: ''});
+
+	      this.setState({name_error: ''});
+	      this.setState({price_error: ''});
+	      this.setState({description_error: ''});
+	      this.setState({display_product_error: ''});
+	      this.setState({colors_error: ''});
+	    }
+
+	}
+
 	submitEdit = () => {
 
         const prod = JSON.stringify({name: this.state.name, price: this.state.price, description: this.state.description, display_product: this.state.display_product, product_color: this.state.colors})
@@ -115,25 +172,13 @@ class EditProduct extends Component {
 	      		<Form className='forms'>
 					
 	                <Form.Group widths='equal'>
-	                	<Form.Field>
-		                  <label>Product Name</label>
-		                  <Input placeholder='Product Name' defaultValue={this.props.data.name} onChange={this.handleNameChange}/>
-		                </Form.Field>
-	                	<Form.Field>
-		                    <label>Price</label>
-		                    <Input placeholder='Price' defaultValue={this.props.data.price} onChange={this.handlePriceChange}/>
-	                	</Form.Field>
+		                <Form.Input required label='Product Name' placeholder='Product Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
+		                <Form.Input required label='Price' placeholder='Price' defaultValue={this.props.data.price} onChange={this.handlePriceChange} error={this.state.price_error}/>
 	                </Form.Group>
 
-	                <Form.Field>
-	                    <label>Description</label>
-	                    <Input placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange}/>
-	                 </Form.Field>
+	                <Form.Input required label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-	                 <Form.Field>
-	                  <label>Color/s</label>
-	                  <Input defaultValue={this.state.colors} onChange={this.handleColorChange}/>
-	                </Form.Field>
+	               <Form.Input required label='Color/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>
 
 	                <Form.Group inline>
 	                  <label>Product Image: </label>
@@ -155,7 +200,14 @@ class EditProduct extends Component {
 	                  </Form.Field>
 	                </Form.Group>
 
-				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+	                {(this.state.form_complete===false) ?
+	                  <Message
+	                    header={this.state.prompt_header}
+	                    content={this.state.prompt_message}
+	                  />
+	                : ''}
+
+				    <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
