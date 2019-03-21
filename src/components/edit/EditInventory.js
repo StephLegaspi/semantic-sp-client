@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -12,12 +12,16 @@ class EditInventory extends Component {
 		this.state = {
 			activeModal: false,
 			total_quantity: '',
-			date: ''
+
+			total_quantity_error: '',
+	        form_complete: '',
+	        prompt_message: '',
+	        prompt_header: ''
 		}
 		this.handleQuantityChange = this.handleQuantityChange.bind(this);
 	}
 
-	handleQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
+	handleQuantityChange(e) { this.setState({total_quantity: e.target.value, total_quantity_error: false}); }
 
 	onModal = () => {
 		this.getData();
@@ -30,6 +34,26 @@ class EditInventory extends Component {
 
 	getData = () => {
 		this.setState({total_quantity: this.props.data.total_quantity})
+	}
+
+	checkForm = () => {
+	    var error = false;
+
+	    if(this.total_quantity === ''){
+	      this.setState({total_quantity_error: true});
+	      error=true;
+	    }
+
+	    if(error){
+	      this.setState({form_complete: false});
+	      this.setState({prompt_header: 'Incomplete Information'}); 
+	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	    }else{
+	      this.setState({form_complete: true});
+	      this.submitEdit();
+	      this.setState({total_quantity: ''});
+	    }
+
 	}
 
 	submitEdit = () => {
@@ -63,12 +87,16 @@ class EditInventory extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-	                  <Form.Field width={8}>
-	                    <label>Total Quantity</label>
-	                    <Input placeholder='Total Quantity'defaultValue={this.props.data.total_quantity} onChange={this.handleQuantityChange}/>
-	                  </Form.Field>
+	                <Form.Input width={8} required control='input' type='number' min={1} label='Total Quantity' placeholder='Total Quantity'defaultValue={this.props.data.total_quantity} onChange={this.handleQuantityChange}/>
 	                
-				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+	                {(this.state.form_complete===false) ?
+	                  <Message
+	                    header={this.state.prompt_header}
+	                    content={this.state.prompt_message}
+	                  />
+	                : ''}
+
+				    <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
