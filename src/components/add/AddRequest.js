@@ -311,7 +311,7 @@ export default class AddRequest extends Component {
     return(
       <div>
         <HeaderBar headerTitle={'Request Package'}/>
-        <div className='form-style'>  
+        <div className='form-style2'>  
             <Form>
 
                 <Form.Group widths='equal'>
