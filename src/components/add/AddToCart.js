@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Dropdown, Input } from 'semantic-ui-react'
+import { Image, Message, Form } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
@@ -29,13 +29,20 @@ class AddToCart extends Component {
       session_id: '',
       cust_id: '',
 
-      success: false
+      success: false,
+
+      product_color_error: '',
+      form_complete: '',
+      prompt_message: '',
+      prompt_header: ''
+
 		}
 		this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
 	}
 
   	handleColorChange = (e, { value }) => {
-  	    this.setState({product_color_id: value});
+  	    this.setState({product_color_id: value, product_color_error: false});
   	}
 
   	handleQuantityChange = (e, { value }) => {
@@ -80,6 +87,26 @@ class AddToCart extends Component {
 
         this.getSession();
         
+    }
+
+    checkForm = () => {
+      var error = false;
+
+      if(this.state.product_color_id === ''){
+        this.setState({product_color_error: true});
+        error=true;
+      }
+
+
+      if(error){
+        this.setState({form_complete: false});
+        this.setState({prompt_header: 'Incomplete Information'}); 
+        this.setState({prompt_message: 'Please fill up all the required fields.'});  
+      }else{
+        this.setState({form_complete: true});
+        this.handleSubmit();
+      }
+
     }
 
     getSession = () => {
@@ -218,22 +245,24 @@ class AddToCart extends Component {
 				<div class="ui fluid segment" id='desc-holder'>
 					<p className='title-header'> {product.name}</p>
 					<p className='body-font'>  P {product.price} </p>
-					<div className='div-label'>
-						<label className='label-font'> Product Color: </label>
-						<Dropdown placeholder='Color' search selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '5%'}}/>
-					</div>
-					<br/>
-					<div className='div-label'>
-						<label className='label-font'> Quantity: </label>
-						<Input type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '14%'}}/>
-					</div>
-					<br/>
-					<div className='div-label'>
-						<label className='label-font'> Description: </label>
+          <Form>
+						<Form.Dropdown required label='Product Color' placeholder='Color' search selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
+
+						<Form.Input required label='Quantity' type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
+
+						<label> Description: </label>
 						<p style={{marginLeft: '25%'}}> {product.description}</p>
-					</div>
+          </Form>
+
+          {(this.state.form_complete===false) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+          : ''}
+
 					<div className='div-label'>
-						<AddCartButton handleAddtoCart={this.handleSubmit}/>
+						<AddCartButton handleAddtoCart={this.checkForm}/>
             {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
 					</div>
 				</div>
