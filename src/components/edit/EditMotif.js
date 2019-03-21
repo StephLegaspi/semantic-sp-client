@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, TextArea } from 'semantic-ui-react';
+import { Form, Button, Message } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -12,7 +12,14 @@ class EditMotif extends Component {
 		this.state = {
 			activeModal: false,
 			name: "",
-	        description: ""
+	        description: "",
+
+	        name_error: false,
+    		description_error: false,
+
+	        form_complete: '',
+	        prompt_message: '',
+	        prompt_header: ''
 		}
 		this.handleNameChange = this.handleNameChange.bind(this);
       	this.handleDescChange = this.handleDescChange.bind(this);
@@ -35,8 +42,35 @@ class EditMotif extends Component {
 		this.setState({description: this.props.data.description})
 	}
 
-	submitEdit = () => {
+	checkForm = () => {
+	    var error = false;
 
+	    if(this.state.name === ''){
+	      this.setState({name_error: true});
+	      error=true;
+	    }
+	    if(this.state.description === ''){
+	      this.setState({description_error: true});
+	      error=true;
+	    }
+
+	    if(error){
+	      this.setState({form_complete: false});
+	      this.setState({prompt_header: 'Incomplete Information'}); 
+	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+	    }else{
+	      this.setState({form_complete: true});
+	      this.submitEdit();
+	      this.setState({name: ''});
+	      this.setState({description: ''});
+
+	      this.setState({name_error: ''});
+	      this.setState({description_error: ''});
+	    }
+
+	}
+
+	submitEdit = () => {
         const motif = JSON.stringify({name: this.state.name, description: this.state.description})
        
         fetch(`http://localhost:3001/v1/event_motifs/` + this.props.data.id,{
@@ -66,15 +100,9 @@ class EditMotif extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-					<Form.Field>
-	                  <label>Event Motif Name</label>
-	                  <Input placeholder='Event Motif Name' defaultValue={this.props.data.name} onChange={this.handleNameChange}/>
-	                </Form.Field>
+	                <Form.Input label='Event Motif' placeholder='Event Motif Name' defaultValue={this.props.data.name} onChange={this.handleNameChange} error={this.state.name_error}/>
 
-	                <Form.Field>
-	                  <label>Description</label>
-	                  <TextArea placeholder={this.props.data.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} />
-	                </Form.Field>
+	                <Form.TextArea label='Description' placeholder={this.props.data.description} onChange={this.handleDescChange} style={{ minHeight: 100 }} error={this.state.description_error}/>
 
 	                <Form.Group inline>
 	                  <label>Display Image: </label>
@@ -87,8 +115,16 @@ class EditMotif extends Component {
 	                          </label>
 	                      </div>
 	                  </Form.Field>
-	                </Form.Group>   
-				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+	                </Form.Group> 
+
+	                {(this.state.form_complete===false) ?
+	                  <Message
+	                    header={this.state.prompt_header}
+	                    content={this.state.prompt_message}
+	                  />
+	                : ''}
+
+				    <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
