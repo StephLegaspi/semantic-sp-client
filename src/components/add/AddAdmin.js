@@ -60,13 +60,33 @@ export default class AddAdmin extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+
+    this.setState({first_name: ''});
+    this.setState({middle_name: ''});
+    this.setState({last_name: ''});
+    this.setState({email_address: ''});
+    this.setState({contact_number: ''});
+    this.setState({password: ''});
+    this.setState({repeat_password: ''});
+    this.setState({image: ''});
+
+    this.setState({fname_error: ''});
+    this.setState({mname_error: ''});
+    this.setState({lname_error: ''});
+    this.setState({contact_error: ''});
+    this.setState({password_error: ''});
+    this.setState({repeatpass_error: ''});
+    this.setState({image_error: ''});
+
+    this.setState({prompt_header: ''});
+    this.setState({prompt_message: ''});
+    this.setState({form_complete: ''});
+    this.setState({form_error_pass: ''});
+
   }
 
   checkForm = () => {
     var error = false;
-
-    console.log(this.state.password);
-    console.log(this.state.repeat_password);
 
     if(this.state.first_name === ''){
       this.setState({fname_error: true});
@@ -118,7 +138,7 @@ export default class AddAdmin extends Component {
         this.setState({middle_name: ''});
         this.setState({last_name: ''});
         this.setState({email_address: ''});
-        this.setState({contact_number: 0});
+        this.setState({contact_number: ''});
         this.setState({password: ''});
         this.setState({repeat_password: ''});
         this.setState({image: ''});

@@ -47,9 +47,9 @@ export default class AddMotif extends Component {
     this.setState({name: ''});
     this.setState({description: ''});
     this.setState({image_files: ''});
-    this.setState({name_error: false});
-    this.setState({description_error: false});
-    this.setState({image_error: false});
+    this.setState({name_error: ''});
+    this.setState({description_error: ''});
+    this.setState({image_error: ''});
     this.setState({prompt_header: ''});
     this.setState({prompt_message: ''});
     this.setState({form_complete: ''});
