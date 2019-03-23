@@ -17,6 +17,7 @@ export default class AddProduct extends Component {
       description: "",
       display_product: 0,
       color_list: "",
+      image: '',
 
       name_error: '',
       price_error: '',
@@ -36,6 +37,7 @@ export default class AddProduct extends Component {
     this.handleTotalQuantityChange = this.handleTotalQuantityChange.bind(this);
     this.handleDisplayChange = this.handleDisplayChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   handleNameChange(e) { this.setState({name: e.target.value, name_error: false}); }
@@ -44,6 +46,10 @@ export default class AddProduct extends Component {
   handleDescriptionChange(e) { this.setState({description: e.target.value, description_error: false}); }
   handleDisplayChange(e) { this.setState({display_product: 1, display_product_error: false}); }
   handleColorChange(e) { this.setState({color_list: e.target.value, color_list_error: false}); }
+   handleImageChange(e) { 
+    this.setState({image: e.target.files[0]}); 
+   
+  }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -100,12 +106,21 @@ export default class AddProduct extends Component {
   }
 
   handleSubmit = () => {
-        const prod = JSON.stringify({name: this.state.name, price: this.state.price, total_quantity: this.state.total_quantity, description: this.state.description,display_product: this.state.display_product, product_color: this.state.color_list})
+
+        let formData = new FormData();
+        formData.set('enctype','multipart/form-data') 
+
+        formData.append('name', this.state.name);
+        formData.append('price', this.state.price);
+        formData.append('total_quantity', this.state.total_quantity);
+        formData.append('description', this.state.description);
+        formData.append('display_product', this.state.display_product);
+        formData.append('product_color', this.state.color_list);
+        formData.append('image', this.state.image);
        
         fetch(`http://localhost:3001/v1/products/` + this.props.category ,{
-            headers: { 'Content-Type': 'application/json' },
             method: "POST",
-            body: prod
+            body: formData
           })
         .then((response) => {
           return response.json()
@@ -143,13 +158,8 @@ export default class AddProduct extends Component {
                   <Form.Group inline>
                     <label>Product Image: </label>
                     <Form.Field className="relative">
-                        <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
-                        <div className="absolute2"> 
-                            <label for="embedpollfileinput" class="ui button" style={{ height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
-                              <i class="ui upload icon"></i>   
-                               Upload
-                            </label>
-                        </div>
+                        <input name='image' type="file" className="absolute" onChange={this.handleImageChange} />
+                      
                     </Form.Field>
                   </Form.Group>   
 
