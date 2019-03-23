@@ -73,6 +73,7 @@ export default class AddAdmin extends Component {
     this.setState({fname_error: ''});
     this.setState({mname_error: ''});
     this.setState({lname_error: ''});
+    this.setState({email_error: ''});
     this.setState({contact_error: ''});
     this.setState({password_error: ''});
     this.setState({repeatpass_error: ''});

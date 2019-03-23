@@ -40,6 +40,18 @@ export default class AddPackage extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+
+    this.setState({name: ''});
+    this.setState({price: ''});
+    this.setState({inclusion: ''});
+
+    this.setState({name_error: ''});
+    this.setState({price_error: ''});
+    this.setState({inclusion_error: ''});
+
+    this.setState({prompt_header: ''});
+    this.setState({prompt_message: ''});
+    this.setState({form_complete: ''});
   }
 
   checkForm = () => {
