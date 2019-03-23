@@ -14,6 +14,7 @@ export default class AddMotif extends Component {
         activeModal: false,
         name: "",
         description: "",
+        image_files: '',
 
         name_error: '',
         description_error: '',
@@ -25,10 +26,14 @@ export default class AddMotif extends Component {
 
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handleDescChange = this.handleDescChange.bind(this);
+      this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   handleNameChange(e) { this.setState({name: e.target.value, name_error: false}); }
   handleDescChange(e) { this.setState({description: e.target.value,description_error: false}); }
+  handleImageChange(e) {
+    this.setState({image_files: e.target.files});
+  }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -64,12 +69,20 @@ export default class AddMotif extends Component {
   }
 
   handleSubmit = () => {
-        const motif = JSON.stringify({name: this.state.name, description: this.state.description})
+
+        let formData = new FormData();
+        formData.set('enctype','multipart/form-data') 
+
+        formData.append('name', this.state.name);
+        formData.append('description', this.state.description);
+
+        for (var file of this.state.image_files) {
+          formData.append('images', file)
+        }
        
         fetch(`http://localhost:3001/v1/event_motifs`,{
-            headers: { 'Content-Type': 'application/json' },
             method: "POST",
-            body: motif
+            body: formData
           })
         .then((response) => {
           return response.json()
@@ -101,7 +114,7 @@ export default class AddMotif extends Component {
                 <Form.Group inline>
                   <label>Display Image: </label>
                   <Form.Field className="relative">
-                      <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
+                      <input required multiple name='images' type="file" id="embedpollfileinput" className="absolute" onChange={this.handleImageChange}/>
                       <div className="absolute2"> 
                           <label for="embedpollfileinput" class="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
                             <i class="ui upload icon"></i>   
