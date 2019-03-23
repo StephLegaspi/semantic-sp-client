@@ -13,7 +13,7 @@ export default class AddProduct extends Component {
       activeModal: false,
       name: "",
       price: "",
-      total_quantity: "",
+      total_quantity: 1,
       description: "",
       display_product: 0,
       color_list: "",
@@ -171,7 +171,7 @@ export default class AddProduct extends Component {
                   
                   <Form.Group widths='equal'>
                       <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
-                      <Form.Input required type='number' min={1} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
                   </Form.Group>
 
                   <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>

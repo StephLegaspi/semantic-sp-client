@@ -247,7 +247,7 @@ class AddToCartRent extends Component {
   					<p className='title-header'> {product.name}</p>
   					<p className='body-font'>  {product.price}  </p>
   					<div className='div-label'>
-  						<label className='label-font'> Number of items available: </label>
+  						<label className='label-font'> Number of items available: {product.remaining} </label>
   					</div>
             <br/>
   					<Form>
