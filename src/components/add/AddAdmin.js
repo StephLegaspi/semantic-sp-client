@@ -19,6 +19,7 @@ export default class AddAdmin extends Component {
         password: "",
         contact_number: "",
         repeat_password: '',
+        image: '',
 
         fname_error: '',
         mname_error: '',
@@ -27,6 +28,7 @@ export default class AddAdmin extends Component {
         contact_error: '',
         password_error: '',
         repeatpass_error: '',
+        image_error: '',
 
         form_complete: '',
         form_error_pass: '',
@@ -40,6 +42,7 @@ export default class AddAdmin extends Component {
       this.handlePasswordChange = this.handlePasswordChange.bind(this);
       this.handleContactChange = this.handleContactChange.bind(this);
       this.handleRepeatPassChange = this.handleRepeatPassChange.bind(this);
+      this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   handleFirstNameChange(e) { this.setState({first_name: e.target.value, fname_error: false}); }
@@ -49,6 +52,7 @@ export default class AddAdmin extends Component {
   handlePasswordChange(e) { this.setState({password: e.target.value, password_error: false}); }
   handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
   handleRepeatPassChange(e) { this.setState({repeat_password: e.target.value, repeatpass_error: false}); }
+  handleImageChange(e) {this.setState({image: e.target.files[0], image_error:false});}
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -92,8 +96,10 @@ export default class AddAdmin extends Component {
       this.setState({repeatpass_error: true});
       error=true;
     }
-
-    console.log(error);
+    if(this.state.image === ''){
+      this.setState({image_error: true});
+      error=true;
+    }
 
     if(error){
       this.setState({form_complete: false});
@@ -108,6 +114,14 @@ export default class AddAdmin extends Component {
       }else{
         this.setState({form_error_pass: false});
         this.handleSubmit();
+        this.setState({first_name: ''});
+        this.setState({middle_name: ''});
+        this.setState({last_name: ''});
+        this.setState({email_address: ''});
+        this.setState({contact_number: 0});
+        this.setState({password: ''});
+        this.setState({repeat_password: ''});
+        this.setState({image: ''});
       }
     }
 
@@ -116,12 +130,21 @@ export default class AddAdmin extends Component {
   }
 
   handleSubmit = () => {
-        const admin = JSON.stringify({first_name: this.state.first_name, middle_name: this.state.middle_name, last_name: this.state.last_name, email_address: this.state.email_address, password: this.state.password, contact_number: this.state.contact_number})
+
+        let formData = new FormData();
+        formData.set('enctype','multipart/form-data') 
+
+        formData.append('first_name', this.state.first_name);
+        formData.append('middle_name', this.state.middle_name);
+        formData.append('last_name', this.state.last_name);
+        formData.append('email_address', this.state.email_address);
+        formData.append('contact_number', this.state.contact_number);
+        formData.append('password', this.state.password);
+        formData.append('image', this.state.image);
        
         fetch(`http://localhost:3001/v1/administrators`,{
-            headers: { 'Content-Type': 'application/json' },
             method: "POST",
-            body: admin
+            body: formData
           })
         .then((response) => {
           return response.json()
@@ -160,6 +183,19 @@ export default class AddAdmin extends Component {
                   <Form.Input label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error}/>
                   <Form.Input label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error}/>
                 </Form.Group>
+
+                <Form.Group inline>
+                    <label>Admin Image: </label>
+                    <Form.Field className="relative" error={this.state.image_error}>
+                        <input name='image' type="file" className="absolute" onChange={this.handleImageChange} id='embedpollfileinput'/>
+                        <div className="absolute2"> 
+                          <label for="embedpollfileinput" className="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
+                            <i class="ui upload icon"></i>   
+                             Upload
+                          </label>
+                        </div>
+                    </Form.Field>
+                </Form.Group>   
 
               {(this.state.form_complete===false || this.state.form_error_pass===true) ?
                   <Message
