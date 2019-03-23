@@ -12,7 +12,8 @@ class Logs extends Component {
 		super(props);
 		
 		this.state = {
-			data: []
+			data: [],
+			log_id: ''
 		}
 
 		this.options = [
@@ -20,6 +21,32 @@ class Logs extends Component {
 		  { key: 'timestamp', text: 'Timestamp', value: 'timestamp' },
 		]
 	}
+
+	handleIDChange = (e) => {
+	    this.setState({ log_id: e.target.value},() => { 
+	    	if(this.state.log_id === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByID(); 
+	    	}
+	    })
+	}
+
+	searchByID = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/logs/admin/' + self.state.log_id, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	componentDidMount() {
         let self = this;
@@ -58,7 +85,7 @@ class Logs extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Admin Logs'}/>
-				<SearchBarTable titleHolder={'Search admin ID..'}/>
+				<SearchBarTable titleHolder={'Search log ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
 
 				<div className='table-div'>
 				<Table celled>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Dropdown } from 'semantic-ui-react';
+import { Form, Input, Button, Message } from 'semantic-ui-react';
 
 import EditButton from '../button/EditButton.js'
 
@@ -15,16 +15,19 @@ class EditCartProductRental extends Component {
 			color_options: [],
 			product_color: "",
       quantity: "",
-      rental_duration: ""
+
+      product_color_error: false,
+
+      form_complete: '',
+      prompt_message: '',
+      prompt_header: ''
 		}
 
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
-    this.handleDurationChange = this.handleDurationChange.bind(this);
 	}
 
 	handleQuantityChange(e) {this.setState({quantity: e.target.value}); }
-  handleDurationChange(e) {this.setState({rental_duration: e.target.value}); }
 	handleColorChange = (e, { value }) => {
   	    this.setState({product_color: value});
   }
@@ -42,7 +45,6 @@ class EditCartProductRental extends Component {
 	getData = () => {
 		this.setState({quantity: this.props.data.product_quantity});
 		this.setState({product_color: this.props.data.product_color_name});
-    this.setState({rental_duration: this.props.data.rental_duration});
 	}
 
 
@@ -77,8 +79,30 @@ class EditCartProductRental extends Component {
       this.setState({color_options: col_options});
   	}
 
+  checkForm = () => {
+      var error = false;
+
+      if(isNaN(this.state.product_color)){
+        this.setState({product_color_error: true});
+        error=true;
+      }
+
+      if(error){
+        this.setState({form_complete: false});
+        this.setState({prompt_header: 'Missing Information'}); 
+        this.setState({prompt_message: 'Please choose a product color.'});  
+      }else{
+        this.setState({form_complete: true});
+        this.submitEdit();
+        this.setState({product_color: ''});
+
+        this.setState({product_color_error: ''});
+      }
+
+  }
+
 	submitEdit = () => {
-       const prod = JSON.stringify({product_quantity: this.state.quantity, product_color_id: this.state.product_color, rental_duration: this.state.rental_duration})
+       const prod = JSON.stringify({product_quantity: this.state.quantity, product_color_id: this.state.product_color})
        
         fetch(`http://localhost:3001/v1/shopping_cart/products/` + this.props.data.sc_id,{
             headers: { 'Content-Type': 'application/json' },
@@ -108,21 +132,22 @@ class EditCartProductRental extends Component {
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
               <Form.Group widths='equal'>
-	               <Form.Field>       
-                    <label > Product Color: </label>
-						        <Dropdown search selection placeholder={this.state.product_color} options={this.state.color_options} onChange={this.handleColorChange}/>
-                  </Form.Field>
+	               <Form.Dropdown label='Product Color' search selection placeholder={this.state.product_color} options={this.state.color_options} onChange={this.handleColorChange} error={this.state.product_color_error}/>
                   <Form.Field>
 	                    <label> Quantity: </label>
 						          <Input type='number' min={1} defaultValue={this.state.quantity} onChange={this.handleQuantityChange}/>
                   </Form.Field>
               </Form.Group>
-              <Form.Field width={8}>
-                      <label> Rental Duration: </label>
-                      <Input type='number' min={1} defaultValue={this.state.rental_duration} onChange={this.handleDurationChange}/>
-              </Form.Field>
               <br/> <br/> <br/>
-              <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+
+              {(this.state.form_complete===false) ?
+                    <Message
+                      header={this.state.prompt_header}
+                      content={this.state.prompt_message}
+                    />
+              : ''}
+
+              <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				  </Form>
 	      	</div>)}

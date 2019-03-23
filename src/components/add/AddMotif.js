@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, TextArea } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
 import AddButton from '../button/AddButton.js'
 
@@ -13,15 +13,22 @@ export default class AddMotif extends Component {
       this.state = {
         activeModal: false,
         name: "",
-        description: ""
+        description: "",
+
+        name_error: '',
+        description_error: '',
+
+        form_complete: '',
+        prompt_message: '',
+        prompt_header: ''
       }
 
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handleDescChange = this.handleDescChange.bind(this);
   }
 
-  handleNameChange(e) { this.setState({name: e.target.value}); }
-  handleDescChange(e) { this.setState({description: e.target.value}); }
+  handleNameChange(e) { this.setState({name: e.target.value, name_error: false}); }
+  handleDescChange(e) { this.setState({description: e.target.value,description_error: false}); }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -29,6 +36,31 @@ export default class AddMotif extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+  }
+
+  checkForm = () => {
+    var error = false;
+
+    if(this.state.name === ''){
+      this.setState({name_error: true});
+      error=true;
+    }
+    if(this.state.description === ''){
+      this.setState({description_error: true});
+      error=true;
+    }
+
+
+    if(error){
+      this.setState({form_complete: false});
+      this.setState({prompt_header: 'Incomplete Information'}); 
+      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+    }else{
+      this.setState({form_complete: true});
+      this.handleSubmit();
+      this.setState({name: ''});
+      this.setState({description: ''});
+    }
   }
 
   handleSubmit = () => {
@@ -61,15 +93,10 @@ export default class AddMotif extends Component {
           <div className='add-modal'>
 
             <Form className='form-style-smaller'>
-              <Form.Field>
-                  <label>Event Motif Name</label>
-                  <Input placeholder='Event Motif Name' onChange={this.handleNameChange}/>
-                </Form.Field>
+                
+                <Form.Input required label='Event Motif' placeholder='Event Motif Name' onChange={this.handleNameChange} error={this.state.name_error}/>
 
-                <Form.Field>
-                  <label>Description</label>
-                  <TextArea placeholder='Description' style={{ minHeight: 100 }} onChange={this.handleDescChange}/>
-                </Form.Field>
+                <Form.TextArea required label='Description' placeholder='Description' style={{ minHeight: 100 }} onChange={this.handleDescChange} error={this.state.description_error}/>
 
                 <Form.Group inline>
                   <label>Display Image: </label>
@@ -84,7 +111,14 @@ export default class AddMotif extends Component {
                   </Form.Field>
               </Form.Group> 
 
-              <Button type='submit' onClick={this.handleSubmit} id='edit-button2'>Add</Button>
+              {(this.state.form_complete===false) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+                : ''}
+
+              <Button type='submit' onClick={this.checkForm} id='edit-button2'>Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
           </Form>
           </div>)}

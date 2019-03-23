@@ -6,8 +6,7 @@ import RentalInfo from '../infoModal/RentalInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteModal from '../delete/DeleteModal.js'
-import EditOrderRental from '../edit/EditOrderRental.js'
-
+import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
 
@@ -16,7 +15,8 @@ class OrderRental extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			order_id: ''
 		}
 		
 		this.deliveryStatusOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
@@ -24,10 +24,43 @@ class OrderRental extends Component {
 
 	}
 
+	handleIDChange = (e) => {
+	    this.setState({ order_id: e.target.value},() => { 
+	    	if(this.state.order_id === ""){
+	    		this.update();
+	    		/*this.getByStatus();	*/
+	    		/*this.handleStatusChange();*/
+	    	}else{
+	    		this.searchByID(); 
+	    	}
+	    })
+	}
+
 	componentDidMount() {
         let self = this;
         fetch('http://localhost:3001/v1/orders/rental', {
             method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    searchByID = () => {
+        let self = this;
+
+        const stat = JSON.stringify({status: 'All'})
+
+        fetch('http://localhost:3001/v1/orders/rental/' + self.state.order_id, {
+        	headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            body: stat
         }).then(function(response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
@@ -56,11 +89,12 @@ class OrderRental extends Component {
         })
     }
 
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Rental Orders'}/>
-				<SearchBarTable titleHolder={'Search customer name..'}/>
+				<SearchBarTable titleHolder={'Search order ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
 
 				<div class="ui fluid segment" id='upper-div3'>
       				<label>
@@ -98,7 +132,7 @@ class OrderRental extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Rental Information</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 
 				      </Table.Row>
@@ -121,10 +155,10 @@ class OrderRental extends Component {
 				        <Table.Cell>{order.total_items}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell>
-				        	<RentalInfo order_id={order.id}/>
+				        	<RentalInfo order_id={order.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditOrderRental/>
+				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>
@@ -135,7 +169,7 @@ class OrderRental extends Component {
 
 				    <Table.Footer>
 				      <Table.Row>
-				        <Table.HeaderCell colSpan='12'>
+				        <Table.HeaderCell colSpan='13'>
 				          <Menu floated='right' pagination>
 				            <Menu.Item as='a' icon>
 				              <Icon name='chevron left' />

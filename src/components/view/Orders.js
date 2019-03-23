@@ -15,16 +15,61 @@ class Orders extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			delivery_status: 'All',
+			order_id: ''
 		}		
 
-		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.stateOptions = [ { value: 'All', text: 'All' }, { value: 'Pending', text: 'Pending' }, { value: 'On-delivery', text: 'On-delivery' }, { value: 'Delivered', text: 'Delivered' } ]
+	}
+
+	handleStatusChange = (e, { value }) => {
+	    this.setState({ delivery_status: value},() => { 
+	    	if(this.state.delivery_status === "All"){
+	    		this.update();	
+	    	}else{
+	    		this.getByStatus();
+	    	}
+	    })
+	}
+
+	handleIDChange = (e) => {
+	    this.setState({ order_id: e.target.value},() => { 
+	    	if(this.state.order_id === ""){
+	    		/*this.update();*/
+	    		this.getByStatus();	
+	    		/*this.handleStatusChange();*/
+	    	}else{
+	    		this.searchByID(); 
+	    	}
+	    })
 	}
 
 	componentDidMount() {
         let self = this;
         fetch('http://localhost:3001/v1/orders/purchase', {
             method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    searchByID = () => {
+        let self = this;
+
+        const stat = JSON.stringify({status: this.state.delivery_status})
+
+        fetch('http://localhost:3001/v1/orders/purchase/' + self.state.order_id, {
+        	headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            body: stat
         }).then(function(response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
@@ -53,11 +98,27 @@ class Orders extends Component {
         })
     }
 
+    getByStatus = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/orders/purchase-status/' + this.state.delivery_status, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Purchase Orders'}/>
-				<SearchBarTable titleHolder={'Search customer name..'}/>
+				<SearchBarTable titleHolder={'Search order ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
 
 
 				<div class="ui fluid segment" id='upper-div3'>
@@ -66,7 +127,8 @@ class Orders extends Component {
 					  <Dropdown
 					    inline
 					    options={this.stateOptions}
-					    defaultValue='all'
+					    defaultValue={this.state.delivery_status}
+					    onChange={this.handleStatusChange}
 					  />
 					</label>
       			</div>

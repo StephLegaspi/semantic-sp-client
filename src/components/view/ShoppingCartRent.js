@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Image, Header, Card } from 'semantic-ui-react'
+import { Table, Image, Header, Card, Input } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import DeleteModal from '../delete/DeleteModal.js'
@@ -23,8 +23,14 @@ class ShoppingCartRent extends Component {
       data: [],
 
       total_bill: '',
-      total_items: ''
+      total_items: '',
+
+      rental_duration: 1
     };
+  }
+
+  handleDurationChange = (e, { value }) => {
+        this.setState({rental_duration: value});
   }
 
   componentDidMount() {
@@ -45,26 +51,27 @@ class ShoppingCartRent extends Component {
         })
   }
 
-  getCart = () => {
-        let self = this;
-
-        fetch(`http://localhost:3001/v1/shopping_carts/shopping_carts/rental/` + this.state.cust_id,{
+  editRentalDuration = () => {
+        const cart = JSON.stringify({rental_duration: this.state.rental_duration})
+       
+        fetch(`http://localhost:3001/v1/shopping_carts/rental-duration/` + this.state.cart_id,{
             headers: { 'Content-Type': 'application/json' },
-            method: "GET"
-        })
+            method: "PUT",
+            body: cart
+          })
         .then((response) => {
           return response.json()
         })
         .then((result) => {
-          self.setState({cart_id: result.data[0].id});
-          self.setState({total_bill: result.data[0].total_bill});
-          self.setState({total_items: result.data[0].total_items});
-          self.getCartProducts();
+          if(result.status===200){
+            console.log("Edited cart - rental duration");
+          }
         })
         .catch((e) => {
           console.log(e)
         })
   }
+
 
   getCartProducts = () => {
         let self = this;
@@ -137,7 +144,6 @@ class ShoppingCartRent extends Component {
               <Table.HeaderCell id='header-color' style={{width: '10%'}}>No. of items available</Table.HeaderCell>
               <Table.HeaderCell id='header-color'style={{width: '5%'}}>Color</Table.HeaderCell>
               <Table.HeaderCell id='header-color' style={{width: '10%'}}>Quantity</Table.HeaderCell>
-              <Table.HeaderCell id='header-color' style={{width: '5%'}}>Rental Duration</Table.HeaderCell>
               <Table.HeaderCell id='header-color'style={{width: '10%'}}>Price</Table.HeaderCell>
               <Table.HeaderCell id='header-color' style={{width: '8%'}}></Table.HeaderCell>
               <Table.HeaderCell id='header-color' style={{width: '8%'}}></Table.HeaderCell>
@@ -156,7 +162,6 @@ class ShoppingCartRent extends Component {
               <Table.Cell>yes</Table.Cell>
               <Table.Cell> {prod.product_color_name} </Table.Cell>
               <Table.Cell>{prod.product_quantity}</Table.Cell>
-              <Table.Cell>{prod.rental_duration}</Table.Cell>
               <Table.Cell>{prod.price}</Table.Cell>
               <Table.Cell textAlign='center'>
                 <EditCartProductRental data={prod} handleUpdate={this.getCart}/>
@@ -172,6 +177,11 @@ class ShoppingCartRent extends Component {
         <Card id='order-summary'>
           <Card.Content>
             <Card.Header style={{textAlign: 'center'}}>ORDER SUMMARY</Card.Header>
+            
+            <Card.Description style={{marginLeft: '23%'}}>Rental Duration: 
+              <Input type='number' defaultValue={this.state.rental_duration} min={1} onChange={this.handleDurationChange} style={{marginLeft: '17%', width: '30%'}}/>
+            </Card.Description>
+
             <Card.Description style={{marginLeft: '23%'}}>Total number of items: 
               <label className='label-font' style={{marginLeft: '10%'}}>{this.state.total_items} </label> 
             </Card.Description>
@@ -180,7 +190,7 @@ class ShoppingCartRent extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <AddOrder id_cart={this.state.cart_id} table_name={'rental'}/>
+            <AddOrder id_cart={this.state.cart_id} duration_rental={this.state.rental_duration} updateCart={this.editRentalDuration} table_name={'rental'}/>
 
           </Card.Content>
         </Card>

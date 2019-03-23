@@ -16,7 +16,8 @@ class Requests extends Component {
 
 		this.state = {
 			data: [],
-			status: "All"
+			status: "All",
+			request_id: ''
 		}
 	
 		this.stateOptions = [ {value: 'All', text: 'All' }, {value: 'Pending', text: 'Pending' }, { value: 'Successful', text: 'Successful' }, {value: 'Unsuccessful', text: 'Unsuccessful' } ]
@@ -32,10 +33,43 @@ class Requests extends Component {
 	    })
 	}
 
+	handleIDChange = (e) => {
+	    this.setState({ request_id: e.target.value},() => { 
+	    	if(this.state.request_id === ""){
+	    		/*this.update();*/
+	    		this.searchByStatus();	
+	    		/*this.handleStatusChange();*/
+	    	}else{
+	    		this.searchByID(); 
+	    	}
+	    })
+	}
+
 	componentDidMount() {
         let self = this;
         fetch('http://localhost:3001/v1/requests', {
             method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    searchByID = () => {
+        let self = this;
+
+        const stat = JSON.stringify({status: this.state.status})
+
+        fetch('http://localhost:3001/v1/requests-one/' + self.state.request_id, {
+        	headers: { 'Content-Type': 'application/json' },
+            method: 'POST',
+            body: stat
         }).then(function(response) {
             if (response.status >= 400) {
                 throw new Error("Bad response from server");
@@ -84,7 +118,7 @@ class Requests extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Requests'}/>
-				<SearchBarTable titleHolder={'Search customer name..'}/>
+				<SearchBarTable titleHolder={'Search order ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
 
 				<div class="ui fluid segment" id='upper-div3'> 
       				<label>

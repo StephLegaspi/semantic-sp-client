@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 
+import EditOrderRental from '../edit/EditOrderRental.js'
 import ModalButton from '../button/ModalButton.js'
-import EditOrderRentalStatus from '../edit/EditOrderRentalStatus.js'
+
 
 import '../../styles/modal.css';
 
@@ -52,8 +53,8 @@ class RentalInfo extends Component {
 							    <Table.Header>
 							      <Table.Row>
 							        <Table.HeaderCell style={{width: '15%'}}>Rental Duration</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '20%'}}>Rental Status</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Rental Due Date</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '20%'}}>Rental Status</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Returned Timestamp</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 							      </Table.Row>
@@ -63,11 +64,11 @@ class RentalInfo extends Component {
 							    {this.state.data.map(order =>
 							    	 <Table.Row>
 								        <Table.Cell>{order.rental_duration}</Table.Cell>
-								        <Table.Cell>{order.rental_status}</Table.Cell>
 								        <Table.Cell>Cell</Table.Cell>
+								        <Table.Cell>{order.rental_status}</Table.Cell>
 								     	<Table.Cell>{order.returned_timestamp}</Table.Cell>
 								     	<Table.Cell>
-								     		<EditOrderRentalStatus/>
+								     		<EditOrderRental order_id={this.props.order_id} handleUpdate={this.props.handleUpdate}/>
 								     	</Table.Cell>
 								      </Table.Row>
 								)}

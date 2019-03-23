@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, TextArea } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
 import AddButton from '../button/AddButton.js'
 
@@ -14,16 +14,24 @@ export default class AddPackage extends Component {
         activeModal: false,
         name: "",
         price: "",
-        inclusion: ""
+        inclusion: "",
+
+        name_error: '',
+        price_error: '',
+        inclusion_error: '',
+
+        form_complete: '',
+        prompt_message: '',
+        prompt_header: ''
       }
       this.handleNameChange = this.handleNameChange.bind(this);
       this.handlePriceChange = this.handlePriceChange.bind(this);
       this.handleInclusionChange = this.handleInclusionChange.bind(this);
   }
 
-  handleNameChange(e) { this.setState({name: e.target.value}); }
-  handlePriceChange(e) { this.setState({price: e.target.value}); }
-  handleInclusionChange(e) { this.setState({inclusion: e.target.value}); }
+  handleNameChange(e) { this.setState({name: e.target.value, name_error: false}); }
+  handlePriceChange(e) { this.setState({price: e.target.value, price_error: false}); }
+  handleInclusionChange(e) { this.setState({inclusion: e.target.value, inclusion_error: false}); }
 
 
   onModal = () => {
@@ -32,6 +40,36 @@ export default class AddPackage extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+  }
+
+  checkForm = () => {
+    var error = false;
+
+    if(this.state.name === ''){
+      this.setState({name_error: true});
+      error=true;
+    }
+    if(this.state.price === ''){
+      this.setState({price_error: true});
+      error=true;
+    }
+    if(this.state.inclusion === ''){
+      this.setState({inclusion_error: true});
+      error=true;
+    }
+
+    if(error){
+      this.setState({form_complete: false});
+      this.setState({prompt_header: 'Incomplete Information'}); 
+      this.setState({prompt_message: 'Please fill up all the required fields.'});  
+    }else{
+      this.setState({form_complete: true});
+      this.handleSubmit();
+      this.setState({name: ''});
+      this.setState({price: ''});
+      this.setState({inclusion: ''});
+    }
+
   }
 
   handleSubmit = () => {
@@ -63,23 +101,21 @@ export default class AddPackage extends Component {
         {this.state.activeModal && (
           <div className='add-modal'>
             <Form className='form-style-smaller'>
-              <Form.Group widths='equal'>
-                  <Form.Field>
-                    <label>Package Name</label>
-                    <Input placeholder='Package Name' onChange={this.handleNameChange}/>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Price</label>
-                    <Input placeholder='Price' onChange={this.handlePriceChange}/>
-                  </Form.Field>
+                <Form.Group widths='equal'>
+                  <Form.Input required label='Package Name' placeholder='Package Name' onChange={this.handleNameChange} error={this.state.name_error}/>
+                  <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
                 </Form.Group>
 
-               <Form.Field>
-                  <label>Inclusions</label>
-                  <TextArea placeholder='e.g. Inclusion1, Inclusion2, Inclusion3' style={{ minHeight: 100 }}  onChange={this.handleInclusionChange}/>
-              </Form.Field>
+                <Form.TextArea required label='Inclusions' placeholder='e.g. Inclusion1, Inclusion2, Inclusion3' style={{ minHeight: 100 }}  onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
 
-              <Button type='submit' id='edit-button2' onClick={this.handleSubmit} method="POST">Add</Button>
+              {(this.state.form_complete===false) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+                : ''}
+
+              <Button type='submit' id='edit-button2' onClick={this.checkForm} method="POST">Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
           </Form>
           </div>)}
