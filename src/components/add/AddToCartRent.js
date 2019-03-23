@@ -253,7 +253,7 @@ class AddToCartRent extends Component {
   					<Form>
               <Form.Dropdown required label='Product Color' placeholder='Color' selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
 
-              <Form.Input required label='Quantity' type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
+              <Form.Input required label='Quantity' type='number' min={1} max={product.remaining} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
 
               <label> Description: </label>
               <p style={{marginLeft: '25%'}}> {product.description}</p>

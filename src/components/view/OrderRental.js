@@ -151,8 +151,8 @@ class OrderRental extends Component {
 				        <Table.Cell>{order.delivery_address}</Table.Cell>
 				        <Table.Cell>{order.zip_code}</Table.Cell>
 				        <Table.Cell>{order.order_timestamp}</Table.Cell>
-				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.total_items}</Table.Cell>
+				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell>
 				        	<RentalInfo order_id={order.id} handleUpdate={this.update}/>
