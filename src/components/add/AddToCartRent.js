@@ -8,7 +8,6 @@ import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 import '../../styles/font.css';
-import img_tree from '../../images/tree.jpg'
 
 
 class AddToCartRent extends Component {
@@ -39,7 +38,6 @@ class AddToCartRent extends Component {
       prompt_header: ''
 
     };
-		this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
     handleColorChange = (e, { value }) => {
@@ -239,39 +237,41 @@ class AddToCartRent extends Component {
 			<div>
 				<HeaderBar headerTitle={''}/>
 		
-				<div class="ui fluid segment" id='img-holder'>
-					<Image  src={img_tree} rounded size='big' />
-				</div>
 
-				{this.state.data.map(product =>
-				<div class="ui fluid segment" id='desc-holder2'>
-					<p className='title-header'> {product.name}</p>
-					<p className='body-font'>  {product.price}  </p>
-					<div className='div-label'>
-						<label className='label-font'> Number of items available: </label>
-					</div>
-          <br/>
-					<Form>
-            <Form.Dropdown required label='Product Color' placeholder='Color' search selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
+        {this.state.data.map(product =>
+        <div>
+  				<div class="ui fluid segment" id='img-holder'>
+  					<Image  src={`http://localhost:3001/${product.image}`} rounded size='big' />
+  				</div>
+  				<div class="ui fluid segment" id='desc-holder2'>
+  					<p className='title-header'> {product.name}</p>
+  					<p className='body-font'>  {product.price}  </p>
+  					<div className='div-label'>
+  						<label className='label-font'> Number of items available: </label>
+  					</div>
+            <br/>
+  					<Form>
+              <Form.Dropdown required label='Product Color' placeholder='Color' selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
 
-            <Form.Input required label='Quantity' type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
+              <Form.Input required label='Quantity' type='number' min={1} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
 
-            <label> Description: </label>
-            <p style={{marginLeft: '25%'}}> {product.description}</p>
-          </Form>
+              <label> Description: </label>
+              <p style={{marginLeft: '25%'}}> {product.description}</p>
+            </Form>
 
-          {(this.state.form_complete===false) ?
-                  <Message
-                    header={this.state.prompt_header}
-                    content={this.state.prompt_message}
-                  />
-          : ''}
+            {(this.state.form_complete===false) ?
+                    <Message
+                      header={this.state.prompt_header}
+                      content={this.state.prompt_message}
+                    />
+            : ''}
 
-					<div className='div-label'>
-						<AddCartButton handleAddtoCart={this.checkForm}/>
-            {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
-					</div>
-				</div>
+  					<div className='div-label'>
+  						<AddCartButton handleAddtoCart={this.checkForm}/>
+              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
+  					</div>
+  				</div>
+        </div>
 				)}
 				
 				<div style={{clear: 'both'}}>
