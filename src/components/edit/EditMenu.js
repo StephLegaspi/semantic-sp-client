@@ -67,6 +67,18 @@ class EditMenu extends Component {
 
 	cancel = () => {
 		this.setState({activeModal: false});
+
+		this.setState({name_error: ''});
+	    this.setState({main_course_error: ''});
+	    this.setState({appetizer_error: ''});
+	    this.setState({dessert_error: ''});
+	    this.setState({soup_error: ''});
+	    this.setState({beverage_error: ''});
+	    this.setState({others_error: ''});
+
+	    this.setState({form_complete: ''});
+	    this.setState({prompt_header: ''});
+    	this.setState({prompt_message: ''});
 	}
 
 	getData = (id) => {
@@ -351,19 +363,6 @@ class EditMenu extends Component {
 	                	<Form.Input label='Beverage' defaultValue={this.state.beverage} onChange={this.handleBeverageChange} error={this.state.beverage_error}/>
 	                    <Form.Input label='Others' defaultValue={this.state.others} onChange={this.handleOthersChange} error={this.state.others_error}/>
 	                </Form.Group>
-
-	                <Form.Group inline>
-	                  <label>Display Image: </label>
-	                  <Form.Field className="relative">
-	                      <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
-	                      <div className="absolute2"> 
-	                          <label for="embedpollfileinput" class="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
-	                            <i class="ui upload icon"></i>   
-	                             Upload
-	                          </label>
-	                      </div>
-	                  </Form.Field>
-	                </Form.Group> 
 
 	                {(this.state.form_complete===false) ?
 	                  <Message
