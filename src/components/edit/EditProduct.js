@@ -54,6 +54,16 @@ class EditProduct extends Component {
 
 	cancel = () => {
 		this.setState({activeModal: false});
+
+    	this.setState({name_error: ''});
+    	this.setState({price_error: ''});
+    	this.setState({description_error: ''});
+    	this.setState({display_product_error: ''});
+    	this.setState({colors_error: ''});
+
+    	this.setState({form_complete: ''});
+	    this.setState({prompt_header: ''});
+    	this.setState({prompt_message: ''});
 	}
 
 	getData = (id) => {
@@ -100,7 +110,6 @@ class EditProduct extends Component {
 	      error=true;
 	    }
 	    if(this.state.price === ''){
-	    	console.log('pumasokkk');
 	      this.setState({price_error: true});
 	      error=true;
 	    }
@@ -178,20 +187,7 @@ class EditProduct extends Component {
 
 	                <Form.Input label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-	               <Form.Input label='Color/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>
-
-	                <Form.Group inline>
-	                  <label>Product Image: </label>
-	                  <Form.Field className="relative">
-	                      <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
-	                      <div className="absolute2"> 
-	                          <label for="embedpollfileinput" class="ui button" style={{ height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
-	                            <i class="ui upload icon"></i>   
-	                             Upload
-	                          </label>
-	                      </div>
-	                  </Form.Field>
-	                </Form.Group>   
+	               <Form.Input label='Color/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>  
 
 	                <Form.Group inline>
 	                  <label>Display Product: </label>

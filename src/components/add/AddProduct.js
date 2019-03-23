@@ -55,6 +55,26 @@ export default class AddProduct extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+
+    this.setState({name: ''});
+    this.setState({price: ''});
+    this.setState({total_quantity: ''});
+    this.setState({description: ''});
+    this.setState({display_product: 0});
+    this.setState({color_list: ''});
+    this.setState({image: ''});
+
+    this.setState({name_error: ''});
+    this.setState({price_error: ''});
+    this.setState({total_quantity_error: ''});
+    this.setState({description_error: ''});
+    this.setState({display_product_error: ''});
+    this.setState({color_list_error: ''});
+    this.setState({image_error: ''});
+
+    this.setState({prompt_header: ''});
+    this.setState({prompt_message: ''});
+    this.setState({form_complete: ''});
   }
 
   checkForm = () => {
@@ -151,7 +171,7 @@ export default class AddProduct extends Component {
                   
                   <Form.Group widths='equal'>
                       <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
-                      <Form.Input required label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                      <Form.Input required type='number' min={1} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
                   </Form.Group>
 
                   <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>
