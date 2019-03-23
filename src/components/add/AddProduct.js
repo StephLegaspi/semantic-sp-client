@@ -25,6 +25,7 @@ export default class AddProduct extends Component {
       description_error: '',
       display_product_error: '',
       color_list_error: '',
+      image_error: '',
 
       form_complete: '',
       prompt_message: '',
@@ -46,10 +47,7 @@ export default class AddProduct extends Component {
   handleDescriptionChange(e) { this.setState({description: e.target.value, description_error: false}); }
   handleDisplayChange(e) { this.setState({display_product: 1, display_product_error: false}); }
   handleColorChange(e) { this.setState({color_list: e.target.value, color_list_error: false}); }
-   handleImageChange(e) { 
-    this.setState({image: e.target.files[0]}); 
-   
-  }
+   handleImageChange(e) {this.setState({image: e.target.files[0], image_error:false});}
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -86,6 +84,10 @@ export default class AddProduct extends Component {
       this.setState({color_list_error: true});
       error=true;
     }
+    if(this.state.image === ''){
+      this.setState({image_error: true});
+      error=true;
+    }
 
 
     if(error){
@@ -101,6 +103,7 @@ export default class AddProduct extends Component {
       this.setState({description: ''});
       this.setState({display_product: 0});
       this.setState({color_list: ''});
+      this.setState({image: ''});
     }
 
   }
@@ -142,7 +145,7 @@ export default class AddProduct extends Component {
     <AddButton handleAdd={this.onModal}/>
         {this.state.activeModal && (
           <div className='add-modal'>
-            <Form className='form-style-smaller'>
+            <Form className='form-style-longer'>
                   
                   <Form.Input required label='Product Name' placeholder='Product Name'onChange={this.handleNameChange} error={this.state.name_error}/>
                   
@@ -157,9 +160,14 @@ export default class AddProduct extends Component {
 
                   <Form.Group inline>
                     <label>Product Image: </label>
-                    <Form.Field className="relative">
-                        <input name='image' type="file" className="absolute" onChange={this.handleImageChange} />
-                      
+                    <Form.Field className="relative" error={this.state.image_error}>
+                        <input name='image' type="file" className="absolute" onChange={this.handleImageChange} id='embedpollfileinput'/>
+                        <div className="absolute2"> 
+                          <label for="embedpollfileinput" className="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
+                            <i class="ui upload icon"></i>   
+                             Upload
+                          </label>
+                        </div>
                     </Form.Field>
                   </Form.Group>   
 
