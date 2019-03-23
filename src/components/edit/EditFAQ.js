@@ -12,7 +12,14 @@ class EditFAQ extends Component {
 		this.state = {
 			activeModal: false,
 			question: "",
-        	answer: ""
+        	answer: "",
+
+        	question_error: false,
+        	answer_error: false,
+
+        	form_complete: '',
+	        prompt_message: '',
+	        prompt_header: ''
 		}
 
 		this.handleQuestionChange = this.handleQuestionChange.bind(this);
@@ -29,12 +36,46 @@ class EditFAQ extends Component {
 
 	cancel = () => {
 		this.setState({activeModal: false});
+
+		this.setState({question_error: ''});
+		this.setState({answer_error: ''});
+
+		this.setState({form_complete: ''});
+	    this.setState({prompt_header: ''});
+    	this.setState({prompt_message: ''});
 	}
 
 	getData = () => {
-
 		this.setState({question: this.props.data.question})
 		this.setState({answer: this.props.data.answer})
+	}
+
+	checkForm = () => {
+	    var error = false;
+
+	    if(this.state.question === ''){
+	      this.setState({question_error: true});
+	      error=true;
+	    }
+	    if(this.state.answer === ''){
+	      this.setState({answer_error: true});
+	      error=true;
+	    }
+
+	    if(error){
+	      this.setState({form_complete: false});
+	      this.setState({prompt_header: 'Incomplete Information'}); 
+	      this.setState({prompt_message: 'Please fill up all the fields.'});  
+	    }else{
+	      this.setState({form_complete: true});
+	      this.submitEdit();
+	      this.setState({question: ''});
+	      this.setState({answer: ''});
+
+	      this.setState({question_error: ''});
+	   	  this.setState({answer_error: ''});
+	    }
+
 	}
 
 	submitEdit = () => {
@@ -69,11 +110,11 @@ class EditFAQ extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-					<Form.TextArea label='Question' placeholder={this.props.data.question} style={{ minHeight: 100 }} onChange={this.handleQuestionChange}/>
+					<Form.TextArea label='Question' placeholder={this.props.data.question} style={{ minHeight: 100 }} onChange={this.handleQuestionChange} error={this.state.question_error}/>
 
-	                 <Form.TextArea label='Answer' placeholder={this.props.data.answer} style={{ minHeight: 100 }} onChange={this.handleAnswerChange}/>
+	                 <Form.TextArea label='Answer' placeholder={this.props.data.answer} style={{ minHeight: 100 }} onChange={this.handleAnswerChange} error={this.state.answer_error}/>
 
-				    <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
+				    <Button type='submit' onClick={this.checkForm} id='edit-button2'>Edit</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
 				</Form>
 	      	</div>)}
