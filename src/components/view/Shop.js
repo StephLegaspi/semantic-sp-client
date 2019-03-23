@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Card, Dropdown} from 'semantic-ui-react'
+import { Image, Card } from 'semantic-ui-react'
 
 import SearchBarShop from '../searchBar/SearchBarShop.js'
 import CartButton from '../button/CartButton.js'
@@ -9,7 +9,6 @@ import Footer from '../footer/Footer.js'
 import '../../styles/view.css';
 import '../../styles/header-bar.css';
 import '../../styles/button.css';
-import img_tree from '../../images/tree.jpg'
 
 class Shop extends Component {
 	constructor(props){
@@ -21,7 +20,6 @@ class Shop extends Component {
 		}
 		this.toAddToCart = this.toAddToCart.bind(this);
 		this.toShoppingCart = this.toShoppingCart.bind(this);
-		this.stateOptions = [ { key: '1', value: '1', text: 'All' }, { key: '2', value: '2', text: 'Table' }, { key: '3', value: '3', text: 'Three' } ]
 	}
 
 	handleProductChange = (e) => {
@@ -98,17 +96,6 @@ class Shop extends Component {
 					<CartButton handleClick={this.toShoppingCart}/>
 					<h1 id='bar-title'> Purchase </h1>
       			</div>
-
-      			<div class="ui fluid segment" id='upper-div1'>  
-					<label>
-					  Product Category: {' '}
-					  <Dropdown
-					    inline
-					    options={this.stateOptions}
-					    defaultValue='1'
-					  />
-					</label>
-      			</div>
       			
       			<div>
 			    	<div id='card-div2'>
@@ -119,7 +106,7 @@ class Shop extends Component {
 						      <Card.Header>{product.name}</Card.Header>
 						      <Card.Description >P {product.price} /pc</Card.Description>
 						    </Card.Content>
-						    <Image id='img-zoom' src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
+						    <Image id='img-zoom' src={`http://localhost:3001/${product.image}`} rounded size='small' style={{marginLeft: '20%'}}/>
 						    <Card.Content extra>
 						       <ShopButton handleView={this.toAddToCart} data_id={product.id}/>
 						    </Card.Content>

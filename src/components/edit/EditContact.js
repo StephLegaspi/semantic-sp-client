@@ -43,6 +43,15 @@ class EditContact extends Component {
 
 	cancel = () => {
 		this.setState({activeModal: false});
+
+		this.setState({telephone_number_error: ''});
+	    this.setState({mobile_number_error: ''});
+	    this.setState({email_address_error: ''});
+	    this.setState({business_address_error: ''});
+
+	    this.setState({form_complete: ''});
+	    this.setState({prompt_header: ''});
+    	this.setState({prompt_message: ''});
 	}
 
 	getData = () => {

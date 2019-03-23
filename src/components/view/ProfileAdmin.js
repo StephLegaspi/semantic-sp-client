@@ -7,7 +7,6 @@ import EditAdmin from '../edit/EditAdmin.js'
 
 import '../../styles/view.css';
 import '../../styles/font.css';
-import img_tree from '../../images/tree.jpg'
 
 
 class ProfileAdmin extends Component {
@@ -57,11 +56,12 @@ class ProfileAdmin extends Component {
 			<div>
 				<HeaderBar headerTitle={'Profile'}/>
 		
-				<div class="ui fluid segment" id='img-profile'>
-					<Image  src={img_tree} rounded size='big' />
-				</div>
 
 				{this.state.data.map(admin =>
+				<div>
+				<div class="ui fluid segment" id='img-profile'>
+					<Image src={`http://localhost:3001/${admin.image}`}rounded size='big' />
+				</div>
 				<div class="ui fluid segment" id='info-profile'>		
 					<p className='title-header'> {admin.first_name + " " + admin.middle_name + " " + admin.last_name}</p>
 					<p className='body-font'> ID: {admin.id} </p>
@@ -82,6 +82,7 @@ class ProfileAdmin extends Component {
 							<EditAdmin data={admin} handleUpdate={this.update}/>
 						</div>
 					</div>	
+				</div>
 				</div>
 				)}
 				

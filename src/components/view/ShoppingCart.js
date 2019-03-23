@@ -10,7 +10,6 @@ import EditCartProductPurchase from '../edit/EditCartProductPurchase.js'
 import '../../styles/view.css';
 import '../../styles/font.css';
 import '../../styles/button.css';
-import img_tree from '../../images/tree.jpg'
 
 class ShoppingCart extends Component {
   constructor(props){
@@ -129,7 +128,7 @@ class ShoppingCart extends Component {
             <Table.Row>
               <Table.Cell>
                 <Header as='h4' image>
-                  <Image src={img_tree} rounded size='massive' />
+                  <Image src={`http://localhost:3001/${prod.image}`} size='massive' />
                 </Header>
               </Table.Cell>
               <Table.Cell>{prod.name}</Table.Cell>

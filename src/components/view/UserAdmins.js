@@ -10,7 +10,6 @@ import SearchBarTable from '../searchBar/SearchBarTable.js'
 
 import '../../styles/view.css';
 import '../../styles/search-bar.css';
-import img_tree from '../../images/tree.jpg'
 
 class UserAdmins extends Component {
 	constructor(props){
@@ -72,30 +71,29 @@ class UserAdmins extends Component {
 
 				<AddAdmin handleUpdate={this.update}/>
 
-      			<div id='card-div'>
-				<Card.Group itemsPerRow={4}>
-
-				{this.state.data.map(admin =>
-				<Card id='card'>
-				    <Image src={img_tree} rounded size='small' />
-				    <Card.Content>
-				      <Card.Header>{admin.first_name + " " + admin.middle_name + " " + admin.last_name} </Card.Header>
-				      <Card.Meta>ID: {admin.id}</Card.Meta>
-				      <Card.Description>Email: {admin.email_address}</Card.Description>
-				      <Card.Description>Contact Number: {admin.contact_number}</Card.Description>
-				      <Card.Description>Status: {admin.active ? "Activated" : "Deactivated"}</Card.Description>
-				    </Card.Content>
-				    <Card.Content extra>
-				      	<div style={{marginLeft: '55%'}}>		      	
-				      		{admin.active ? <DeactivateModal data_id={admin.id} handleUpdate={this.update}/> : <ActivateModal data_id={admin.id} handleUpdate={this.update}/>}      
-				      	</div>
-				      	
-				    </Card.Content>
-				</Card>
-				)}
-				
-
-				</Card.Group>
+				<div>
+      				<div id='card-div'>
+					<Card.Group itemsPerRow={4}>
+						{this.state.data.map(admin =>
+						<Card id='card'>
+						    <Image id='img-center' src={`http://localhost:3001/${admin.image}`} size='large'/>
+						    <Card.Content>
+						      <Card.Header>{admin.first_name + " " + admin.middle_name + " " + admin.last_name} </Card.Header>
+						      <Card.Meta>ID: {admin.id}</Card.Meta>
+						      <Card.Description>Email: {admin.email_address}</Card.Description>
+						      <Card.Description>Contact Number: {admin.contact_number}</Card.Description>
+						      <Card.Description>Status: {admin.active ? "Activated" : "Deactivated"}</Card.Description>
+						    </Card.Content>
+						    <Card.Content extra>
+						      	<div style={{marginLeft: '55%'}}>		      	
+						      		{admin.active ? <DeactivateModal data_id={admin.id} handleUpdate={this.update}/> : <ActivateModal data_id={admin.id} handleUpdate={this.update}/>}      
+						      	</div>
+						      	
+						    </Card.Content>
+						</Card>
+						)}
+					</Card.Group>
+					</div>
 				</div>
 			</div>
 		);

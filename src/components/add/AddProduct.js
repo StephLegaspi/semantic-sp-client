@@ -13,10 +13,11 @@ export default class AddProduct extends Component {
       activeModal: false,
       name: "",
       price: "",
-      total_quantity: "",
+      total_quantity: 1,
       description: "",
       display_product: 0,
       color_list: "",
+      image: '',
 
       name_error: '',
       price_error: '',
@@ -24,6 +25,7 @@ export default class AddProduct extends Component {
       description_error: '',
       display_product_error: '',
       color_list_error: '',
+      image_error: '',
 
       form_complete: '',
       prompt_message: '',
@@ -36,6 +38,7 @@ export default class AddProduct extends Component {
     this.handleTotalQuantityChange = this.handleTotalQuantityChange.bind(this);
     this.handleDisplayChange = this.handleDisplayChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   handleNameChange(e) { this.setState({name: e.target.value, name_error: false}); }
@@ -44,6 +47,7 @@ export default class AddProduct extends Component {
   handleDescriptionChange(e) { this.setState({description: e.target.value, description_error: false}); }
   handleDisplayChange(e) { this.setState({display_product: 1, display_product_error: false}); }
   handleColorChange(e) { this.setState({color_list: e.target.value, color_list_error: false}); }
+   handleImageChange(e) {this.setState({image: e.target.files[0], image_error:false});}
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -51,6 +55,26 @@ export default class AddProduct extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+
+    this.setState({name: ''});
+    this.setState({price: ''});
+    this.setState({total_quantity: ''});
+    this.setState({description: ''});
+    this.setState({display_product: 0});
+    this.setState({color_list: ''});
+    this.setState({image: ''});
+
+    this.setState({name_error: ''});
+    this.setState({price_error: ''});
+    this.setState({total_quantity_error: ''});
+    this.setState({description_error: ''});
+    this.setState({display_product_error: ''});
+    this.setState({color_list_error: ''});
+    this.setState({image_error: ''});
+
+    this.setState({prompt_header: ''});
+    this.setState({prompt_message: ''});
+    this.setState({form_complete: ''});
   }
 
   checkForm = () => {
@@ -80,6 +104,10 @@ export default class AddProduct extends Component {
       this.setState({color_list_error: true});
       error=true;
     }
+    if(this.state.image === ''){
+      this.setState({image_error: true});
+      error=true;
+    }
 
 
     if(error){
@@ -95,17 +123,27 @@ export default class AddProduct extends Component {
       this.setState({description: ''});
       this.setState({display_product: 0});
       this.setState({color_list: ''});
+      this.setState({image: ''});
     }
 
   }
 
   handleSubmit = () => {
-        const prod = JSON.stringify({name: this.state.name, price: this.state.price, total_quantity: this.state.total_quantity, description: this.state.description,display_product: this.state.display_product, product_color: this.state.color_list})
+
+        let formData = new FormData();
+        formData.set('enctype','multipart/form-data') 
+
+        formData.append('name', this.state.name);
+        formData.append('price', this.state.price);
+        formData.append('total_quantity', this.state.total_quantity);
+        formData.append('description', this.state.description);
+        formData.append('display_product', this.state.display_product);
+        formData.append('product_color', this.state.color_list);
+        formData.append('image', this.state.image);
        
         fetch(`http://localhost:3001/v1/products/` + this.props.category ,{
-            headers: { 'Content-Type': 'application/json' },
             method: "POST",
-            body: prod
+            body: formData
           })
         .then((response) => {
           return response.json()
@@ -127,13 +165,13 @@ export default class AddProduct extends Component {
     <AddButton handleAdd={this.onModal}/>
         {this.state.activeModal && (
           <div className='add-modal'>
-            <Form className='form-style-smaller'>
+            <Form className='form-style-longer'>
                   
                   <Form.Input required label='Product Name' placeholder='Product Name'onChange={this.handleNameChange} error={this.state.name_error}/>
                   
                   <Form.Group widths='equal'>
                       <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
-                      <Form.Input required label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
                   </Form.Group>
 
                   <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>
@@ -142,13 +180,13 @@ export default class AddProduct extends Component {
 
                   <Form.Group inline>
                     <label>Product Image: </label>
-                    <Form.Field className="relative">
-                        <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
+                    <Form.Field className="relative" error={this.state.image_error}>
+                        <input name='image' type="file" className="absolute" onChange={this.handleImageChange} id='embedpollfileinput'/>
                         <div className="absolute2"> 
-                            <label for="embedpollfileinput" class="ui button" style={{ height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
-                              <i class="ui upload icon"></i>   
-                               Upload
-                            </label>
+                          <label for="embedpollfileinput" className="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
+                            <i class="ui upload icon"></i>   
+                             Upload
+                          </label>
                         </div>
                     </Form.Field>
                   </Form.Group>   

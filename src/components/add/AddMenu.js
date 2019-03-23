@@ -55,6 +55,26 @@ export default class AddPackage extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+
+    this.setState({name: ''});
+    this.setState({main_course: ''});
+    this.setState({appetizer: ''});
+    this.setState({dessert: ''});
+    this.setState({soup: ''});
+    this.setState({beverage: ''});
+    this.setState({others: ''});
+
+    this.setState({name_error: ''});
+    this.setState({main_course_error: ''});
+    this.setState({appetizer_error: ''});
+    this.setState({dessert_error: ''});
+    this.setState({soup_error: ''});
+    this.setState({beverage_error: ''});
+    this.setState({others_error: ''});
+
+    this.setState({prompt_header: ''});
+    this.setState({prompt_message: ''});
+    this.setState({form_complete: ''});
   }
 
   checkForm = () => {
@@ -153,20 +173,7 @@ export default class AddPackage extends Component {
                 <Form.Group widths='equal'>
                   <Form.TextArea required label='Beverage' placeholder='e.g. Beverage1, Beverage2, Beverage3' style={{ minHeight: 100 }} onChange={this.handleBeverageChange} error={this.state.beverage_error}/>
                   <Form.TextArea required label='Others' placeholder='e.g. Others1, Others2, Others3' style={{ minHeight: 100 }} onChange={this.handleOthersChange} error={this.state.others_error}/>
-                </Form.Group>
-
-                <Form.Group inline>
-                  <label>Display Image: </label>
-                  <Form.Field className="relative">
-                      <input type="file" class="inputfile" id="embedpollfileinput" className="absolute"/>
-                      <div className="absolute2"> 
-                          <label for="embedpollfileinput" class="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
-                            <i class="ui upload icon"></i>   
-                             Upload
-                          </label>
-                      </div>
-                  </Form.Field>
-                </Form.Group>  
+                </Form.Group> 
 
               {(this.state.form_complete===false) ?
                   <Message

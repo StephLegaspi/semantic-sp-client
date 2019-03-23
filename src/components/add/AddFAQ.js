@@ -35,6 +35,16 @@ class AddFAQ extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+
+    this.setState({question: ''});
+    this.setState({answer: ''});
+
+    this.setState({question_error: ''});
+    this.setState({answer_error: ''});
+
+    this.setState({prompt_header: ''});
+    this.setState({prompt_message: ''});
+    this.setState({form_complete: ''});
   }
 
   checkForm = () => {

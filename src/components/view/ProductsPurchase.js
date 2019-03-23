@@ -9,7 +9,6 @@ import AddProduct from '../add/AddProduct.js'
 import ProductColor from '../infoModal/ProductColor.js'
 
 import '../../styles/view.css';
-import img_tree from '../../images/tree.jpg'
 
 class ProductsTable extends Component {
 	constructor(props){
@@ -110,7 +109,7 @@ class ProductsTable extends Component {
 			            <Table.Cell>{product.id}</Table.Cell>
 			            <Table.Cell>
 			            	<Header as='h4' image>
-			                  <Image src={img_tree} rounded size='massive' />
+			                  <Image src={`http://localhost:3001/${product.image}`} size='massive' />
 			                </Header>
 			            </Table.Cell>
 			            <Table.Cell>{product.name}</Table.Cell>
