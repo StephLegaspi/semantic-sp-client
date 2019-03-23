@@ -10,7 +10,6 @@ import Footer from '../footer/Footer.js'
 import '../../styles/view.css';
 import '../../styles/font.css';
 import '../../styles/button.css';
-import img_tree from '../../images/tree.jpg'
 
 class ShoppingCartRent extends Component {
   constructor(props){
@@ -139,9 +138,9 @@ class ShoppingCartRent extends Component {
         <Table singleLine>
           <Table.Header>
             <Table.Row >
-              <Table.HeaderCell id='header-color'style={{width: '10%'}}>Product Image</Table.HeaderCell>
+              <Table.HeaderCell id='header-color'style={{width: '20%'}}>Product Image</Table.HeaderCell>
               <Table.HeaderCell id='header-color'style={{width: '15%'}}>Name</Table.HeaderCell>
-              <Table.HeaderCell id='header-color' style={{width: '10%'}}>No. of items available</Table.HeaderCell>
+              <Table.HeaderCell id='header-color' style={{width: '5%'}}>No. of items available</Table.HeaderCell>
               <Table.HeaderCell id='header-color'style={{width: '5%'}}>Color</Table.HeaderCell>
               <Table.HeaderCell id='header-color' style={{width: '10%'}}>Quantity</Table.HeaderCell>
               <Table.HeaderCell id='header-color'style={{width: '10%'}}>Price</Table.HeaderCell>
@@ -155,7 +154,7 @@ class ShoppingCartRent extends Component {
             <Table.Row>
               <Table.Cell>
                 <Header as='h4' image>
-                  <Image src={img_tree} rounded size='massive' />
+                  <Image src={`http://localhost:3001/${prod.image}`} size='massive' />
                 </Header>
               </Table.Cell>
               <Table.Cell>{prod.name}</Table.Cell>
