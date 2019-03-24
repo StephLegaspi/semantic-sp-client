@@ -64,8 +64,8 @@ class EditOrder extends Component {
 	        })
 	        .then((result) => {
 	          if(result.status===200){
-	            this.props.handleUpdate()
-	            this.setState({activeModal: false})
+	          	this.props.handleUpdateModal();
+	            this.setState({activeModal: false});
 	          }
 	        })
 	        .catch((e) => {
