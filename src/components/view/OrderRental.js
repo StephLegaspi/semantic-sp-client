@@ -168,13 +168,13 @@ class OrderRental extends Component {
 				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell>
-				        	<RentalInfo order_id={order.id} orderStatus={order.status}/>
+				        	<RentalInfo order_id={order.id} orderStatus={order.status} handleUpdate={this.update}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update} statusButton={order.status==='Delivered' ? true:false}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal/>
+				        	<DeleteModal data_id={order.id} table_name={'orders/rental'} handleUpdate={this.update} statusButton={order.rental_status==='Returned' ? false:true}/>
 				        </Table.Cell>
 				      </Table.Row> 
 				    )}  
