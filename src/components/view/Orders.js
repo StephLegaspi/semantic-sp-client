@@ -171,7 +171,7 @@ class Orders extends Component {
 				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update} statusButton={order.status==='Delivered' ? true:false}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal data_id={order.id} table_name={'orders/purchase'} handleUpdate={this.update}/>
+				        	<DeleteModal data_id={order.id} table_name={'orders/purchase'} handleUpdate={this.update} statusButton={order.status==='Delivered' ? false:true}/>
 				        </Table.Cell>
 				      </Table.Row> 
 				    )} 
