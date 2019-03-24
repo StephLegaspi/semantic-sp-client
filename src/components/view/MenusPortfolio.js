@@ -134,7 +134,7 @@ class MenusPortfolio extends Component {
 				          <Card.Content>
 				            <Card.Header className='label-font2'>Main Course</Card.Header>
 				            {this.state.main_course_arr.map(main =>
-				            <List style={{marginLeft: '35%'}}>
+				            <List>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
 							      <List.Content>{main.inclusion}</List.Content>
@@ -148,7 +148,7 @@ class MenusPortfolio extends Component {
 				          <Card.Content>
 				            <Card.Header className='label-font2'>Appetizer</Card.Header>
 				            {this.state.appetizer_arr.map(appetizer =>
-				            <List style={{marginLeft: '37%'}}>
+				            <List>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
 							      <List.Content>{appetizer.inclusion}</List.Content>
@@ -162,7 +162,7 @@ class MenusPortfolio extends Component {
 				          <Card.Content>
 				            <Card.Header className='label-font2'>Dessert</Card.Header>
 				            {this.state.dessert_arr.map(dessert =>
-				            <List style={{marginLeft: '40%'}}>
+				            <List>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
 							      <List.Content>{dessert.inclusion}</List.Content>
@@ -176,7 +176,7 @@ class MenusPortfolio extends Component {
 				          <Card.Content>
 				            <Card.Header className='label-font2'>Soup</Card.Header>
 				            {this.state.soup_arr.map(soup =>
-				            <List style={{marginLeft: '40%'}}>
+				            <List>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
 							      <List.Content>{soup.inclusion}</List.Content>
@@ -190,7 +190,7 @@ class MenusPortfolio extends Component {
 				          <Card.Content>
 				            <Card.Header className='label-font2'>Beverage</Card.Header>
 				            {this.state.beverage_arr.map(beverage =>
-				            <List style={{marginLeft: '37%'}}>
+				            <List>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
 							      <List.Content>{beverage.inclusion}</List.Content>
@@ -204,7 +204,7 @@ class MenusPortfolio extends Component {
 				          <Card.Content>
 				            <Card.Header className='label-font2'>Others</Card.Header>
 				            {this.state.others_arr.map(others =>
-				            <List style={{marginLeft: '39%'}}>
+				            <List>
 							    <List.Item>
 							      <List.Icon name='food' size='large'/>
 							      <List.Content>{others.inclusion}</List.Content>

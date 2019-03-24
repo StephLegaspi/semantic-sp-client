@@ -120,8 +120,8 @@
 
 /*MotifsPortfoilio*/
 #card-group{
-	margin-left: 5%;
-	width: 90%;
+	margin-left: 10%;
+	width: 80%;
 	margin-top: 5%;
 }
 
@@ -134,9 +134,10 @@
 
 #card-menu{
 	margin-top: 1%;
-	padding: 10px;
-	height: 300px;
+	padding: 20px 40px;
+	height: 280px;
 	overflow-y: scroll;
+	font-size: 20px;
 }
 
 
