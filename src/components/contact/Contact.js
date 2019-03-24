@@ -32,7 +32,9 @@ class Contact extends Component {
 
       		form_complete: '',
       		prompt_message: '',
-      		prompt_header: ''
+      		prompt_header: '',
+
+      		success: false
 		}
 
 		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -105,10 +107,46 @@ class Contact extends Component {
 	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
-	      //this.handleSubmit();
+	      this.handleSubmit();
 	    }
 
 	}
+
+	handleSubmit = () => {
+        const request = JSON.stringify({
+            first_name: this.state.first_name, 
+            middle_name: this.state.middle_name,
+            last_name: this.state.last_name,
+            email_address: this.state.email_address2,
+            contact_number: this.state.contact_number,
+            message: this.state.message
+        })
+       
+        fetch(`http://localhost:3001/v1/inquiry`,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: request
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status === 200){
+            console.log("Successfully sent inquiry");
+            this.setState({first_name: ''});
+            this.setState({middle_name: ''});
+            this.setState({last_name: ''});
+            this.setState({email_address2: ''});
+            this.setState({message: ''});
+            this.setState({contact_number: ''});
+
+            this.setState({success: true});
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  }
 
 	render() {
 		return (
