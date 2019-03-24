@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Card, List} from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
-import CardPackage from '../card/CardPackage.js'
-import CardRequest from '../card/CardRequest.js'
-import Footer from '../footer/Footer.js'
 
 import '../../styles/view.css';
 import '../../styles/button.css';
@@ -213,18 +210,8 @@ class MenusPortfolio extends Component {
 							)}
 				          </Card.Content>
 				        </Card>
-
 	  				</Card.Group>
 				</div>
-				
-				<div style={{width:'90%', marginLeft: '5%', marginBottom: '30%'}}>	
-					<CardPackage/>
-					<CardRequest />
-				</div>
-
-				<div style={{clear: 'both'}}>
-		          <Footer/>
-		        </div>
 			</div>
 		);
 	}

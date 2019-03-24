@@ -64,8 +64,8 @@ class EditOrder extends Component {
 	        })
 	        .then((result) => {
 	          if(result.status===200){
-	            this.props.handleUpdate()
-	            this.setState({activeModal: false})
+	          	this.props.handleUpdateModal();
+	            this.setState({activeModal: false});
 	          }
 	        })
 	        .catch((e) => {
@@ -79,7 +79,7 @@ class EditOrder extends Component {
 	render(){
 		return(
 		<div>
-		<EditButton handleEdit={this.onModal}/>
+		<EditButton handleEdit={this.onModal} buttonStatus={this.props.statusButton}/>
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>

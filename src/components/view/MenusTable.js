@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { Icon, Menu, Table } from 'semantic-ui-react'
 
-import MainCourse from '../infoModal/MainCourse.js'
-import Appetizer from '../infoModal/Appetizer.js'
-import Dessert from '../infoModal/Dessert.js'
-import Soup from '../infoModal/Soup.js'
-import Beverage from '../infoModal/Beverage.js'
-import OtherMenu from '../infoModal/OtherMenu.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import DeleteModal from '../delete/DeleteModal.js'
 import EditMenu from '../edit/EditMenu.js'
 import AddMenu from '../add/AddMenu.js'
+
+import ModalButton from '../button/ModalButton2.js'
 
 import '../../styles/view.css';
 
@@ -22,9 +18,13 @@ class MenusTable extends Component {
 		this.state = {
 			data: [],
 			menu_name: ""
-		}		
+		}	
 
-		this.stateOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
+		this.toMenusPortfolio = this.toMenusPortfolio.bind(this);	
+	}
+
+	toMenusPortfolio(id) {
+		this.props.history.push('/menu-inclusion/' + id);
 	}
 
 	handleMenuChange = (e) => {
@@ -99,12 +99,7 @@ class MenusTable extends Component {
 				      <Table.Row>
 				        <Table.HeaderCell >ID</Table.HeaderCell>
 				        <Table.HeaderCell >Menu Name</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Main Course</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Appetizer</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Dessert</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Soup</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Beverage</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Others</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Inclusions</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -116,22 +111,7 @@ class MenusTable extends Component {
 				        <Table.Cell>{menu.id}</Table.Cell>
 				        <Table.Cell>{menu.name}</Table.Cell>
 				        <Table.Cell>
-				        	<MainCourse menu_id={menu.id}/>
-				        </Table.Cell>
-				        <Table.Cell>
-				        	<Appetizer menu_id={menu.id}/>
-				        </Table.Cell>
-				        <Table.Cell>
-				        	<Dessert menu_id={menu.id}/>
-				        </Table.Cell>
-				        <Table.Cell>
-				        	<Soup menu_id={menu.id}/>
-				        </Table.Cell>
-				        <Table.Cell>
-				        	<Beverage menu_id={menu.id}/>
-				        </Table.Cell>
-				        <Table.Cell>
-				        	<OtherMenu menu_id={menu.id}/>
+				        	<ModalButton  handleClickModal={this.toMenusPortfolio} data_id={menu.id}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditMenu data={menu} handleUpdate={this.update}/>

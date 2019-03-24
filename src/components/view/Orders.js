@@ -168,7 +168,7 @@ class Orders extends Component {
 				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update}/>
+				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update} statusButton={order.status==='Delivered' ? true:false}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>

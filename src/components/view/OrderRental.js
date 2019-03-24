@@ -16,20 +16,27 @@ class OrderRental extends Component {
 
 		this.state = {
 			data: [],
-			order_id: ''
+			order_id: '',
+			rental_status: 'All'
 		}
-		
-		this.deliveryStatusOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'pending', value: 'pending', text: 'Pending' }, { key: 'on-delivery', value: 'on-delivery', text: 'On-delivery' }, { key: 'delivered', value: 'delivered', text: 'Delivered' } ]
-		this.rentalStatusOptions = [ { key: 'all', value: 'all', text: 'All' }, { key: 'on-rent', value: 'on-rent', text: 'On-rent' }, { key: 'returned', value: 'returned', text: 'Returned' }]
 
+		this.rentalStatusOptions = [ { value: 'All', text: 'All' }, { value: 'On-rent', text: 'On-rent' }, { value: 'Returned', text: 'Returned' } ]
+	}
+
+	handleStatusChange = (e, { value }) => {
+	    this.setState({ rental_status: value},() => { 
+	    	if(this.state.rental_status === "All"){
+	    		this.update();	
+	    	}else{
+	    		this.getByStatus();
+	    	}
+	    })
 	}
 
 	handleIDChange = (e) => {
 	    this.setState({ order_id: e.target.value},() => { 
 	    	if(this.state.order_id === ""){
-	    		this.update();
-	    		/*this.getByStatus();	*/
-	    		/*this.handleStatusChange();*/
+	    		this.getByStatus();	
 	    	}else{
 	    		this.searchByID(); 
 	    	}
@@ -55,7 +62,7 @@ class OrderRental extends Component {
     searchByID = () => {
         let self = this;
 
-        const stat = JSON.stringify({status: 'All'})
+        const stat = JSON.stringify({status: this.state.rental_status})
 
         fetch('http://localhost:3001/v1/orders/rental/' + self.state.order_id, {
         	headers: { 'Content-Type': 'application/json' },
@@ -89,6 +96,22 @@ class OrderRental extends Component {
         })
     }
 
+    getByStatus = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/orders/rental-status/' + this.state.rental_status, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 
 	render() {
 		return (
@@ -98,22 +121,12 @@ class OrderRental extends Component {
 
 				<div class="ui fluid segment" id='upper-div3'>
       				<label>
-					  Delivery Status: {' '}
-					  <Dropdown
-					    inline
-					    options={this.deliveryStatusOptions}
-					    defaultValue='all'
-					  />
-					</label>
-      			</div>
-
-      			<div class="ui fluid segment" id='upper-div4'>  
-					<label>
 					  Rental Status: {' '}
 					  <Dropdown
 					    inline
 					    options={this.rentalStatusOptions}
-					    defaultValue='all'
+					    defaultValue={this.state.rental_status}
+					    onChange={this.handleStatusChange}
 					  />
 					</label>
       			</div>
@@ -151,14 +164,14 @@ class OrderRental extends Component {
 				        <Table.Cell>{order.delivery_address}</Table.Cell>
 				        <Table.Cell>{order.zip_code}</Table.Cell>
 				        <Table.Cell>{order.order_timestamp}</Table.Cell>
-				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.total_items}</Table.Cell>
+				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell>
-				        	<RentalInfo order_id={order.id} handleUpdate={this.update}/>
+				        	<RentalInfo order_id={order.id} orderStatus={order.status}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update}/>
+				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update} statusButton={order.status==='Delivered' ? true:false}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<DeleteModal/>

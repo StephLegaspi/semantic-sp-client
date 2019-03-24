@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 
-import ModalButton2 from '../button/ModalButton2.js'
+import ModalButton2 from '../button/ModalButton.js'
 import '../../styles/modal.css';
 
 class InclusionInfo extends Component {

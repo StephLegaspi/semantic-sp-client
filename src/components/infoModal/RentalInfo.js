@@ -42,6 +42,22 @@ class RentalInfo extends Component {
 			})
 	}
 
+	updateModal = () => {
+        let self = this;
+        fetch(`http://localhost:3001/v1/order_rentals/`+ this.props.order_id, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
 	render() {
 		return (
 			<div>
@@ -68,7 +84,7 @@ class RentalInfo extends Component {
 								        <Table.Cell>{order.rental_status}</Table.Cell>
 								     	<Table.Cell>{order.returned_timestamp}</Table.Cell>
 								     	<Table.Cell>
-								     		<EditOrderRental order_id={this.props.order_id} handleUpdate={this.props.handleUpdate}/>
+								     		<EditOrderRental order_id={this.props.order_id} handleUpdateModal={this.updateModal} statusButton={(this.props.orderStatus==='Delivered' && order.rental_status!=='Returned') ? false : true}/>
 								     	</Table.Cell>
 								      </Table.Row>
 								)}

@@ -11,7 +11,7 @@ class EditButton extends Component{
 
 	render(){
 		return(
-			<Button circular id='edit-button' onClick={this.callEdit}>
+			<Button circular id='edit-button' onClick={this.callEdit} disabled={this.props.buttonStatus}>
 				<i class="large edit icon"></i>
 			</Button>
 		);

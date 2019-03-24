@@ -6,7 +6,7 @@ import '../../styles/button.css';
 class ModalButton extends Component{
 
 	clickModal = () => {
-		this.props.handleClickModal();
+		this.props.handleClickModal(this.props.data_id);
 	}
 
 	render(){

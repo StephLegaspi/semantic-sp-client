@@ -50,6 +50,7 @@ import SearchAdmin from './components/search/SearchAdmin.js';
 import SearchPackage from './components/search/SearchPackage.js';
 import SearchMotif from './components/search/SearchMotif.js';
 import SearchMenu from './components/search/SearchMenu.js';
+import MenuInclusion from './components/view/MenuInclusion.js';
 
 
 class App extends Component {
@@ -309,6 +310,13 @@ class App extends Component {
 							             								<div>
 							             									<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
 																			<MenusTable   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/menu-inclusion/:id" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarAdmin activePage={[0,0,0,0,0,0,0,0,0,0,1,0,0,0]} {...props} />
+																			<MenuInclusion   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/contact-details" render={(props) => {
