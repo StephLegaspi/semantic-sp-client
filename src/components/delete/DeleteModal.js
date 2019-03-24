@@ -45,7 +45,7 @@ class DeleteModal extends Component {
 	render(){
 		return(
 		<div>
-		<DeleteButton handleDelete={this.onModal}/>
+		<DeleteButton handleDelete={this.onModal} buttonStatus={this.props.statusButton}/>
       	{this.state.activeModal && (
 	      	<div className='delete-modal'>
 	      		<div className='open-delete'>
