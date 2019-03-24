@@ -214,12 +214,17 @@ class MenusPortfolio extends Component {
 				          </Card.Content>
 				        </Card>
 
-					    <CardPackage/>
-				        <CardRequest />
 	  				</Card.Group>
 				</div>
+				
+				<div style={{width:'90%', marginLeft: '5%', marginBottom: '30%'}}>	
+					<CardPackage/>
+					<CardRequest />
+				</div>
 
-				<Footer/>
+				<div style={{clear: 'both'}}>
+		          <Footer/>
+		        </div>
 			</div>
 		);
 	}
