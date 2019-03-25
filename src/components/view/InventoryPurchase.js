@@ -108,7 +108,7 @@ class InventoryTable extends Component {
 									<Table.Cell>{inventory.name}</Table.Cell>
 									<Table.Cell>{inventory.total_quantity}</Table.Cell>
 									<Table.Cell>{inventory.remaining}</Table.Cell>
-									<Table.Cell>{inventory.renewal_timestamp}</Table.Cell>
+									<Table.Cell>{inventory.date_time}</Table.Cell>
 							        <Table.Cell textAlign='center'>
 							        	<EditInventory handleUpdate={this.update} data={inventory}/>
 							        </Table.Cell>
