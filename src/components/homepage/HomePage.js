@@ -19,7 +19,8 @@ class HomePage extends Component {
       packages_data: [],
       motifs_data: [],
       menus_data: [],
-      package_id: ''
+      package_id: '',
+      motifs_images: []
     }
 
     this.toMotifsPortfolio = this.toMotifsPortfolio.bind(this);
@@ -141,7 +142,7 @@ class HomePage extends Component {
                   {this.state.motifs_data.map(motif =>
                   <Image.Group >
                     <div class="container-img">
-                      <Image src={sample_header} id="style-img"/>
+                      <Image src={`http://localhost:3001/${motif.img}`} id="style-img"/>
                       <div className="middle-img">
                         <ShopButton handleView={this.toMotifsPortfolio} data_id={motif.id}/>
                       </div>
