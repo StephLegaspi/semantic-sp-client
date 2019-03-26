@@ -349,6 +349,18 @@ export default class AddRequest extends Component {
                   <Form.Dropdown required label='Food Menu' placeholder='Food Menu' search selection options={this.state.menu_options2} value={this.state.menu_id} onChange={this.handleMenuChange} error={this.state.menu_error}/>
                 </Form.Group>
 
+                <Form.Group widths='equal'>
+                  <Form.Field>
+                    <a href='http://localhost:3000/packages'> *See Catering Packages here</a>
+                  </Form.Field>
+                  <Form.Field>
+                    <a href='http://localhost:3000/motifs'> *See Event Motifs here</a>
+                  </Form.Field>
+                  <Form.Field>
+                    <a href='http://localhost:3000/menus'> *See Food Menus here</a>
+                  </Form.Field>
+                </Form.Group>
+
                 {(this.state.form_complete===false) ?
                   <Message
                     header={this.state.prompt_header}
