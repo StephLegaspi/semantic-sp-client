@@ -162,7 +162,7 @@ class Requests extends Component {
 				        <Table.Cell>{request.event_date}</Table.Cell>
 				        <Table.Cell>{request.event_location}</Table.Cell>
 				        <Table.Cell>{request.number_of_persons}</Table.Cell>
-				        <Table.Cell>{request.request_timestamp}</Table.Cell>
+				        <Table.Cell>{request.request_timestamp2}</Table.Cell>
 				        <Table.Cell>{request.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditRequest data={request} handleUpdate={this.update}/>
