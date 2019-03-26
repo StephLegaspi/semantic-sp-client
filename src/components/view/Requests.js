@@ -159,7 +159,7 @@ class Requests extends Component {
 						<Table.Cell>
 					       <InclusionInfo request_id={request.id}/>
 						</Table.Cell>
-				        <Table.Cell>{request.event_date}</Table.Cell>
+				        <Table.Cell>{request.date_time}</Table.Cell>
 				        <Table.Cell>{request.event_location}</Table.Cell>
 				        <Table.Cell>{request.number_of_persons}</Table.Cell>
 				        <Table.Cell>{request.request_timestamp2}</Table.Cell>

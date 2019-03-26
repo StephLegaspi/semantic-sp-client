@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Message} from 'semantic-ui-react'
-import { DateInput } from 'semantic-ui-calendar-react';
+import { DateInput, TimeInput } from 'semantic-ui-calendar-react';
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
@@ -25,6 +25,7 @@ export default class AddRequest extends Component {
       menu_options2: [],
       
       date: '',
+      time: '',
       first_name: '',
       middle_name: '',
       last_name: '',
@@ -50,6 +51,7 @@ export default class AddRequest extends Component {
       motif_error: '',
       menu_error: '',
       date_error: '',
+      time_error: '',
 
       form_complete: '',
       prompt_message: '',
@@ -87,6 +89,12 @@ export default class AddRequest extends Component {
   handleDateChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value, date_error: false });
+    }
+  }
+
+  handleTimeChange = (event, {name, value}) => {
+    if (this.state.hasOwnProperty(name)) {
+      this.setState({ [name]: value, time_error: false });
     }
   }
 
@@ -207,6 +215,10 @@ export default class AddRequest extends Component {
       this.setState({date_error: true});
       error=true;
     }
+    if(this.state.time === ''){
+      this.setState({time_error: true});
+      error=true;
+    }
 
 
     if(error){
@@ -228,6 +240,7 @@ export default class AddRequest extends Component {
             customer_email: this.state.email_address,
             customer_contact_number: this.state.contact_number,
             event_date: this.state.date,
+            event_time: this.state.time,
             event_type: this.state.event_type,
             event_location: this.state.event_location,
             number_of_persons: this.state.number_of_persons,
@@ -253,6 +266,7 @@ export default class AddRequest extends Component {
             this.setState({email_address: ''});
             this.setState({contact_number: ''});
             this.setState({date: ''});
+            this.setState({time: ''});
             this.setState({event_type: ''});
             this.setState({event_location: ''});
             this.setState({number_of_persons: ''});
@@ -326,7 +340,11 @@ export default class AddRequest extends Component {
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Dropdown required label='Event Type' placeholder='Event Type' search selection options={this.stateOptions} value={this.state.event_type} onChange={this.handleEventTypeChange} error={this.state.event_type_error}/>
+                  <Form.Dropdown required label='Event Type' placeholder='Event Type' selection options={this.stateOptions} value={this.state.event_type} onChange={this.handleEventTypeChange} error={this.state.event_type_error}/>
+                  <Form.Field required control='input' type='number' min={1} label='No. of Persons' placeholder='No. of Persons' value={this.state.number_of_persons} onChange={this.handlePersonsChange} error={this.state.num_persons_error}/>
+                </Form.Group>
+
+                <Form.Group widths='equal'>
                   <Form.Field required error={this.state.date_error}>
                     <label >Event Date</label>
                     <DateInput
@@ -335,10 +353,18 @@ export default class AddRequest extends Component {
                       value={this.state.date}
                       iconPosition="left"
                       onChange={this.handleDateChange}
-                      
                     />
                   </Form.Field>
-                  <Form.Field required control='input' type='number' min={1} label='No. of Persons' placeholder='No. of Persons' value={this.state.number_of_persons} onChange={this.handlePersonsChange} error={this.state.num_persons_error}/>
+                  <Form.Field required error={this.state.time_error}>
+                    <label >Event Time</label>
+                    <TimeInput
+                      name="time"
+                      placeholder="Event Time"
+                      value={this.state.time}
+                      iconPosition="left"
+                      onChange={this.handleTimeChange}
+                    />
+                  </Form.Field>
                 </Form.Group>
 
                 <Form.Input required label='Venue Address' placeholder='Venue Address' value={this.state.event_location} onChange={this.handleEventLocationChange} error={this.state.event_location_error}/>

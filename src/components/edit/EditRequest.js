@@ -65,7 +65,7 @@ class EditRequest extends Component {
 
 					<Form.Field width={8}>
 	                    <label>Request Status</label>
-	                     <Dropdown placeholder='Request Status' defaultValue={this.props.data.status} search selection options={this.requestStatusOptions} onChange={this.handleStatusChange}/>
+	                     <Dropdown placeholder='Request Status' defaultValue={this.props.data.status} selection options={this.requestStatusOptions} onChange={this.handleStatusChange}/>
 	                </Form.Field>
 	                <br/>
 	                <br/>
