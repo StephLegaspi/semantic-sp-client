@@ -82,7 +82,7 @@ class RentalInfo extends Component {
 								        <Table.Cell>{order.rental_duration}</Table.Cell>
 								        <Table.Cell>Cell</Table.Cell>
 								        <Table.Cell>{order.rental_status}</Table.Cell>
-								     	<Table.Cell>{order.returned_timestamp}</Table.Cell>
+								     	<Table.Cell>{order.returned_timestamp2}</Table.Cell>
 								     	<Table.Cell>
 								     		<EditOrderRental order_id={this.props.order_id} handleUpdateModal={this.updateModal} statusButton={(this.props.orderStatus==='Delivered' && order.rental_status!=='Returned') ? false : true} handleUpdate={this.props.handleUpdate}/>
 								     	</Table.Cell>
