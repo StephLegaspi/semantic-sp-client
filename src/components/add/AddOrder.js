@@ -149,7 +149,7 @@ class AddOrder extends Component {
   render(){
     return(
       <div > 
-        <button style={{marginLeft: '34%'}} className="ui labeled icon button" id='checkout-button2' onClick={this.onModal}>
+        <button style={{marginLeft: '34%'}} className="ui labeled icon button" id='checkout-button2' onClick={this.onModal} disabled={this.props.button_status}>
               <i className="cart icon"></i>
               Checkout
         </button>
