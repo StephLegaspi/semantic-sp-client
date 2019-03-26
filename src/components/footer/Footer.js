@@ -12,7 +12,12 @@ class Footer extends Component {
   constructor(props){
     super(props);
 
-    this.state = {}
+    this.state = {
+      telephone_number: '',
+      mobile_number: '',
+      email_address: '',
+      business_address: ''
+    }
 
     this.toContactUs = this.toContactUs.bind(this);
     this.toRequest = this.toRequest.bind(this);
@@ -29,6 +34,25 @@ class Footer extends Component {
     this.props.history.push('/FAQs');
   }
 
+  componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/contact_details', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({telephone_number: result.data[0].telephone_number});
+            self.setState({mobile_number: result.data[0].mobile_number});
+            self.setState({email_address: result.data[0].email_address});
+            self.setState({business_address: result.data[0].business_address});
+        }).catch(err => {
+          console.log(err);
+        })
+    }
+
   render() {
     return (
       <div>    
@@ -40,19 +64,19 @@ class Footer extends Component {
                   <Header inverted as='h4' content='Contact Us' style={{marginLeft: '15%'}} />
                   <div>
                     <Icon name='phone' size='big'/>
-                    <label> +63 949 881 2448 </label>
+                    <label> {this.state.telephone_number} </label>
                   </div>
                   <div>
                     <Icon name='mobile alternate' size='big'/>
-                    <label> +63 949 881 2448 </label>
+                    <label> {this.state.mobile_number} </label>
                   </div>
                   <div>
                     <Icon name='envelope' size='large' style={{marginLeft: '2%'}}/>
-                    <label> leirajane@gmail.com </label>
+                    <label> {this.state.email_address} </label>
                   </div>
                   <div>
                     <Icon name='location arrow' size='big'/>
-                    <label> Pembo, Makati </label>
+                    <label> {this.state.business_address} </label>
                   </div>
                 </Grid.Column>
 

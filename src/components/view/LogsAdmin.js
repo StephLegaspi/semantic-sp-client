@@ -85,7 +85,7 @@ class Logs extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Admin Logs'}/>
-				<SearchBarTable titleHolder={'Search log ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
+				<SearchBarTable titleHolder={'Search admin ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
 
 				<div className='table-div'>
 				<Table celled>

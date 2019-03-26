@@ -139,7 +139,7 @@ class Requests extends Component {
 				        <Table.HeaderCell style={{width: '5%'}}>ID</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Customer Information</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Inclusions</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '15%'}}>Event Date</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '15%'}}>Event Date and Time</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Event Location</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>No. of Persons</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Request Timestamp</Table.HeaderCell>
@@ -159,10 +159,10 @@ class Requests extends Component {
 						<Table.Cell>
 					       <InclusionInfo request_id={request.id}/>
 						</Table.Cell>
-				        <Table.Cell>{request.event_date}</Table.Cell>
+				        <Table.Cell>{request.date_time}</Table.Cell>
 				        <Table.Cell>{request.event_location}</Table.Cell>
 				        <Table.Cell>{request.number_of_persons}</Table.Cell>
-				        <Table.Cell>{request.request_timestamp}</Table.Cell>
+				        <Table.Cell>{request.request_timestamp2}</Table.Cell>
 				        <Table.Cell>{request.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditRequest data={request} handleUpdate={this.update}/>
