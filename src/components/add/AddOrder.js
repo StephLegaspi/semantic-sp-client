@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import { Button, Form, Message } from 'semantic-ui-react'
+
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 import '../../styles/button.css';
 
-export default class AddOrder extends Component {
+class AddOrder extends Component {
 
   constructor(props) {
     super(props);
@@ -30,7 +33,9 @@ export default class AddOrder extends Component {
 
       form_complete: '',
       prompt_message: '',
-      prompt_header: ''      
+      prompt_header: '',
+
+      success: false      
     };
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -59,6 +64,12 @@ export default class AddOrder extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+  }
+
+  setSuccess = () => {
+      this.setState({success: false});
+      this.setState({activeModal: false});
+      this.props.history.push('/shop/purchase');
   }
 
   checkForm = () => {
@@ -124,8 +135,9 @@ export default class AddOrder extends Component {
         })
         .then((result) => {
           if(result.status===200){
-            this.setState({activeModal: false})
-            this.props.updateCart();
+            this.setState({success: true});
+            
+            //this.props.updateCart();
           }
         })
         .catch((e) => {
@@ -168,8 +180,12 @@ export default class AddOrder extends Component {
                   />
                 : ''}
 
+
               <Button type='submit' onClick={this.checkForm} id='edit-button2'>Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
+              <div>
+              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Order has been successfuly placed!'}/> : ''}
+              </div>
           </Form>
           </div>)}
       </div>
@@ -177,3 +193,4 @@ export default class AddOrder extends Component {
   }
 }
 
+export default withRouter(AddOrder);
