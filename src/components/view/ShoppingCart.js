@@ -166,7 +166,7 @@ class ShoppingCart extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <AddOrder id_cart={this.state.cart_id} table_name={'purchase'} button_status={this.state.empty_cart}/>
+            <AddOrder id_cart={this.state.cart_id} table_name={'purchase'} button_status={this.state.empty_cart} route={'purchase'}/>
           </Card.Content>
         </Card>
         </div>

@@ -69,7 +69,7 @@ class AddOrder extends Component {
   setSuccess = () => {
       this.setState({success: false});
       this.setState({activeModal: false});
-      this.props.history.push('/shop/purchase');
+      this.props.history.push('/shop/' + this.props.route);
   }
 
   checkForm = () => {
