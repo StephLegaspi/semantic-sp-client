@@ -31,7 +31,7 @@ export default class AddAdmin extends Component {
         image_error: '',
 
         form_complete: '',
-        form_error_pass: '',
+        form_error_field: '',
         prompt_message: '',
         prompt_header: ''
       }
@@ -82,7 +82,7 @@ export default class AddAdmin extends Component {
     this.setState({prompt_header: ''});
     this.setState({prompt_message: ''});
     this.setState({form_complete: ''});
-    this.setState({form_error_pass: ''});
+    this.setState({form_error_field: ''});
 
   }
 
@@ -129,20 +129,13 @@ export default class AddAdmin extends Component {
     }else{
       this.setState({form_complete: true});
       if(this.state.password !== this.state.repeat_password){
-        this.setState({form_error_pass: true});
+        this.setState({form_error_field: true});
         this.setState({prompt_header: 'Passwords do not match'});
         this.setState({prompt_message: 'Please re-type password.'});
       }else{
-        this.setState({form_error_pass: false});
+        this.setState({form_error_field: false});
         this.handleSubmit();
-        this.setState({first_name: ''});
-        this.setState({middle_name: ''});
-        this.setState({last_name: ''});
-        this.setState({email_address: ''});
-        this.setState({contact_number: ''});
-        this.setState({password: ''});
-        this.setState({repeat_password: ''});
-        this.setState({image: ''});
+        
       }
     }
 
@@ -171,9 +164,25 @@ export default class AddAdmin extends Component {
           return response.json()
         })
         .then((result) => {
-          if(result.status){
-            this.setState({activeModal: false})
-            this.props.handleUpdate()
+          if(result.status===200){
+            this.setState({activeModal: false});
+            this.props.handleUpdate();
+            this.setState({first_name: ''});
+            this.setState({middle_name: ''});
+            this.setState({last_name: ''});
+            this.setState({email_address: ''});
+            this.setState({contact_number: ''});
+            this.setState({password: ''});
+            this.setState({repeat_password: ''});
+            this.setState({image: ''});
+          }else if(result.status===400){
+            this.setState({form_error_field: true});
+            this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
+            this.setState({prompt_message: 'Please enter a valid email or contact number.'});
+          }else if(result.status===406){
+            this.setState({form_error_field: true});
+            this.setState({prompt_header: 'Email Address already has an account'});
+            this.setState({prompt_message: 'Please enter a different valid email address.'});
           }
         })
         .catch((e) => {
@@ -218,7 +227,7 @@ export default class AddAdmin extends Component {
                     </Form.Field>
                 </Form.Group>   
 
-              {(this.state.form_complete===false || this.state.form_error_pass===true) ?
+              {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}
