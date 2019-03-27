@@ -87,7 +87,7 @@ class EditOrder extends Component {
 
 					<Form.Field width={8}>
 	                    <label>Rental Status</label>
-	                     <Dropdown placeholder='Rental Status' defaultValue={this.state.status} search selection options={this.rentalStatusOptions} onChange={this.handleStatusChange}/>
+	                     <Dropdown placeholder='Rental Status' defaultValue={this.state.status} selection options={this.rentalStatusOptions} onChange={this.handleStatusChange}/>
 	                  </Form.Field>
 	                <br/>
 	                <br/>
