@@ -53,6 +53,7 @@ export default class AddRequest extends Component {
       date_error: '',
       time_error: '',
 
+      form_error_field: '',
       form_complete: '',
       prompt_message: '',
       prompt_header: ''
@@ -274,7 +275,14 @@ export default class AddRequest extends Component {
             this.setState({menu_id: ''});
             this.setState({motif_id: ''});
 
+            this.setState({prompt_header: ''});
+            this.setState({prompt_message: ''});
+            this.setState({form_error_field: ''});
             this.setState({success: true});
+          }else if(result.status===400){
+            this.setState({form_error_field: true});
+            this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
+            this.setState({prompt_message: 'Please enter a valid email or contact number.'});
           }
         })
         .catch((e) => {
@@ -387,7 +395,7 @@ export default class AddRequest extends Component {
                   </Form.Field>
                 </Form.Group>
 
-                {(this.state.form_complete===false) ?
+                {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}
