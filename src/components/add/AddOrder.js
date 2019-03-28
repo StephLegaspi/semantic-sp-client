@@ -31,6 +31,7 @@ class AddOrder extends Component {
       delivery_address_error: '',
       zip_code_error: '',
 
+      form_error_field: '',
       form_complete: '',
       prompt_message: '',
       prompt_header: '',
@@ -111,13 +112,6 @@ class AddOrder extends Component {
     }else{
       this.setState({form_complete: true});
       this.handleSubmit();
-      this.setState({first_name: ''});
-      this.setState({middle_name: ''});
-      this.setState({last_name: ''});
-      this.setState({email_address: ''});
-      this.setState({contact_number: ''});
-      this.setState({delivery_address: ''});
-      this.setState({zip_code: ''});
     }
 
   }
@@ -136,8 +130,17 @@ class AddOrder extends Component {
         .then((result) => {
           if(result.status===200){
             this.setState({success: true});
-            
-            //this.props.updateCart();
+            this.setState({first_name: ''});
+            this.setState({middle_name: ''});
+            this.setState({last_name: ''});
+            this.setState({email_address: ''});
+            this.setState({contact_number: ''});
+            this.setState({delivery_address: ''});
+            this.setState({zip_code: ''});
+          }else if(result.status===400){
+            this.setState({form_error_field: true});
+            this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
+            this.setState({prompt_message: 'Please enter a valid email or contact number.'});
           }
         })
         .catch((e) => {
@@ -173,7 +176,7 @@ class AddOrder extends Component {
                   <Form.Input required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} error={this.state.zip_code_error}/>
                 </Form.Group>
 
-              {(this.state.form_complete===false) ?
+              {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}
