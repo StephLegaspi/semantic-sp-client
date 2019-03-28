@@ -65,6 +65,27 @@ class AddOrder extends Component {
 
   cancel = () => {
     this.setState({activeModal: false});
+
+    this.setState({first_name: ''});
+    this.setState({middle_name: ''});
+    this.setState({last_name: ''});
+    this.setState({email_address: ''});
+    this.setState({contact_number: ''});
+    this.setState({delivery_address: ''});
+    this.setState({zip_code: ''});
+
+    this.setState({fname_error: ''});
+    this.setState({mname_error: ''});
+    this.setState({lname_error: ''});
+    this.setState({email_error: ''});
+    this.setState({contact_error: ''});
+    this.setState({delivery_address_error: ''});
+    this.setState({zip_code_error: ''});
+
+    this.setState({prompt_header: ''});
+    this.setState({prompt_message: ''});
+    this.setState({form_complete: ''});
+    this.setState({form_error_field: ''});
   }
 
   setSuccess = () => {
