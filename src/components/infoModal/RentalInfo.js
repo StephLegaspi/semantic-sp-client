@@ -80,7 +80,7 @@ class RentalInfo extends Component {
 							    {this.state.data.map(order =>
 							    	 <Table.Row>
 								        <Table.Cell>{order.rental_duration}</Table.Cell>
-								        <Table.Cell>Cell</Table.Cell>
+								        <Table.Cell>{order.due_date}</Table.Cell>
 								        <Table.Cell>{order.rental_status}</Table.Cell>
 								     	<Table.Cell>{order.returned_timestamp2}</Table.Cell>
 								     	<Table.Cell>
