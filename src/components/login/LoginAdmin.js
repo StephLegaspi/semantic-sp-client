@@ -31,23 +31,40 @@ class LoginAdmin extends Component {
 
   handleSubmit(event) {
         const credentials = JSON.stringify({email_address: this.state.email, password: this.state.password})
-       
-        fetch(`http://localhost:3001/v1/auth/login/admin`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: credentials
 
-        }).then(function(response) {
-            if (response.status >= 400) {
-              throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
+        fetch('http://localhost:3001/v1/auth/login/admin',{
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: credentials
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status === 200){
             console.log("Success"); 
-            this.props.history.push('/dashboard');   
-        }).catch(function(err) {
-            console.log(err)
-        });
+            this.fetchSession();
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  }
+
+  fetchSession = () => {
+    let self = this;
+    fetch('http://localhost:3001/v1/session/user',{
+      method: 'GET'
+    }).then(function(response) {
+      if (response.status >= 400) {
+          throw new Error("Bad response from server");
+      }
+      return response.json();
+    }).then(function(result) {
+        console.log(result);
+    }).catch(err => {
+          console.log(err);
+    })
   }
 
   render() {
@@ -68,7 +85,7 @@ class LoginAdmin extends Component {
                   type='password'
                   onChange={this.handlePasswordChanged}
                 />
-               <Button id='login-button' fluid size='large' onClick={this.handleSubmit} method="POST">
+               <Button id='login-button' fluid size='large' onClick={this.handleSubmit}>
                   Login
                 </Button>
                 
