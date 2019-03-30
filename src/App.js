@@ -59,10 +59,31 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-		  	curr_user: 0
+		  	curr_user: 0,
+		  	session_user: ''
 		}
 
 	}
+
+	/*componentDidMount(e) {
+		let self = this;
+
+        fetch(`http://localhost:3001/v1/session/user`,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "GET"
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+        	console.log(result);
+        	self.setState({session_user: result.session});
+        	//self.state.session_user ? console.log('not empty') : console.log('empty');
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+	}*/
 
   render() {
     return (
