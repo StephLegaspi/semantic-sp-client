@@ -76,7 +76,7 @@ class ProfileAdmin extends Component {
 					</div>
 					<div style={{marginTop: '4%'}}>
 						<div style={{float: 'left', marginLeft: '66%'}}>
-							<EditPassword/>
+							<EditPassword id_user={admin.id}/>
 						</div>
 						<div style={{marginLeft: '95%'}}>
 							<EditAdmin data={admin} handleUpdate={this.update}/>
