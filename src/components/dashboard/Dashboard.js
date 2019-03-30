@@ -83,7 +83,7 @@ class Dashboard extends Component {
 					<p className='title-header'> Rental</p>
 					<p className='body-font'>  Number of rental products that are already due: </p>
 					<br/>
-					<DashboardCircle handleClick={this.toOrderRentals} route={'orders/rental/pending-count'}/>
+					<DashboardCircle handleClick={this.toOrderRentals} route={'order_rentals/due-count'}/>
 				</div>
 
 			
