@@ -3,6 +3,7 @@ import { Button, Form, Message } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 import '../../styles/button.css';
@@ -24,7 +25,7 @@ export default class SignUp extends Component {
       zipcode_error: '',
       
       form_complete: '',
-      form_error_pass: '',
+      form_error_field: '',
 
       first_name: '',
       middle_name: '',
@@ -37,7 +38,8 @@ export default class SignUp extends Component {
       zip_code: '',
 
       prompt_message: '',
-      prompt_header: ''
+      prompt_header: '',
+      success: false
     }
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -60,6 +62,9 @@ export default class SignUp extends Component {
   handleRepeatPassChange(e) { this.setState({repeat_password: e.target.value, repeatpass_error: false}); }
   handleAddressChange(e) { this.setState({address: e.target.value, address_error: false}); }
   handleZipCodeChange(e) { this.setState({zip_code: e.target.value, zipcode_error: false}); }
+  setSuccess = () => {
+    this.setState({success: false});
+  }
 
   checkForm = () => {
     var error = false;
@@ -109,11 +114,11 @@ export default class SignUp extends Component {
     }else{
       this.setState({form_complete: true});
       if(this.state.password !== this.state.repeat_password){
-        this.setState({form_error_pass: true});
+        this.setState({form_error_field: true});
         this.setState({prompt_header: 'Passwords do not match'});
         this.setState({prompt_message: 'Please re-type password.'});
       }else{
-        this.setState({form_error_pass: false});
+        this.setState({form_error_field: false});
         this.handleSubmit();
       }
     }
@@ -156,10 +161,19 @@ export default class SignUp extends Component {
             this.setState({repeat_password: ''});
 
             this.setState({form_complete: ''});
-            this.setState({form_error_pass: ''});
+            this.setState({form_error_field: ''});
             this.setState({prompt_header: ''});
             this.setState({prompt_message: ''});
             this.setState({success: true});
+          }else if(result.status===400){
+            this.setState({form_error_field: true});
+            this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
+            this.setState({prompt_message: 'Please enter a valid email or contact number.'});
+          }else if(result.status===406){
+            this.setState({form_error_field: true});
+            this.setState({email_error: true});
+            this.setState({prompt_header: 'Email Address already has an account'});
+            this.setState({prompt_message: 'Please enter a different valid email address.'});
           }
         })
         .catch((e) => {
@@ -197,7 +211,7 @@ export default class SignUp extends Component {
                   <Form.Input width={3} fluid label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} error={this.state.zipcode_error} value={this.state.zip_code}/>
                 </Form.Group>
 
-                {(this.state.form_complete===false || this.state.form_error_pass===true) ?
+                {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}
@@ -206,6 +220,8 @@ export default class SignUp extends Component {
                 <Button id='signup-button' onClick={this.checkForm}>
                   Sign Up
                 </Button>
+
+                {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'You have successfullly signed up!'}/> : ''}
 
             </Form>
         </div>

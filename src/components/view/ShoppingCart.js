@@ -22,7 +22,9 @@ class ShoppingCart extends Component {
       data: [],
 
       total_bill: '',
-      total_items: ''
+      total_items: '',
+
+      empty_cart: ''
     }
   }
 
@@ -56,7 +58,9 @@ class ShoppingCart extends Component {
           return response.json()
         })
         .then((result) => {
-          self.setState({data: result.data});
+          if(result.status===200){
+            self.setState({data: result.data});
+          }
         })
         .catch((e) => {
           console.log(e)
@@ -74,10 +78,15 @@ class ShoppingCart extends Component {
           return response.json()
         })
         .then((result) => {
-          self.setState({cart_id: result.data[0].id});
-          self.setState({total_bill: result.data[0].total_bill});
-          self.setState({total_items: result.data[0].total_items});
-          self.getCartProducts();
+          if(result.status===200){
+            self.setState({cart_id: result.data[0].id});
+            self.setState({total_bill: result.data[0].total_bill});
+            self.setState({total_items: result.data[0].total_items});
+            self.getCartProducts();
+            self.setState({empty_cart: false});            
+          }else if(result.status===404){
+            self.setState({empty_cart: true});
+          }
         })
         .catch((e) => {
           console.log(e)
@@ -157,7 +166,7 @@ class ShoppingCart extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <AddOrder id_cart={this.state.cart_id} table_name={'purchase'}/>
+            <AddOrder id_cart={this.state.cart_id} table_name={'purchase'} button_status={this.state.empty_cart} route={'purchase'}/>
           </Card.Content>
         </Card>
         </div>

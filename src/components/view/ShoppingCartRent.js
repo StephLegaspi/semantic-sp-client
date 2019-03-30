@@ -24,7 +24,9 @@ class ShoppingCartRent extends Component {
       total_bill: '',
       total_items: '',
 
-      rental_duration: 1
+      rental_duration: 1,
+
+      empty_cart: ''
     };
   }
 
@@ -101,10 +103,15 @@ class ShoppingCartRent extends Component {
           return response.json()
         })
         .then((result) => {
-          self.setState({cart_id: result.data[0].id});
-          self.setState({total_bill: result.data[0].total_bill});
-          self.setState({total_items: result.data[0].total_items});
-          self.getCartProducts();
+          if(result.status===200){
+            self.setState({cart_id: result.data[0].id});
+            self.setState({total_bill: result.data[0].total_bill});
+            self.setState({total_items: result.data[0].total_items});
+            self.getCartProducts();
+            self.setState({empty_cart: false}); 
+          }else if(result.status===404){
+            self.setState({empty_cart: true});
+          }
         })
         .catch((e) => {
           console.log(e)
@@ -189,7 +196,7 @@ class ShoppingCartRent extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <AddOrder id_cart={this.state.cart_id} duration_rental={this.state.rental_duration} updateCart={this.editRentalDuration} table_name={'rental'}/>
+            <AddOrder id_cart={this.state.cart_id} duration_rental={this.state.rental_duration} updateCart={this.editRentalDuration} table_name={'rental'} button_status={this.state.empty_cart} route={'rent'}/>
 
           </Card.Content>
         </Card>
