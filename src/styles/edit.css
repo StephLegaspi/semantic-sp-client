@@ -11,9 +11,9 @@
 .edit-modal .forms{
 	position: absolute;
 	height: auto;
-	width: 60%;
+	width: 50%;
 	top: 25%;
-	left: 20%;
+	left: 25%;
 	border-radius: 3px;
 	overflow-y: scroll;
 	padding: 20px;
@@ -24,9 +24,9 @@
 .edit-modal .forms-long{
 	position: absolute;
 	height: 75%;
-	width: 60%;
+	width: 50%;
 	top: 20%;
-	left: 20%;
+	left: 25%;
 	border-radius: 3px;
 	overflow-y: scroll;
 	background-color: white;
