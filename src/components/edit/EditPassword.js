@@ -4,6 +4,8 @@ import { Form, Button, Message} from 'semantic-ui-react';
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditPassword extends Component {
   constructor(props){
     super(props);
@@ -100,8 +102,8 @@ class EditPassword extends Component {
   }
 
   submitEdit = () => {
-
-        const info = JSON.stringify({email_address: this.state.email_address, old_password: this.state.old_password, new_password: this.state.new_password, confirm_password: this.state.confirm_password})
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const info = JSON.stringify({email_address: this.state.email_address, old_password: this.state.old_password, new_password: this.state.new_password, confirm_password: this.state.confirm_password, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/users/change_password/` + this.props.id_user,{
             headers: { 'Content-Type': 'application/json' },
