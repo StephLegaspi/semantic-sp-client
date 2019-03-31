@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditContact extends Component {
 	constructor(props){
 		super(props);
@@ -102,8 +104,9 @@ class EditContact extends Component {
 	}
 
 	submitEdit = () => {
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
 
-        const contact = JSON.stringify({telephone_number: this.state.telephone_number, mobile_number: this.state.mobile_number, email_address: this.state.email_address, business_address: this.state.business_address})
+        const contact = JSON.stringify({telephone_number: this.state.telephone_number, mobile_number: this.state.mobile_number, email_address: this.state.email_address, business_address: this.state.business_address, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/contact_details/`,{
             headers: { 'Content-Type': 'application/json' },
