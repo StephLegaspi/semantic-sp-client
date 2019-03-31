@@ -52,6 +52,8 @@ import SearchMotif from './components/search/SearchMotif.js';
 import SearchMenu from './components/search/SearchMenu.js';
 import MenuInclusion from './components/view/MenuInclusion.js';
 
+import local_storage from 'localStorage';
+
 
 class App extends Component {
 	
@@ -59,16 +61,21 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-		  	curr_user: 0
+		  	curr_user: 0,
+		  	user: JSON.parse(local_storage.getItem("user_data"))
 		}
-
 	}
+
+	componentDidMount() {
+		this.setState({user: JSON.parse(local_storage.getItem("user_data")) })
+     	console.log(this.state.user);   
+    }
 
   render() {
     return (
       <div>
       	<Router history={withRouter}>
-      	{this.state.curr_user ? (
+      	{(this.state.user===null || this.state.user.user_type === 'Customer') ? (
       	<Switch>
       		<Route exact={true} path="/" render={(props) => {
 					             								return(
@@ -77,7 +84,6 @@ class App extends Component {
 																			<HomePage   {...props} />
 							             								</div>)}}> 
 			</Route>
-
 			<Route exact={true} path="/shop/purchase" render={(props) => {
 					             								return(
 							             								<div>
@@ -226,15 +232,18 @@ class App extends Component {
 																			<LoginCustomer   {...props} />
 							             								</div>)}}> 
 			</Route>
-      	</Switch>
-      	) : (
-      		<Switch>
-      		<Route exact={true} path="/admin" render={(props) => {
+			<Route exact={true} path="/admin" render={(props) => {
 					             								return(
 							             								<div>
 																			<LoginAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
+		</Switch>
+
+      	) : (
+      		<div>
+      		{this.state.user.user_type === 'Administrator' ? (
+      		<Switch>
       		<Route exact={true} path="/dashboard" render={(props) => {
 					             								return(
 							             								<div>
@@ -375,8 +384,9 @@ class App extends Component {
 																			<ProfileAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
-			
 			</Switch>
+			) : ''}
+			</div>
 
       	)}
       	</Router>

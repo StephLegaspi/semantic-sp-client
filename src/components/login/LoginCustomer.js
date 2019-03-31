@@ -26,26 +26,30 @@ class LoginCustomer extends Component {
   handleEmailChanged(e) { this.setState({email: e.target.value}); }
   handlePasswordChanged(e) { this.setState({password: e.target.value}); }
 
+  toHomePage = () => {
+    window.location.href='/'
+  }
+
   handleSubmit(event) {
         const credentials = JSON.stringify({email_address: this.state.email, password: this.state.password})
-       
-        fetch(`http://localhost:3001/v1/auth/login/customer`, {
+
+        fetch(`http://localhost:3001/v1/auth/login/customer`,{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: credentials
-
-        }).then(function(response) {
-            if (response.status >= 400) {
-              throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            if(result.status===200){
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status===200){
               local_storage.setItem('user_data', JSON.stringify(result.data));
-            }
-        }).catch(function(err) {
-            console.log(err)
-        });
+              this.toHomePage();
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
   }
 
   render() {

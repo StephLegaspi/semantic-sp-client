@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Header, Image, Message, Segment } from 'semantic-ui-react'
-
+import {withRouter} from 'react-router-dom';
 import logo from '../../images/logo.jpg'
 import '../../styles/login.css';
 import '../../styles/font.css';
@@ -20,35 +20,40 @@ class LoginAdmin extends Component {
     this.handlePasswordChanged = this.handlePasswordChanged.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.toDashboard = this.toDashboard.bind(this);
+    //this.toDashboard = this.toDashboard.bind(this);
   }
 
 
   handleEmailChanged(e) { this.setState({email: e.target.value}); }
   handlePasswordChanged(e) { this.setState({password: e.target.value}); }
 
-  toDashboard(e) {
+  /*toDashboard(e) {
     this.props.history.push('/dashboard');
+  }*/
+  toDashboard = () => {
+    window.location.href='/dashboard'
   }
 
   handleSubmit(event) {
         const credentials = JSON.stringify({email_address: this.state.email, password: this.state.password})
-       
-        fetch(`http://localhost:3001/v1/auth/login/admin`, {
+
+        fetch(`http://localhost:3001/v1/auth/login/admin`,{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: credentials
-
-        }).then(function(response) {
-            if (response.status >= 400) {
-              throw new Error("Bad response from server");
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status===200){
+              local_storage.setItem('user_data', JSON.stringify(result.data));
+              this.toDashboard();
             }
-            return response.json();
-        }).then(function(result) {
-            local_storage.setItem('user_data', JSON.stringify(result.data));
-        }).catch(function(err) {
-            console.log(err)
-        });
+        })
+        .catch((e) => {
+          console.log(e)
+        })
   }
 
   render() {
@@ -84,4 +89,4 @@ class LoginAdmin extends Component {
   }
 }
 
-export default LoginAdmin;
+export default withRouter(LoginAdmin);

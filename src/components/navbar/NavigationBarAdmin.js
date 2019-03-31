@@ -4,6 +4,8 @@ import {Container, Dropdown, Image, Menu} from 'semantic-ui-react'
 import logo from '../../images/logo.jpg'
 import '../../styles/navbar.css';
 
+import local_storage from 'localStorage';
+
 class NavigationBar extends Component {
 	constructor(props){
 		super(props);
@@ -26,6 +28,10 @@ class NavigationBar extends Component {
 		this.toLogsAdmin = this.toLogsAdmin.bind(this);
 		this.toLogsCustomer = this.toLogsCustomer.bind(this);
 		this.toProfileAdmin = this.toProfileAdmin.bind(this);
+	}
+	toLogOut(e) {
+		local_storage.clear();
+		window.location.href='/admin'
 	}
 
 	toDashboard(e) {
@@ -154,7 +160,7 @@ class NavigationBar extends Component {
 				        <Dropdown item simple text='Account' id={(this.props.activePage[16] || this.props.activePage[17]) ? 'lighter': 'menu-font'}>
 				          <Dropdown.Menu>
 				            <Dropdown.Item onClick={this.toProfileAdmin}>Profile </Dropdown.Item>
-				            <Dropdown.Item >Logout</Dropdown.Item>
+				            <Dropdown.Item onClick={this.toLogOut}>Logout</Dropdown.Item>
 				          </Dropdown.Menu>
 				    	</Dropdown>
      				</Container>
