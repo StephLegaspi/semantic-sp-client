@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditRequest extends Component {
 	constructor(props){
 		super(props);
@@ -33,8 +35,8 @@ class EditRequest extends Component {
 	}
 
 	submitEdit = () => {
-
-        const request = JSON.stringify({status: this.state.status})
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const request = JSON.stringify({status: this.state.status, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/requests/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },

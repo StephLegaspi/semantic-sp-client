@@ -9,6 +9,8 @@ import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 
+import local_storage from 'localStorage';
+
 export default class AddRequest extends Component {
 
   constructor(props) {
@@ -234,6 +236,7 @@ export default class AddRequest extends Component {
   }
 
   handleSubmit = () => {
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
         const request = JSON.stringify({
             customer_first_name: this.state.first_name, 
             customer_middle_name: this.state.middle_name,
@@ -247,7 +250,8 @@ export default class AddRequest extends Component {
             number_of_persons: this.state.number_of_persons,
             package_id: this.state.package_id,
             menu_id: this.state.menu_id,
-            motif_id: this.state.motif_id
+            motif_id: this.state.motif_id,
+            session_id: id_session
         })
        
         fetch(`http://localhost:3001/v1/requests`,{
