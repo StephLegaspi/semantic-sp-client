@@ -6,6 +6,8 @@ import AddButton from '../button/AddButton.js'
 import '../../styles/add.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 export default class AddPackage extends Component {
 
    constructor() {
@@ -85,7 +87,8 @@ export default class AddPackage extends Component {
   }
 
   handleSubmit = () => {
-        const pkg = JSON.stringify({name: this.state.name, price: this.state.price, inclusion: this.state.inclusion})
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const pkg = JSON.stringify({name: this.state.name, price: this.state.price, inclusion: this.state.inclusion, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/packages`,{
             headers: { 'Content-Type': 'application/json' },

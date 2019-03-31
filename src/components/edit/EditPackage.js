@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditPackage extends Component {
 	constructor(props){
 		super(props);
@@ -122,8 +124,8 @@ class EditPackage extends Component {
 	}
 
 	submitEdit = () => {
-
-        const pkg = JSON.stringify({name: this.state.name, price: this.state.price, inclusion: this.state.inclusion})
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const pkg = JSON.stringify({name: this.state.name, price: this.state.price, inclusion: this.state.inclusion, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/packages/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
