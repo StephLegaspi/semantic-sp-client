@@ -9,6 +9,7 @@ import PromptModal from '../infoModal/PromptModal.js'
 import '../../styles/add.css';
 import '../../styles/font.css';
 
+import local_storage from 'localStorage';
 
 class AddToCart extends Component {
 	constructor(props){
@@ -84,7 +85,7 @@ class AddToCart extends Component {
         	console.log(err);
         })
 
-        this.getSession();
+        this.setState({session_id: JSON.parse(local_storage.getItem("user_data")).id});
         
     }
 
@@ -106,24 +107,6 @@ class AddToCart extends Component {
         this.handleSubmit();
       }
 
-    }
-
-    getSession = () => {
-        let self = this;
-
-        fetch(`http://localhost:3001/v1/session`,{
-            headers: { 'Content-Type': 'application/json' },
-            method: "GET"
-        })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          self.setState({session_id: result.session_id});
-        })
-        .catch((e) => {
-          console.log(e)
-        })
     }
 
     findCart = () => {
@@ -170,16 +153,21 @@ class AddToCart extends Component {
   	}
 
     addShoppingCart = () => {
-        /*ADD SHOPPING CART FIRST*/       
+        /*ADD SHOPPING CART FIRST*/ 
+        const session_data = JSON.stringify({
+            session_id: this.state.session_id,
+        })
+        
         fetch(`http://localhost:3001/v1/shopping_carts/purchase`,{
             headers: { 'Content-Type': 'application/json' },
-            method: "POST"
+            method: "POST",
+            body: session_data
         })
         .then((response) => {
           return response.json()
         })
         .then((result) => {
-          if(result.status){
+          if(result.status===200){
             console.log("Successfully added shopping cart");
             this.setState({cart_id: result.data.insertId});
             this.addCartProduct();

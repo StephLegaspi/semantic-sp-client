@@ -5,6 +5,8 @@ import logo from '../../images/logo.jpg'
 import '../../styles/login.css';
 import '../../styles/font.css';
 
+import local_storage from 'localStorage';
+
 class LoginAdmin extends Component {
 
   constructor(){
@@ -43,8 +45,7 @@ class LoginAdmin extends Component {
             }
             return response.json();
         }).then(function(result) {
-            console.log("Success"); 
-            this.props.history.push('/dashboard');   
+            local_storage.setItem('user_data', JSON.stringify(result.data));
         }).catch(function(err) {
             console.log(err)
         });
