@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditInventory extends Component {
 	constructor(props){
 		super(props);
@@ -58,8 +60,8 @@ class EditInventory extends Component {
 	}
 
 	submitEdit = () => {
-
-        const inventory = JSON.stringify({total_quantity: this.state.total_quantity})
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const inventory = JSON.stringify({total_quantity: this.state.total_quantity, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/inventories/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },

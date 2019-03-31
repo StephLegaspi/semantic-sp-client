@@ -11,13 +11,14 @@ import '../../styles/view.css';
 import '../../styles/font.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class ShoppingCartRent extends Component {
   constructor(props){
     super(props);
 
     this.state = {
       cust_id: "",
-      session_id: "",
       cart_id: "",
       data: [],
 
@@ -35,8 +36,10 @@ class ShoppingCartRent extends Component {
   }
 
   componentDidMount() {
-        let self = this;
-        fetch(`http://localhost:3001/v1/session`,{
+    let self = this;
+    const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+
+        fetch('http://localhost:3001/v1/customers/users/' + id_session,{
             headers: { 'Content-Type': 'application/json' },
             method: "GET"
         })
@@ -44,8 +47,8 @@ class ShoppingCartRent extends Component {
           return response.json()
         })
         .then((result) => {
-          self.setState({session_id: result.session_id});
-          this.getCustomer();
+          self.setState({cust_id: result.data[0].id});
+          self.getCart();
         })
         .catch((e) => {
           console.log(e)
@@ -118,24 +121,6 @@ class ShoppingCartRent extends Component {
         })
   }
 
-  getCustomer = () => {
-        let self = this;
-
-        fetch('http://localhost:3001/v1/customers/users/' + self.state.session_id,{
-            headers: { 'Content-Type': 'application/json' },
-            method: "GET"
-        })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          self.setState({cust_id: result.data[0].id});
-          self.getCart();
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-  }
 
   render() {
     return (

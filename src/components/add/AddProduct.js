@@ -6,6 +6,8 @@ import AddButton from '../button/AddButton.js'
 import '../../styles/add.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 export default class AddProduct extends Component {
   constructor() {
     super();
@@ -129,7 +131,7 @@ export default class AddProduct extends Component {
   }
 
   handleSubmit = () => {
-
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
         let formData = new FormData();
         formData.set('enctype','multipart/form-data') 
 
@@ -140,6 +142,7 @@ export default class AddProduct extends Component {
         formData.append('display_product', this.state.display_product);
         formData.append('product_color', this.state.color_list);
         formData.append('image', this.state.image);
+        formData.append('session_id', id_session);
        
         fetch(`http://localhost:3001/v1/products/` + this.props.category ,{
             method: "POST",

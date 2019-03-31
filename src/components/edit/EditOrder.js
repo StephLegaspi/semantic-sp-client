@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditOrder extends Component {
 	constructor(props){
 		super(props);
@@ -39,8 +41,8 @@ class EditOrder extends Component {
 	}
 
 	submitEdit = () => {
-
-        const order = JSON.stringify({status: this.state.status})
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const order = JSON.stringify({status: this.state.status, session_id: id_session})
        
         fetch(`http://localhost:3001/v1//orders/purchase/` + this.props.order_id,{
             headers: { 'Content-Type': 'application/json' },

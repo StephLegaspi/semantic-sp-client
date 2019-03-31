@@ -6,6 +6,8 @@ import ActivateButton from '../button/ActivateButton.js'
 import '../../styles/delete.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class ActivateModal extends Component {
 	constructor(props){
 		super(props);
@@ -23,10 +25,14 @@ class ActivateModal extends Component {
 	}
 
 	submitEdit = () => {
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+
+		const admin = JSON.stringify({session_id: id_session});
        
         fetch(`http://localhost:3001/v1/administrators/activate/` + this.props.data_id,{
             headers: { 'Content-Type': 'application/json' },
-            method: "PUT"
+            method: "PUT",
+            body: admin
           })
         .then((response) => {
           return response.json()

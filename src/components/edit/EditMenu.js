@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditMenu extends Component {
 	constructor(props){
 		super(props);
@@ -317,7 +319,8 @@ class EditMenu extends Component {
 	}
 
 	submitEdit = () => {
-        const menu = JSON.stringify({name: this.state.name, main_course: this.state.main_course, appetizer: this.state.appetizer, dessert: this.state.dessert, soup: this.state.soup, beverage: this.state.beverage, others: this.state.others})
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const menu = JSON.stringify({name: this.state.name, main_course: this.state.main_course, appetizer: this.state.appetizer, dessert: this.state.dessert, soup: this.state.soup, beverage: this.state.beverage, others: this.state.others, session_id: id_session})
 
        
         fetch(`http://localhost:3001/v1/food_menus/` + this.props.data.id,{

@@ -6,6 +6,8 @@ import AddButton from '../button/AddButton.js'
 import '../../styles/add.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 export default class AddAdmin extends Component {
 
    constructor() {
@@ -144,6 +146,7 @@ export default class AddAdmin extends Component {
   }
 
   handleSubmit = () => {
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
 
         let formData = new FormData();
         formData.set('enctype','multipart/form-data') 
@@ -155,6 +158,7 @@ export default class AddAdmin extends Component {
         formData.append('contact_number', this.state.contact_number);
         formData.append('password', this.state.password);
         formData.append('image', this.state.image);
+        formData.append('session_id', id_session);
        
         fetch(`http://localhost:3001/v1/administrators`,{
             method: "POST",

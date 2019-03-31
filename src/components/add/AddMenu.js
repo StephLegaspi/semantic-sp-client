@@ -6,6 +6,8 @@ import AddButton from '../button/AddButton.js'
 import '../../styles/add.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 export default class AddPackage extends Component {
 
    constructor() {
@@ -129,7 +131,8 @@ export default class AddPackage extends Component {
   }
 
   handleSubmit = () => {
-        const menu = JSON.stringify({name: this.state.name, main_course: this.state.main_course, appetizer: this.state.appetizer, dessert: this.state.dessert, soup: this.state.soup, beverage: this.state.beverage, others: this.state.others})
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const menu = JSON.stringify({name: this.state.name, main_course: this.state.main_course, appetizer: this.state.appetizer, dessert: this.state.dessert, soup: this.state.soup, beverage: this.state.beverage, others: this.state.others, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/food_menus`,{
             headers: { 'Content-Type': 'application/json' },
