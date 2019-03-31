@@ -6,6 +6,8 @@ import AddButton from '../button/AddButton.js'
 import '../../styles/add.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class AddFAQ extends Component {
 
   constructor() {
@@ -74,7 +76,8 @@ class AddFAQ extends Component {
   }
 
   handleSubmit = () => {
-        const faq = JSON.stringify({question: this.state.question, answer: this.state.answer})
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const faq = JSON.stringify({question: this.state.question, answer: this.state.answer, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/FAQs`,{
             headers: { 'Content-Type': 'application/json' },
