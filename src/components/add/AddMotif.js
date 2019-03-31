@@ -6,6 +6,8 @@ import AddButton from '../button/AddButton.js'
 import '../../styles/add.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 export default class AddMotif extends Component {
 
  constructor() {
@@ -95,12 +97,15 @@ export default class AddMotif extends Component {
   }
 
   handleSubmit = () => {
+        
+        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
 
         let formData = new FormData();
         formData.set('enctype','multipart/form-data') 
 
         formData.append('name', this.state.name);
         formData.append('description', this.state.description);
+        formData.append('session_id', id_session);
 
         for (var file of this.state.image_files) {
           formData.append('images', file)

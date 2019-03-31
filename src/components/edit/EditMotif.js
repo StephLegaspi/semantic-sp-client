@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditMotif extends Component {
 	constructor(props){
 		super(props);
@@ -76,7 +78,8 @@ class EditMotif extends Component {
 	}
 
 	submitEdit = () => {
-        const motif = JSON.stringify({name: this.state.name, description: this.state.description})
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+        const motif = JSON.stringify({name: this.state.name, description: this.state.description, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/event_motifs/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },

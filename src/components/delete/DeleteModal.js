@@ -6,6 +6,8 @@ import DeleteButton from '../button/DeleteButton.js'
 import '../../styles/delete.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class DeleteModal extends Component {
 	constructor(props){
 		super(props);
@@ -24,8 +26,13 @@ class DeleteModal extends Component {
 
 
 	deleteData = () => {
+		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+		const data = JSON.stringify({session_id: id_session});
+
     	fetch(`http://localhost:3001/v1/`+ this.props.table_name + `/` + this.props.data_id,{
-		      method: "DELETE"
+		      headers: { 'Content-Type': 'application/json' },
+		      method: "DELETE",
+		      body: data
 		    })
 			.then((response) => {
 				return response.json()
