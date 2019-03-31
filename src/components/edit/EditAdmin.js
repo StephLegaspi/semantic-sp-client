@@ -6,6 +6,8 @@ import EditButton from '../button/EditButton.js'
 import '../../styles/edit.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class EditAdmin extends Component {
   constructor(props){
     super(props);
@@ -48,8 +50,9 @@ class EditAdmin extends Component {
   }
 
   submitEdit = () => {
+      const id_session = JSON.parse(local_storage.getItem("user_data")).id;
 
-        const admin = JSON.stringify({first_name: this.state.first_name, middle_name: this.state.middle_name, last_name: this.state.last_name, email_address: this.state.email_address, contact_number: this.state.contact_number})
+        const admin = JSON.stringify({first_name: this.state.first_name, middle_name: this.state.middle_name, last_name: this.state.last_name, email_address: this.state.email_address, contact_number: this.state.contact_number, session_id: id_session})
        
         fetch(`http://localhost:3001/v1/administrators/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
