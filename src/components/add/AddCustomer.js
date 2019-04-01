@@ -214,8 +214,8 @@ export default class SignUp extends Component {
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error} value={this.state.email_address}/>
                   <Form.Input fluid label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} error={this.state.contact_error} value={this.state.contact_number}/>
+                  <Form.Input fluid label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error} value={this.state.email_address}/>
                 </Form.Group >
 
                 <Form.Group widths='equal'>
