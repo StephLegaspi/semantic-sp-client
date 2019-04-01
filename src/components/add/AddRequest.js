@@ -6,6 +6,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
 import Footer from '../footer/Footer.js'
 import PromptModal from '../infoModal/PromptModal.js'
+import LoginModal from '../add/LoginModal.js'
 
 import '../../styles/add.css';
 
@@ -58,7 +59,10 @@ export default class AddRequest extends Component {
       form_error_field: '',
       form_complete: '',
       prompt_message: '',
-      prompt_header: ''
+      prompt_header: '',
+
+      user_session: JSON.parse(local_storage.getItem("user_data")),
+      no_user: false
 
     };
 
@@ -121,8 +125,18 @@ export default class AddRequest extends Component {
     this.setState({success: false});
   }
 
+  setSession = () => {
+    this.setState({user_session: JSON.parse(local_storage.getItem("user_data")) });
+    this.checkForm();
+  }
+
+  cancelLogin = () => {
+    this.setState({no_user: false});
+  }
+
 
   componentDidMount() {
+        this.setState({user_session: JSON.parse(local_storage.getItem("user_data")) })
         let self = this;
         fetch('http://localhost:3001/v1/packages/names', {
             method: 'GET'
@@ -169,73 +183,78 @@ export default class AddRequest extends Component {
 
   checkForm = () => {
     var error = false;
+    
+      if(this.state.first_name === ''){
+        this.setState({fname_error: true});
+        error=true;
+      }
+      if(this.state.middle_name === ''){
+        this.setState({mname_error: true});
+        error=true;
+      }
+      if(this.state.last_name === ''){
+        this.setState({lname_error: true});
+        error=true;
+      }
+      if(this.state.email_address === ''){
+        this.setState({email_error: true});
+        error=true;
+      }
+      if(this.state.contact_number === ''){
+        this.setState({contact_error: true});
+        error=true;
+      }
+      if(this.state.event_type === ''){
+        this.setState({event_type_error: true});
+        error=true;
+      }
+      if(this.state.number_of_persons === ''){
+        this.setState({num_persons_error: true});
+        error=true;
+      }
+      if(this.state.event_location === ''){
+        this.setState({event_location_error: true});
+        error=true;
+      }
+      if(this.state.package_id === ''){
+        this.setState({package_error: true});
+        error=true;
+      }
+      if(this.state.motif_id === ''){
+        this.setState({motif_error: true});
+        error=true;
+      }
+      if(this.state.menu_id === ''){
+        this.setState({menu_error: true});
+        error=true;
+      }
+      if(this.state.date === ''){
+        this.setState({date_error: true});
+        error=true;
+      }
+      if(this.state.time === ''){
+        this.setState({time_error: true});
+        error=true;
+      }
 
-    if(this.state.first_name === ''){
-      this.setState({fname_error: true});
-      error=true;
-    }
-    if(this.state.middle_name === ''){
-      this.setState({mname_error: true});
-      error=true;
-    }
-    if(this.state.last_name === ''){
-      this.setState({lname_error: true});
-      error=true;
-    }
-    if(this.state.email_address === ''){
-      this.setState({email_error: true});
-      error=true;
-    }
-    if(this.state.contact_number === ''){
-      this.setState({contact_error: true});
-      error=true;
-    }
-    if(this.state.event_type === ''){
-      this.setState({event_type_error: true});
-      error=true;
-    }
-    if(this.state.number_of_persons === ''){
-      this.setState({num_persons_error: true});
-      error=true;
-    }
-    if(this.state.event_location === ''){
-      this.setState({event_location_error: true});
-      error=true;
-    }
-    if(this.state.package_id === ''){
-      this.setState({package_error: true});
-      error=true;
-    }
-    if(this.state.motif_id === ''){
-      this.setState({motif_error: true});
-      error=true;
-    }
-    if(this.state.menu_id === ''){
-      this.setState({menu_error: true});
-      error=true;
-    }
-    if(this.state.date === ''){
-      this.setState({date_error: true});
-      error=true;
-    }
-    if(this.state.time === ''){
-      this.setState({time_error: true});
-      error=true;
-    }
 
-
-    if(error){
-      this.setState({form_complete: false});
-      this.setState({prompt_header: 'Incomplete Information'}); 
-      this.setState({prompt_message: 'Please fill up all the required fields.'});  
-    }else{
-      this.setState({form_complete: true});
-      this.handleSubmit();
-    }
+      if(error){
+        this.setState({form_complete: false});
+        this.setState({prompt_header: 'Incomplete Information'}); 
+        this.setState({prompt_message: 'Please fill up all the required fields.'});  
+      }else{
+        this.setState({form_complete: true});
+        this.handleSubmit();
+      }
+    
 
   }
 
   handleSubmit = () => {
+    if(this.state.user_session===null){
+        this.setState({success: false});
+        this.setState({no_user: true});
+    }else{
         const id_session = JSON.parse(local_storage.getItem("user_data")).id;
         const request = JSON.stringify({
             customer_first_name: this.state.first_name, 
@@ -283,6 +302,7 @@ export default class AddRequest extends Component {
             this.setState({prompt_message: ''});
             this.setState({form_error_field: ''});
             this.setState({success: true});
+            window.location.href='/request-package'
           }else if(result.status===400){
             this.setState({form_error_field: true});
             this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
@@ -292,6 +312,8 @@ export default class AddRequest extends Component {
         .catch((e) => {
           console.log(e)
         })
+    }
+      
   }
 
   setPackageOptions = () => {
@@ -407,7 +429,9 @@ export default class AddRequest extends Component {
                 : ''}
 
                 <SendButton handleAdd={this.checkForm}/>
-                {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Request has been successfuly sent!'}/> : ''}
+                {(this.state.success) ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Request has been successfuly sent!'}/> : '' }
+                
+                {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
             </Form>
          
         </div>
