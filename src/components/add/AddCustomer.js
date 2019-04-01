@@ -8,6 +8,7 @@ import '../../styles/add.css';
 import '../../styles/button.css';
 
 import local_storage from 'localStorage';
+const passwordValidator = require('password-validator');
 
 export default class SignUp extends Component {
 
@@ -15,6 +16,7 @@ export default class SignUp extends Component {
     super();
 
     this.state = {
+      pass_schema: new passwordValidator(),
       fname_error: '',
       mname_error: '',
       lname_error: '',
@@ -41,6 +43,8 @@ export default class SignUp extends Component {
       prompt_message: '',
       prompt_header: ''
     }
+
+    this.state.pass_schema.is().min(8);
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleMiddleNameChange = this.handleMiddleNameChange.bind(this);
@@ -118,6 +122,10 @@ export default class SignUp extends Component {
         this.setState({form_error_field: true});
         this.setState({prompt_header: 'Passwords do not match'});
         this.setState({prompt_message: 'Please re-type password.'});
+      }else if(!this.state.pass_schema.validate(this.state.password)){
+        this.setState({form_error_field: true});
+        this.setState({prompt_header: 'Weak Password'});
+        this.setState({prompt_message: 'Please enter a password that contains atleast 8 characters and atleast 1 uppercase letter.'});
       }else{
         this.setState({form_error_field: false});
         this.handleSubmit();
@@ -213,6 +221,11 @@ export default class SignUp extends Component {
                   <Form.Input fluid label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error} value={this.state.password}/>
                   <Form.Input fluid label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error} value={this.state.repeat_password}/>
                 </Form.Group>
+
+              
+                <Form.Field>
+                  <label style={{color: 'red'}}> *Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
+                </Form.Field>
 
                 <Form.Group>
                   <Form.Input width={15} fluid label='Address' placeholder='Address' onChange={this.handleAddressChange} error={this.state.address_error} value={this.state.address}/>
