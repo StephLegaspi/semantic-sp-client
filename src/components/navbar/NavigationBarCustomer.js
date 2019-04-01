@@ -25,6 +25,7 @@ class NavigationBar extends Component {
 		this.toSignUp = this.toSignUp.bind(this);
 		this.toPortfolio = this.toPortfolio.bind(this);
 		this.toLogin = this.toLogin.bind(this);
+		this.toProfile = this.toProfile.bind(this);
 	}
 
 	componentDidMount() {
@@ -75,6 +76,10 @@ class NavigationBar extends Component {
 		this.props.history.push('/login/customer');
 	}
 
+	toProfile(e) {
+		this.props.history.push('/profile-customer');
+	}
+
 	toLogOut(e) {
 		local_storage.clear();
 		window.location.href='/'
@@ -115,14 +120,12 @@ class NavigationBar extends Component {
      				</Container>
 				    ) : (
 				    <Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '48%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '39.5%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
-				        <Dropdown item simple text='Account' id={(this.props.activePage[11]) ? 'lighter': 'menu-font'}>
-				          <Dropdown.Menu>
-				            <Dropdown.Item onClick={this.toShop}>Profile</Dropdown.Item>
-				            <Dropdown.Item onClick={this.toLogOut}>Logout</Dropdown.Item>
-				          </Dropdown.Menu>
-				        </Dropdown>
+
+				         <Menu.Item as='a' id={this.props.activePage[11] ? 'lighter': 'menu-font'} onClick={this.toProfile} >Profile</Menu.Item>
+				        <Menu.Item as='a'id= 'menu-font' onClick={this.toLogOut} >Logout</Menu.Item>
+				        
      				</Container>
 				    )}
     			</Menu>

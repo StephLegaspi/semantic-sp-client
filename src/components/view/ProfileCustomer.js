@@ -10,7 +10,7 @@ import '../../styles/font.css';
 
 import local_storage from 'localStorage';
 
-class ProfileAdmin extends Component {
+class ProfileCustomer extends Component {
 	constructor(props){
 		super(props);
 
@@ -23,7 +23,7 @@ class ProfileAdmin extends Component {
 	componentDidMount() {
 		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
         let self = this;
-        fetch('http://localhost:3001/v1/administrators/profile/' + id_session, {
+        fetch('http://localhost:3001/v1/customers/profile/' + id_session, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -39,7 +39,7 @@ class ProfileAdmin extends Component {
 
     update = () => {
         let self = this;
-        fetch('http://localhost:3001/v1/administrators/profile', {
+        fetch('http://localhost:3001/v1/customers/profile', {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -59,29 +59,37 @@ class ProfileAdmin extends Component {
 				<HeaderBar headerTitle={'Profile'}/>
 		
 
-				{this.state.data.map(admin =>
+				{this.state.data.map(customer =>
 				<div>
 				<div class="ui fluid segment" id='img-profile'>
-					<Image src={`http://localhost:3001/${admin.image}`}rounded size='big' />
+					<Image  src='https://react.semantic-ui.com/images/wireframe/image.png' rounded size='big' />
 				</div>
 				<div class="ui fluid segment" id='info-profile'>		
-					<p className='title-header'> {admin.first_name + " " + admin.middle_name + " " + admin.last_name}</p>
-					<p className='body-font'> ID: {admin.id} </p>
+					<p className='title-header'> {customer.first_name + " " + customer.middle_name + " " + customer.last_name}</p>
+					<p className='body-font'> ID: {customer.id} </p>
 					
 					<div style={{marginTop: '2%'}}>
 						<label className='label-font'> Email Address: </label>
-						<p style={{marginLeft: '25%'}}> {admin.email_address}</p>
+						<p style={{marginLeft: '25%'}}> {customer.email_address}</p>
 					</div>
 					<div style={{marginTop: '2%'}}>
 						<label className='label-font'> Contact Number: </label>
-						<p style={{marginLeft: '25%'}}>{admin.contact_number}</p>
+						<p style={{marginLeft: '25%'}}>{customer.contact_number}</p>
+					</div>
+					<div style={{marginTop: '2%'}}>
+						<label className='label-font'> Address: </label>
+						<p style={{marginLeft: '25%'}}>{customer.address}</p>
+					</div>
+					<div style={{marginTop: '2%'}}>
+						<label className='label-font'> Zip Code: </label>
+						<p style={{marginLeft: '25%'}}>{customer.zip_code}</p>
 					</div>
 					<div style={{marginTop: '4%'}}>
 						<div style={{float: 'left', marginLeft: '66%'}}>
-							<EditPassword id_user={admin.id}/>
+							<EditPassword id_user={customer.id}/>
 						</div>
 						<div style={{marginLeft: '95%'}}>
-							<EditAdmin data={admin} handleUpdate={this.update}/>
+							<EditAdmin data={customer} handleUpdate={this.update}/>
 						</div>
 					</div>	
 				</div>
@@ -93,4 +101,4 @@ class ProfileAdmin extends Component {
 	}
 }
 
-export default ProfileAdmin;
+export default ProfileCustomer;

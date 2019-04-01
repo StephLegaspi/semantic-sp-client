@@ -45,6 +45,7 @@ import MenusTable from './components/view/MenusTable.js';
 import ContactDetails from './components/view/ContactDetails.js';
 import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
+import ProfileCustomer from './components/view/ProfileCustomer.js';
 import Dashboard from './components/dashboard/Dashboard.js';
 import SearchAdmin from './components/search/SearchAdmin.js';
 import SearchPackage from './components/search/SearchPackage.js';
@@ -230,6 +231,13 @@ class App extends Component {
 							             								<div>
 							             									<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
 																			<LoginCustomer   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/profile-customer" render={(props) => {
+					             								return(
+							             								<div>
+							             									<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,0, 1]}/>
+																			<ProfileCustomer   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/admin" render={(props) => {
