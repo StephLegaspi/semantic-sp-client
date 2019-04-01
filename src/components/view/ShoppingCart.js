@@ -101,17 +101,17 @@ class ShoppingCart extends Component {
     return (
       <div>
         <HeaderBar headerTitle={'Shopping Cart'}/>
-        <div className='table-div-longer'>
+        <div className='table-div-longer2'>
         <Table singleLine>
           <Table.Header>
             <Table.Row >
-              <Table.HeaderCell id='header-color' style={{width: '20%'}}>Product Image</Table.HeaderCell>
-              <Table.HeaderCell id='header-color' style={{width: '20%'}}>Name</Table.HeaderCell>
-              <Table.HeaderCell id='header-color' style={{width: '20%'}}>Color</Table.HeaderCell>
-              <Table.HeaderCell id='header-color' style={{width: '10%'}}>Quantity</Table.HeaderCell>
-              <Table.HeaderCell id='header-color'>Price</Table.HeaderCell>
-              <Table.HeaderCell id='header-color' style={{width: '8%'}}></Table.HeaderCell>
-              <Table.HeaderCell id='header-color' style={{width: '8%'}}></Table.HeaderCell>
+              <Table.HeaderCell style={{width: '20%'}}>Product Image</Table.HeaderCell>
+              <Table.HeaderCell style={{width: '20%'}}>Name</Table.HeaderCell>
+              <Table.HeaderCell style={{width: '20%'}}>Color</Table.HeaderCell>
+              <Table.HeaderCell style={{width: '10%'}}>Quantity</Table.HeaderCell>
+              <Table.HeaderCell>Price</Table.HeaderCell>
+              <Table.HeaderCell style={{width: '8%'}}></Table.HeaderCell>
+              <Table.HeaderCell style={{width: '8%'}}></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
