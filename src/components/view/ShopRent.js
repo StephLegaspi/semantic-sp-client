@@ -10,13 +10,17 @@ import '../../styles/view.css';
 import '../../styles/header-bar.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class ShopRent extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
 			data: [],
-			product_name: ""
+			product_name: "",
+
+			user_session: JSON.parse(local_storage.getItem("user_data"))
 		}
 		this.toAddToCartRent = this.toAddToCartRent.bind(this);
 		this.toShoppingCartRent = this.toShoppingCartRent.bind(this);
@@ -41,6 +45,8 @@ class ShopRent extends Component {
 	}
 
 	componentDidMount() {
+		this.setState({user_session: JSON.parse(local_storage.getItem("user_data")) });
+
         let self = this;
         fetch('http://localhost:3001/v1/products/rental', {
             method: 'GET'
@@ -93,7 +99,7 @@ class ShopRent extends Component {
 			<div>
 				<div id='bar'>  
 					<SearchBarShop searchData={this.searchByName} inputChange={this.handleProductChange}/>
-					<CartButton handleClick={this.toShoppingCartRent}/>
+					<CartButton handleClick={this.toShoppingCartRent} button_status={this.state.user_session===null ? true: false}/>
 					<h1 id='bar-title'> Rent </h1>
       			</div>
       			
