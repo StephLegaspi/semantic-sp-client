@@ -38,8 +38,9 @@ class ProfileAdmin extends Component {
     }
 
     update = () => {
+    	const id_session = JSON.parse(local_storage.getItem("user_data")).id;
         let self = this;
-        fetch('http://localhost:3001/v1/administrators/profile', {
+        fetch('http://localhost:3001/v1/administrators/profile/'  + id_session, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {

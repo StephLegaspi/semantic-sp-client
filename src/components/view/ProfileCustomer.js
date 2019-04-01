@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import EditPassword from '../edit/EditPassword.js'
-import EditAdmin from '../edit/EditAdmin.js'
+import EditCustomer from '../edit/EditCustomer.js'
 
 import '../../styles/view.css';
 import '../../styles/font.css';
@@ -38,8 +38,9 @@ class ProfileCustomer extends Component {
     }
 
     update = () => {
+    	const id_session = JSON.parse(local_storage.getItem("user_data")).id;
         let self = this;
-        fetch('http://localhost:3001/v1/customers/profile', {
+        fetch('http://localhost:3001/v1/customers/profile/' + id_session, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -89,7 +90,7 @@ class ProfileCustomer extends Component {
 							<EditPassword id_user={customer.id}/>
 						</div>
 						<div style={{marginLeft: '95%'}}>
-							<EditAdmin data={customer} handleUpdate={this.update}/>
+							<EditCustomer data={customer} handleUpdate={this.update}/>
 						</div>
 					</div>	
 				</div>
