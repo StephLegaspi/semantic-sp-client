@@ -45,6 +45,7 @@ export default class SignUp extends Component {
     }
 
     this.state.pass_schema.is().min(8);
+    this.state.pass_schema.has().uppercase();
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleMiddleNameChange = this.handleMiddleNameChange.bind(this);
@@ -218,8 +219,8 @@ export default class SignUp extends Component {
                 </Form.Group >
 
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error} value={this.state.password}/>
-                  <Form.Input fluid label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error} value={this.state.repeat_password}/>
+                  <Form.Input fluid type='password' label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error} value={this.state.password}/>
+                  <Form.Input fluid type='password' label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error} value={this.state.repeat_password}/>
                 </Form.Group>
 
               
