@@ -76,6 +76,10 @@ class LoginModal extends Component {
                   Login
                 </Button>
                 <Button id='login-button2' fluid size='large' onClick={this.cancel} >Cancel</Button>
+                
+                <Form.Field>
+                    <a href='http://localhost:3000/sign-up'> No account yet? Sign up here.</a>
+                  </Form.Field>
             </Form>
 
           </div>)}
