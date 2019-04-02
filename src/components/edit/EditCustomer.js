@@ -20,7 +20,8 @@ class EditCustomer extends Component {
       contact_number: "",
 
       address: "",
-      zip_code: ""
+      zip_code: "",
+      image: '',
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleMiddleNameChange = this.handleMiddleNameChange.bind(this);
@@ -30,6 +31,7 @@ class EditCustomer extends Component {
 
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
   }
 
   handleFirstNameChange(e) {this.setState({first_name: e.target.value}); }
@@ -39,6 +41,7 @@ class EditCustomer extends Component {
   handleContactChange(e) {this.setState({contact_number: e.target.value}); }
   handleAddressChange(e) {this.setState({address: e.target.value}); }
   handleZipCodeChange(e) {this.setState({zip_code: e.target.value}); }
+  handleImageChange(e) {this.setState({image: e.target.files[0]});}
 
   onModal = () => {
     this.getData();
@@ -57,17 +60,34 @@ class EditCustomer extends Component {
     this.setState({contact_number: this.props.data.contact_number})
     this.setState({address: this.props.data.address})
     this.setState({zip_code: this.props.data.zip_code})
+    this.setState({image: null})
   }
 
   submitEdit = () => {
       const id_session = JSON.parse(local_storage.getItem("user_data")).id;
 
-        const customer = JSON.stringify({first_name: this.state.first_name, middle_name: this.state.middle_name, last_name: this.state.last_name, email_address: this.state.email_address, contact_number: this.state.contact_number, address: this.state.address, zip_code: this.state.zip_code, session_id: id_session})
+        let formData = new FormData();
+        formData.set('enctype','multipart/form-data'); 
+
+        formData.append('first_name', this.state.first_name);
+        formData.append('middle_name', this.state.middle_name);
+        formData.append('last_name', this.state.last_name);
+        formData.append('email_address', this.state.email_address);
+        formData.append('contact_number', this.state.contact_number);
+        formData.append('address', this.state.address);
+        formData.append('zip_code', this.state.zip_code);
+        formData.append('image', this.state.image);
+        formData.append('session_id', id_session);
+       
+        if(this.state.image === null){
+          formData.append('image_changed', false);
+        }else{
+          formData.append('image_changed', true);
+        }
        
         fetch(`http://localhost:3001/v1/customers/` + this.props.data.id,{
-            headers: { 'Content-Type': 'application/json' },
             method: "PUT",
-            body: customer
+            body: formData
           })
         .then((response) => {
           return response.json()
@@ -130,6 +150,20 @@ class EditCustomer extends Component {
                     <Input placeholder='Zip Code' defaultValue={this.props.data.zip_code} onChange={this.handleZipCodeChange}/>
                   </Form.Field>
                 </Form.Group> 
+
+                <Form.Group inline>
+                    <label>Customer Image: </label>
+                    <Form.Field className="relative" error={this.state.image_error}>
+                        <input name='image' type="file" className="absolute" onChange={this.handleImageChange} id='embedpollfileinput'/>
+                        <div className="absolute2"> 
+                          <label for="embedpollfileinput" className="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
+                            <i class="ui upload icon"></i>   
+                             Upload
+                          </label>
+                        </div>
+                    </Form.Field>
+                </Form.Group>  
+
                 <Button type='submit' onClick={this.submitEdit} id='edit-button2'>Edit</Button>
                 <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
             </Form>

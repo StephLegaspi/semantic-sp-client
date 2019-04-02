@@ -63,7 +63,7 @@ class ProfileCustomer extends Component {
 				{this.state.data.map(customer =>
 				<div>
 				<div class="ui fluid segment" id='img-profile'>
-					<Image  src='https://react.semantic-ui.com/images/wireframe/image.png' rounded size='big' />
+					<Image  src= {customer.image===null? 'https://bit.ly/2V8a0IV' : `http://localhost:3001/${customer.image}`}  rounded size='big' />
 				</div>
 				<div class="ui fluid segment" id='info-profile'>		
 					<p className='title-header'> {customer.first_name + " " + customer.middle_name + " " + customer.last_name}</p>
