@@ -3,10 +3,12 @@ import { Button, Form, Message } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
-import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/add.css';
 import '../../styles/button.css';
+
+import local_storage from 'localStorage';
+const passwordValidator = require('password-validator');
 
 export default class SignUp extends Component {
 
@@ -14,6 +16,7 @@ export default class SignUp extends Component {
     super();
 
     this.state = {
+      pass_schema: new passwordValidator(),
       fname_error: '',
       mname_error: '',
       lname_error: '',
@@ -38,9 +41,11 @@ export default class SignUp extends Component {
       zip_code: '',
 
       prompt_message: '',
-      prompt_header: '',
-      success: false
+      prompt_header: ''
     }
+
+    this.state.pass_schema.is().min(8);
+    this.state.pass_schema.has().uppercase();
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleMiddleNameChange = this.handleMiddleNameChange.bind(this);
@@ -62,8 +67,9 @@ export default class SignUp extends Component {
   handleRepeatPassChange(e) { this.setState({repeat_password: e.target.value, repeatpass_error: false}); }
   handleAddressChange(e) { this.setState({address: e.target.value, address_error: false}); }
   handleZipCodeChange(e) { this.setState({zip_code: e.target.value, zipcode_error: false}); }
-  setSuccess = () => {
-    this.setState({success: false});
+
+  toHomePage = () => {
+    window.location.href='/'
   }
 
   checkForm = () => {
@@ -117,6 +123,10 @@ export default class SignUp extends Component {
         this.setState({form_error_field: true});
         this.setState({prompt_header: 'Passwords do not match'});
         this.setState({prompt_message: 'Please re-type password.'});
+      }else if(!this.state.pass_schema.validate(this.state.password)){
+        this.setState({form_error_field: true});
+        this.setState({prompt_header: 'Weak Password'});
+        this.setState({prompt_message: 'Please enter a password that contains atleast 8 characters and atleast 1 uppercase letter.'});
       }else{
         this.setState({form_error_field: false});
         this.handleSubmit();
@@ -139,7 +149,7 @@ export default class SignUp extends Component {
 
         })
        
-        fetch(`http://localhost:3001/v1/Customers`,{
+        fetch(`http://localhost:3001/v1/customers`,{
             headers: { 'Content-Type': 'application/json' },
             method: "POST",
             body: request
@@ -149,22 +159,7 @@ export default class SignUp extends Component {
         })
         .then((result) => {
           if(result.status === 200){
-            console.log("Successfully added request");
-            this.setState({first_name: ''});
-            this.setState({middle_name: ''});
-            this.setState({last_name: ''});
-            this.setState({email_address: ''});
-            this.setState({contact_number: ''});
-            this.setState({password: ''});
-            this.setState({address: ''});
-            this.setState({zip_code: ''});
-            this.setState({repeat_password: ''});
-
-            this.setState({form_complete: ''});
-            this.setState({form_error_field: ''});
-            this.setState({prompt_header: ''});
-            this.setState({prompt_message: ''});
-            this.setState({success: true});
+            this.login();
           }else if(result.status===400){
             this.setState({form_error_field: true});
             this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
@@ -174,6 +169,28 @@ export default class SignUp extends Component {
             this.setState({email_error: true});
             this.setState({prompt_header: 'Email Address already has an account'});
             this.setState({prompt_message: 'Please enter a different valid email address.'});
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+  }
+
+  login = () => {
+        const credentials = JSON.stringify({email_address: this.state.email_address, password: this.state.password})
+        console.log(credentials);
+        fetch(`http://localhost:3001/v1/auth/login/customer`,{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: credentials
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status===200){
+              local_storage.setItem('user_data', JSON.stringify(result.data));
+              this.toHomePage();
           }
         })
         .catch((e) => {
@@ -197,14 +214,19 @@ export default class SignUp extends Component {
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error} value={this.state.email_address}/>
                   <Form.Input fluid label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} error={this.state.contact_error} value={this.state.contact_number}/>
+                  <Form.Input fluid label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error} value={this.state.email_address}/>
                 </Form.Group >
 
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error} value={this.state.password}/>
-                  <Form.Input fluid label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error} value={this.state.repeat_password}/>
+                  <Form.Input fluid type='password' label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error} value={this.state.password}/>
+                  <Form.Input fluid type='password' label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error} value={this.state.repeat_password}/>
                 </Form.Group>
+
+              
+                <Form.Field>
+                  <label style={{color: 'red'}}> *Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
+                </Form.Field>
 
                 <Form.Group>
                   <Form.Input width={15} fluid label='Address' placeholder='Address' onChange={this.handleAddressChange} error={this.state.address_error} value={this.state.address}/>
@@ -220,8 +242,6 @@ export default class SignUp extends Component {
                 <Button id='signup-button' onClick={this.checkForm}>
                   Sign Up
                 </Button>
-
-                {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'You have successfullly signed up!'}/> : ''}
 
             </Form>
         </div>

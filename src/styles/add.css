@@ -10,11 +10,11 @@
 
 .form-style2{
 	margin-top: 5%;
-	max-width: 60%;
-	margin-left: 20%;
+	max-width: 55%;
+	margin-left: 22.5%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	margin-bottom: 10%;
-	padding: 20px;
+	padding: 30px;
 	border-radius: 3px;
 }
 
@@ -37,6 +37,19 @@
 	width: 50%;
 	top: 20%;
 	left: 25%;
+	border-radius: 3px;
+	overflow-y: scroll;
+	background-color: white;
+	padding: 20px;
+	text-align: left;
+}
+
+.add-modal .form-login{
+	position: absolute;
+	height: auto;
+	width: 30%;
+	top: 27%;
+	left: 35%;
 	border-radius: 3px;
 	overflow-y: scroll;
 	background-color: white;

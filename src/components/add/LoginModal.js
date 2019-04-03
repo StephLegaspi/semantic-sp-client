@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
-import { Button, Form, Message, Segment } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react';
 
-import HeaderBar from '../headerBar/HeaderBar.js'
-
-import '../../styles/login.css';
-import '../../styles/font.css';
+import '../../styles/add.css';
+import '../../styles/button.css';
 
 import local_storage from 'localStorage';
 
-class LoginCustomer extends Component {
-
-  constructor(){
-    super();
+class LoginModal extends Component {
+  constructor(props){
+    super(props);
 
     this.state = {
+      activeModal: this.props.modalStatus,
+
       email: "",
       password: ""
     }
+
     this.handleEmailChanged = this.handleEmailChanged.bind(this);
     this.handlePasswordChanged = this.handlePasswordChanged.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleEmailChanged(e) { this.setState({email: e.target.value}); }
   handlePasswordChanged(e) { this.setState({password: e.target.value}); }
 
-  toHomePage = () => {
-    window.location.href='/'
+  cancel = () => {
+    this.setState({activeModal: false});
+    this.props.cancelAction();
   }
 
   handleSubmit(event) {
@@ -44,7 +45,8 @@ class LoginCustomer extends Component {
         .then((result) => {
           if(result.status===200){
               local_storage.setItem('user_data', JSON.stringify(result.data));
-              this.toHomePage();
+              this.setState({activeModal: false});
+              this.props.changeSession();
           }
         })
         .catch((e) => {
@@ -52,13 +54,14 @@ class LoginCustomer extends Component {
         })
   }
 
-  render() {
-    return (
-      <div>
-      <HeaderBar headerTitle={'Login'}/>
-      <div className='login-form'>
-            <Form>
-              <Segment id='login-form-style'>
+  render(){
+    return(
+    <div>
+        {this.state.activeModal && (
+          <div className='add-modal'>
+
+            <Form className='form-login'>
+             
                 <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange={this.handleEmailChanged}/>
                 <Form.Input
                   fluid
@@ -72,15 +75,17 @@ class LoginCustomer extends Component {
                 <Button id='login-button' fluid size='large' onClick={this.handleSubmit}>
                   Login
                 </Button>
-              </Segment>
+                <Button id='login-button2' fluid size='large' onClick={this.cancel} >Cancel</Button>
+                
+                <Form.Field>
+                    <a href='http://localhost:3000/sign-up'> No account yet? Sign up here.</a>
+                  </Form.Field>
             </Form>
-            <Message id='message-style'>
-              <a href='google.com'>Forgot Password?</a>
-            </Message>
-      </div>
-      </div>
+
+          </div>)}
+        </div>
     );
   }
 }
 
-export default LoginCustomer
+export default LoginModal;

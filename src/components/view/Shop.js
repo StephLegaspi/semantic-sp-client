@@ -10,13 +10,17 @@ import '../../styles/view.css';
 import '../../styles/header-bar.css';
 import '../../styles/button.css';
 
+import local_storage from 'localStorage';
+
 class Shop extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
 			data: [],
-			product_name: ""
+			product_name: "",
+
+			user_session: JSON.parse(local_storage.getItem("user_data"))
 		}
 		this.toAddToCart = this.toAddToCart.bind(this);
 		this.toShoppingCart = this.toShoppingCart.bind(this);
@@ -41,6 +45,8 @@ class Shop extends Component {
 	}
 
 	componentDidMount() {
+		this.setState({user_session: JSON.parse(local_storage.getItem("user_data")) });
+
         let self = this;
         fetch('http://localhost:3001/v1/products/purchase', {
             method: 'GET'
@@ -54,6 +60,8 @@ class Shop extends Component {
         }).catch(err => {
         	console.log(err);
         })
+
+        
     }
 
     update = () => {
@@ -93,7 +101,7 @@ class Shop extends Component {
 			<div>
 				<div id='bar'>  
 					<SearchBarShop searchData={this.searchByName} inputChange={this.handleProductChange}/>
-					<CartButton handleClick={this.toShoppingCart}/>
+					<CartButton handleClick={this.toShoppingCart} button_status={this.state.user_session===null ? true: false}/>
 					<h1 id='bar-title'> Purchase </h1>
       			</div>
       			

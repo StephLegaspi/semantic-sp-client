@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 import '../../styles/button.css';
 
@@ -18,10 +18,9 @@ class CartButton extends Component{
 
 	render(){
 		return(
-			
-			<label class="ui icon button" id='cart-button'  onClick={this.callClick}>
-				<i class="big cart icon"></i>  
-			</label>
+			<Button icon id='cart-button'  onClick={this.callClick} disabled={this.props.button_status}>
+			    <Icon name='big cart icon' />
+			</Button>
 
 		);
 	}

@@ -51,7 +51,7 @@
 }
 
 #signup-button{
-	margin-left: 87%;
+	margin-left: 85.5%;
 	background-color: #f89d28;
 	color: white;
 }
@@ -157,6 +157,13 @@
 #login-button{
 	background-color: #191167;
 	color: white;
+}
+
+#login-button2{
+	background-color: #f89d28;
+	color: white;
+	margin-top: 2%;
+	margin-bottom: 2%;
 }
 
 #homepage-button{

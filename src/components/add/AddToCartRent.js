@@ -5,6 +5,7 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import AddCartButton from '../button/AddCartButton.js'
 import Footer from '../footer/Footer.js'
 import PromptModal from '../infoModal/PromptModal.js'
+import LoginModal from '../add/LoginModal.js'
 
 import '../../styles/add.css';
 import '../../styles/font.css';
@@ -36,7 +37,10 @@ class AddToCartRent extends Component {
       product_color_error: '',
       form_complete: '',
       prompt_message: '',
-      prompt_header: ''
+      prompt_header: '',
+
+      user_session: JSON.parse(local_storage.getItem("user_data")),
+      no_user: false
 
     };
 	}
@@ -52,10 +56,20 @@ class AddToCartRent extends Component {
 
     setSuccess = () => {
       this.setState({success: false});
-      this.props.history.push('/shop/rent');
+      window.location.href='/shop/rent'
+    }
+
+    setSession = () => {
+      this.setState({user_session: JSON.parse(local_storage.getItem("user_data")) });
+      this.checkForm();
+    }
+    
+    cancelLogin = () => {
+      this.setState({no_user: false});
     }
 
   	componentDidMount() {
+        this.setState({user_session: JSON.parse(local_storage.getItem("user_data")) })
         let self = this;
     
         fetch('http://localhost:3001/v1/products/' + self.props.match.params.id ,{
@@ -86,7 +100,9 @@ class AddToCartRent extends Component {
         	console.log(err);
         })
 
+      if(this.state.user_session!==null){
         this.setState({session_id: JSON.parse(local_storage.getItem("user_data")).id});
+      }
         
     }
 
@@ -135,8 +151,12 @@ class AddToCartRent extends Component {
     }
 
     handleSubmit = () => {
+      if(this.state.user_session===null){
+        this.setState({success: false});
+        this.setState({no_user: true});
+      }else{
+        this.setState({session_id: JSON.parse(local_storage.getItem("user_data")).id});
         let self = this;
-
         fetch('http://localhost:3001/v1/customers/users/' + self.state.session_id,{
             headers: { 'Content-Type': 'application/json' },
             method: "GET"
@@ -151,6 +171,7 @@ class AddToCartRent extends Component {
         .catch((e) => {
           console.log(e)
         })
+      }
   	}
 
   	addShoppingCart = () => {
@@ -257,6 +278,7 @@ class AddToCartRent extends Component {
   					<div className='div-label'>
   						<AddCartButton handleAddtoCart={this.checkForm}/>
               {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
+              {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
   					</div>
   				</div>
         </div>
