@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Message, Segment } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
+import Facebook from '../facebook/Facebook.js'
 
 import '../../styles/login.css';
 import '../../styles/font.css';
@@ -17,6 +18,7 @@ class LoginCustomer extends Component {
       email: "",
       password: ""
     }
+    
     this.handleEmailChanged = this.handleEmailChanged.bind(this);
     this.handlePasswordChanged = this.handlePasswordChanged.bind(this);
 
@@ -72,6 +74,7 @@ class LoginCustomer extends Component {
                 <Button id='login-button' fluid size='large' onClick={this.handleSubmit}>
                   Login
                 </Button>
+                <Facebook isLogged={this.state.isLogged}/>
               </Segment>
             </Form>
             <Message id='message-style'>
