@@ -29,24 +29,36 @@ class ShoppingCart extends Component {
     }
   }
 
-  componentDidMount() {
-        let self = this;
-        const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+  toShop() {
+    this.props.history.push('/shop/purchase');
+  }
 
-        fetch('http://localhost:3001/v1/customers/users/' + id_session,{
-            headers: { 'Content-Type': 'application/json' },
-            method: "GET"
-        })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          self.setState({cust_id: result.data[0].id});
-          self.getCart();
-        })
-        .catch((e) => {
-          console.log(e)
-        })
+  componentDidMount() {
+        const user = JSON.parse(local_storage.getItem("user_data"));
+
+        if(user === null){
+          this.toShop();
+        }else{
+          const id_session = user.id;
+          let self = this;
+
+          fetch('http://localhost:3001/v1/customers/users/' + id_session,{
+              headers: { 'Content-Type': 'application/json' },
+              method: "GET"
+          })
+          .then((response) => {
+            return response.json()
+          })
+          .then((result) => {
+            self.setState({cust_id: result.data[0].id});
+            self.getCart();
+          })
+          .catch((e) => {
+            console.log(e)
+          })  
+        }
+
+        
   }
 
   getCartProducts = () => {
