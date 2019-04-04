@@ -34,6 +34,18 @@ class LoginAdmin extends Component {
     window.location.href='/dashboard'
   }
 
+  toHomepage() {
+    this.props.history.push('/');
+  }
+
+  componentDidMount() {
+        const user = JSON.parse(local_storage.getItem("user_data"));
+
+        if(user !== null){
+          this.toHomepage();
+        }
+  }
+
   handleSubmit(event) {
         const credentials = JSON.stringify({email_address: this.state.email, password: this.state.password})
 
