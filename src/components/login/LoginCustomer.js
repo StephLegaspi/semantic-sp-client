@@ -74,6 +74,7 @@ class LoginCustomer extends Component {
                 <Button id='login-button' fluid size='large' onClick={this.handleSubmit}>
                   Login
                 </Button>
+                <div id='label'> OR </div>
                 <Facebook isLogged={this.state.isLogged}/>
               </Segment>
             </Form>

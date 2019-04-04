@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import FacebookLogin from 'react-facebook-login';
+import { Button, Icon } from 'semantic-ui-react';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 import local_storage from 'localStorage';
 
@@ -68,10 +69,14 @@ export default class Facebook extends Component{
 		}else{
 			fbContent = (
 				<FacebookLogin
-				    appId="2161430787297423"    
-				    fields="name,email,picture"
-				    callback={this.responseFacebook}
-				    cssClass="my-facebook-button-class"
+				  appId="2161430787297423"
+				  fields="name,email,picture"
+				  callback={this.responseFacebook}
+				  render={renderProps => (
+				    <Button color='facebook' fluid size='large' onClick={renderProps.onClick}>
+				      <Icon name='facebook' /> Login with Facebook
+				    </Button>
+				  )}
 				/>
 			);
 		}
