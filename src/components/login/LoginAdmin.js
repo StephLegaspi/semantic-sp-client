@@ -14,22 +14,22 @@ class LoginAdmin extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+
+      login_error: '',
+      prompt_message: '',
+      prompt_header: ''
     }
     this.handleEmailChanged = this.handleEmailChanged.bind(this);
     this.handlePasswordChanged = this.handlePasswordChanged.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.toDashboard = this.toDashboard.bind(this);
   }
 
 
   handleEmailChanged(e) { this.setState({email: e.target.value}); }
   handlePasswordChanged(e) { this.setState({password: e.target.value}); }
 
-  /*toDashboard(e) {
-    this.props.history.push('/dashboard');
-  }*/
   toDashboard = () => {
     window.location.href='/dashboard'
   }
@@ -49,7 +49,11 @@ class LoginAdmin extends Component {
           if(result.status===200){
               local_storage.setItem('user_data', JSON.stringify(result.data));
               this.toDashboard();
-            }
+          }else if(result.status===404){
+            this.setState({login_error: true});
+            this.setState({prompt_header: 'Invalid email address or password'});
+            this.setState({prompt_message: 'The credentials you have entered do not match any account.'});
+          }
         })
         .catch((e) => {
           console.log(e)
@@ -77,6 +81,13 @@ class LoginAdmin extends Component {
                <Button id='login-button' fluid size='large' onClick={this.handleSubmit} method="POST">
                   Login
                 </Button>
+
+                {(this.state.login_error===true) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+                : ''}
                 
               </Segment>
             </Form>
