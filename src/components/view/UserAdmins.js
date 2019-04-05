@@ -19,17 +19,33 @@ class UserAdmins extends Component {
 			data: [],
 			first_name: ""
 		}
-		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-		this.toSearchAdmin = this.toSearchAdmin.bind(this);
 	}
 
-	toSearchAdmin() {
-		this.props.history.push('/user-admins/search/' + this.state.first_name);
+	handleFirstNameChange = (e) => {
+	    this.setState({ first_name: e.target.value},() => { 
+	    	if(this.state.first_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
-	handleFirstNameChange(e) { 
-		this.setState({first_name: e.target.value});
-	}
+	searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/administrators/search/' + self.state.first_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	componentDidMount() {
         let self = this;
@@ -67,7 +83,7 @@ class UserAdmins extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Admins'}/>
-				<SearchBarTable titleHolder={'Search admin name..'} searchData={this.toSearchAdmin} inputChange={this.handleFirstNameChange}/>
+				<SearchBarTable titleHolder={'Search admin name..'} searchData={this.searchByName} inputChange={this.handleFirstNameChange}/>
 
 				<AddAdmin handleUpdate={this.update}/>
 
