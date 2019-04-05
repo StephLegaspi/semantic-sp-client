@@ -47,7 +47,6 @@ import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
 import ProfileCustomer from './components/view/ProfileCustomer.js';
 import Dashboard from './components/dashboard/Dashboard.js';
-import SearchMenu from './components/search/SearchMenu.js';
 import MenuInclusion from './components/view/MenuInclusion.js';
 
 import local_storage from 'localStorage';
@@ -115,13 +114,6 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
 																			<Menus   {...props} />
-							             								</div>)}}> 
-			</Route>
-			<Route exact={true} path="/menus/search/:name" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
-																			<SearchMenu   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/request-package" render={(props) => {
