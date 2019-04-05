@@ -24,7 +24,6 @@ export default class Facebook extends Component{
             }
             return response.json();
         }).then(function(result) {
-            console.log(result.data[0]);
             local_storage.setItem('user_data', JSON.stringify(result.data[0]));
             window.location.href='/';
         }).catch(err => {
@@ -41,7 +40,7 @@ export default class Facebook extends Component{
 			picture: response.picture.data.url
 		});
 
-		const credentials = JSON.stringify({first_name: this.state.name, email_address: this.state.email})
+		const credentials = JSON.stringify({first_name: this.state.name, email_address: this.state.email, image: this.state.picture})
 
         fetch(`http://localhost:3001/v1/customers/social`,{
             method: 'POST',

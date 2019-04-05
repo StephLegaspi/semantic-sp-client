@@ -63,7 +63,7 @@ class ProfileAdmin extends Component {
 				{this.state.data.map(admin =>
 				<div>
 				<div class="ui fluid segment" id='img-profile'>
-					<Image src={`http://localhost:3001/${admin.image}`}rounded size='big' />
+					<Image src='https://react.semantic-ui.com/images/wireframe/image.png' rounded size='big' />
 				</div>
 				<div class="ui fluid segment" id='info-profile'>		
 					<p className='title-header'> {admin.first_name + " " + admin.middle_name + " " + admin.last_name}</p>
