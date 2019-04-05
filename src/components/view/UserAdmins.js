@@ -11,13 +11,17 @@ import SearchBarTable from '../searchBar/SearchBarTable.js'
 import '../../styles/view.css';
 import '../../styles/search-bar.css';
 
+import local_storage from 'localStorage';
+
 class UserAdmins extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
 			data: [],
-			first_name: ""
+			first_name: "",
+
+			user_session: JSON.parse(local_storage.getItem("user_data"))
 		}
 	}
 
@@ -48,6 +52,8 @@ class UserAdmins extends Component {
     }
 
 	componentDidMount() {
+		this.setState({user_session: JSON.parse(local_storage.getItem("user_data"))});
+
         let self = this;
         fetch('http://localhost:3001/v1/administrators', {
             method: 'GET'
@@ -85,7 +91,8 @@ class UserAdmins extends Component {
 				<HeaderBar headerTitle={'Admins'}/>
 				<SearchBarTable titleHolder={'Search admin name..'} searchData={this.searchByName} inputChange={this.handleFirstNameChange}/>
 
-				<AddAdmin handleUpdate={this.update}/>
+				{this.state.user_session.root_admin? <AddAdmin handleUpdate={this.update}/> : ''}
+				
 
 				<div>
       				<div id='card-div'>
@@ -100,12 +107,15 @@ class UserAdmins extends Component {
 						      <Card.Description>Contact Number: {admin.contact_number}</Card.Description>
 						      <Card.Description>Status: {admin.active ? "Activated" : "Deactivated"}</Card.Description>
 						    </Card.Content>
+
+						    {this.state.user_session.root_admin? 
 						    <Card.Content extra>
 						      	<div style={{marginLeft: '55%'}}>		      	
 						      		{admin.active ? <DeactivateModal data_id={admin.id} handleUpdate={this.update}/> : <ActivateModal data_id={admin.id} handleUpdate={this.update}/>}      
 						      	</div>
-						      	
 						    </Card.Content>
+						    : ''}
+
 						</Card>
 						)}
 					</Card.Group>
