@@ -92,7 +92,7 @@ class PackagesTable extends Component {
 				<AddPackage handleUpdate={this.update}/>
 
 				<div className='table-div'>
-				<Table celled>
+				<Table>
 				    <Table.Header>
 				      <Table.Row>
 				        <Table.HeaderCell >ID</Table.HeaderCell>

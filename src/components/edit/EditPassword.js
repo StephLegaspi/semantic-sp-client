@@ -5,11 +5,13 @@ import '../../styles/edit.css';
 import '../../styles/button.css';
 
 import local_storage from 'localStorage';
+const passwordValidator = require('password-validator');
 
 class EditPassword extends Component {
   constructor(props){
     super(props);
     this.state = {
+      pass_schema: new passwordValidator(),
       activeModal: false,
 
       email_address: '',
@@ -27,6 +29,9 @@ class EditPassword extends Component {
       prompt_message: '',
       prompt_header: ''
     }
+
+    this.state.pass_schema.is().min(8);
+    this.state.pass_schema.has().uppercase();
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleOldPassChange = this.handleOldPassChange.bind(this);
@@ -92,6 +97,10 @@ class EditPassword extends Component {
         this.setState({form_error_field: true});
         this.setState({prompt_header: 'Passwords do not match'});
         this.setState({prompt_message: 'Please re-type password.'});
+      }else if(!this.state.pass_schema.validate(this.state.new_password)){
+        this.setState({form_error_field: true});
+        this.setState({prompt_header: 'Weak Password'});
+        this.setState({prompt_message: 'Please enter a password that contains atleast 8 characters and atleast 1 uppercase letter.'});
       }else{
         this.setState({form_error_field: false});
         this.submitEdit();
@@ -141,13 +150,17 @@ class EditPassword extends Component {
 
                 <Form.Group widths='equal'>
                   <Form.Input required label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_address_error}/>
-                  <Form.Input required label='Old Password' placeholder='Old Password' onChange={this.handleOldPassChange} error={this.state.old_password_error}/>
+                  <Form.Input type='password' required label='Old Password' placeholder='Old Password' onChange={this.handleOldPassChange} error={this.state.old_password_error}/>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Input required label='New Password' placeholder='New Password' onChange={this.handleNewPassChange} error={this.state.new_password_error}/>
-                  <Form.Input required label='Confirm Password' placeholder='Confirm Password' onChange={this.handleConfirmPassChange} error={this.state.confirm_password_error}/>
+                  <Form.Input type='password' required label='New Password' placeholder='New Password' onChange={this.handleNewPassChange} error={this.state.new_password_error}/>
+                  <Form.Input type='password' required label='Confirm Password' placeholder='Confirm Password' onChange={this.handleConfirmPassChange} error={this.state.confirm_password_error}/>
                 </Form.Group>
+
+                <Form.Field>
+                  <label style={{color: 'red'}}> *Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
+                </Form.Field>
 
                 {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message

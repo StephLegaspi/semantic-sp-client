@@ -86,7 +86,7 @@ class FAQS extends Component {
 				<AddFAQ handleUpdate={this.update}/>
 
 				<div className='table-div'>
-				<Table celled>
+				<Table>
 				    <Table.Header>
 				      <Table.Row>
 				        <Table.HeaderCell >ID</Table.HeaderCell>
