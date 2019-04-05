@@ -7,12 +7,14 @@ import '../../styles/add.css';
 import '../../styles/button.css';
 
 import local_storage from 'localStorage';
+const passwordValidator = require('password-validator');
 
 export default class AddAdmin extends Component {
 
    constructor() {
       super();
       this.state = {
+        pass_schema: new passwordValidator(),
         activeModal: false,
         first_name: "",
         middle_name: "",
@@ -37,6 +39,10 @@ export default class AddAdmin extends Component {
         prompt_message: '',
         prompt_header: ''
       }
+
+      this.state.pass_schema.is().min(8);
+      this.state.pass_schema.has().uppercase();
+
       this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
       this.handleMiddleNameChange = this.handleMiddleNameChange.bind(this);
       this.handleLastNameChange = this.handleLastNameChange.bind(this);
@@ -128,12 +134,17 @@ export default class AddAdmin extends Component {
       this.setState({form_complete: false});
       this.setState({prompt_header: 'Incomplete Information'}); 
       this.setState({prompt_message: 'Please fill up all the fields.'});  
-    }else{
+    }
+    else{
       this.setState({form_complete: true});
       if(this.state.password !== this.state.repeat_password){
         this.setState({form_error_field: true});
         this.setState({prompt_header: 'Passwords do not match'});
         this.setState({prompt_message: 'Please re-type password.'});
+      }else if(!this.state.pass_schema.validate(this.state.password)){
+        this.setState({form_error_field: true});
+        this.setState({prompt_header: 'Weak Password'});
+        this.setState({prompt_message: 'Please enter a password that contains atleast 8 characters and atleast 1 uppercase letter.'});
       }else{
         this.setState({form_error_field: false});
         this.handleSubmit();
@@ -209,14 +220,18 @@ export default class AddAdmin extends Component {
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Input label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error}/>
                   <Form.Input label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} error={this.state.contact_error}/>
+                  <Form.Input label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error}/>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Input label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error}/>
-                  <Form.Input label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error}/>
+                  <Form.Input type='password' label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error}/>
+                  <Form.Input type='password' label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error}/>
                 </Form.Group>
+
+                <Form.Field>
+                  <label style={{color: 'red'}}> *Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
+                </Form.Field>
 
                 <Form.Group inline>
                     <label>Admin Image: </label>

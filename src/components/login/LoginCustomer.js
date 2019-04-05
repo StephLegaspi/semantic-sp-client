@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Message, Segment } from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
+import Facebook from '../facebook/Facebook.js'
 
 import '../../styles/login.css';
 import '../../styles/font.css';
@@ -15,8 +16,13 @@ class LoginCustomer extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+
+      login_error: '',
+      prompt_message: '',
+      prompt_header: ''
     }
+    
     this.handleEmailChanged = this.handleEmailChanged.bind(this);
     this.handlePasswordChanged = this.handlePasswordChanged.bind(this);
 
@@ -45,6 +51,10 @@ class LoginCustomer extends Component {
           if(result.status===200){
               local_storage.setItem('user_data', JSON.stringify(result.data));
               this.toHomePage();
+          }else if(result.status===404){
+            this.setState({login_error: true});
+            this.setState({prompt_header: 'Invalid email address or password'});
+            this.setState({prompt_message: 'The credentials you have entered do not match any account.'});
           }
         })
         .catch((e) => {
@@ -72,6 +82,16 @@ class LoginCustomer extends Component {
                 <Button id='login-button' fluid size='large' onClick={this.handleSubmit}>
                   Login
                 </Button>
+                <div id='label'> OR </div>
+                <Facebook/>
+
+                {(this.state.login_error===true) ?
+                  <Message
+                    header={this.state.prompt_header}
+                    content={this.state.prompt_message}
+                  />
+                : ''}
+
               </Segment>
             </Form>
             <Message id='message-style'>
