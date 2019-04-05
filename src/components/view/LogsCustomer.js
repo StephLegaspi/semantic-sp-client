@@ -87,7 +87,7 @@ class Logs extends Component {
 				<SearchBarTable titleHolder={'Search customer ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
 
 				<div className='table-div'>
-				<Table celled>
+				<Table>
 				    <Table.Header>
 				      <Table.Row>
 				        <Table.HeaderCell style={{width: '7%'}}>Log ID</Table.HeaderCell>

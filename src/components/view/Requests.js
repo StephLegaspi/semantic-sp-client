@@ -133,7 +133,7 @@ class Requests extends Component {
       			</div>
 
       			<div className='table-div-longer'>
-      			<Table celled>
+      			<Table>
 				    <Table.Header>
 				      <Table.Row>
 				        <Table.HeaderCell style={{width: '5%'}}>ID</Table.HeaderCell>
