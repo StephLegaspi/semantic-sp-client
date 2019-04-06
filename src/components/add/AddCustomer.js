@@ -18,7 +18,6 @@ export default class SignUp extends Component {
     this.state = {
       pass_schema: new passwordValidator(),
       fname_error: '',
-      mname_error: '',
       lname_error: '',
       email_error: '',
       contact_error: '',
@@ -59,7 +58,7 @@ export default class SignUp extends Component {
   }
 
   handleFirstNameChange(e) { this.setState({first_name: e.target.value, fname_error: false}); }
-  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value, mname_error: false}); }
+  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value}); }
   handleLastNameChange(e) { this.setState({last_name: e.target.value, lname_error: false}); }
   handleEmailChange(e) { this.setState({email_address: e.target.value, email_error: false}); }
   handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
@@ -77,10 +76,6 @@ export default class SignUp extends Component {
 
     if(this.state.first_name === ''){
       this.setState({fname_error: true});
-      error=true;
-    }
-    if(this.state.middle_name === ''){
-      this.setState({mname_error: true});
       error=true;
     }
     if(this.state.last_name === ''){
@@ -209,7 +204,7 @@ export default class SignUp extends Component {
 
                 <Form.Group widths='equal'>
                   <Form.Input fluid label='First name' placeholder='First name' onChange={this.handleFirstNameChange} error={this.state.fname_error} value={this.state.first_name}/>
-                  <Form.Input fluid label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} error={this.state.mname_error} value={this.state.middle_name}/>
+                  <Form.Input fluid label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} value={this.state.middle_name}/>
                   <Form.Input fluid label='Last name' placeholder='Last name' onChange={this.handleLastNameChange} error={this.state.lname_error} value={this.state.last_name}/>
                 </Form.Group>
 
