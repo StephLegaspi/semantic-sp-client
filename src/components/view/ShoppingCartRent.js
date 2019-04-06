@@ -142,8 +142,7 @@ class ShoppingCartRent extends Component {
             <Table.Row >
               <Table.HeaderCell style={{width: '20%'}}>Product Image</Table.HeaderCell>
               <Table.HeaderCell style={{width: '15%'}}>Name</Table.HeaderCell>
-              <Table.HeaderCell  style={{width: '5%'}}>No. of items available</Table.HeaderCell>
-              <Table.HeaderCell style={{width: '5%'}}>Color</Table.HeaderCell>
+              <Table.HeaderCell style={{width: '15%'}}>Color</Table.HeaderCell>
               <Table.HeaderCell  style={{width: '10%'}}>Quantity</Table.HeaderCell>
               <Table.HeaderCell style={{width: '10%'}}>Price</Table.HeaderCell>
               <Table.HeaderCell  style={{width: '8%'}}></Table.HeaderCell>
@@ -160,7 +159,6 @@ class ShoppingCartRent extends Component {
                 </Header>
               </Table.Cell>
               <Table.Cell>{prod.name}</Table.Cell>
-              <Table.Cell>yes</Table.Cell>
               <Table.Cell> {prod.product_color_name} </Table.Cell>
               <Table.Cell>{prod.product_quantity}</Table.Cell>
               <Table.Cell>{prod.price}</Table.Cell>
