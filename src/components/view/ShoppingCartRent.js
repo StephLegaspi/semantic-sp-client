@@ -189,7 +189,7 @@ class ShoppingCartRent extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <AddOrder id_cart={this.state.cart_id} duration_rental={this.state.rental_duration} updateCart={this.editRentalDuration} table_name={'rental'} button_status={this.state.empty_cart} route={'rent'}/>
+            <AddOrder id_cart={this.state.cart_id} duration_rental={this.state.rental_duration} updateCart={this.editRentalDuration} table_name={'rental'} button_status={this.state.total_items===0? true : this.state.empty_cart} route={'rent'}/>
 
           </Card.Content>
         </Card>
