@@ -4,6 +4,7 @@ import { Icon, Form, Message } from 'semantic-ui-react'
 import '../../styles/contact.css';
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SendButton from '../button/SendButton.js'
+import PromptModal from '../infoModal/PromptModal.js'
 import Footer from '../footer/Footer.js'
 
 class Contact extends Component {
@@ -52,6 +53,10 @@ class Contact extends Component {
   	handleEmailChange(e) { this.setState({email_address2: e.target.value, email_error: false}); }
   	handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
   	handleMessageChange(e) { this.setState({message: e.target.value, message_error: false}); }
+
+  	setSuccess = () => {
+	    this.setState({success: false});
+	}
 
 	componentDidMount() {
         let self = this;
@@ -200,6 +205,7 @@ class Contact extends Component {
 			                : ''}
 
 			                <SendButton handleAdd={this.checkForm}/>
+			                {(this.state.success) ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Your inquiry has been successfuly sent! We will get back to you as soon as we can.'}/> : '' }
 			            </Form>
 			          
 			        </div>
