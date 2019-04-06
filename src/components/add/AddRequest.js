@@ -80,6 +80,7 @@ export default class AddRequest extends Component {
     this.handlePersonsChange = this.handlePersonsChange.bind(this);
 
     this.stateOptions = [
+      {text: 'Birthday', value: 'birthday'},
       {text: 'Debut', value: 'debut'},
       {text: 'Wedding', value: 'wedding'}
     ]
