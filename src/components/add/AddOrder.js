@@ -26,7 +26,6 @@ class AddOrder extends Component {
       zip_code: "",
 
       fname_error: '',
-      mname_error: '',
       lname_error: '',
       email_error: '',
       contact_error: '',
@@ -52,7 +51,7 @@ class AddOrder extends Component {
   }
  
   handleFirstNameChange(e) { this.setState({first_name: e.target.value, fname_error: false}); }
-  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value, mname_error: false}); }
+  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value}); }
   handleLastNameChange(e) { this.setState({last_name: e.target.value, lname_error: false}); }
   handleEmailChange(e) { this.setState({email_address: e.target.value, email_error: false}); }
   handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
@@ -94,7 +93,6 @@ class AddOrder extends Component {
     this.setState({activeModal: false});
 
     this.setState({fname_error: ''});
-    this.setState({mname_error: ''});
     this.setState({lname_error: ''});
     this.setState({email_error: ''});
     this.setState({contact_error: ''});
@@ -118,10 +116,6 @@ class AddOrder extends Component {
 
     if(this.state.first_name === ''){
       this.setState({fname_error: true});
-      error=true;
-    }
-    if(this.state.middle_name === ''){
-      this.setState({mname_error: true});
       error=true;
     }
     if(this.state.last_name === ''){
@@ -203,7 +197,7 @@ class AddOrder extends Component {
                   
                 <Form.Group widths='equal'>   
                   <Form.Input required label='First name' placeholder='First name' onChange={this.handleFirstNameChange} defaultValue={this.state.first_name}  error={this.state.fname_error}/>
-                  <Form.Input required label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} defaultValue={this.state.middle_name} error={this.state.mname_error}/>
+                  <Form.Input label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} defaultValue={this.state.middle_name}/>
                   <Form.Input required label='Last name' placeholder='Last name' onChange={this.handleLastNameChange} defaultValue={this.state.last_name} error={this.state.lname_error}/>
                 </Form.Group>
 
