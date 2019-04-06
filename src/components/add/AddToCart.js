@@ -31,6 +31,7 @@ class AddToCart extends Component {
       cust_id: '',
 
       success: false,
+      duplicate_form: false,
 
       product_color_error: '',
       form_complete: '',
@@ -139,7 +140,7 @@ class AddToCart extends Component {
           }else{
             this.setState({has_cart: 1});
             this.setState({cart_id: result.data[0].id});
-            this.addCartProduct();
+            this.checkDuplicate();
           }
         })
         .catch((e) => {
@@ -190,7 +191,7 @@ class AddToCart extends Component {
           if(result.status===200){
             console.log("Successfully added shopping cart");
             this.setState({cart_id: result.data.insertId});
-            this.addCartProduct();
+            this.checkDuplicate();
           }
         })
         .catch((e) => {
@@ -198,8 +199,35 @@ class AddToCart extends Component {
         })
     }
 
+    checkDuplicate = () => {
+        const cart = JSON.stringify({
+            cart_id: this.state.cart_id,
+        })
+
+        fetch(`http://localhost:3001/v1/shopping_cart_products/` + this.state.prod_id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: cart
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status === 404){
+            this.addCartProduct();
+          }else{
+            this.setState({duplicate_form: true});
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+
+    }
+
   	addCartProduct = () => {
 		    /*ADD SHOPPING CART PRODUCTS*/
+   
 		    const prod = JSON.stringify({
             product_quantity: this.state.product_quantity, 
             product_color_id: this.state.product_color_id,
@@ -224,6 +252,7 @@ class AddToCart extends Component {
         .catch((e) => {
           console.log(e)
         })
+
   	}
 
     setColorOptions = () => {
@@ -279,7 +308,9 @@ class AddToCart extends Component {
                 <AddCartButton handleAddtoCart={this.checkForm} button_status={false}/>
               }
 
+              {this.state.duplicate_form ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product is already in the cart.'}/> : ''}
               {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
+
               {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
   					</div>
             
