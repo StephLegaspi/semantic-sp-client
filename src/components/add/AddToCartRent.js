@@ -276,10 +276,15 @@ class AddToCartRent extends Component {
             : ''}
 
   					<div className='div-label'>
-  						<AddCartButton handleAddtoCart={this.checkForm}/>
-              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
-              {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
+              {product.remaining===0 ? 
+                <AddCartButton handleAddtoCart={this.checkForm} button_status={true}/>
+              :  
+    						<AddCartButton handleAddtoCart={this.checkForm} button_status={false}/>
+              }
+                {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
+                {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
   					</div>
+            
   				</div>
         </div>
 				)}
