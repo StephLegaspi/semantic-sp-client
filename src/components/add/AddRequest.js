@@ -43,7 +43,6 @@ export default class AddRequest extends Component {
       success: false,
 
       fname_error: '',
-      mname_error: '',
       lname_error: '',
       email_error: '',
       contact_error: '',
@@ -87,7 +86,7 @@ export default class AddRequest extends Component {
   }
 
   handleFirstNameChange(e) { this.setState({first_name: e.target.value, fname_error: false}); }
-  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value, mname_error: false}); }
+  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value}); }
   handleLastNameChange(e) { this.setState({last_name: e.target.value, lname_error: false}); }
   handleEmailChange(e) { this.setState({email_address: e.target.value, email_error: false}); }
   handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
@@ -187,10 +186,6 @@ export default class AddRequest extends Component {
     
       if(this.state.first_name === ''){
         this.setState({fname_error: true});
-        error=true;
-      }
-      if(this.state.middle_name === ''){
-        this.setState({mname_error: true});
         error=true;
       }
       if(this.state.last_name === ''){
@@ -365,7 +360,7 @@ export default class AddRequest extends Component {
 
                 <Form.Group widths='equal'>
                   <Form.Input fluid required label='First name' placeholder='First name' value={this.state.first_name} onChange={this.handleFirstNameChange} error={this.state.fname_error} />
-                  <Form.Input fluid required label='Middle name' placeholder='Middle name' value={this.state.middle_name} onChange={this.handleMiddleNameChange} error={this.state.mname_error} />
+                  <Form.Input fluid label='Middle name' placeholder='Middle name' value={this.state.middle_name} onChange={this.handleMiddleNameChange}/>
                   <Form.Input fluid required label='Last name' placeholder='Last name' value={this.state.last_name} onChange={this.handleLastNameChange} error={this.state.lname_error} />
                 </Form.Group>
 

@@ -111,7 +111,7 @@ export default class SignUp extends Component {
     if(error){
       this.setState({form_complete: false});
       this.setState({prompt_header: 'Incomplete Information'}); 
-      this.setState({prompt_message: 'Please fill up all the fields.'});  
+      this.setState({prompt_message: 'Please fill up all the required fields.'});  
     }else{
       this.setState({form_complete: true});
       if(this.state.password !== this.state.repeat_password){
@@ -203,19 +203,19 @@ export default class SignUp extends Component {
             <Form >
 
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='First name' placeholder='First name' onChange={this.handleFirstNameChange} error={this.state.fname_error} value={this.state.first_name}/>
+                  <Form.Input fluid required label='First name' placeholder='First name' onChange={this.handleFirstNameChange} error={this.state.fname_error} value={this.state.first_name}/>
                   <Form.Input fluid label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} value={this.state.middle_name}/>
-                  <Form.Input fluid label='Last name' placeholder='Last name' onChange={this.handleLastNameChange} error={this.state.lname_error} value={this.state.last_name}/>
+                  <Form.Input fluid required label='Last name' placeholder='Last name' onChange={this.handleLastNameChange} error={this.state.lname_error} value={this.state.last_name}/>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Input fluid label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} error={this.state.contact_error} value={this.state.contact_number}/>
-                  <Form.Input fluid label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error} value={this.state.email_address}/>
+                  <Form.Input fluid required label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} error={this.state.contact_error} value={this.state.contact_number}/>
+                  <Form.Input fluid required label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error} value={this.state.email_address}/>
                 </Form.Group >
 
                 <Form.Group widths='equal'>
-                  <Form.Input fluid type='password' label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error} value={this.state.password}/>
-                  <Form.Input fluid type='password' label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error} value={this.state.repeat_password}/>
+                  <Form.Input fluid required type='password' label='Password' placeholder='Password' onChange={this.handlePasswordChange} error={this.state.password_error} value={this.state.password}/>
+                  <Form.Input fluid required type='password' label='Repeat Password' placeholder='Repeat Password' onChange={this.handleRepeatPassChange} error={this.state.repeatpass_error} value={this.state.repeat_password}/>
                 </Form.Group>
 
               
@@ -224,8 +224,8 @@ export default class SignUp extends Component {
                 </Form.Field>
 
                 <Form.Group>
-                  <Form.Input width={15} fluid label='Address' placeholder='Address' onChange={this.handleAddressChange} error={this.state.address_error} value={this.state.address}/>
-                  <Form.Input width={3} fluid label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} error={this.state.zipcode_error} value={this.state.zip_code}/>
+                  <Form.Input width={15} fluid required label='Address' placeholder='Address' onChange={this.handleAddressChange} error={this.state.address_error} value={this.state.address}/>
+                  <Form.Input width={3} fluid required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} error={this.state.zipcode_error} value={this.state.zip_code}/>
                 </Form.Group>
 
                 {(this.state.form_complete===false || this.state.form_error_field===true) ?
