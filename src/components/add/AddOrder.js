@@ -206,9 +206,9 @@ class AddOrder extends Component {
                   <Form.Input required label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} defaultValue={this.state.contact_number} error={this.state.contact_error}/>
                 </Form.Group>
 
-                <Form.Group widths='equal'>
-                  <Form.Input required label='Delivery Address' placeholder='Delivery Address' onChange={this.handleAddressChange} defaultValue={this.state.delivery_address} error={this.state.delivery_address_error}/>
-                  <Form.Input required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} defaultValue={this.state.zip_code} error={this.state.zip_code_error}/>
+                <Form.Group >
+                  <Form.Input width={15} required label='Delivery Address' placeholder='Delivery Address' onChange={this.handleAddressChange} defaultValue={this.state.delivery_address} error={this.state.delivery_address_error}/>
+                  <Form.Input width={3} required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} defaultValue={this.state.zip_code} error={this.state.zip_code_error}/>
                 </Form.Group>
 
               {(this.state.form_complete===false || this.state.form_error_field===true) ?
