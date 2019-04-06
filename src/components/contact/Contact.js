@@ -25,13 +25,13 @@ class Contact extends Component {
 		    message: '',
 
 		    fname_error: '',
-      		mname_error: '',
       		lname_error: '',
       		email_error: '',
       		contact_error: '',
       		message_error: '',
 
       		form_complete: '',
+      		form_error_field: '',
       		prompt_message: '',
       		prompt_header: '',
 
@@ -48,7 +48,7 @@ class Contact extends Component {
 	}
 
 	handleFirstNameChange(e) { this.setState({first_name: e.target.value, fname_error: false}); }
-  	handleMiddleNameChange(e) { this.setState({middle_name: e.target.value, mname_error: false}); }
+  	handleMiddleNameChange(e) { this.setState({middle_name: e.target.value}); }
   	handleLastNameChange(e) { this.setState({last_name: e.target.value, lname_error: false}); }
   	handleEmailChange(e) { this.setState({email_address2: e.target.value, email_error: false}); }
   	handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
@@ -84,10 +84,6 @@ class Contact extends Component {
 	      this.setState({fname_error: true});
 	      error=true;
 	    }
-	    if(this.state.middle_name === ''){
-	      this.setState({mname_error: true});
-	      error=true;
-	    }
 	    if(this.state.last_name === ''){
 	      this.setState({lname_error: true});
 	      error=true;
@@ -112,6 +108,7 @@ class Contact extends Component {
 	      this.setState({prompt_message: 'Please fill up all the required fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
+	      this.setState({form_error_field: false});
 	      this.handleSubmit();
 	    }
 
@@ -146,6 +143,10 @@ class Contact extends Component {
             this.setState({contact_number: ''});
 
             this.setState({success: true});
+          }else if(result.status===400){
+            this.setState({form_error_field: true});
+            this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
+            this.setState({prompt_message: 'Please enter a valid email or contact number.'});
           }
         })
         .catch((e) => {
@@ -185,7 +186,7 @@ class Contact extends Component {
 
 			                <Form.Group widths='equal'>
 			                  <Form.Input fluid required label='First name' placeholder='First name' value={this.state.first_name} onChange={this.handleFirstNameChange} error={this.state.fname_error} />
-			                  <Form.Input fluid required label='Middle name' placeholder='Middle name' value={this.state.middle_name} onChange={this.handleMiddleNameChange} error={this.state.mname_error} />
+			                  <Form.Input fluid label='Middle name' placeholder='Middle name' value={this.state.middle_name} onChange={this.handleMiddleNameChange} />
 			                  <Form.Input fluid required label='Last name' placeholder='Last name' value={this.state.last_name} onChange={this.handleLastNameChange} error={this.state.lname_error} />
 			                </Form.Group>
 
@@ -197,7 +198,7 @@ class Contact extends Component {
 			                
 			                <Form.TextArea required label='Message' placeholder='Message' value={this.state.message} onChange={this.handleMessageChange} style={{ minHeight: 100 }} error={this.state.message_error}/>
 
-			                {(this.state.form_complete===false) ?
+			                {(this.state.form_complete===false || this.state.form_error_field===true) ?
 			                  <Message
 			                    header={this.state.prompt_header}
 			                    content={this.state.prompt_message}
@@ -205,7 +206,7 @@ class Contact extends Component {
 			                : ''}
 
 			                <SendButton handleAdd={this.checkForm}/>
-			                {(this.state.success) ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Your inquiry has been successfuly sent! We will get back to you as soon as we can.'}/> : '' }
+			                {(this.state.success) ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Inquiry sent! We will get back to you as soon as we can.'}/> : '' }
 			            </Form>
 			          
 			        </div>
