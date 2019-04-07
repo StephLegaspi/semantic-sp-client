@@ -48,6 +48,7 @@ import ProfileAdmin from './components/view/ProfileAdmin.js';
 import ProfileCustomer from './components/view/ProfileCustomer.js';
 import Dashboard from './components/dashboard/Dashboard.js';
 import MenuInclusion from './components/view/MenuInclusion.js';
+import ResetPassword from './components/login/ResetPassword.js';
 
 import local_storage from 'localStorage';
 
@@ -74,6 +75,13 @@ class App extends Component {
       	<Router history={withRouter}>
       	{(this.state.user===null || this.state.user.user_type === 'Customer') ? (
       	<Switch>
+      		<Route exact={true} path="/reset-password/customer" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
+																			<ResetPassword   {...props} />
+							             								</div>)}}> 
+			</Route>
       		<Route exact={true} path="/" render={(props) => {
 					             								return(
 							             								<div>
