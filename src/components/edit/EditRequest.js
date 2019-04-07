@@ -60,7 +60,7 @@ class EditRequest extends Component {
 	render(){
 		return(
 		<div>
-		<EditButton handleEdit={this.onModal}/>
+		<EditButton handleEdit={this.onModal} buttonStatus={this.props.statusButton}/>
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
