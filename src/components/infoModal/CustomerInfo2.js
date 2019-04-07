@@ -4,7 +4,7 @@ import { Button, Table } from 'semantic-ui-react'
 import '../../styles/modal.css';
 import ModalButton from '../button/ModalButton.js'
 
-class CustomerInfo extends Component {
+class CustomerInfo2 extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -45,11 +45,11 @@ class CustomerInfo extends Component {
 							    
 							    	 <Table.Row>
 								        <Table.Cell>{this.props.data.customer_id}</Table.Cell>
-								        <Table.Cell>{this.props.data.consignee_first_name}</Table.Cell>
-								        <Table.Cell>{this.props.data.consignee_middle_name}</Table.Cell>
-								        <Table.Cell>{this.props.data.consignee_last_name}</Table.Cell>
-								        <Table.Cell>{this.props.data.consignee_email}</Table.Cell>
-								        <Table.Cell>{this.props.data.consignee_contact_number}</Table.Cell>
+								        <Table.Cell>{this.props.data.customer_first_name}</Table.Cell>
+								        <Table.Cell>{this.props.data.customer_middle_name}</Table.Cell>
+								        <Table.Cell>{this.props.data.customer_last_name}</Table.Cell>
+								        <Table.Cell>{this.props.data.customer_email}</Table.Cell>
+								        <Table.Cell>{this.props.data.customer_contact_number}</Table.Cell>
 								      </Table.Row>
 							    
 							    </Table.Body>
@@ -65,4 +65,4 @@ class CustomerInfo extends Component {
 
 }
 
-export default CustomerInfo;
+export default CustomerInfo2;

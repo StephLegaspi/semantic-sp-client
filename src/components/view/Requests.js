@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dropdown, Icon, Menu, Table } from 'semantic-ui-react'
 
-import CustomerInfo from '../infoModal/CustomerInfo.js'
+import CustomerInfo2 from '../infoModal/CustomerInfo2.js'
 import InclusionInfo from '../infoModal/InclusionInfo.js'
 import DeleteModal from '../delete/DeleteModal.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -154,7 +154,7 @@ class Requests extends Component {
 				      <Table.Row>
 				        <Table.Cell>{request.id}</Table.Cell>
 				        <Table.Cell>
-					       <CustomerInfo customer_id={request.customer_id}/>
+					       <CustomerInfo2 data={request}/>
 						</Table.Cell>
 						<Table.Cell>
 					       <InclusionInfo request_id={request.id}/>
