@@ -407,13 +407,13 @@ export default class AddRequest extends Component {
 
                 <Form.Group widths='equal'>
                   <Form.Field>
-                    <a href='https://localhost:3000/packages'> *See Catering Packages here</a>
+                    <a href='/packages'> *See Catering Packages here</a>
                   </Form.Field>
                   <Form.Field>
-                    <a href='https://localhost:3000/motifs'> *See Event Motifs here</a>
+                    <a href='/motifs'> *See Event Motifs here</a>
                   </Form.Field>
                   <Form.Field>
-                    <a href='https://localhost:3000/menus'> *See Food Menus here</a>
+                    <a href='/menus'> *See Food Menus here</a>
                   </Form.Field>
                 </Form.Group>
 
