@@ -6,7 +6,6 @@ import SearchBarTable from '../searchBar/SearchBarTable.js'
 import CustomerProfile from '../infoModal/CustomerProfile.js'
 
 import '../../styles/view.css';
-import img_tree from '../../images/tree.jpg'
 
 class UserCustomers extends Component {
 	constructor(props){
@@ -87,7 +86,7 @@ class UserCustomers extends Component {
 
 				{this.state.data.map(customer =>
 				<Card id='card'>
-				    <Image src={img_tree} rounded size='small' />
+				    <Image src= {customer.image===null? 'http://localhost:3001/uploads/2019-04-05T11:02:58.063Zdefault_avatar.png' : `http://localhost:3001/${customer.image}`} rounded size='large' />
 				    <Card.Content>
 				      <Card.Header>{customer.first_name + " " + customer.middle_name + " " + customer.last_name} </Card.Header>
 				      <Card.Meta>ID: {customer.id}</Card.Meta>
