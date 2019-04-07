@@ -156,7 +156,7 @@ class Orders extends Component {
 				      <Table.Row>
 				        <Table.Cell>{order.id}</Table.Cell>
 				        <Table.Cell>
-					       <CustomerInfo customer_id={order.customer_id}/>
+					       <CustomerInfo data={order}/>
 						</Table.Cell>
 						<Table.Cell>
 					       <OrderInfo cart_id={order.shopping_cart_id}/>
