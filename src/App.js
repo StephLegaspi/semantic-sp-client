@@ -49,6 +49,7 @@ import ProfileCustomer from './components/view/ProfileCustomer.js';
 import Dashboard from './components/dashboard/Dashboard.js';
 import MenuInclusion from './components/view/MenuInclusion.js';
 import ResetPassword from './components/login/ResetPassword.js';
+import ResetPasswordAdmin from './components/login/ResetPasswordAdmin.js';
 
 import local_storage from 'localStorage';
 
@@ -80,6 +81,12 @@ class App extends Component {
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
 																			<ResetPassword   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/reset-password/admin" render={(props) => {
+					             								return(
+							             								<div>
+																			<ResetPasswordAdmin   {...props} />
 							             								</div>)}}> 
 			</Route>
       		<Route exact={true} path="/" render={(props) => {

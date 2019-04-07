@@ -104,7 +104,7 @@ class LoginAdmin extends Component {
               </Segment>
             </Form>
             <Message id='message-style'>
-              <a href='menus-table'>Forgot Password?</a>
+              <a href='/reset-password/admin'>Forgot Password?</a>
             </Message>
       </div>
       </div>
