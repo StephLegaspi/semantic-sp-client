@@ -83,18 +83,7 @@ export default class AddPackage extends Component {
       this.setState({form_complete: true});
       if(re.test(this.state.price)){
         this.handleSubmit();
-        this.setState({name: ''});
-        this.setState({price: ''});
-        this.setState({inclusion: ''});
-
-        this.setState({name_error: ''});
-        this.setState({price_error: ''});
-        this.setState({inclusion_error: ''});
-
-        this.setState({prompt_header: ''});
-        this.setState({prompt_message: ''});
-        this.setState({form_complete: ''});
-        this.setState({form_error_field: ''}); 
+        this.cancel();
       }else{
         this.setState({form_error_field: true});
         this.setState({price_error: true});
@@ -119,7 +108,6 @@ export default class AddPackage extends Component {
         })
         .then((result) => {
           if(result.status){
-            this.setState({activeModal: false})
             this.props.handleUpdate()
           }
         })
