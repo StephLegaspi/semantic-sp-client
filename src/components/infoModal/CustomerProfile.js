@@ -47,6 +47,7 @@ class CustomerProfile extends Component {
 
 	onModal = () => {
 		this.setState({modal: true});
+		this.updateCustomer();
 	}
 
 	onClose = () => {

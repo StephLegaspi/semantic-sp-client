@@ -13,9 +13,36 @@ class UserCustomers extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			first_name: ""
 		}
 	}
+
+	handleFirstNameChange = (e) => {
+	    this.setState({ first_name: e.target.value},() => { 
+	    	if(this.state.first_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
+	}
+
+	searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/customers/search/' + self.state.first_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	componentDidMount() {
         let self = this;
@@ -53,7 +80,7 @@ class UserCustomers extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Customers'}/>
-				<SearchBarTable titleHolder={'Search customer name..'}/>
+				<SearchBarTable titleHolder={'Search customer name..'} searchData={this.searchByName} inputChange={this.handleFirstNameChange}/>
 
       			<div id='card-div'>
 				<Card.Group itemsPerRow={4}>
