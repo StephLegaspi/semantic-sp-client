@@ -140,7 +140,7 @@ class ShoppingCart extends Component {
               <Table.Cell>{prod.product_quantity}</Table.Cell>
               <Table.Cell>{prod.price}</Table.Cell>
               <Table.Cell textAlign='center'>
-                <EditCartProductPurchase data={prod} handleUpdate={this.getCart}/>
+                <EditCartProductPurchase data={prod} handleUpdate={this.getCart} remaining_items={prod.remaining}/>
               </Table.Cell>
               <Table.Cell textAlign='center'>
                 <DeleteModal data_id={prod.sc_id} table_name={'shopping_cart/products'} handleUpdate={this.getCart}/>
