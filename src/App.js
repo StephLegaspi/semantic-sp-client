@@ -32,7 +32,7 @@ import Menus from './components/view/Menus.js';
 import NavigationBarCustomer from './components/navbar/NavigationBarCustomer.js';
 import MotifsPortfolio from './components/view/MotifsPortfolio.js';
 import MenusPortfolio from './components/view/MenusPortfolio.js';
-import Portfolio from './components/view/Portfolio.js';
+import Portfolio from './components/portfolio/Portfolio.js';
 import PackageInclusion from './components/view/PackageInclusion.js'
 import AddToCartPurchase from './components/add/AddToCart.js';
 import AddToCartRent from './components/add/AddToCartRent.js';
