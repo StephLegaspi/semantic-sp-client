@@ -7,7 +7,6 @@ import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
 import '../../styles/view.css';
-import img_tree from '../../images/tree.jpg'
 
 class Motifs extends Component {
 	constructor(props){
@@ -89,14 +88,14 @@ class Motifs extends Component {
 				<HeaderBar headerTitle={'Event Motifs'}/>
 				<SearchBar titleHolder={'Search motif name..'} searchData={this.searchByName} inputChange={this.handleMotifChange}/>
       			
-      			<div id='card-div2'>
-				<Card.Group itemsPerRow={4}>
+      			<div id='card-div3'>
+				<Card.Group itemsPerRow={3}>
 				{this.state.data.map(motif =>
-				<Card id='card2'>
+				<Card id='card3'>
 				    <Card.Content>
 				      <Card.Header>{motif.name}</Card.Header>
 				    </Card.Content>
-					<Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
+					<Image src={`http://localhost:3001/${motif.img}`} size='big' />
 				    <Card.Content extra>
 				    	<ShopButton handleView={this.toMotifsPortfolio} data_id={motif.id}/>
 				    </Card.Content>

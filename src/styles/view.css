@@ -101,12 +101,23 @@
 	width: 95%;
 }
 
+#card-div3{
+	margin-top: 3%;
+	margin-left: 5%;
+	width: 95%;
+}
+
 #card{
 	width: 20%;
 }
 
 #card2{
 	width: 20%;
+	text-align: center;
+}
+
+#card3{
+	width: 30%;
 	text-align: center;
 }
 
