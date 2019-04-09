@@ -224,9 +224,13 @@ export default class SignUp extends Component {
                 </Form.Field>
 
                 <Form.Group>
-                  <Form.Input width={15} fluid required label='Address' placeholder='Address' onChange={this.handleAddressChange} error={this.state.address_error} value={this.state.address}/>
+                  <Form.Input width={15} fluid required label='Address' placeholder='Unit/House Number Street Name Barangay/District, City/Municipality' onChange={this.handleAddressChange} error={this.state.address_error} value={this.state.address}/>
                   <Form.Input width={3} fluid required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} error={this.state.zipcode_error} value={this.state.zip_code}/>
                 </Form.Group>
+
+                <Form.Field>
+                  <label style={{color: 'red'}}> *Unit/House Number Street Name Barangay/District, City/Municipality</label>
+                </Form.Field>
 
                 {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
