@@ -48,9 +48,15 @@ export default class AddProduct extends Component {
   handlePriceChange(e) { this.setState({price: e.target.value, price_error: false}); }
   handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value, total_quantity_error: false}); }
   handleDescriptionChange(e) { this.setState({description: e.target.value, description_error: false}); }
-  handleDisplayChange(e) { this.setState({display_product: 1, display_product_error: false}); }
   handleColorChange(e) { this.setState({color_list: e.target.value, color_list_error: false}); }
    handleImageChange(e) {this.setState({image: e.target.files[0], image_error:false});}
+  handleDisplayChange(e) { 
+    if(this.state.display_product === 0){
+      this.setState({display_product: 1, display_product_error: false}); 
+    }else{
+      this.setState({display_product: 0, display_product_error: false}); 
+    }
+  }
 
   onModal = () => {
     this.setState({activeModal: true});
