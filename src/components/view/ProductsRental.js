@@ -32,7 +32,7 @@ class ProductsTable extends Component {
 
 	componentDidMount() {
         let self = this;
-        fetch('http://localhost:3001/v1/products/rental', {
+        fetch('http://localhost:3001/v1/products/rental/table', {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -48,7 +48,7 @@ class ProductsTable extends Component {
 
     update = () => {
         let self = this;
-        fetch('http://localhost:3001/v1/products/rental', {
+        fetch('http://localhost:3001/v1/products/rental/table', {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
