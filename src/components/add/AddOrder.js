@@ -207,9 +207,13 @@ class AddOrder extends Component {
                 </Form.Group>
 
                 <Form.Group >
-                  <Form.Input width={15} required label='Delivery Address' placeholder='Delivery Address' onChange={this.handleAddressChange} defaultValue={this.state.delivery_address} error={this.state.delivery_address_error}/>
+                  <Form.Input width={15} required label='Delivery Address' placeholder='Unit/House Number Street Name Barangay/District, City/Municipality' onChange={this.handleAddressChange} defaultValue={this.state.delivery_address} error={this.state.delivery_address_error}/>
                   <Form.Input width={3} required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} defaultValue={this.state.zip_code} error={this.state.zip_code_error}/>
                 </Form.Group>
+
+                <Form.Field>
+                  <label style={{color: 'red'}}> *Unit/House Number Street Name Barangay/District, City/Municipality</label>
+                </Form.Field>
 
               {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
