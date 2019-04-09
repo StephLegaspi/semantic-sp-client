@@ -226,7 +226,7 @@ class AddOrder extends Component {
               <Button type='submit' onClick={this.checkForm} id='edit-button2'>Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
               <div>
-              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Order has been successfuly placed!'}/> : ''}
+              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Order has been successfuly placed! We will call you shortly to confirm your order.'}/> : ''}
               </div>
           </Form>
           </div>)}
