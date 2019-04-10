@@ -118,7 +118,7 @@ class EditAdmin extends Component {
                 <Form.Group widths='equal'>
                   <Form.Field>
                     <label>Email Address</label>
-                    <Input placeholder='Email Address' defaultValue={this.props.data.email_address} onChange={this.handleEmailChange}/>
+                    <Input disabled placeholder='Email Address' defaultValue={this.props.data.email_address} onChange={this.handleEmailChange}/>
                   </Form.Field>
 
                   <Form.Field>

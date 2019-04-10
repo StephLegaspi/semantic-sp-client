@@ -142,8 +142,7 @@ class ShoppingCartRent extends Component {
             <Table.Row >
               <Table.HeaderCell style={{width: '20%'}}>Product Image</Table.HeaderCell>
               <Table.HeaderCell style={{width: '15%'}}>Name</Table.HeaderCell>
-              <Table.HeaderCell  style={{width: '5%'}}>No. of items available</Table.HeaderCell>
-              <Table.HeaderCell style={{width: '5%'}}>Color</Table.HeaderCell>
+              <Table.HeaderCell style={{width: '15%'}}>Color</Table.HeaderCell>
               <Table.HeaderCell  style={{width: '10%'}}>Quantity</Table.HeaderCell>
               <Table.HeaderCell style={{width: '10%'}}>Price</Table.HeaderCell>
               <Table.HeaderCell  style={{width: '8%'}}></Table.HeaderCell>
@@ -160,12 +159,11 @@ class ShoppingCartRent extends Component {
                 </Header>
               </Table.Cell>
               <Table.Cell>{prod.name}</Table.Cell>
-              <Table.Cell>yes</Table.Cell>
               <Table.Cell> {prod.product_color_name} </Table.Cell>
               <Table.Cell>{prod.product_quantity}</Table.Cell>
               <Table.Cell>{prod.price}</Table.Cell>
               <Table.Cell textAlign='center'>
-                <EditCartProductRental data={prod} handleUpdate={this.getCart}/>
+                <EditCartProductRental data={prod} handleUpdate={this.getCart} remaining_items={prod.remaining}/>
               </Table.Cell>
               <Table.Cell textAlign='center'>
                 <DeleteModal data_id={prod.sc_id} table_name={'shopping_cart/products'} handleUpdate={this.getCart}/>
@@ -191,7 +189,7 @@ class ShoppingCartRent extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <AddOrder id_cart={this.state.cart_id} duration_rental={this.state.rental_duration} updateCart={this.editRentalDuration} table_name={'rental'} button_status={this.state.empty_cart} route={'rent'}/>
+            <AddOrder id_cart={this.state.cart_id} duration_rental={this.state.rental_duration} updateCart={this.editRentalDuration} table_name={'rental'} button_status={this.state.total_items===0? true : this.state.empty_cart} route={'rent'}/>
 
           </Card.Content>
         </Card>

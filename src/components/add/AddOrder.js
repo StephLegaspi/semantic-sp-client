@@ -26,7 +26,6 @@ class AddOrder extends Component {
       zip_code: "",
 
       fname_error: '',
-      mname_error: '',
       lname_error: '',
       email_error: '',
       contact_error: '',
@@ -52,7 +51,7 @@ class AddOrder extends Component {
   }
  
   handleFirstNameChange(e) { this.setState({first_name: e.target.value, fname_error: false}); }
-  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value, mname_error: false}); }
+  handleMiddleNameChange(e) { this.setState({middle_name: e.target.value}); }
   handleLastNameChange(e) { this.setState({last_name: e.target.value, lname_error: false}); }
   handleEmailChange(e) { this.setState({email_address: e.target.value, email_error: false}); }
   handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
@@ -60,7 +59,32 @@ class AddOrder extends Component {
   handleZipCodeChange(e) { this.setState({zip_code: e.target.value, zip_code_error: false}); }
   handleCartChange(e) { this.setState({cart_id: e.target.value}); }
 
+  componentDidMount() {
+        const user_session = JSON.parse(local_storage.getItem("user_data")).id;
 
+        fetch(`http://localhost:3001/v1/customers/profile/` + user_session,{
+            method: "GET"
+          })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status===200){
+            this.setState({delivery_address: result.data[0].address});
+            this.setState({zip_code: result.data[0].zip_code});
+
+            this.setState({first_name: result.data[0].first_name});
+            this.setState({middle_name: result.data[0].middle_name});
+            this.setState({last_name: result.data[0].last_name});
+            this.setState({email_address: result.data[0].email_address});
+            this.setState({contact_number: result.data[0].contact_number});
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
+  
   onModal = () => {
     this.setState({activeModal: true});
   }
@@ -68,16 +92,7 @@ class AddOrder extends Component {
   cancel = () => {
     this.setState({activeModal: false});
 
-    this.setState({first_name: ''});
-    this.setState({middle_name: ''});
-    this.setState({last_name: ''});
-    this.setState({email_address: ''});
-    this.setState({contact_number: ''});
-    this.setState({delivery_address: ''});
-    this.setState({zip_code: ''});
-
     this.setState({fname_error: ''});
-    this.setState({mname_error: ''});
     this.setState({lname_error: ''});
     this.setState({email_error: ''});
     this.setState({contact_error: ''});
@@ -101,10 +116,6 @@ class AddOrder extends Component {
 
     if(this.state.first_name === ''){
       this.setState({fname_error: true});
-      error=true;
-    }
-    if(this.state.middle_name === ''){
-      this.setState({mname_error: true});
       error=true;
     }
     if(this.state.last_name === ''){
@@ -185,20 +196,24 @@ class AddOrder extends Component {
             <Form className='form-style-smaller'>
                   
                 <Form.Group widths='equal'>   
-                  <Form.Input required label='First name' placeholder='First name' onChange={this.handleFirstNameChange} error={this.state.fname_error}/>
-                  <Form.Input required label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} error={this.state.mname_error}/>
-                  <Form.Input required label='Last name' placeholder='Last name' onChange={this.handleLastNameChange} error={this.state.lname_error}/>
+                  <Form.Input required label='First name' placeholder='First name' onChange={this.handleFirstNameChange} defaultValue={this.state.first_name}  error={this.state.fname_error}/>
+                  <Form.Input label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} defaultValue={this.state.middle_name}/>
+                  <Form.Input required label='Last name' placeholder='Last name' onChange={this.handleLastNameChange} defaultValue={this.state.last_name} error={this.state.lname_error}/>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.Input required label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} error={this.state.email_error}/>
-                  <Form.Input required label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} error={this.state.contact_error}/>
+                  <Form.Input required label='Email Address' placeholder='Email Address' onChange={this.handleEmailChange} defaultValue={this.state.email_address} error={this.state.email_error}/>
+                  <Form.Input required label='Contact Number' placeholder='Contact Number' onChange={this.handleContactChange} defaultValue={this.state.contact_number} error={this.state.contact_error}/>
                 </Form.Group>
 
-                <Form.Group widths='equal'>
-                  <Form.Input required label='Delivery Address' placeholder='Delivery Address' onChange={this.handleAddressChange} error={this.state.delivery_address_error}/>
-                  <Form.Input required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} error={this.state.zip_code_error}/>
+                <Form.Group >
+                  <Form.Input width={15} required label='Delivery Address' placeholder='Unit/House Number Street Name Barangay/District, City/Municipality' onChange={this.handleAddressChange} defaultValue={this.state.delivery_address} error={this.state.delivery_address_error}/>
+                  <Form.Input width={3} required label='Zip Code' placeholder='Zip Code' onChange={this.handleZipCodeChange} defaultValue={this.state.zip_code} error={this.state.zip_code_error}/>
                 </Form.Group>
+
+                <Form.Field>
+                  <label style={{color: 'red'}}> *Unit/House Number Street Name Barangay/District, City/Municipality</label>
+                </Form.Field>
 
               {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
@@ -211,7 +226,7 @@ class AddOrder extends Component {
               <Button type='submit' onClick={this.checkForm} id='edit-button2'>Add</Button>
               <Button type='submit' onClick={this.cancel} id='cancel-button'>Cancel</Button>
               <div>
-              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Order has been successfuly placed!'}/> : ''}
+              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Order has been successfuly placed! We will call you shortly to confirm your order.'}/> : ''}
               </div>
           </Form>
           </div>)}

@@ -138,7 +138,7 @@ class EditCartProductPurchase extends Component {
 	                 <Form.Dropdown label='Product Color' search selection placeholder={this.state.product_color} options={this.state.color_options} onChange={this.handleColorChange} error={this.state.product_color_error}/>
 	                 <Form.Field>
 	                    <label> Quantity: </label>
-						          <Input type='number' min={1} defaultValue={this.state.quantity} onChange={this.handleQuantityChange}/>
+						          <Input type='number' min={1} max={this.props.remaining_items} defaultValue={this.state.quantity} onChange={this.handleQuantityChange}/>
 	                  </Form.Field>
 	                </Form.Group>
 	                <br/> <br/> <br/>

@@ -22,23 +22,6 @@ class CustomerInfo extends Component {
 		this.setState({modal: false})
 	}
 
-	componentDidMount(){
-	
-		fetch(`http://localhost:3001/v1/customers/modal/`+ this.props.customer_id,{
-		      headers: { 'Content-Type': 'application/json' },
-		      method: "GET"
-		    })
-			.then((response) => {
-				return response.json()
-			})
-			.then((result) => {
-				this.setState({data: result.data})
-			})
-			.catch((e) => {
-				console.log(e)
-			})
-	}
-
 	render() {
 		return (
 			<div>
@@ -59,16 +42,16 @@ class CustomerInfo extends Component {
 							    </Table.Header>
 
 							    <Table.Body>
-							    {this.state.data.map(customer =>
+							    
 							    	 <Table.Row>
-								        <Table.Cell>{customer.id}</Table.Cell>
-								        <Table.Cell>{customer.first_name}</Table.Cell>
-								        <Table.Cell>{customer.middle_name}</Table.Cell>
-								        <Table.Cell>{customer.last_name}</Table.Cell>
-								        <Table.Cell>{customer.email_address}</Table.Cell>
-								        <Table.Cell>{customer.contact_number}</Table.Cell>
+								        <Table.Cell>{this.props.data.customer_id}</Table.Cell>
+								        <Table.Cell>{this.props.data.consignee_first_name}</Table.Cell>
+								        <Table.Cell>{this.props.data.consignee_middle_name}</Table.Cell>
+								        <Table.Cell>{this.props.data.consignee_last_name}</Table.Cell>
+								        <Table.Cell>{this.props.data.consignee_email}</Table.Cell>
+								        <Table.Cell>{this.props.data.consignee_contact_number}</Table.Cell>
 								      </Table.Row>
-							    )}
+							    
 							    </Table.Body>
 
 							    <Button className='close' onClick={this.onClose}> Close </Button>

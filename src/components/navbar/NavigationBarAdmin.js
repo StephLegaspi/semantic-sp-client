@@ -128,7 +128,7 @@ class NavigationBar extends Component {
 			        <Menu.Item as='a'  id={this.props.activePage[5] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
 				            
 			    	<Container>
-			    		<Dropdown item simple text='Data Management' id={(this.props.activePage[6] || this.props.activePage[7] || this.props.activePage[8] || this.props.activePage[9] || this.props.activePage[10] || this.props.activePage[11]) ? 'lighter': 'menu-font'} style={{marginLeft: '28%'}}>
+			    		<Dropdown item simple text='Data Management' id={(this.props.activePage[6] || this.props.activePage[7] || this.props.activePage[8] || this.props.activePage[9] || this.props.activePage[10] || this.props.activePage[11]) ? 'lighter': 'menu-font'} style={{marginLeft: '26%'}}>
 				          <Dropdown.Menu>
 				          	<Dropdown.Item>
 				              <i className='dropdown icon' />

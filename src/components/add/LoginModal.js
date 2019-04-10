@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 
+import FacebookService from '../facebook/FacebookService.js'
+
 import '../../styles/add.css';
+import '../../styles/login.css';
 import '../../styles/button.css';
 
 import local_storage from 'localStorage';
@@ -29,6 +32,11 @@ class LoginModal extends Component {
   cancel = () => {
     this.setState({activeModal: false});
     this.props.cancelAction();
+  }
+
+  closeModal = () => {
+    this.setState({activeModal: false});
+    this.props.changeSession();
   }
 
   handleSubmit(event) {
@@ -75,8 +83,12 @@ class LoginModal extends Component {
                 <Button id='login-button' fluid size='large' onClick={this.handleSubmit}>
                   Login
                 </Button>
-                <Button id='login-button2' fluid size='large' onClick={this.cancel} >Cancel</Button>
+
+                <div id='label'> OR </div>
+                <FacebookService closeModal={this.closeModal}/>
                 
+                <Button id='login-button2' fluid size='large' onClick={this.cancel} >Cancel</Button>
+
                 <Form.Field>
                     <a href='http://localhost:3000/sign-up'> No account yet? Sign up here.</a>
                   </Form.Field>

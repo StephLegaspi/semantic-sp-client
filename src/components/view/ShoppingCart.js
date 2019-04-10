@@ -140,7 +140,7 @@ class ShoppingCart extends Component {
               <Table.Cell>{prod.product_quantity}</Table.Cell>
               <Table.Cell>{prod.price}</Table.Cell>
               <Table.Cell textAlign='center'>
-                <EditCartProductPurchase data={prod} handleUpdate={this.getCart}/>
+                <EditCartProductPurchase data={prod} handleUpdate={this.getCart} remaining_items={prod.remaining}/>
               </Table.Cell>
               <Table.Cell textAlign='center'>
                 <DeleteModal data_id={prod.sc_id} table_name={'shopping_cart/products'} handleUpdate={this.getCart}/>
@@ -161,7 +161,7 @@ class ShoppingCart extends Component {
               <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
             </Card.Description>
 
-            <AddOrder id_cart={this.state.cart_id} table_name={'purchase'} button_status={this.state.empty_cart} route={'purchase'}/>
+            <AddOrder id_cart={this.state.cart_id} table_name={'purchase'} button_status={this.state.total_items===0? true : this.state.empty_cart} route={'purchase'}/>
           </Card.Content>
         </Card>
         </div>

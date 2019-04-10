@@ -32,7 +32,7 @@ import Menus from './components/view/Menus.js';
 import NavigationBarCustomer from './components/navbar/NavigationBarCustomer.js';
 import MotifsPortfolio from './components/view/MotifsPortfolio.js';
 import MenusPortfolio from './components/view/MenusPortfolio.js';
-import Portfolio from './components/view/Portfolio.js';
+import Portfolio from './components/portfolio/Portfolio.js';
 import PackageInclusion from './components/view/PackageInclusion.js'
 import AddToCartPurchase from './components/add/AddToCart.js';
 import AddToCartRent from './components/add/AddToCartRent.js';
@@ -47,10 +47,9 @@ import FAQS from './components/view/FAQS.js';
 import ProfileAdmin from './components/view/ProfileAdmin.js';
 import ProfileCustomer from './components/view/ProfileCustomer.js';
 import Dashboard from './components/dashboard/Dashboard.js';
-import SearchPackage from './components/search/SearchPackage.js';
-import SearchMotif from './components/search/SearchMotif.js';
-import SearchMenu from './components/search/SearchMenu.js';
 import MenuInclusion from './components/view/MenuInclusion.js';
+import ResetPassword from './components/login/ResetPassword.js';
+import ResetPasswordAdmin from './components/login/ResetPasswordAdmin.js';
 
 import local_storage from 'localStorage';
 
@@ -77,6 +76,19 @@ class App extends Component {
       	<Router history={withRouter}>
       	{(this.state.user===null || this.state.user.user_type === 'Customer') ? (
       	<Switch>
+      		<Route exact={true} path="/reset-password/customer" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
+																			<ResetPassword   {...props} />
+							             								</div>)}}> 
+			</Route>
+			<Route exact={true} path="/reset-password/admin" render={(props) => {
+					             								return(
+							             								<div>
+																			<ResetPasswordAdmin   {...props} />
+							             								</div>)}}> 
+			</Route>
       		<Route exact={true} path="/" render={(props) => {
 					             								return(
 							             								<div>
@@ -105,14 +117,6 @@ class App extends Component {
 																			<Packages   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/packages/search/:name" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
-																			<SearchPackage   {...props} />
-							             								</div>)}}> 
-			</Route>
-			
 			<Route exact={true} path="/motifs" render={(props) => {
 					             								return(
 							             								<div>
@@ -120,25 +124,11 @@ class App extends Component {
 																			<Motifs   {...props} />
 							             								</div>)}}> 
 			</Route>
-			<Route exact={true} path="/motifs/search/:name" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
-																			<SearchMotif   {...props} />
-							             								</div>)}}> 
-			</Route>
 			<Route exact={true} path="/menus" render={(props) => {
 					             								return(
 							             								<div>
 																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,1,0,0,0,0]}/>
 																			<Menus   {...props} />
-							             								</div>)}}> 
-			</Route>
-			<Route exact={true} path="/menus/search/:name" render={(props) => {
-					             								return(
-							             								<div>
-																			<NavigationBarCustomer {...props} activePage={[0,0,0,1,0,0,0,0,0,0]}/>
-																			<SearchMenu   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/request-package" render={(props) => {

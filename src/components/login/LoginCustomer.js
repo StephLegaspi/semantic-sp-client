@@ -95,7 +95,7 @@ class LoginCustomer extends Component {
               </Segment>
             </Form>
             <Message id='message-style'>
-              <a href='google.com'>Forgot Password?</a>
+              <a href='/reset-password/customer'>Forgot Password?</a>
             </Message>
       </div>
       </div>

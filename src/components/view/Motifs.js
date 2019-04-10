@@ -7,7 +7,6 @@ import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
 import '../../styles/view.css';
-import img_tree from '../../images/tree.jpg'
 
 class Motifs extends Component {
 	constructor(props){
@@ -19,23 +18,55 @@ class Motifs extends Component {
 		}
 
 		this.toMotifsPortfolio = this.toMotifsPortfolio.bind(this);
-		this.handleMotifChange = this.handleMotifChange.bind(this);
-		this.toSearchMotif = this.toSearchMotif.bind(this);
 	}
 
 	toMotifsPortfolio(id) {
 		this.props.history.push('/motif-portfolio/' + id);
 	}
 
-	handleMotifChange(e) { 
-		this.setState({motif_name: e.target.value});
-	}
-
-	toSearchMotif() {
-		this.props.history.push('/motifs/search/' + this.state.motif_name);
+	handleMotifChange = (e) => {
+	    this.setState({ motif_name: e.target.value},() => { 
+	    	if(this.state.motif_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
 	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/event_motifs', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+	searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/event_motifs/search/' + self.state.motif_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
         let self = this;
         fetch('http://localhost:3001/v1/event_motifs', {
             method: 'GET'
@@ -55,16 +86,16 @@ class Motifs extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Event Motifs'}/>
-				<SearchBar titleHolder={'Search motif name..'} searchData={this.toSearchMotif} inputChange={this.handleMotifChange}/>
+				<SearchBar titleHolder={'Search motif name..'} searchData={this.searchByName} inputChange={this.handleMotifChange}/>
       			
-      			<div id='card-div2'>
-				<Card.Group itemsPerRow={4}>
+      			<div id='card-div3'>
+				<Card.Group itemsPerRow={3}>
 				{this.state.data.map(motif =>
-				<Card id='card2'>
+				<Card id='card3'>
 				    <Card.Content>
 				      <Card.Header>{motif.name}</Card.Header>
 				    </Card.Content>
-					<Image src={img_tree} rounded size='small' style={{marginLeft: '20%'}}/>
+					<Image src={`http://localhost:3001/${motif.img}`} size='big' />
 				    <Card.Content extra>
 				    	<ShopButton handleView={this.toMotifsPortfolio} data_id={motif.id}/>
 				    </Card.Content>

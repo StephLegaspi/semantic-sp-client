@@ -5,6 +5,7 @@
   "dependencies": {
     "localStorage": "^1.0.4",
     "password-validator": "^4.1.1",
+    "pure-react-carousel": "^1.19.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-facebook-login": "^4.1.1",

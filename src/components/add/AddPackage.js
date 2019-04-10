@@ -23,6 +23,7 @@ export default class AddPackage extends Component {
         inclusion_error: '',
 
         form_complete: '',
+        form_error_field: '',
         prompt_message: '',
         prompt_header: ''
       }
@@ -54,10 +55,12 @@ export default class AddPackage extends Component {
     this.setState({prompt_header: ''});
     this.setState({prompt_message: ''});
     this.setState({form_complete: ''});
+    this.setState({form_error_field: ''});
   }
 
   checkForm = () => {
     var error = false;
+    let re = /^-?\d*(\.\d+)?$/;
 
     if(this.state.name === ''){
       this.setState({name_error: true});
@@ -78,10 +81,15 @@ export default class AddPackage extends Component {
       this.setState({prompt_message: 'Please fill up all the required fields.'});  
     }else{
       this.setState({form_complete: true});
-      this.handleSubmit();
-      this.setState({name: ''});
-      this.setState({price: ''});
-      this.setState({inclusion: ''});
+      if(re.test(this.state.price)){
+        this.handleSubmit();
+        this.cancel();
+      }else{
+        this.setState({form_error_field: true});
+        this.setState({price_error: true});
+        this.setState({prompt_header: 'Incorrect value for price'}); 
+        this.setState({prompt_message: 'Please enter a correct value for package price.'});
+      }
     }
 
   }
@@ -100,7 +108,6 @@ export default class AddPackage extends Component {
         })
         .then((result) => {
           if(result.status){
-            this.setState({activeModal: false})
             this.props.handleUpdate()
           }
         })
@@ -123,7 +130,7 @@ export default class AddPackage extends Component {
 
                 <Form.TextArea required label='Inclusions' placeholder='e.g. Inclusion1, Inclusion2, Inclusion3' style={{ minHeight: 100 }}  onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
 
-              {(this.state.form_complete===false) ?
+              {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}

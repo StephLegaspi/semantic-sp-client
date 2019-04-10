@@ -33,6 +33,7 @@ class AddToCartRent extends Component {
 			cust_id: '',
 
       success: false,
+      duplicate_form: false,
 
       product_color_error: '',
       form_complete: '',
@@ -141,7 +142,7 @@ class AddToCartRent extends Component {
           }else{
             this.setState({has_cart: 1});
             this.setState({cart_id: result.data[0].id});
-            this.addCartProduct();
+            this.checkDuplicate();
           }
         })
         .catch((e) => {
@@ -192,12 +193,38 @@ class AddToCartRent extends Component {
           if(result.status){
             console.log("Successfully added shopping cart");
             this.setState({cart_id: result.data.insertId});
-            this.addCartProduct();
+            this.checkDuplicate();
           }
         })
         .catch((e) => {
           console.log(e)
         })
+    }
+
+    checkDuplicate = () => {
+        const cart = JSON.stringify({
+            cart_id: this.state.cart_id,
+        })
+
+        fetch(`http://localhost:3001/v1/shopping_cart_products/` + this.state.prod_id,{
+            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            body: cart
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status === 404){
+            this.addCartProduct();
+          }else{
+            this.setState({duplicate_form: true});
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+
     }
 
     addCartProduct = () => {
@@ -276,10 +303,19 @@ class AddToCartRent extends Component {
             : ''}
 
   					<div className='div-label'>
-  						<AddCartButton handleAddtoCart={this.checkForm}/>
-              {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
-              {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
+              {product.remaining===0 ? 
+                <AddCartButton handleAddtoCart={this.checkForm} button_status={true}/>
+              :  
+    						<AddCartButton handleAddtoCart={this.checkForm} button_status={false}/>
+              }
+
+                {this.state.duplicate_form ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product is already in the cart.'}/> : ''}
+
+                {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
+                
+                {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
   					</div>
+            
   				</div>
         </div>
 				)}

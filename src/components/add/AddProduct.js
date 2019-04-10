@@ -30,6 +30,7 @@ export default class AddProduct extends Component {
       image_error: '',
 
       form_complete: '',
+      form_error_field: '',
       prompt_message: '',
       prompt_header: ''
     }
@@ -47,9 +48,15 @@ export default class AddProduct extends Component {
   handlePriceChange(e) { this.setState({price: e.target.value, price_error: false}); }
   handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value, total_quantity_error: false}); }
   handleDescriptionChange(e) { this.setState({description: e.target.value, description_error: false}); }
-  handleDisplayChange(e) { this.setState({display_product: 1, display_product_error: false}); }
   handleColorChange(e) { this.setState({color_list: e.target.value, color_list_error: false}); }
    handleImageChange(e) {this.setState({image: e.target.files[0], image_error:false});}
+  handleDisplayChange(e) { 
+    if(this.state.display_product === 0){
+      this.setState({display_product: 1, display_product_error: false}); 
+    }else{
+      this.setState({display_product: 0, display_product_error: false}); 
+    }
+  }
 
   onModal = () => {
     this.setState({activeModal: true});
@@ -77,10 +84,12 @@ export default class AddProduct extends Component {
     this.setState({prompt_header: ''});
     this.setState({prompt_message: ''});
     this.setState({form_complete: ''});
+    this.setState({form_error_field: ''});
   }
 
   checkForm = () => {
-    var error = false;
+    let error = false;
+    let re = /^-?\d*(\.\d+)?$/;
 
     if(this.state.name === ''){
       this.setState({name_error: true});
@@ -118,14 +127,15 @@ export default class AddProduct extends Component {
       this.setState({prompt_message: 'Please fill up all the required fields.'});  
     }else{
       this.setState({form_complete: true});
-      this.handleSubmit();
-      this.setState({name: ''});
-      this.setState({price: ''});
-      this.setState({total_quantity: ''});
-      this.setState({description: ''});
-      this.setState({display_product: 0});
-      this.setState({color_list: ''});
-      this.setState({image: ''});
+      if(re.test(this.state.price)){
+        this.handleSubmit();
+        this.cancel();
+      }else{
+        this.setState({form_error_field: true});
+        this.setState({price_error: true});
+        this.setState({prompt_header: 'Incorrect value for price'}); 
+        this.setState({prompt_message: 'Please enter a correct value for package price.'});
+      }
     }
 
   }
@@ -153,7 +163,6 @@ export default class AddProduct extends Component {
         })
         .then((result) => {
           if(result.status){
-            this.setState({activeModal: false})
             this.props.handleUpdate()
           }
         })
@@ -199,7 +208,7 @@ export default class AddProduct extends Component {
                     <Form.Checkbox required slider onChange={this.handleDisplayChange} error={this.state.display_product_error}/>
                   </Form.Group>
 
-            {(this.state.form_complete===false) ?
+            {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}

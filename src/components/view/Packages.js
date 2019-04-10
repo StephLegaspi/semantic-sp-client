@@ -17,23 +17,55 @@ class Packages extends Component {
 			package_name: ""
 		}
 		this.toPackageInclusion = this.toPackageInclusion.bind(this);
-		this.handlePackageChange = this.handlePackageChange.bind(this);
-		this.toSearchPackage = this.toSearchPackage.bind(this);
 	}
 
-	handlePackageChange(e) { 
-		this.setState({package_name: e.target.value});
+	handlePackageChange = (e) => {
+	    this.setState({ package_name: e.target.value},() => { 
+	    	if(this.state.package_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
 	}
 
 	toPackageInclusion(id) {
 		this.props.history.push('/package-inclusion/' + id);
 	}
 
-	toSearchPackage() {
-		this.props.history.push('/packages/search/' + this.state.package_name);
-	}
+	searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/packages/search/' + self.state.package_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	componentDidMount() {
+        let self = this;
+        fetch('http://localhost:3001/v1/packages', {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
+
+    update = () => {
         let self = this;
         fetch('http://localhost:3001/v1/packages', {
             method: 'GET'
@@ -53,7 +85,7 @@ class Packages extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Catering Packages'}/>
-				<SearchBar titleHolder={'Search package name..'} searchData={this.toSearchPackage} inputChange={this.handlePackageChange}/>
+				<SearchBar titleHolder={'Search package name..'} searchData={this.searchByName} inputChange={this.handlePackageChange}/>
       			
       			<div id='card-div2'>
 					<Card.Group itemsPerRow={4}>

@@ -6,16 +6,42 @@ import SearchBarTable from '../searchBar/SearchBarTable.js'
 import CustomerProfile from '../infoModal/CustomerProfile.js'
 
 import '../../styles/view.css';
-import img_tree from '../../images/tree.jpg'
 
 class UserCustomers extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
-			data: []
+			data: [],
+			first_name: ""
 		}
 	}
+
+	handleFirstNameChange = (e) => {
+	    this.setState({ first_name: e.target.value},() => { 
+	    	if(this.state.first_name === ""){
+	    		this.update();	
+	    	}else{
+	    		this.searchByName(); 
+	    	}
+	    })
+	}
+
+	searchByName = () => {
+        let self = this;
+        fetch('http://localhost:3001/v1/customers/search/' + self.state.first_name, {
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({data: result.data});
+        }).catch(err => {
+        	console.log(err);
+        })
+    }
 
 	componentDidMount() {
         let self = this;
@@ -53,14 +79,14 @@ class UserCustomers extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Customers'}/>
-				<SearchBarTable titleHolder={'Search customer name..'}/>
+				<SearchBarTable titleHolder={'Search customer name..'} searchData={this.searchByName} inputChange={this.handleFirstNameChange}/>
 
       			<div id='card-div'>
 				<Card.Group itemsPerRow={4}>
 
 				{this.state.data.map(customer =>
 				<Card id='card'>
-				    <Image src={img_tree} rounded size='small' />
+				    <Image src= {customer.image===null? 'http://localhost:3001/uploads/2019-04-05T11:02:58.063Zdefault_avatar.png' : `http://localhost:3001/${customer.image}`} rounded size='large' />
 				    <Card.Content>
 				      <Card.Header>{customer.first_name + " " + customer.middle_name + " " + customer.last_name} </Card.Header>
 				      <Card.Meta>ID: {customer.id}</Card.Meta>

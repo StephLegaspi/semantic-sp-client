@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Dropdown, Icon, Menu, Table } from 'semantic-ui-react'
+import { Dropdown, Table } from 'semantic-ui-react'
 
-import CustomerInfo from '../infoModal/CustomerInfo.js'
+import CustomerInfo2 from '../infoModal/CustomerInfo2.js'
 import InclusionInfo from '../infoModal/InclusionInfo.js'
 import DeleteModal from '../delete/DeleteModal.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -154,7 +154,7 @@ class Requests extends Component {
 				      <Table.Row>
 				        <Table.Cell>{request.id}</Table.Cell>
 				        <Table.Cell>
-					       <CustomerInfo customer_id={request.customer_id}/>
+					       <CustomerInfo2 data={request}/>
 						</Table.Cell>
 						<Table.Cell>
 					       <InclusionInfo request_id={request.id}/>
@@ -165,33 +165,14 @@ class Requests extends Component {
 				        <Table.Cell>{request.request_timestamp2}</Table.Cell>
 				        <Table.Cell>{request.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditRequest data={request} handleUpdate={this.update}/>
+				        	<EditRequest data={request} handleUpdate={this.update} statusButton={request.status==='Successful' ? true:false}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal data_id={request.id} table_name={'requests'} handleUpdate={this.update}/>
+				        	<DeleteModal data_id={request.id} table_name={'requests'} handleUpdate={this.update} statusButton={(request.status==='Successful' || request.status==='Unsuccessful') ? false:true}/>
 				        </Table.Cell>
 				      </Table.Row>
 				    )}  
 				    </Table.Body>
-
-				    <Table.Footer>
-				      <Table.Row>
-				        <Table.HeaderCell colSpan='11'>
-				          <Menu floated='right' pagination>
-				            <Menu.Item as='a' icon>
-				              <Icon name='chevron left' />
-				            </Menu.Item>
-				            <Menu.Item as='a'>1</Menu.Item>
-				            <Menu.Item as='a'>2</Menu.Item>
-				            <Menu.Item as='a'>3</Menu.Item>
-				            <Menu.Item as='a'>4</Menu.Item>
-				            <Menu.Item as='a' icon>
-				              <Icon name='chevron right' />
-				            </Menu.Item>
-				          </Menu>
-				        </Table.HeaderCell>
-				      </Table.Row>
-				    </Table.Footer>
 				</Table>
 				</div>
 				

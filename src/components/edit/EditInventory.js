@@ -63,7 +63,7 @@ class EditInventory extends Component {
 		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
         const inventory = JSON.stringify({total_quantity: this.state.total_quantity, session_id: id_session})
        
-        fetch(`http://localhost:3001/v1/inventories/` + this.props.data.id,{
+        fetch(`http://localhost:3001/v1/inventories/`+ this.props.table +'/' + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
             method: "PUT",
             body: inventory
@@ -90,7 +90,7 @@ class EditInventory extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-	                <Form.Input width={8} required control='input' type='number' min={1} label='Total Quantity' placeholder='Total Quantity'defaultValue={this.props.data.total_quantity} onChange={this.handleQuantityChange}/>
+	                <Form.Input width={8} required control='input' type='number' min={1} label='New Quantity' placeholder='Total Quantity'defaultValue={this.props.data.total_quantity} onChange={this.handleQuantityChange}/>
 	                
 	                {(this.state.form_complete===false) ?
 	                  <Message
