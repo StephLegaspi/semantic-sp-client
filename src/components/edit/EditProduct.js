@@ -27,6 +27,7 @@ class EditProduct extends Component {
     		colors_error: false,
 
 	        form_complete: '',
+	        form_error_field: '',
 	        prompt_message: '',
 	        prompt_header: ''
 		}
@@ -64,6 +65,7 @@ class EditProduct extends Component {
     	this.setState({colors_error: ''});
 
     	this.setState({form_complete: ''});
+    	this.setState({form_error_field: ''});
 	    this.setState({prompt_header: ''});
     	this.setState({prompt_message: ''});
 	}
@@ -105,7 +107,8 @@ class EditProduct extends Component {
 	}
 
 	checkForm = () => {
-	    var error = false;
+	    let error = false;
+	    const re = /^-?\d*(\.\d+)?$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
@@ -134,18 +137,21 @@ class EditProduct extends Component {
 	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
-	      this.submitEdit();
-	      this.setState({name: ''});
-	      this.setState({price: ''});
-	      this.setState({description: ''});
-	      this.setState({display_product: ''});
-	      this.setState({colors: ''});
-
-	      this.setState({name_error: ''});
-	      this.setState({price_error: ''});
-	      this.setState({description_error: ''});
-	      this.setState({display_product_error: ''});
-	      this.setState({colors_error: ''});
+	      if(re.test(this.state.price)){
+	     	this.submitEdit();
+		    this.setState({name: ''});
+		    this.setState({price: ''});
+		    this.setState({description: ''});
+		    this.setState({display_product: ''});
+		    this.setState({colors: ''});
+		    this.cancel();
+	      }else{
+	        this.setState({form_error_field: true});
+	        this.setState({price_error: true});
+	        this.setState({prompt_header: 'Incorrect value for price'}); 
+	        this.setState({prompt_message: 'Please enter a correct value for package price.'});
+	      }
+	      
 	    }
 
 	}
@@ -198,7 +204,7 @@ class EditProduct extends Component {
 	                  </Form.Field>
 	                </Form.Group>
 
-	                {(this.state.form_complete===false) ?
+	                {(this.state.form_complete===false || this.state.form_error_field===true) ?
 	                  <Message
 	                    header={this.state.prompt_header}
 	                    content={this.state.prompt_message}
