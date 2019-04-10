@@ -8,7 +8,7 @@ import Footer from '../footer/Footer.js'
 
 import '../../styles/homepage.css'
 import '../../styles/font.css'
-import sample_header from '../../images/header2.jpg'
+import sample_header from '../../images/header.jpg'
 import logo from '../../images/logo.jpg'
 
 class HomePage extends Component {
@@ -109,11 +109,11 @@ class HomePage extends Component {
           <HeaderBar headerTiltle={''}/>
           <Image size='large' src={sample_header} id='header-img'/>
           <div id='div-header'>
-            <p className='header-font' style={{marginTop: '22%'}}> Let us help you plan and organize your dream event. </p>
+            <p className='header-font' style={{marginTop: '24%'}}> Let us help you plan and organize your dream event. </p>
           </div>
           <Button size='large' id='btn' onClick={this.toRequestPackage}>
-              <Icon name='file text' size='medium'/>
-              Request Package
+            <Icon name='file text' size='medium'/>
+                Request Package
           </Button>
         </Segment>
 
