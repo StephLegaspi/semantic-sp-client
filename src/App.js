@@ -50,6 +50,7 @@ import Dashboard from './components/dashboard/Dashboard.js';
 import MenuInclusion from './components/view/MenuInclusion.js';
 import ResetPassword from './components/login/ResetPassword.js';
 import ResetPasswordAdmin from './components/login/ResetPasswordAdmin.js';
+import VerifyAccount from './components/login/VerifyAccount.js';
 
 import local_storage from 'localStorage';
 
@@ -76,6 +77,13 @@ class App extends Component {
       	<Router history={withRouter}>
       	{(this.state.user===null || this.state.user.user_type === 'Customer') ? (
       	<Switch>
+      		<Route exact={true} path="/account/verify/:email_address" render={(props) => {
+					             								return(
+							             								<div>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0]}/>
+																			<VerifyAccount   {...props} />
+							             								</div>)}}> 
+			</Route>
       		<Route exact={true} path="/reset-password/customer" render={(props) => {
 					             								return(
 							             								<div>

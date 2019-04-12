@@ -7,7 +7,6 @@ import Footer from '../footer/Footer.js'
 import '../../styles/add.css';
 import '../../styles/button.css';
 
-import local_storage from 'localStorage';
 const passwordValidator = require('password-validator');
 
 export default class SignUp extends Component {
@@ -67,8 +66,29 @@ export default class SignUp extends Component {
   handleAddressChange(e) { this.setState({address: e.target.value, address_error: false}); }
   handleZipCodeChange(e) { this.setState({zip_code: e.target.value, zipcode_error: false}); }
 
-  toHomePage = () => {
-    window.location.href='/'
+  toVerifyAccount(id) {
+    this.props.history.push('/account/verify/' + this.state.email_address);
+  }
+
+  sendVerification = () => {
+    fetch(`http://localhost:3001/v1/auth/send-verification/` + this.state.email_address, {
+            method: 'GET'
+        })
+        .then((response) => {
+          return response.json()
+        })
+        .then((result) => {
+          if(result.status===200){
+              this.toVerifyAccount();
+          }else{
+            this.setState({form_error_field: true});
+            this.setState({prompt_header: 'Error'});
+            this.setState({prompt_message: 'Please try again.'});    
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
   }
 
   checkForm = () => {
@@ -154,7 +174,7 @@ export default class SignUp extends Component {
         })
         .then((result) => {
           if(result.status === 200){
-            this.login();
+            this.sendVerification();
           }else if(result.status===400){
             this.setState({form_error_field: true});
             this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
@@ -171,27 +191,6 @@ export default class SignUp extends Component {
         })
   }
 
-  login = () => {
-        const credentials = JSON.stringify({email_address: this.state.email_address, password: this.state.password})
-        console.log(credentials);
-        fetch(`http://localhost:3001/v1/auth/login/customer`,{
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: credentials
-        })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          if(result.status===200){
-              local_storage.setItem('user_data', JSON.stringify(result.data));
-              this.toHomePage();
-          }
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-  }
 
   render(){
     return(
