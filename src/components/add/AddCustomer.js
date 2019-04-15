@@ -84,6 +84,7 @@ export default class SignUp extends Component {
               this.toVerifyAccount();
           }else{
             this.setState({form_error_field: true});
+            this.setState({loading: false});
             this.setState({prompt_header: 'Error'});
             this.setState({prompt_message: 'You have slow internet connection. Please try again.'});    
           }
@@ -153,7 +154,6 @@ export default class SignUp extends Component {
   }
 
    handleSubmit = () => {
-        this.setState({loading: true});
         const request = JSON.stringify({
             first_name: this.state.first_name, 
             middle_name: this.state.middle_name,
@@ -178,6 +178,7 @@ export default class SignUp extends Component {
         .then((result) => {
           if(result.status === 200){
             this.sendVerification();
+            this.setState({loading: true});
           }else if(result.status===400){
             this.setState({form_error_field: true});
             this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
@@ -240,6 +241,8 @@ export default class SignUp extends Component {
                     content={this.state.prompt_message}
                   />
                 : ''}
+                
+                
                 <Button id='signup-button' onClick={this.checkForm} loading={this.state.loading}>
                   Sign Up
                 </Button>
