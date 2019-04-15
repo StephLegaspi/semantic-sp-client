@@ -35,7 +35,8 @@ class Contact extends Component {
       		prompt_message: '',
       		prompt_header: '',
 
-      		success: false
+      		success: false,
+      		loading: false
 		}
 
 		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -110,6 +111,7 @@ class Contact extends Component {
 	      this.setState({form_complete: true});
 	      this.setState({form_error_field: false});
 	      this.handleSubmit();
+	      this.setState({loading: true});
 	    }
 
 	}
@@ -143,8 +145,10 @@ class Contact extends Component {
             this.setState({contact_number: ''});
 
             this.setState({success: true});
+            this.setState({loading: false});
           }else if(result.status===400){
             this.setState({form_error_field: true});
+            this.setState({loading: false});
             this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
             this.setState({prompt_message: 'Please enter a valid email or contact number.'});
           }
@@ -205,7 +209,7 @@ class Contact extends Component {
 			                  />
 			                : ''}
 
-			                <SendButton handleAdd={this.checkForm}/>
+			                <SendButton handleAdd={this.checkForm} isLoading={this.state.loading}/>
 			                {(this.state.success) ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Inquiry sent! We will get back to you as soon as we can.'}/> : '' }
 			            </Form>
 			          

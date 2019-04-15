@@ -11,7 +11,7 @@ class SendButton extends Component{
 
 	render(){
 		return(
-			<Button id='send-button' onClick={this.callClick}>
+			<Button id='send-button' onClick={this.callClick} loading={this.props.isLoading}>
 			    Send
 			 </Button>
 		);
