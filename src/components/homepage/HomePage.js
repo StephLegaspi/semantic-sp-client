@@ -119,7 +119,7 @@ class HomePage extends Component {
 
         <Segment vertical id='div-homepage-smaller'>
               <p className='title-header'> Catering Packages</p>
-              <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
+              <p className='body-font'> Our catering packages are inclusive of everything you will need for any kind of event, so you get exactly what you want while staying within your budget. </p>
 
 
               <Grid inverted divided stackable style={{marginLeft: '5%'}}>
@@ -136,7 +136,7 @@ class HomePage extends Component {
 
         <Segment vertical id='div-homepage'>
               <p className='title-header'> Event Motifs</p>
-              <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
+              <p className='body-font'>  May it be a wedding, debut, or kid’s birthday party, let us create the perfect theme for your event. You can choose from one of our pre-created event motifs that will surely make your dream event come true.  </p>
              
                 <div>
                   {this.state.motifs_data.map(motif =>
@@ -155,7 +155,7 @@ class HomePage extends Component {
 
         <Segment vertical id='div-homepage-smaller'>
               <p className='title-header'> Food Menus</p>
-              <p className='body-font'>  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut sagittis nibh. Maecenas eu congue nisl. Nunc suscipit vehicula odio in condimentum. </p>
+              <p className='body-font'> We understand that selecting the right caterer is one of the most essential parts of your event. That's why we offer you a wide variety of food choices that will suit your taste. </p>
 
               <Grid inverted divided stackable style={{marginLeft: '5%'}}>
                 <Grid.Row>
@@ -179,7 +179,7 @@ class HomePage extends Component {
         <div class="ui fluid segment" id='about-div'>
           <br/> <br/> 
           <p className='paragraph-font'> 
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non nulla nunc. Aenean luctus neque et mauris congue lobortis. Sed vel finibus nibh. Sed feugiat nibh tristique, euismod lectus in, ullamcorper turpis. Aliquam odio eros, sollicitudin quis molestie nec, faucibus non sem. Morbi varius tortor nec orci tristique tempor. Etiam neque quam, mattis at tincidunt convallis, accumsan et dolor. Proin odio purus, placerat eget leo quis, facilisis ornare ipsum. Morbi varius tortor nec orci tristique tempor. Etiam neque quam, mattis at tincidunt convallis, accumsan et dolor. Proin odio purus, placerat eget leo quis, facilisis ornare ipsum.
+             For more than 10 years , we have been blessed to be a part of numerous weddings, debuts, and kid parties. In all these events, we make sure we are not only your caterer but more importantly your partner in every step from conceptualizing, budgeting and planning up to final execution. These events have given us valuable insights and ideas that inspire our continuous effort to provide better and improved services to wider set of clients. But what really matters to us is our relationship with our customers. We consider ourselves not only a caterer, but also a partner that will assist you during the process of conceptualizing, budgeting, planning, and on the day of your event.We are here to help you make your dream event possible.
           </p>
         </div>
         </Segment>
