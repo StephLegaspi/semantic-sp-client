@@ -223,7 +223,7 @@ export default class SignUp extends Component {
 
               
                 <Form.Field>
-                  <label style={{color: 'red'}}> *Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
+                  <label > Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
                 </Form.Field>
 
                 <Form.Group>
@@ -232,7 +232,7 @@ export default class SignUp extends Component {
                 </Form.Group>
 
                 <Form.Field>
-                  <label style={{color: 'red'}}> *Unit/House Number Street Name Barangay/District, City/Municipality</label>
+                  <label> Unit/House Number Street Name Barangay/District, City/Municipality</label>
                 </Form.Field>
 
                 {(this.state.form_complete===false || this.state.form_error_field===true) ?
