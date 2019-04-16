@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Switch, Route, withRouter, BrowserRouter as Router} from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
 //user-defined
 import LoginAdmin from './components/login/LoginAdmin.js';
 import LoginCustomer from './components/login/LoginCustomer.js';
@@ -73,6 +74,7 @@ class App extends Component {
 
   render() {
     return (
+    <DocumentTitle title="Leira Jane's">
       <div>
       	<Router history={withRouter}>
       	{(this.state.user===null || this.state.user.user_type === 'Customer') ? (
@@ -389,6 +391,7 @@ class App extends Component {
       	)}
       	</Router>
       </div>
+     </DocumentTitle>
     );
   }
 }
