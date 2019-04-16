@@ -119,7 +119,7 @@ class Footer extends Component {
 
         <Segment inverted vertical id='footer2'>
           <Container style={{textAlign:'center'}}>
-            <Button circular color='facebook' icon='large facebook' />
+            <Button as='a' href='https://www.facebook.com/Leira-Jane-Party-Needs-Catering-Services-LAJ-1776312645972816/' circular color='facebook' icon='large facebook' />
             <Button circular color='twitter' icon='large twitter' />
             <br/>
             <label>© Leira Jane's Party Needs and Catering Services 2019</label>

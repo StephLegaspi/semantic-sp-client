@@ -74,7 +74,7 @@ class App extends Component {
 
   render() {
     return (
-    <DocumentTitle title="Leira Jane's">
+    <DocumentTitle title="Leira Jane Party Needs and Catering Services">
       <div>
       	<Router history={withRouter}>
       	{(this.state.user===null || this.state.user.user_type === 'Customer') ? (
