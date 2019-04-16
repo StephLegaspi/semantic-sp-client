@@ -111,7 +111,7 @@ class NavigationBar extends Component {
 			        
 			        {(this.state.user===null) ? ( 
 			    	<Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '39.2%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '39%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
 
 				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toSignUp} >Sign Up</Menu.Item>
