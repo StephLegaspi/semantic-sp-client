@@ -64,7 +64,11 @@ export default class Facebook extends Component{
 		let fbContent;
 		
 		if(this.state.isLoggedIn){
-			fbContent = null;
+			fbContent = (	
+				<Button color='facebook' fluid size='large' disabled>
+				    <Icon name='facebook' /> Login with Facebook
+				</Button>
+			);
 		}else{
 			fbContent = (
 				<FacebookLogin

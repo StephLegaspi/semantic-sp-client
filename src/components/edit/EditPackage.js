@@ -23,6 +23,7 @@ class EditPackage extends Component {
     		inclusion_error: false,
 
     		form_complete: '',
+    		form_error_field: '',
 	        prompt_message: '',
 	        prompt_header: ''
 		}
@@ -49,6 +50,7 @@ class EditPackage extends Component {
 	    this.setState({inclusion_error: ''});
 
 	    this.setState({form_complete: ''});
+	    this.setState({form_error_field: ''});
 	    this.setState({prompt_header: ''});
     	this.setState({prompt_message: ''});
 	}
@@ -90,7 +92,8 @@ class EditPackage extends Component {
 	}
 
 	checkForm = () => {
-	    var error = false;
+	    let error = false;
+	    const re = /^-?\d*(\.\d+)?$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
@@ -111,14 +114,18 @@ class EditPackage extends Component {
 	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
 	      this.setState({form_complete: true});
-	      this.submitEdit();
-	      this.setState({name: ''});
-	      this.setState({price: ''});
-	      this.setState({inclusion: ''});
-
-	      this.setState({name_error: ''});
-	      this.setState({price_error: ''});
-	      this.setState({inclusion_error: ''});
+	      if(re.test(this.state.price)){
+	     	this.submitEdit();
+		    this.setState({name: ''});
+	    	this.setState({price: ''});
+	    	this.setState({inclusion: ''});
+		    this.cancel();
+	      }else{
+	        this.setState({form_error_field: true});
+	        this.setState({price_error: true});
+	        this.setState({prompt_header: 'Incorrect value for price'}); 
+	        this.setState({prompt_message: 'Please enter a correct value for package price.'});
+	      }
 	    }
 
 	}
@@ -161,7 +168,7 @@ class EditPackage extends Component {
 	             
 	                <Form.Input label='Inclusions' defaultValue={this.state.inclusion} onChange={this.handleInclusionChange} error={this.state.inclusion_error}/>
 	                	
-	                {(this.state.form_complete===false) ?
+	                {(this.state.form_complete===false || this.state.form_error_field===true) ?
 	                  <Message
 	                    header={this.state.prompt_header}
 	                    content={this.state.prompt_message}
