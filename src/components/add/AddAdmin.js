@@ -230,7 +230,7 @@ export default class AddAdmin extends Component {
                 </Form.Group>
 
                 <Form.Field>
-                  <label style={{color: 'red'}}> *Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
+                  <label> Password must contain atleast 8 characters and atleast 1 uppercase letter.</label>
                 </Form.Field>
 
                 <Form.Group inline>
