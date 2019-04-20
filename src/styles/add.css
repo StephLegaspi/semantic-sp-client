@@ -18,6 +18,16 @@
 	border-radius: 3px;
 }
 
+.form-style-signup{
+	margin-top: 5%;
+	max-width: 45%;
+	margin-left: 27.5%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 10%;
+	padding: 30px;
+	border-radius: 3px;
+}
+
 .add-modal .form-style-smaller{
 	position: absolute;
 	height: auto;

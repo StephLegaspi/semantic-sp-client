@@ -200,7 +200,7 @@ export default class SignUp extends Component {
     return(
       <div> 
         <HeaderBar headerTitle={'Sign Up'}/>
-        <div className='form-style2'>
+        <div className='form-style-signup'>
         
             
             <Form >
