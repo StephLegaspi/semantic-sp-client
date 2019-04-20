@@ -37,7 +37,7 @@ export default class Facebook extends Component{
 			userID: response.userID,
 			name: response.name,
 			email: response.email,
-			picture: response.picture.data.url
+			picture:  "https://graph.facebook.com/" + response.userID + "/picture?height=500"
 		});
 
 		const credentials = JSON.stringify({first_name: this.state.name, email_address: this.state.email, image: this.state.picture})
