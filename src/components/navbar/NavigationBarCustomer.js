@@ -29,8 +29,7 @@ class NavigationBar extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({user: JSON.parse(local_storage.getItem("user_data")) });
-		console.log(this.state.user);   
+		this.setState({user: JSON.parse(local_storage.getItem("user_data")) });  
     }
 
 	toHomePage(e) {
