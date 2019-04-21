@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Image, Segment} from 'semantic-ui-react'
+import { Image, Segment} from 'semantic-ui-react'
 
 import HeaderBar from '../headerBar/HeaderBar.js'
 import CardPackage from '../card/CardPackage.js'
@@ -64,19 +64,33 @@ class MotifsPortfolio extends Component {
 		          </div>
 		        </Segment>
 				
-				<div id='card-pics'>
-					<Card.Group itemsPerRow={2} >
-					    <Card image={`http://localhost:3001/${this.state.image2}`}/>
-					    <Card image={`http://localhost:3001/${this.state.image3}`}/>
-					    <Card image={`http://localhost:3001/${this.state.image4}`}/>
-					    <Card image={`http://localhost:3001/${this.state.image5}`}/>
-					    
-					    <CardPackage/>
-				        <CardRequest />
-	  				</Card.Group>
-				</div>
 
-				<Footer/>
+
+				<Segment vertical id='div-motif'>
+	                <div>
+	                  <Image.Group>
+	                    <div className="container-img-motif">
+	                      <Image src={`http://localhost:3001/${this.state.image2}`} id="img-motif"/>
+	                    </div>
+	                    <div className="container-img-motif">
+	                      <Image src={`http://localhost:3001/${this.state.image3}`} id="img-motif"/>
+	                    </div>
+	                    <div className="container-img-motif">
+	                      <Image src={`http://localhost:3001/${this.state.image4}`} id="img-motif"/>
+	                    </div>
+	                    <div className="container-img-motif">
+	                      <Image src={`http://localhost:3001/${this.state.image5}`} id="img-motif"/>
+	                    </div>
+	                  </Image.Group>
+
+	                  <CardPackage/>
+				        <CardRequest />
+	                </div>
+	        	</Segment>
+
+				<div style={{clear: 'both'}}>
+		          <Footer/>
+		        </div>
 			</div>
 		);
 	}
