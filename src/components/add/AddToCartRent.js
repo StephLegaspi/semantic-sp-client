@@ -13,27 +13,26 @@ import '../../styles/font.css';
 import local_storage from 'localStorage';
 
 class AddToCartRent extends Component {
-	constructor(props){
-		super(props);
+  constructor(props){
+    super(props);
 
-		this.state = {
-	    date: '',
+    this.state = {
+      date: '',
 
-	    data: [],
-	    prod_id: '',
-			colors_arr: [],
-			color_options: [],
+      data: [],
+      prod_id: '',
+      colors_arr: [],
+      color_options: [],
 
-			product_color_id: '',
-			product_quantity: 1,
-			cart_id: '',
+      product_color_id: '',
+      product_quantity: 1,
+      cart_id: '',
 
-			has_cart: '',
-			session_id: '',
-			cust_id: '',
+      has_cart: '',
+      session_id: '',
+      cust_id: '',
 
       success: false,
-      duplicate_form: false,
 
       product_color_error: '',
       form_complete: '',
@@ -44,15 +43,15 @@ class AddToCartRent extends Component {
       no_user: false
 
     };
-	}
+  }
 
     handleColorChange = (e, { value }) => {
-  	    this.setState({product_color_id: value, product_color_error: false});
-  	}
+        this.setState({product_color_id: value, product_color_error: false});
+    }
 
-  	handleQuantityChange = (e, { value }) => {
-  	    this.setState({product_quantity: value});
-  	}
+    handleQuantityChange = (e, { value }) => {
+        this.setState({product_quantity: value});
+    }
 
 
     setSuccess = () => {
@@ -69,7 +68,7 @@ class AddToCartRent extends Component {
       this.setState({no_user: false});
     }
 
-  	componentDidMount() {
+    componentDidMount() {
         this.setState({user_session: JSON.parse(local_storage.getItem("user_data")) })
         let self = this;
     
@@ -84,7 +83,7 @@ class AddToCartRent extends Component {
             self.setState({data: result.data});
             self.setState({prod_id: result.data[0].id});
         }).catch(err => {
-        	console.log(err);
+          console.log(err);
         })
 
         fetch('http://localhost:3001/v1/products/colors/' + self.props.match.params.id ,{
@@ -98,7 +97,7 @@ class AddToCartRent extends Component {
             self.setState({colors_arr: result.data});
             self.setColorOptions();
         }).catch(err => {
-        	console.log(err);
+          console.log(err);
         })
 
       if(this.state.user_session!==null){
@@ -142,7 +141,7 @@ class AddToCartRent extends Component {
           }else{
             this.setState({has_cart: 1});
             this.setState({cart_id: result.data[0].id});
-            this.checkDuplicate();
+            this.addCartProduct();
           }
         })
         .catch((e) => {
@@ -173,9 +172,9 @@ class AddToCartRent extends Component {
           console.log(e)
         })
       }
-  	}
+    }
 
-  	addShoppingCart = () => {
+    addShoppingCart = () => {
         /*ADD SHOPPING CART FIRST*/   
         const session_data = JSON.stringify({
             session_id: this.state.session_id,
@@ -193,43 +192,17 @@ class AddToCartRent extends Component {
           if(result.status){
             console.log("Successfully added shopping cart");
             this.setState({cart_id: result.data.insertId});
-            this.checkDuplicate();
-          }
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-    }
-
-    checkDuplicate = () => {
-        const cart = JSON.stringify({
-            cart_id: this.state.cart_id,
-        })
-
-        fetch(`http://localhost:3001/v1/shopping_cart_products/` + this.state.prod_id,{
-            headers: { 'Content-Type': 'application/json' },
-            method: "POST",
-            body: cart
-        })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          if(result.status === 404){
             this.addCartProduct();
-          }else{
-            this.setState({duplicate_form: true});
           }
         })
         .catch((e) => {
           console.log(e)
         })
-
     }
 
     addCartProduct = () => {
-		    /*ADD SHOPPING CART PRODUCTS*/
-		const prod = JSON.stringify({
+        /*ADD SHOPPING CART PRODUCTS*/
+    const prod = JSON.stringify({
             product_quantity: this.state.product_quantity, 
             product_color_id: this.state.product_color_id,
             shopping_cart_id : this.state.cart_id,
@@ -253,9 +226,9 @@ class AddToCartRent extends Component {
         .catch((e) => {
           console.log(e)
         })
-  	}
+    }
 
-  	setColorOptions = () => {
+    setColorOptions = () => {
       var col_options=[];
       var option_obj = {value: '', text: ''};
       var i;
@@ -266,27 +239,27 @@ class AddToCartRent extends Component {
         option_obj = {value: '', text: ''}
       }
       this.setState({color_options: col_options});
-  	}
+    }
 
-	render() {
-		return (
-			<div>
-				<HeaderBar headerTitle={''}/>
-		
+  render() {
+    return (
+      <div>
+        <HeaderBar headerTitle={''}/>
+    
 
         {this.state.data.map(product =>
         <div>
-  				<div class="ui fluid segment" id='img-holder'>
-  					<Image  src={`http://localhost:3001/${product.image}`} rounded size='big' />
-  				</div>
-  				<div class="ui fluid segment" id='desc-holder2'>
-  					<p className='title-header'> {product.name}</p>
-  					<p className='body-font'>  {product.price}  </p>
-  					<div className='div-label'>
-  						<label className='label-font'> Number of items available: {product.remaining} </label>
-  					</div>
+          <div class="ui fluid segment" id='img-holder'>
+            <Image  src={`http://localhost:3001/${product.image}`} rounded size='big' />
+          </div>
+          <div class="ui fluid segment" id='desc-holder2'>
+            <p className='title-header'> {product.name}</p>
+            <p className='body-font'>  {product.price}  </p>
+            <div className='div-label'>
+              <label className='label-font'> Number of items available: {product.remaining} </label>
+            </div>
             <br/>
-  					<Form>
+            <Form>
               <Form.Dropdown required label='Product Color' placeholder='Color' selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
 
               <Form.Input required label='Quantity' type='number' min={1} max={product.remaining} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
@@ -302,31 +275,27 @@ class AddToCartRent extends Component {
                     />
             : ''}
 
-  					<div className='div-label'>
+            <div className='div-label'>
               {product.remaining===0 ? 
                 <AddCartButton handleAddtoCart={this.checkForm} button_status={true}/>
               :  
-    						<AddCartButton handleAddtoCart={this.checkForm} button_status={false}/>
+                <AddCartButton handleAddtoCart={this.checkForm} button_status={false}/>
               }
-
-                {this.state.duplicate_form ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product is already in the cart.'}/> : ''}
-
                 {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
-                
                 {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
-  					</div>
+            </div>
             
-  				</div>
+          </div>
         </div>
-				)}
-				
-				<div style={{clear: 'both'}}>
-					<Footer/>
-				</div>
-				
-			</div>
-		);
-	}
+        )}
+        
+        <div style={{clear: 'both'}}>
+          <Footer/>
+        </div>
+        
+      </div>
+    );
+  }
 }
 
 export default AddToCartRent;
