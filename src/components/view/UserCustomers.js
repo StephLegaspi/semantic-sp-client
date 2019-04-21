@@ -76,6 +76,7 @@ class UserCustomers extends Component {
     }
 
 	render() {
+		const re = /^uploads\/.+/;
 		return (
 			<div>
 				<HeaderBar headerTitle={'Customers'}/>
@@ -86,7 +87,7 @@ class UserCustomers extends Component {
 
 				{this.state.data.map(customer =>
 				<Card id='card'>
-				    <Image src= {customer.image===null? 'http://localhost:3001/uploads/2019-04-05T11:02:58.063Zdefault_avatar.png' : `http://localhost:3001/${customer.image}`} rounded size='large' />
+				    <Image  src= {customer.image===null? 'http://localhost:3001/uploads/2019-04-05T11:02:58.063Zdefault_avatar.png' : re.test(customer.image) ? `http://localhost:3001/${customer.image}` : customer.image }  rounded size='large' />
 				    <Card.Content>
 				      <Card.Header>{customer.first_name + " " + customer.middle_name + " " + customer.last_name} </Card.Header>
 				      <Card.Meta>ID: {customer.id}</Card.Meta>
