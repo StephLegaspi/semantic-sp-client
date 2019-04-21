@@ -60,6 +60,8 @@ export default class AddRequest extends Component {
       prompt_message: '',
       prompt_header: '',
 
+      loading: false,
+
       user_session: JSON.parse(local_storage.getItem("user_data")),
       no_user: false
 
@@ -240,6 +242,7 @@ export default class AddRequest extends Component {
         this.setState({prompt_message: 'Please fill up all the required fields.'});  
       }else{
         this.setState({form_complete: true});
+        this.setState({loading: true});
         this.handleSubmit();
       }
     
@@ -279,6 +282,7 @@ export default class AddRequest extends Component {
         })
         .then((result) => {
           if(result.status === 200){
+            this.setState({loading: false});
             console.log("Successfully added request");
             this.setState({first_name: ''});
             this.setState({middle_name: ''});
@@ -300,6 +304,7 @@ export default class AddRequest extends Component {
             this.setState({success: true});
             window.location.href='/request-package'
           }else if(result.status===400){
+            this.setState({loading: false});
             this.setState({form_error_field: true});
             this.setState({prompt_header: 'Invalid Email Address or Contact Number'});
             this.setState({prompt_message: 'Please enter a valid email or contact number.'});
@@ -424,7 +429,7 @@ export default class AddRequest extends Component {
                   />
                 : ''}
 
-                <SendButton handleAdd={this.checkForm}/>
+                <SendButton handleAdd={this.checkForm} isLoading={this.state.loading}/>
                 {(this.state.success) ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Request has been successfuly sent!'}/> : '' }
                 
                 {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
