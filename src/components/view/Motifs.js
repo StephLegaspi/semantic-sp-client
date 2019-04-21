@@ -95,7 +95,7 @@ class Motifs extends Component {
 				    <Card.Content>
 				      <Card.Header>{motif.name}</Card.Header>
 				    </Card.Content>
-					<Image src={`http://localhost:3001/${motif.img}`} size='big' />
+					<Image src={`http://localhost:3001/${motif.img}`} style={{height: '200px'}} />
 				    <Card.Content extra>
 				    	<ShopButton handleView={this.toMotifsPortfolio} data_id={motif.id}/>
 				    </Card.Content>

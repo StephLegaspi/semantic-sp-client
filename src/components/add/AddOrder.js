@@ -212,7 +212,7 @@ class AddOrder extends Component {
                 </Form.Group>
 
                 <Form.Field>
-                  <label style={{color: 'red'}}> *Unit/House Number Street Name Barangay/District, City/Municipality</label>
+                  <label> Unit/House Number Street Name Barangay/District, City/Municipality</label>
                 </Form.Field>
 
               {(this.state.form_complete===false || this.state.form_error_field===true) ?
