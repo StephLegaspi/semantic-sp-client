@@ -140,7 +140,7 @@ class HomePage extends Component {
              
                 <div>
                   {this.state.motifs_data.map(motif =>
-                  <Image.Group >
+                  <Image.Group>
                     <div class="container-img">
                       <Image src={`http://localhost:3001/${motif.img}`} id="style-img"/>
                       <div className="middle-img">

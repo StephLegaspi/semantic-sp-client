@@ -67,9 +67,9 @@ class MotifsPortfolio extends Component {
 				<div id='card-pics'>
 					<Card.Group itemsPerRow={2} >
 					    <Card image={`http://localhost:3001/${this.state.image2}`}/>
-					    <Card image={`http://localhost:3001/${this.state.image3}`} />
-					    <Card image={`http://localhost:3001/${this.state.image4}`} />
-					    <Card image={`http://localhost:3001/${this.state.image5}`} />
+					    <Card image={`http://localhost:3001/${this.state.image3}`}/>
+					    <Card image={`http://localhost:3001/${this.state.image4}`}/>
+					    <Card image={`http://localhost:3001/${this.state.image5}`}/>
 					    
 					    <CardPackage/>
 				        <CardRequest />
