@@ -13,25 +13,24 @@ import '../../styles/font.css';
 import local_storage from 'localStorage';
 
 class AddToCart extends Component {
-	constructor(props){
-		super(props);
+  constructor(props){
+    super(props);
 
-		this.state = {
-			data: [],
-			prod_id: '',
-			colors_arr: [],
-			color_options: [],
+    this.state = {
+      data: [],
+      prod_id: '',
+      colors_arr: [],
+      color_options: [],
 
-			product_color_id: '',
-			product_quantity: 1,
-			cart_id: '',
+      product_color_id: '',
+      product_quantity: 1,
+      cart_id: '',
 
       has_cart: '',
       session_id: '',
       cust_id: '',
 
       success: false,
-      duplicate_form: false,
 
       product_color_error: '',
       form_complete: '',
@@ -41,18 +40,18 @@ class AddToCart extends Component {
       user_session: JSON.parse(local_storage.getItem("user_data")),
       no_user: false
 
-		}
-		this.handleColorChange = this.handleColorChange.bind(this);
+    }
+    this.handleColorChange = this.handleColorChange.bind(this);
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
-	}
+  }
 
-  	handleColorChange = (e, { value }) => {
-  	    this.setState({product_color_id: value, product_color_error: false});
-  	}
+    handleColorChange = (e, { value }) => {
+        this.setState({product_color_id: value, product_color_error: false});
+    }
 
-  	handleQuantityChange = (e, { value }) => {
-  	    this.setState({product_quantity: value});
-  	}
+    handleQuantityChange = (e, { value }) => {
+        this.setState({product_quantity: value});
+    }
 
     setSuccess = () => {
       this.setState({success: false});
@@ -83,7 +82,7 @@ class AddToCart extends Component {
             self.setState({data: result.data});
             self.setState({prod_id: result.data[0].id});
         }).catch(err => {
-        	console.log(err);
+          console.log(err);
         })
 
         fetch('http://localhost:3001/v1/products/colors/' + self.props.match.params.id ,{
@@ -97,7 +96,7 @@ class AddToCart extends Component {
             self.setState({colors_arr: result.data});
             self.setColorOptions();
         }).catch(err => {
-        	console.log(err);
+          console.log(err);
         })
 
       if(this.state.user_session!==null){
@@ -140,7 +139,7 @@ class AddToCart extends Component {
           }else{
             this.setState({has_cart: 1});
             this.setState({cart_id: result.data[0].id});
-            this.checkDuplicate();
+            this.addCartProduct();
           }
         })
         .catch((e) => {
@@ -171,7 +170,7 @@ class AddToCart extends Component {
           console.log(e)
         })
       }
-  	}
+    }
 
     addShoppingCart = () => {
         /*ADD SHOPPING CART FIRST*/ 
@@ -191,44 +190,17 @@ class AddToCart extends Component {
           if(result.status===200){
             console.log("Successfully added shopping cart");
             this.setState({cart_id: result.data.insertId});
-            this.checkDuplicate();
-          }
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-    }
-
-    checkDuplicate = () => {
-        const cart = JSON.stringify({
-            cart_id: this.state.cart_id,
-        })
-
-        fetch(`http://localhost:3001/v1/shopping_cart_products/` + this.state.prod_id,{
-            headers: { 'Content-Type': 'application/json' },
-            method: "POST",
-            body: cart
-        })
-        .then((response) => {
-          return response.json()
-        })
-        .then((result) => {
-          if(result.status === 404){
             this.addCartProduct();
-          }else{
-            this.setState({duplicate_form: true});
           }
         })
         .catch((e) => {
           console.log(e)
         })
-
     }
 
-  	addCartProduct = () => {
-		    /*ADD SHOPPING CART PRODUCTS*/
-   
-		    const prod = JSON.stringify({
+    addCartProduct = () => {
+        /*ADD SHOPPING CART PRODUCTS*/
+        const prod = JSON.stringify({
             product_quantity: this.state.product_quantity, 
             product_color_id: this.state.product_color_id,
             shopping_cart_id : this.state.cart_id,
@@ -252,8 +224,7 @@ class AddToCart extends Component {
         .catch((e) => {
           console.log(e)
         })
-
-  	}
+    }
 
     setColorOptions = () => {
       var col_options=[];
@@ -266,32 +237,32 @@ class AddToCart extends Component {
         option_obj = {value: '', text: ''}
       }
       this.setState({color_options: col_options});
-  	}
+    }
 
-	render() {
-		return (
-			<div>
-				<HeaderBar headerTitle={''}/>
-	
+  render() {
+    return (
+      <div>
+        <HeaderBar headerTitle={''}/>
+  
         {this.state.data.map(product =>
         <div>
-  				<div id='img-holder'>
-  					<Image  src={`http://localhost:3001/${product.image}`} rounded size='big' />
-  				</div>
-  				<div class="ui fluid segment" id='desc-holder2'>
-  					<p className='title-header'> {product.name}</p>
-  					<p className='body-font'>  P {product.price} </p>
+          <div id='img-holder'>
+            <Image  src={`http://localhost:3001/${product.image}`} rounded size='big' />
+          </div>
+          <div class="ui fluid segment" id='desc-holder2'>
+            <p className='title-header'> {product.name}</p>
+            <p className='body-font'>  P {product.price} </p>
             <div className='div-label'>
               <label className='label-font'> Number of items available: {product.remaining} </label>
             </div>
             <br/>
             <Form>
-  						<Form.Dropdown required label='Product Color' placeholder='Color' selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
+              <Form.Dropdown required label='Product Color' placeholder='Color' selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
 
-  						<Form.Input required label='Quantity' type='number' min={1} max={product.remaining} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
+              <Form.Input required label='Quantity' type='number' min={1} max={product.remaining} defaultValue={this.state.product_quantity} onChange={this.handleQuantityChange} style={{marginLeft: '22%', width: '46%'}}/>
 
-  						<label> Description: </label>
-  						<p style={{marginLeft: '25%'}}> {product.description}</p>
+              <label> Description: </label>
+              <p style={{marginLeft: '25%'}}> {product.description}</p>
             </Form>
 
             {(this.state.form_complete===false) ?
@@ -301,30 +272,28 @@ class AddToCart extends Component {
                     />
             : ''}
 
-  					<div className='div-label'>
+            <div className='div-label'>
               {product.remaining===0 ? 
-  						  <AddCartButton handleAddtoCart={this.checkForm} button_status={true}/>
+                <AddCartButton handleAddtoCart={this.checkForm} button_status={true}/>
               :
                 <AddCartButton handleAddtoCart={this.checkForm} button_status={false}/>
               }
 
-              {this.state.duplicate_form ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product is already in the cart.'}/> : ''}
               {this.state.success ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'Product has been successfuly added to cart!'}/> : ''}
-
               {(this.state.no_user===true) ? <LoginModal changeSession={this.setSession} cancelAction={this.cancelLogin} modalStatus={true}/> : '' }
-  					</div>
+            </div>
             
-  				</div>
+          </div>
         </div>
-				)}
-				
-				<div style={{clear: 'both'}}>
-					<Footer/>
-				</div>
-				
-			</div>
-		);
-	}
+        )}
+        
+        <div style={{clear: 'both'}}>
+          <Footer/>
+        </div>
+        
+      </div>
+    );
+  }
 }
 
 export default AddToCart;
