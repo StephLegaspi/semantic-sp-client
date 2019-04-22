@@ -42,7 +42,7 @@ class FAQsPage extends Component {
 					<List as='ul'>
 					{this.state.data.map(faq =>
 						<List.Item>
-							<List.Content as='li' className='paragraph-font'>{faq.question}?</List.Content>
+							<List.Content as='li' className='question-font'>{faq.question}?</List.Content>
 							<List.Content>
 								{faq.answer}
 							</List.Content>
