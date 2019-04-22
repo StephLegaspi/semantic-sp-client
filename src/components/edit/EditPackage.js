@@ -93,7 +93,6 @@ class EditPackage extends Component {
 
 	checkForm = () => {
 	    let error = false;
-	    const re = /^-?\d*(\.\d+)?$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
@@ -113,19 +112,12 @@ class EditPackage extends Component {
 	      this.setState({prompt_header: 'Incomplete Information'}); 
 	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
-	      this.setState({form_complete: true});
-	      if(re.test(this.state.price)){
-	     	this.submitEdit();
-		    this.setState({name: ''});
+	    	this.setState({form_complete: true});
+	    	this.submitEdit();
+			this.setState({name: ''});
 	    	this.setState({price: ''});
 	    	this.setState({inclusion: ''});
-		    this.cancel();
-	      }else{
-	        this.setState({form_error_field: true});
-	        this.setState({price_error: true});
-	        this.setState({prompt_header: 'Incorrect value for price'}); 
-	        this.setState({prompt_message: 'Please enter a correct value for package price.'});
-	      }
+			this.cancel();
 	    }
 
 	}

@@ -60,7 +60,6 @@ export default class AddPackage extends Component {
 
   checkForm = () => {
     var error = false;
-    let re = /^-?\d*(\.\d+)?$/;
 
     if(this.state.name === ''){
       this.setState({name_error: true});
@@ -81,15 +80,8 @@ export default class AddPackage extends Component {
       this.setState({prompt_message: 'Please fill up all the required fields.'});  
     }else{
       this.setState({form_complete: true});
-      if(re.test(this.state.price)){
-        this.handleSubmit();
-        this.cancel();
-      }else{
-        this.setState({form_error_field: true});
-        this.setState({price_error: true});
-        this.setState({prompt_header: 'Incorrect value for price'}); 
-        this.setState({prompt_message: 'Please enter a correct value for package price.'});
-      }
+      this.handleSubmit();
+      this.cancel();
     }
 
   }
