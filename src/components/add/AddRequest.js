@@ -364,6 +364,24 @@ export default class AddRequest extends Component {
             <Form>
 
                 <Form.Group widths='equal'>
+                  <Form.Dropdown required label='Catering Package' placeholder='Catering Package' search selection options={this.state.package_options2} value={this.state.package_id} onChange={this.handlePackageChange} error={this.state.package_error}/>
+                  <Form.Dropdown required label='Event Motif' placeholder='Event Motif' search selection options={this.state.motif_options2} value={this.state.motif_id} onChange={this.handleMotifChange} error={this.state.motif_error}/>
+                  <Form.Dropdown required label='Food Menu' placeholder='Food Menu' search selection options={this.state.menu_options2} value={this.state.menu_id} onChange={this.handleMenuChange} error={this.state.menu_error}/>
+                </Form.Group>
+
+                <Form.Group widths='equal'>
+                  <Form.Field>
+                    <a href='/packages'> *See Catering Packages here</a>
+                  </Form.Field>
+                  <Form.Field>
+                    <a href='/motifs'> *See Event Motifs here</a>
+                  </Form.Field>
+                  <Form.Field>
+                    <a href='/menus'> *See Food Menus here</a>
+                  </Form.Field>
+                </Form.Group>
+
+                <Form.Group widths='equal'>
                   <Form.Input fluid required label='First name' placeholder='First name' value={this.state.first_name} onChange={this.handleFirstNameChange} error={this.state.fname_error} />
                   <Form.Input fluid label='Middle name' placeholder='Middle name' value={this.state.middle_name} onChange={this.handleMiddleNameChange}/>
                   <Form.Input fluid required label='Last name' placeholder='Last name' value={this.state.last_name} onChange={this.handleLastNameChange} error={this.state.lname_error} />
@@ -403,24 +421,7 @@ export default class AddRequest extends Component {
                 </Form.Group>
 
                 <Form.Input required label='Venue Address' placeholder='Venue Address' value={this.state.event_location} onChange={this.handleEventLocationChange} error={this.state.event_location_error}/>
-                 
-                <Form.Group widths='equal'>
-                  <Form.Dropdown required label='Catering Package' placeholder='Catering Package' search selection options={this.state.package_options2} value={this.state.package_id} onChange={this.handlePackageChange} error={this.state.package_error}/>
-                  <Form.Dropdown required label='Event Motif' placeholder='Event Motif' search selection options={this.state.motif_options2} value={this.state.motif_id} onChange={this.handleMotifChange} error={this.state.motif_error}/>
-                  <Form.Dropdown required label='Food Menu' placeholder='Food Menu' search selection options={this.state.menu_options2} value={this.state.menu_id} onChange={this.handleMenuChange} error={this.state.menu_error}/>
-                </Form.Group>
-
-                <Form.Group widths='equal'>
-                  <Form.Field>
-                    <a href='/packages'> *See Catering Packages here</a>
-                  </Form.Field>
-                  <Form.Field>
-                    <a href='/motifs'> *See Event Motifs here</a>
-                  </Form.Field>
-                  <Form.Field>
-                    <a href='/menus'> *See Food Menus here</a>
-                  </Form.Field>
-                </Form.Group>
+                
 
                 {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
