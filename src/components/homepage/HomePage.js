@@ -162,12 +162,12 @@ class HomePage extends Component {
                 </div>
         </Segment>
 
-        <Segment vertical id='div-homepage-smaller'>
-              <p className='title-header'> Catering Packages</p>
+        <Segment vertical id='div-homepage'>
+              <p className='title-header'> CATERING PACKAGES</p>
               <p className='body-font'> Our catering packages are inclusive of everything you will need for any kind of event, so you get exactly what you want while staying within your budget. </p>
 
 
-              <Grid inverted divided stackable style={{marginLeft: '5%'}}>
+              <Grid inverted divided stackable style={{marginLeft: '4%'}}>
                 <Grid.Row>
                 {this.state.packages_data.map(pkg =>
                 <Grid.Column width={4} style={{marginLeft: '4%'}}>
@@ -180,7 +180,7 @@ class HomePage extends Component {
         </Segment>
 
         <Segment vertical id='div-homepage'>
-              <p className='title-header'> Event Motifs</p>
+              <p className='title-header'> EVENT MOTIFS</p>
               <p className='body-font'>  May it be a wedding, debut, or kid’s birthday party, let us create the perfect theme for your event. You can choose from one of our pre-created event motifs that will surely make your dream event come true.  </p>
              
                 <div>
@@ -198,11 +198,11 @@ class HomePage extends Component {
                 <Button id='homepage-button' onClick={this.toMotifs}> View More </Button>
         </Segment>
 
-        <Segment vertical id='div-homepage-smaller'>
-              <p className='title-header'> Food Menus</p>
+        <Segment vertical id='div-homepage'>
+              <p className='title-header'> FOOD MENUS</p>
               <p className='body-font'> We understand that selecting the right caterer is one of the most essential parts of your event. That's why we offer you a wide variety of food choices that will suit your taste. </p>
 
-              <Grid inverted divided stackable style={{marginLeft: '5%'}}>
+              <Grid inverted divided stackable style={{marginLeft: '4%'}}>
                 <Grid.Row>
                 {this.state.menus_data.map(menu =>
                 <Grid.Column width={4} style={{marginLeft: '4%'}}>
@@ -215,7 +215,7 @@ class HomePage extends Component {
         </Segment>
 
         <Segment vertical id='div-homepage-whole'>
-        <p className='title-header-larger'> About Us</p>
+        <p className='title-header-larger'> ABOUT US</p>
 
         <div class="ui fluid segment" id='img-homepage-holder'>
           <Image circular src={logo} className='logo-pic'/>
