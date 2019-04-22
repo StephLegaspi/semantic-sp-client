@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Card } from 'semantic-ui-react'
+import { Image, Card, Segment } from 'semantic-ui-react'
 
 import ShopButton from '../button/ShopButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -7,6 +7,10 @@ import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
 import '../../styles/view.css';
+import '../../styles/homepage.css';
+import '../../styles/font.css';
+
+import sample_header from '../../images/debut/debut3.jpg'
 
 class Motifs extends Component {
 	constructor(props){
@@ -85,7 +89,14 @@ class Motifs extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderBar headerTitle={'Event Motifs'}/>
+				<Segment id='container'>
+		          <HeaderBar headerTitle={'Event Motifs'}/>
+		            <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
+		            <div id='div-header'>
+		              <p className='header-font2' style={{marginTop: '27%'}}> We have here our pre-customed event motifs that will definitely make your event a magical and memorable one.  </p>
+		            </div>
+		        </Segment>
+
 				<SearchBar titleHolder={'Search motif name..'} searchData={this.searchByName} inputChange={this.handleMotifChange}/>
       			
       			<div id='card-div3'>

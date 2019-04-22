@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react'
+import { Card, Image, Segment } from 'semantic-ui-react'
 
 import ShopButton from '../button/ShopButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
@@ -7,6 +7,10 @@ import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
 
 import '../../styles/view.css';
+import '../../styles/homepage.css';
+import '../../styles/font.css';
+
+import sample_header from '../../images/wedding/wedding3.jpg'
 
 class Packages extends Component {
 	constructor(props){
@@ -84,7 +88,14 @@ class Packages extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderBar headerTitle={'Catering Packages'}/>
+				<Segment id='container'>
+		          <HeaderBar headerTitle={'Catering Packages'}/>
+		            <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
+		            <div id='div-header'>
+		              <p className='header-font2' style={{marginTop: '29%'}}> We offer you a variety of packages where you can choose from, depending on your needs and budget.  </p>
+		            </div>
+		        </Segment>
+
 				<SearchBar titleHolder={'Search package name..'} searchData={this.searchByName} inputChange={this.handlePackageChange}/>
       			
       			<div id='card-div2'>

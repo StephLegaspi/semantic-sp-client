@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react'
+import { Card, Segment, Image } from 'semantic-ui-react'
 
 import '../../styles/view.css';
 
@@ -7,6 +7,11 @@ import ShopButton from '../button/ShopButton.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import Footer from '../footer/Footer.js'
 import SearchBar from '../searchBar/SearchBar.js'
+
+import '../../styles/homepage.css';
+import '../../styles/font.css';
+
+import sample_header from '../../images/wedding/wedding1.jpg'
 
 class Menus extends Component {
 	constructor(props){
@@ -84,7 +89,14 @@ class Menus extends Component {
 	render() {
 		return (
 			<div>
-				<HeaderBar headerTitle={'Food Menus'}/>
+				<Segment id='container'>
+                  <HeaderBar headerTitle={'Food Menus'}/>
+                    <Image size='large' src={sample_header} style={{ minWidth:'100%'}}/>
+                    <div id='div-header'>
+                      <p className='header-font2' style={{marginTop: '28%'}}> Your event would not be complete without good food. Here are our food menus to complete your dream event. </p>
+                    </div>
+                </Segment>
+
 				<SearchBar titleHolder={'Search menu name..'} searchData={this.searchByName} inputChange={this.handleMenuChange}/>
       			
       			<div id='card-div2'>
