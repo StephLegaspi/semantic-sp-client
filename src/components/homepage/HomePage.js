@@ -179,7 +179,7 @@ class HomePage extends Component {
         <div class="ui fluid segment" id='about-div'>
           <br/> <br/> 
           <p className='paragraph-font'> 
-             For more than 10 years , we have been blessed to be a part of numerous weddings, debuts, and kid parties. In all these events, we make sure we are not only your caterer but more importantly your partner in every step from conceptualizing, budgeting and planning up to final execution. These events have given us valuable insights and ideas that inspire our continuous effort to provide better and improved services to wider set of clients. But what really matters to us is our relationship with our customers. We consider ourselves not only a caterer, but also a partner that will assist you during the process of conceptualizing, budgeting, planning, and on the day of your event.We are here to help you make your dream event possible.
+             For more than a decade, we have been part of numerous weddings, debuts and kiddie parties, and been in the business of providing party needs and supplies for any event. Through years, we have gained loyal customers because we always make sure that we render quality services and products to them. It is of our mission to not only be just your caterer, but also your partner in conceptualizing, planning, budgeting and executing your event. Above all, we value with utmost importance our relationship with our dear customers because we want to help them make their dream event come true.
           </p>
         </div>
         </Segment>
