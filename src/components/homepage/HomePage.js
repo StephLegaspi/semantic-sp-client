@@ -8,8 +8,13 @@ import Footer from '../footer/Footer.js'
 
 import '../../styles/homepage.css'
 import '../../styles/font.css'
+
 import sample_header from '../../images/header.jpg'
 import logo from '../../images/logo.jpg'
+import hat_img from '../../images/hat.jpg'
+import wedding_img from '../../images/wedding/wedding6.jpg'
+import debut_img from '../../images/debut/debut6.jpg'
+import bday_img from '../../images/birthday/bday6.jpg'
 
 class HomePage extends Component {
   constructor(props){
@@ -115,6 +120,46 @@ class HomePage extends Component {
             <Icon name='file text' size='medium'/>
                 Request Package
           </Button>
+        </Segment>
+
+        <Segment vertical id='div-homepage'>
+              <p className='title-header'> OUR SERVICES</p>
+              <p className='body-font'> We offer catering services for events, such as weddings, debuts and birthday parties, as well as party needs and supplies for order or rental.  </p>
+             
+                <div>
+                  <Image.Group>
+                    <div className="container-img2">
+                      <Image src={wedding_img} id="style-img"/>
+                      <div className="middle-img2" style={{left: '10%'}}>
+                        <div className="text-middle">Weddings</div>
+                      </div>
+                    </div>
+                  </Image.Group>
+                  <Image.Group>
+                    <div className="container-img2">
+                      <Image src={debut_img} id="style-img"/>
+                      <div className="middle-img2" style={{left: '13%'}}>
+                        <div className="text-middle">Debuts</div>
+                      </div>
+                    </div>
+                  </Image.Group>
+                  <Image.Group>
+                    <div className="container-img2">
+                      <Image src={bday_img} id="style-img"/>
+                      <div className="middle-img2" style={{left: '9%'}}>
+                        <div className="text-middle">Birthdays</div>
+                      </div>
+                    </div>
+                  </Image.Group>
+                  <Image.Group>
+                    <div className="container-img2">
+                      <Image src={hat_img} id="style-img"/>
+                     <div className="middle-img2" style={{left: '14%'}}>
+                        <div className="text-middle">Party Needs</div>
+                      </div>
+                    </div>
+                  </Image.Group>
+                </div>
         </Segment>
 
         <Segment vertical id='div-homepage-smaller'>
