@@ -112,7 +112,7 @@ class ShopRent extends Component {
 						      <Card.Header>{product.name}</Card.Header>
 						      <Card.Description >P {product.price}/pc</Card.Description>
 						    </Card.Content>
-						    <Image id='img-zoom' src={`http://localhost:3001/${product.image}`} rounded size='small' style={{marginLeft: '20%'}}/>
+						    <Image id='img-zoom' src={`http://localhost:3001/${product.image}`} size='large' style={{height: '250px'}}/>
 						    <Card.Content extra>
 						       <ShopButton handleView={this.toAddToCartRent} data_id={product.id}/>
 						    </Card.Content>
