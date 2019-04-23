@@ -171,7 +171,7 @@ class MenusPortfolio extends Component {
 
 				        <Card id='card-menu'>
 				          <Card.Content>
-				            <Card.Header className='label-font2'>Soup</Card.Header>
+				            <Card.Header className='label-font2'>Pasta/Noodle</Card.Header>
 				            {this.state.soup_arr.map(soup =>
 				            <List>
 							    <List.Item>

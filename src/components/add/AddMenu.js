@@ -170,7 +170,7 @@ export default class AddPackage extends Component {
 
                 <Form.Group widths='equal'>
                   <Form.TextArea required label='Dessert' placeholder='e.g. Dessert1, Dessert2, Dessert3' style={{ minHeight: 100 }} onChange={this.handleDessertChange} error={this.state.dessert_error}/>
-                  <Form.TextArea required label='Soup' placeholder='e.g. Soup1, Soup2, Soup3' style={{ minHeight: 100 }} onChange={this.handleSoupChange} error={this.state.soup_error}/>
+                  <Form.TextArea required label='Pasta/Noodle' placeholder='e.g. Soup1, Soup2, Soup3' style={{ minHeight: 100 }} onChange={this.handleSoupChange} error={this.state.soup_error}/>
                 </Form.Group>
 
                 <Form.Group widths='equal'>

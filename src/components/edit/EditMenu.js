@@ -359,7 +359,7 @@ class EditMenu extends Component {
 
 	                <Form.Group widths='equal'>
 	                    <Form.Input label='Dessert' defaultValue={this.state.dessert} onChange={this.handleDessertChange} error={this.state.dessert_error}/>
-	                    <Form.Input label='Soup' defaultValue={this.state.soup} onChange={this.handleSoupChange} error={this.state.soup_error}/>
+	                    <Form.Input label='Pasta/Noodle' defaultValue={this.state.soup} onChange={this.handleSoupChange} error={this.state.soup_error}/>
 	                </Form.Group>
 
 	                <Form.Group widths='equal'>
