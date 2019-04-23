@@ -195,7 +195,7 @@ class EditProduct extends Component {
 
 	                <Form.Input label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-	               <Form.Input label='Color/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>  
+	               <Form.Input label='Color/s or Variant/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>  
 
 	                <Form.Group inline>
 	                  <label>Display Product: </label>

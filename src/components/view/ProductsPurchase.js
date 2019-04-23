@@ -97,7 +97,7 @@ class ProductsTable extends Component {
 				        <Table.HeaderCell style={{width: '20%'}}>Description</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Price</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Available for display</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}>Product Color/s</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '5%'}}>Product Color/s or Variant/s</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '2%'}}></Table.HeaderCell>
 				      </Table.Row>

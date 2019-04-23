@@ -112,9 +112,9 @@ class Shop extends Component {
 						<Card id='card2'>
 							<Card.Content>
 						      <Card.Header>{product.name}</Card.Header>
-						      <Card.Description >P {product.price} /pc</Card.Description>
+						      <Card.Description >P {product.price}</Card.Description>
 						    </Card.Content>
-						    <Image id='img-zoom' src={`http://localhost:3001/${product.image}`} rounded size='small' style={{marginLeft: '20%'}}/>
+						    <Image id='img-center' src={`http://localhost:3001/${product.image}`}  size='large' style={{height: '250px'}}/>
 						    <Card.Content extra>
 						       <ShopButton handleView={this.toAddToCart} data_id={product.id}/>
 						    </Card.Content>

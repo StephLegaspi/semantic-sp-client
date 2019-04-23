@@ -188,7 +188,7 @@ export default class AddProduct extends Component {
 
                   <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-                  <Form.Input required label='Color/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
+                  <Form.Input required label='Color/s or Variant/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
 
                   <Form.Group inline>
                     <label>Product Image: </label>
