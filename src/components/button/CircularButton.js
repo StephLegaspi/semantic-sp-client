@@ -14,7 +14,7 @@ class CircularButton extends Component{
 		return(
 			<Button animated circular id='circle-homepage' onClick={this.callClick} >
                     <Button.Content visible>{this.props.data.name}</Button.Content>
-                    {this.props.category === 'package' ? <Button.Content visible className='label-font2'>P {this.props.data.price}</Button.Content> : ''}
+                    {this.props.category === 'package' ? <Button.Content visible className='label-font2'>P {this.props.data.price} per person</Button.Content> : ''}
                     
                     <Button.Content hidden className='label-font2'>
                       View
