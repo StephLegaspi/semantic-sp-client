@@ -26,6 +26,7 @@ class NavigationBar extends Component {
 		this.toPortfolio = this.toPortfolio.bind(this);
 		this.toLogin = this.toLogin.bind(this);
 		this.toProfile = this.toProfile.bind(this);
+		this.toFAQs = this.toFAQs.bind(this);
 	}
 
 	componentDidMount() {
@@ -84,6 +85,10 @@ class NavigationBar extends Component {
 		window.location.href='/'
 	}
 
+	toFAQs(e) {
+	    this.props.history.push('/FAQs');
+	}
+
 	render() {
 		return (
 			<div>
@@ -110,19 +115,19 @@ class NavigationBar extends Component {
 			        
 			        {(this.state.user===null) ? ( 
 			    	<Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '39%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '26.5%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
-
-				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toSignUp} >Sign Up</Menu.Item>
-				        <Menu.Item as='a'id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toLogin} >Login</Menu.Item>
+				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toFAQs} >FAQs</Menu.Item>
+				        <Menu.Item as='a' id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toSignUp} >Sign Up</Menu.Item>
+				        <Menu.Item as='a'id={this.props.activePage[11] ? 'lighter': 'menu-font'} onClick={this.toLogin} >Login</Menu.Item>
 
      				</Container>
 				    ) : (
 				    <Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '39%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '26.5%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
-
-				         <Menu.Item as='a' id={this.props.activePage[11] ? 'lighter': 'menu-font'} onClick={this.toProfile} >Profile</Menu.Item>
+				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toFAQs} >FAQs</Menu.Item>
+				         <Menu.Item as='a' id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toProfile} >Profile</Menu.Item>
 				        <Menu.Item as='a'id= 'menu-font' onClick={this.toLogOut} >Logout</Menu.Item>
 				        
      				</Container>

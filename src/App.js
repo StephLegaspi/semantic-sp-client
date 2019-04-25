@@ -164,7 +164,7 @@ class App extends Component {
 			<Route exact={true} path="/sign-up" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,1]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
 																			<SignUp   {...props} />
 							             								</div>)}}> 
 			</Route>
@@ -220,21 +220,21 @@ class App extends Component {
 			<Route exact={true} path="/FAQs" render={(props) => {
 					             								return(
 							             								<div>
-																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0]}/>
+																			<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,1]}/>
 																			<FAQsPage   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/login/customer" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
+							             									<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,0,1]}/>
 																			<LoginCustomer   {...props} />
 							             								</div>)}}> 
 			</Route>
 			<Route exact={true} path="/profile-customer" render={(props) => {
 					             								return(
 							             								<div>
-							             									<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,0, 1]}/>
+							             									<NavigationBarCustomer {...props} activePage={[0,0,0,0,0,0,0,0,0,0,1]}/>
 																			<ProfileCustomer   {...props} />
 							             								</div>)}}> 
 			</Route>
