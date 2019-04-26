@@ -94,7 +94,7 @@ class ShoppingCart extends Component {
         .then((result) => {
           if(result.status===200){
             self.setState({cart_id: result.data[0].id});
-            self.setState({total_bill: result.data[0].total_bill});
+            self.setState({total_bill: (result.data[0].total_bill).toFixed(2)});
             self.setState({total_items: result.data[0].total_items});
             self.getCartProducts();
             self.setState({empty_cart: false});            
@@ -154,11 +154,11 @@ class ShoppingCart extends Component {
           <Card.Content>
             <Card.Header style={{textAlign: 'center'}}>ORDER SUMMARY</Card.Header>
             <Card.Description style={{marginLeft: '23%'}}>Total number of items: 
-              <label className='label-font' style={{marginLeft: '10%'}}>{this.state.total_items} </label> 
+              <label className='label-font' style={{marginLeft: '18%'}}>{this.state.total_items} </label> 
             </Card.Description>
 
             <Card.Description style={{marginLeft: '23%'}}>Total price: 
-              <label className='label-font' style={{marginLeft: '32%'}}> {this.state.total_bill} </label>
+              <label className='label-font' style={{marginLeft: '32%'}}> P {this.state.total_bill} </label>
             </Card.Description>
 
             <AddOrder id_cart={this.state.cart_id} table_name={'purchase'} button_status={this.state.total_items===0? true : this.state.empty_cart} route={'purchase'}/>
