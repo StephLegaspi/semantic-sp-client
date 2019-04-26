@@ -185,6 +185,15 @@ export default class AddRequest extends Component {
 
   checkForm = () => {
     var error = false;
+    var today = new Date();
+    var cur_date;
+
+    if(((today.getMonth()+1)/10) >= 1 ){ //2-digit
+      cur_date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    }else{
+      cur_date = today.getDate()+'-0'+(today.getMonth()+1)+'-'+today.getFullYear();
+    }
+
     
       if(this.state.first_name === ''){
         this.setState({fname_error: true});
@@ -241,9 +250,15 @@ export default class AddRequest extends Component {
         this.setState({prompt_header: 'Incomplete Information'}); 
         this.setState({prompt_message: 'Please fill up all the required fields.'});  
       }else{
-        this.setState({form_complete: true});
-        this.setState({loading: true});
-        this.handleSubmit();
+        if(this.state.date===cur_date){
+          this.setState({form_error_field: true});
+          this.setState({prompt_header: 'Invalid Date'}); 
+          this.setState({prompt_message: 'Please choose a date that is not today.'});
+        }else{
+          this.setState({form_complete: true});
+          this.setState({loading: true});
+          this.handleSubmit();
+        }
       }
     
 
@@ -302,7 +317,7 @@ export default class AddRequest extends Component {
             this.setState({prompt_message: ''});
             this.setState({form_error_field: ''});
             this.setState({success: true});
-            window.location.href='/request-package'
+            //window.location.href='/request-package'
           }else if(result.status===400){
             this.setState({loading: false});
             this.setState({form_error_field: true});
