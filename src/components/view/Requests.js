@@ -169,10 +169,10 @@ class Requests extends Component {
 				        <Table.Cell>{request.status}</Table.Cell>
 				        <Table.Cell>{request.update_timestamp2}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditRequest data={request} handleUpdate={this.update} statusButton={request.status==='Successful' ? true:false}/>
+				        	<EditRequest data={request} handleUpdate={this.searchByStatus} statusButton={request.status==='Successful' ? true:false}/>
 				        </Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<DeleteModal data_id={request.id} table_name={'requests'} handleUpdate={this.update} statusButton={(request.status==='Successful' || request.status==='Unsuccessful') ? false:true}/>
+				        	<DeleteModal data_id={request.id} table_name={'requests'} handleUpdate={this.searchByStatus} statusButton={(request.status==='Successful' || request.status==='Unsuccessful') ? false:true}/>
 				        </Table.Cell>
 				      </Table.Row>
 				    )}  
