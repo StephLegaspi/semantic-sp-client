@@ -322,7 +322,7 @@ export default class AddRequest extends Component {
             this.setState({prompt_message: ''});
             this.setState({form_error_field: ''});
             this.setState({success: true});
-            //window.location.href='/request-package'
+            window.location.href='/request-package'
           }else if(result.status===400){
             this.setState({loading: false});
             this.setState({form_error_field: true});
