@@ -40,6 +40,7 @@ export default class AddRequest extends Component {
       package_id: '',
       motif_id: '',
       menu_id: '',
+      additional_request: '',
       success: false,
 
       fname_error: '',
@@ -79,6 +80,7 @@ export default class AddRequest extends Component {
     this.handleMotifChange = this.handleMotifChange.bind(this);
     this.handleMenuChange = this.handleMenuChange.bind(this);
     this.handlePersonsChange = this.handlePersonsChange.bind(this);
+    this.handleAddRequestChange = this.handleAddRequestChange.bind(this);
 
     this.stateOptions = [
       {text: 'Birthday', value: 'birthday'},
@@ -94,6 +96,7 @@ export default class AddRequest extends Component {
   handleContactChange(e) { this.setState({contact_number: e.target.value, contact_error: false}); }
   handleEventLocationChange(e) { this.setState({event_location: e.target.value, event_location_error: false}); }
   handlePersonsChange(e) { this.setState({number_of_persons: e.target.value, num_persons_error: false}); }
+  handleAddRequestChange(e) { this.setState({additional_request: e.target.value}); }
  
   handleDateChange = (event, {name, value}) => {
     if (this.state.hasOwnProperty(name)) {
@@ -284,6 +287,7 @@ export default class AddRequest extends Component {
             package_id: this.state.package_id,
             menu_id: this.state.menu_id,
             motif_id: this.state.motif_id,
+            additional_request: this.state.additional_request,
             session_id: id_session
         })
        
@@ -312,6 +316,7 @@ export default class AddRequest extends Component {
             this.setState({package_id: ''});
             this.setState({menu_id: ''});
             this.setState({motif_id: ''});
+            this.setState({additional_request: ''});
 
             this.setState({prompt_header: ''});
             this.setState({prompt_message: ''});
@@ -436,6 +441,8 @@ export default class AddRequest extends Component {
                 </Form.Group>
 
                 <Form.Input required label='Venue Address' placeholder='Venue Address' value={this.state.event_location} onChange={this.handleEventLocationChange} error={this.state.event_location_error}/>
+
+                 <Form.TextArea label='Additional Request' placeholder='Additional Request'onChange={this.handleAddRequestChange} value={this.state.additional_request}/>
                 
 
                 {(this.state.form_complete===false || this.state.form_error_field===true) ?
