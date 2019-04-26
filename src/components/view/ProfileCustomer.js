@@ -17,24 +17,35 @@ class ProfileCustomer extends Component {
 		this.state = {
 			data: []
 		}
-		 this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ]
+		 this.stateOptions = [ { key: '1', value: '1', text: 'One' }, { key: '2', value: '2', text: 'Two' }, { key: '3', value: '3', text: 'Three' } ];
+		 this.toHomepage = this.toHomepage.bind(this);
+	}
+
+	toHomepage() {
+	    this.props.history.push('/');
 	}
 
 	componentDidMount() {
-		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
-        let self = this;
-        fetch('http://localhost:3001/v1/customers/profile/' + id_session, {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({data: result.data});
-        }).catch(err => {
-        	console.log(err);
-        })
+		const user = JSON.parse(local_storage.getItem("user_data"));
+
+        if(user !== null){
+			const id_session = JSON.parse(local_storage.getItem("user_data")).id;
+	        let self = this;
+	        fetch('http://localhost:3001/v1/customers/profile/' + id_session, {
+	            method: 'GET'
+	        }).then(function(response) {
+	            if (response.status >= 400) {
+	                throw new Error("Bad response from server");
+	            }
+	            return response.json();
+	        }).then(function(result) {
+	            self.setState({data: result.data});
+	        }).catch(err => {
+	        	console.log(err);
+	        })
+	    }else{
+	    	this.toHomepage();
+	    }
     }
 
     update = () => {
