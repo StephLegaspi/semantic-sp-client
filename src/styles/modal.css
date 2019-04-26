@@ -57,6 +57,15 @@
 	color: white;
 }
 
+.custom-modal .close2{
+	position: fixed;
+	width: 10%;
+	top: 70%;
+	left: 45%;
+	background-color:  #f89d28;
+	color: white;
+}
+
 .title-font{
 	text-align: center;
 	color: #16163a;

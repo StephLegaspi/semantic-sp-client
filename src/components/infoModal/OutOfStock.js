@@ -90,7 +90,7 @@ class OutOfStock extends Component {
 								)}
 							    </Table.Body>
 
-							    <Button className='close' onClick={this.onClose}> Close </Button>
+							    <Button className='close2' onClick={this.onClose}> Close </Button>
 							    </Table>
 							    </div>
 							    </div>
