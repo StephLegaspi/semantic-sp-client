@@ -95,7 +95,6 @@ class PackagesTable extends Component {
 				<Table>
 				    <Table.Header>
 				      <Table.Row>
-				        <Table.HeaderCell >ID</Table.HeaderCell>
 				        <Table.HeaderCell >Package Name</Table.HeaderCell>
 				        <Table.HeaderCell >Price</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '7%'}}>Inclusions</Table.HeaderCell>
@@ -107,7 +106,6 @@ class PackagesTable extends Component {
 				    <Table.Body>
 				    {this.state.data.map(pkg =>
 					      <Table.Row>
-					        <Table.Cell>{pkg.id}</Table.Cell>
 					        <Table.Cell>{pkg.name}</Table.Cell>
 					        <Table.Cell>{pkg.price}</Table.Cell>
 					        <Table.Cell>

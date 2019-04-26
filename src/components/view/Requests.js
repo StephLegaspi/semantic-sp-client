@@ -118,7 +118,7 @@ class Requests extends Component {
 		return (
 			<div>
 				<HeaderBar headerTitle={'Requests'}/>
-				<SearchBarTable titleHolder={'Search order ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
+				<SearchBarTable titleHolder={'Search request ID..'} searchData={this.searchByID} inputChange={this.handleIDChange}/>
 
 				<div class="ui fluid segment" id='upper-div3'> 
       				<label>

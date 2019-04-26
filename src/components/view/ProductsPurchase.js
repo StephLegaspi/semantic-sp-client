@@ -91,7 +91,6 @@ class ProductsTable extends Component {
 					<Table>
 				    <Table.Header>
 				      <Table.Row>
-				        <Table.HeaderCell style={{width: '5%'}}>ID</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Product Image</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Name</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '20%'}}>Description</Table.HeaderCell>
@@ -106,7 +105,6 @@ class ProductsTable extends Component {
 				    <Table.Body>
 				    {this.state.data.map(product =>
 			          <Table.Row>
-			            <Table.Cell>{product.id}</Table.Cell>
 			            <Table.Cell>
 			            	<Header as='h4' image>
 			                  <Image src={`http://localhost:3001/${product.image}`} size='massive' />

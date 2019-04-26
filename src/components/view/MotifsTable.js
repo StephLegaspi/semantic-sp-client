@@ -91,7 +91,6 @@ class MotifsTable extends Component {
 				<Table>
 				    <Table.Header>
 				      <Table.Row>
-				        <Table.HeaderCell >ID</Table.HeaderCell>
 				        <Table.HeaderCell >Motif Name</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '50%'}}>Description</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
@@ -102,7 +101,6 @@ class MotifsTable extends Component {
 				    <Table.Body>
 				    {this.state.data.map(motif =>
 					    <Table.Row>
-					        <Table.Cell>{motif.id}</Table.Cell>
 					        <Table.Cell>{motif.name}</Table.Cell>
 					        <Table.Cell>{motif.description}</Table.Cell>
 					        <Table.Cell textAlign='center'>

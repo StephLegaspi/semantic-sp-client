@@ -89,7 +89,6 @@ class FAQS extends Component {
 				<Table>
 				    <Table.Header>
 				      <Table.Row>
-				        <Table.HeaderCell >ID</Table.HeaderCell>
 				        <Table.HeaderCell >Question</Table.HeaderCell>
 				        <Table.HeaderCell >Answer</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
@@ -100,7 +99,6 @@ class FAQS extends Component {
 				    <Table.Body>
 				    {this.state.data.map(faq =>
 				      <Table.Row>
-				        <Table.Cell>{faq.id}</Table.Cell>
 				        <Table.Cell>{faq.question}</Table.Cell>
 				        <Table.Cell>{faq.answer}</Table.Cell>
 				        <Table.Cell textAlign='center'>

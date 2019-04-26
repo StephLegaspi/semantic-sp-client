@@ -97,7 +97,6 @@ class MenusTable extends Component {
 				<Table single line>
 				    <Table.Header>
 				      <Table.Row>
-				        <Table.HeaderCell >ID</Table.HeaderCell>
 				        <Table.HeaderCell >Menu Name</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Inclusions</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
@@ -108,7 +107,6 @@ class MenusTable extends Component {
 				    <Table.Body>
 				    {this.state.data.map(menu =>
 				      <Table.Row>
-				        <Table.Cell>{menu.id}</Table.Cell>
 				        <Table.Cell>{menu.name}</Table.Cell>
 				        <Table.Cell>
 				        	<ModalButton  handleClickModal={this.toMenusPortfolio} data_id={menu.id}/>

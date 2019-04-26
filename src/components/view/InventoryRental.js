@@ -89,7 +89,6 @@ class InventoryTable extends Component {
 							<Table single line>
 							    <Table.Header>
 							      <Table.Row>
-							        <Table.HeaderCell style={{width: '5%'}}>ID</Table.HeaderCell>
 							      	<Table.HeaderCell style={{width: '5%'}}>Product Information</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Product Name</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '10%'}}>Total Quantity</Table.HeaderCell>
@@ -102,7 +101,6 @@ class InventoryTable extends Component {
 							    <Table.Body>
 							    {this.state.data.map(inventory =>
 							      <Table.Row>
-							        <Table.Cell>{inventory.id}</Table.Cell>
 							        <Table.Cell>
 								       <ProductInfo prod_id={inventory.product_id}/>
 									</Table.Cell>
