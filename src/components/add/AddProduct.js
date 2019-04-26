@@ -188,7 +188,7 @@ export default class AddProduct extends Component {
 
                   <Form.Group widths='equal'>
                       <Form.Input required label='Color/s or Variant/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
-                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
                   </Form.Group>
 
                   <Form.Group inline>
