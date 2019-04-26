@@ -177,18 +177,19 @@ export default class AddProduct extends Component {
     <AddButton handleAdd={this.onModal}/>
         {this.state.activeModal && (
           <div className='add-modal'>
-            <Form className='form-style-longer'>
-                  
-                  <Form.Input required label='Product Name' placeholder='Product Name'onChange={this.handleNameChange} error={this.state.name_error}/>
+            <Form className='form-style-smaller'>
                   
                   <Form.Group widths='equal'>
-                      <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
-                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                    <Form.Input required label='Product Name' placeholder='Product Name'onChange={this.handleNameChange} error={this.state.name_error}/>
+                    <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
                   </Form.Group>
-
+                  
                   <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-                  <Form.Input required label='Color/s or Variant/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
+                  <Form.Group widths='equal'>
+                      <Form.Input required label='Color/s or Variant/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
+                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                  </Form.Group>
 
                   <Form.Group inline>
                     <label>Product Image: </label>
