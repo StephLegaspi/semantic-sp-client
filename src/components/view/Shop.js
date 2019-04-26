@@ -112,7 +112,7 @@ class Shop extends Component {
 						<Card id='card2'>
 							<Card.Content>
 						      <Card.Header>{product.name}</Card.Header>
-						      <Card.Description >P {product.price}</Card.Description>
+						      <Card.Description >P {(product.price).toFixed(2)}</Card.Description>
 						    </Card.Content>
 						    <Image id='img-center' src={`http://localhost:3001/${product.image}`}  size='large' style={{height: '250px'}}/>
 						    <Card.Content extra>

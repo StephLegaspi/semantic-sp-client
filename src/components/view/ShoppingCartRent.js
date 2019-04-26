@@ -161,7 +161,7 @@ class ShoppingCartRent extends Component {
               <Table.Cell>{prod.name}</Table.Cell>
               <Table.Cell> {prod.product_color_name} </Table.Cell>
               <Table.Cell>{prod.product_quantity}</Table.Cell>
-              <Table.Cell>{prod.price}</Table.Cell>
+              <Table.Cell>{(prod.price).toFixed(2)} pesos</Table.Cell>
               <Table.Cell textAlign='center'>
                 <EditCartProductRental data={prod} handleUpdate={this.getCart} remaining_items={prod.remaining}/>
               </Table.Cell>

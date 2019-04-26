@@ -251,7 +251,7 @@ class AddToCart extends Component {
           </div>
           <div class="ui fluid segment" id='desc-holder2'>
             <p className='title-header'> {product.name}</p>
-            <p className='body-font'>  P {product.price} </p>
+            <p className='body-font'>  P {(product.price).toFixed(2)} </p>
             <br/>
             <Form>
               <Form.Dropdown required label='Product Color/Variant' placeholder='Color/Variant' selection options={this.state.color_options} onChange={this.handleColorChange} style={{marginLeft: '22%', width: '10%'}} error={this.state.product_color_error}/>
