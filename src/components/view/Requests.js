@@ -145,6 +145,7 @@ class Requests extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Additional Request</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Request Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Request Status</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '10%'}}>Update Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
@@ -166,6 +167,7 @@ class Requests extends Component {
 				        <Table.Cell>{request.additional_request}</Table.Cell>
 				        <Table.Cell>{request.request_timestamp2}</Table.Cell>
 				        <Table.Cell>{request.status}</Table.Cell>
+				        <Table.Cell>{request.update_timestamp2}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditRequest data={request} handleUpdate={this.update} statusButton={request.status==='Successful' ? true:false}/>
 				        </Table.Cell>
