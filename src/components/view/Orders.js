@@ -145,6 +145,7 @@ class Orders extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Order Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Items</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '10%'}}>Update Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
@@ -166,6 +167,7 @@ class Orders extends Component {
 				        <Table.Cell>{order.order_timestamp2}</Table.Cell>
 				        <Table.Cell>{order.total_items}</Table.Cell>
 				        <Table.Cell>{order.total_bill}</Table.Cell>
+				        <Table.Cell>{order.update_timestamp2}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.getByStatus} statusButton={order.status==='Delivered' ? true:false}/>

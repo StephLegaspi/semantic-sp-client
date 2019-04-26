@@ -146,6 +146,7 @@ class OrderRental extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Total Bill</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Rental Information</Table.HeaderCell>
+				        <Table.HeaderCell style={{width: '10%'}}>Update Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 
@@ -171,6 +172,7 @@ class OrderRental extends Component {
 				        <Table.Cell>
 				        	<RentalInfo order_id={order.id} orderStatus={order.status} handleUpdate={this.update}/>
 				        </Table.Cell>
+				        <Table.Cell>{order.update_timestamp2}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update} statusButton={order.status==='Delivered' ? true:false}/>
 				        </Table.Cell>
