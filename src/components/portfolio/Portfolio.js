@@ -30,8 +30,7 @@ export default class Portfolio extends Component {
           <Segment vertical id='div-homepage'>
             <p className='title-header'> Weddings</p>
             <p className='body-font'>
-              This prototype features how to create a carousel with images, take a
-              look into <code>examples/ImageCarousel</code> to get more details.
+              Our wedding packages are inclusive of everything that you will need for your wedding without worrying about exceeding your budget.
             </p>
             <WeddingImages />
           </Segment>
@@ -39,8 +38,7 @@ export default class Portfolio extends Component {
           <Segment vertical id='div-homepage'>
             <p className='title-header'> Debuts</p>
             <p className='body-font'>
-              This prototype features how to create a carousel with images, take a
-              look into <code>examples/ImageCarousel</code> to get more details.
+              Our debut packages are inclusive of everything that you will need for your debut without worrying about exceeding your budget.
             </p>
             <DebutImages />
           </Segment>
@@ -48,8 +46,7 @@ export default class Portfolio extends Component {
           <Segment vertical id='div-homepage' style={{marginBottom: '10%'}}>
             <p className='title-header'> Birthdays</p>
             <p className='body-font'>
-              This prototype features how to create a carousel with images, take a
-              look into <code>examples/ImageCarousel</code> to get more details.
+              Our birthday packages are inclusive of everything that you will need for your birthday party without worrying about exceeding your budget.
             </p>
             <BirthdayImages />
           </Segment>
