@@ -15,13 +15,16 @@ class EditProduct extends Component {
 			activeModal: false,
 			name: "",
     		price: "",
+    		total_quantity: "",
     		description: "",
     		display_product: "",
     		color_arr: [],
+    		quantity_arr: [],
     		colors: "",
 
     		name_error: false,
     		price_error: false,
+    		total_quantity_error: false,
     		description_error: false,
     		display_product_error: false,
     		colors_error: false,
@@ -36,9 +39,11 @@ class EditProduct extends Component {
 	    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
 	    this.handleDisplayChange = this.handleDisplayChange.bind(this);
 	    this.handleColorChange = this.handleColorChange.bind(this);
+	    this.handleTotalQuantityChange = this.handleTotalQuantityChange.bind(this);
 	}
 
 	handleNameChange(e) { this.setState({name: e.target.value}); }
+	handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
   	handlePriceChange(e) { this.setState({price: e.target.value}); }
   	handleDescriptionChange(e) { this.setState({description: e.target.value}); }
   	handleColorChange(e) {this.setState({colors: e.target.value}); }
@@ -79,14 +84,15 @@ class EditProduct extends Component {
 		this.getColors(id);
 	}
 
-	concatColors = () => {
-		var stringInclusion = this.state.color_arr[0].product_color;
+	concatColors = (id) => {
+		
+		var stringInclusion = this.state.color_arr[0].product_color + "-" + this.state.color_arr[0].product_quantity;
 		var i;
 
 		for(i=1; i<(this.state.color_arr.length); i++){
-			stringInclusion = stringInclusion + ", " + this.state.color_arr[i].product_color;
+			stringInclusion = stringInclusion + ", " + this.state.color_arr[i].product_color + "-" + this.state.color_arr[i].product_quantity;
 		}
-		this.setState({colors: stringInclusion})
+		this.setState({colors: stringInclusion});
 	}	
 
 	getColors = (id) => {
@@ -99,7 +105,7 @@ class EditProduct extends Component {
 			})
 			.then((result) => {
 				this.setState({color_arr: result.data})
-				this.concatColors();
+				this.concatColors(id);
 			})
 			.catch((e) => {
 				console.log(e)
@@ -130,6 +136,10 @@ class EditProduct extends Component {
 	      this.setState({colors_error: true});
 	      error=true;
 	    }
+	    if(this.state.total_quantity === ''){
+	      this.setState({total_quantity_error: true});
+	      error=true;
+	    }
 
 	    if(error){
 	      this.setState({form_complete: false});
@@ -158,7 +168,7 @@ class EditProduct extends Component {
 
 	submitEdit = () => {
 		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
-        const prod = JSON.stringify({name: this.state.name, price: this.state.price, description: this.state.description, display_product: this.state.display_product, product_color: this.state.colors, session_id: id_session})
+        const prod = JSON.stringify({name: this.state.name, price: this.state.price, description: this.state.description, display_product: this.state.display_product, product_color: this.state.colors, session_id: id_session, total_quantity: this.state.total_quantity})
        
         fetch(`http://localhost:3001/v1/products/` + this.props.data.id,{
             headers: { 'Content-Type': 'application/json' },
@@ -195,7 +205,10 @@ class EditProduct extends Component {
 
 	                <Form.Input label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-	               <Form.Input label='Color/s or Variant/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>  
+	                <Form.Group widths='equal'>
+	               		<Form.Input label='Color/s or Variant/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/> 
+	                	<Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+	               	</Form.Group> 
 
 	                <Form.Group inline>
 	                  <label>Display Product: </label>
