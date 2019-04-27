@@ -61,9 +61,9 @@ class EditInventory extends Component {
 
 	submitEdit = () => {
 		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
-        const inventory = JSON.stringify({total_quantity: this.state.total_quantity, session_id: id_session})
+        const inventory = JSON.stringify({product_quantity: this.state.total_quantity, session_id: id_session, product_color: this.props.data.product_color})
        
-        fetch(`http://localhost:3001/v1/inventories/`+ this.props.table +'/' + this.props.data.id,{
+        fetch(`http://localhost:3001/v1/product_colors/quantity/`+ this.props.table +'/' + this.props.data.product_id,{
             headers: { 'Content-Type': 'application/json' },
             method: "PUT",
             body: inventory
@@ -73,7 +73,8 @@ class EditInventory extends Component {
         })
         .then((result) => {
           if(result.status){
-            this.props.handleUpdate()
+            this.props.handleUpdate();
+            this.props.updateInventory();
             this.setState({activeModal: false})
           }
           this.getData()
@@ -90,7 +91,7 @@ class EditInventory extends Component {
       	{this.state.activeModal && (
 	      	<div className='edit-modal'>
 	      		<Form className='forms'>
-	                <Form.Input width={8} required control='input' type='number' min={1} label='New Quantity' placeholder='Total Quantity'defaultValue={this.props.data.total_quantity} onChange={this.handleQuantityChange}/>
+	                <Form.Input width={8} required control='input' type='number' min={1} label='Add Quantity' placeholder='Add Quantity'defaultValue={this.props.data.total_quantity} onChange={this.handleQuantityChange}/>
 	                
 	                {(this.state.form_complete===false) ?
 	                  <Message

@@ -95,7 +95,6 @@ class InventoryTable extends Component {
 							        <Table.HeaderCell style={{width: '10%'}}>No. of Remaining Items</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '10%'}}>Variant/s</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Date of Stock Renewal</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 
@@ -109,12 +108,9 @@ class InventoryTable extends Component {
 									<Table.Cell>{inventory.total_quantity}</Table.Cell>
 									<Table.Cell>{inventory.remaining}</Table.Cell>
 									<Table.Cell>
-								       <ColorQuantity prod_id={inventory.product_id}/>
+								       <ColorQuantity prod_id={inventory.product_id} updateInventory={this.update}/>
 									</Table.Cell>
 									<Table.Cell>{inventory.date_time}</Table.Cell>
-							        <Table.Cell textAlign='center'>
-							        	<EditInventory handleUpdate={this.update} data={inventory} table={'purchase'}/>
-							        </Table.Cell>
 							      </Table.Row>
 							    )}
 							    </Table.Body>
