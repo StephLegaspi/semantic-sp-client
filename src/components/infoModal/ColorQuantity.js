@@ -78,7 +78,7 @@ class ColorQuantity extends Component {
 								        <Table.Cell>{prod.product_color}</Table.Cell>
 								        <Table.Cell>{prod.product_quantity}</Table.Cell>
 								        <Table.Cell textAlign='center'>
-								        	<EditInventory handleUpdate={this.update} data={prod} table={'purchase'} updateInventory={this.props.updateInventory}/>
+								        	<EditInventory handleUpdate={this.update} data={prod} table={this.props.table} updateInventory={this.props.updateInventory}/>
 								        </Table.Cell>
 								      </Table.Row>
 							    )}

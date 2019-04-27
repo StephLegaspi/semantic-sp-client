@@ -108,7 +108,7 @@ class InventoryTable extends Component {
 									<Table.Cell>{inventory.total_quantity}</Table.Cell>
 									<Table.Cell>{inventory.remaining}</Table.Cell>
 									<Table.Cell>
-								       <ColorQuantity prod_id={inventory.product_id} updateInventory={this.update}/>
+								       <ColorQuantity table={'purchase'} prod_id={inventory.product_id} updateInventory={this.update}/>
 									</Table.Cell>
 									<Table.Cell>{inventory.date_time}</Table.Cell>
 							      </Table.Row>
