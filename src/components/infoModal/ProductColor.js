@@ -63,7 +63,7 @@ class ProductColor extends Component {
 								<div>
 									<div className="open-box">
 
-										<h1 className='title-font'> Color/s </h1>
+										<h1 className='title-font'> Colors/Variants </h1>
 
 										{this.state.data.map(prod =>
 										<List style={{marginLeft: '5%', color:'#16163a'}}>
