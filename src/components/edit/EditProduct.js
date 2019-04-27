@@ -205,9 +205,9 @@ class EditProduct extends Component {
 
 	                <Form.Input label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-	                <Form.Group widths='equal'>
-	               		<Form.Input label='Color/s or Variant/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/> 
-	                	<Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+	                <Form.Group>
+	               		<Form.Input width={12} label='Color/s or Variant/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/> 
+	                	<Form.Input width={4} required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
 	               	</Form.Group> 
 
 	                <Form.Group inline>

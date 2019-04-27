@@ -5,7 +5,6 @@ import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import ProductInfo from '../infoModal/ProductInfo.js'
 import ColorQuantity from '../infoModal/ColorQuantity.js'
-import EditInventory from '../edit/EditInventory.js'
 
 import '../../styles/view.css';
 
