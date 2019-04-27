@@ -186,9 +186,18 @@ export default class AddProduct extends Component {
                   
                   <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
+                  <Form.Group>
+                      <Form.Input width={3} required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                      <Form.Input width={13} required label='Color/s or Variant/s with Quantity e.g. Blue-5' placeholder='e.g. Color1-Quantity1, Color2-Quantity2, Color3-Quantity3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
+                  </Form.Group>
+
                   <Form.Group widths='equal'>
-                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
-                      <Form.Input required label='Color/s or Variant/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
+                    <Form.Field width={3}>
+                      
+                    </Form.Field>
+                    <Form.Field width={13}>
+                      <label> If the product has no color/variant, indicate none-Quantity e.g. none-10</label>
+                    </Form.Field>
                   </Form.Group>
 
                   <Form.Group inline>

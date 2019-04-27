@@ -194,7 +194,7 @@ class AddOrder extends Component {
         {this.state.activeModal && (
           <div className='add-modal'>
             <Form className='form-style-smaller'>
-                  
+                <label className='question-font'> Order Information </label> 
                 <Form.Group widths='equal'>   
                   <Form.Input required label='First name' placeholder='First name' onChange={this.handleFirstNameChange} defaultValue={this.state.first_name}  error={this.state.fname_error}/>
                   <Form.Input label='Middle name' placeholder='Middle name' onChange={this.handleMiddleNameChange} defaultValue={this.state.middle_name}/>

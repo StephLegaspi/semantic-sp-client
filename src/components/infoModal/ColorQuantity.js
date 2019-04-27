@@ -63,12 +63,12 @@ class ColorQuantity extends Component {
 					        {this.state.modal && (<div className='custom-modal'>
 								<div>
 								<div className="open">
-								<Table celled>
+								<Table >
 							    <Table.Header>
 							      <Table.Row>
-							        <Table.HeaderCell style={{width: '10%'}}>Product Color</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '10%'}}>Product Quantity</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '10%'}}>Product or Service Color/Variant</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '10%'}}>Product or Service Quantity</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '3%'}}></Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 
