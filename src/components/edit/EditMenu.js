@@ -267,30 +267,6 @@ class EditMenu extends Component {
 	      this.setState({name_error: true});
 	      error=true;
 	    }
-	    if(this.state.main_course === ''){
-	      this.setState({main_course_error: true});
-	      error=true;
-	    }
-	    if(this.state.appetizer === ''){
-	      this.setState({appetizer_error: true});
-	      error=true;
-	    }
-	    if(this.state.dessert === ''){
-	      this.setState({dessert_error: true});
-	      error=true;
-	    }
-	    if(this.state.soup === ''){
-	      this.setState({soup_error: true});
-	      error=true;
-	    }
-	    if(this.state.beverage === ''){
-	      this.setState({beverage_error: true});
-	      error=true;
-	    }
-	    if(this.state.others === ''){
-	      this.setState({others_error: true});
-	      error=true;
-	    }
 
 	    if(error){
 	      this.setState({form_complete: false});
