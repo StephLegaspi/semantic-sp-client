@@ -68,6 +68,9 @@ class EditProduct extends Component {
     	this.setState({description_error: ''});
     	this.setState({display_product_error: ''});
     	this.setState({colors_error: ''});
+    	this.setState({total_quantity_error: ''});
+    	this.setState({total_quantity: ''});
+    	this.setState({colors: ''});
 
     	this.setState({form_complete: ''});
     	this.setState({form_error_field: ''});
@@ -115,6 +118,7 @@ class EditProduct extends Component {
 	checkForm = () => {
 	    let error = false;
 	    const re = /^-?\d*(\.\d+)?$/;
+	    let regex_color = /^((([A-Z]+[a-z]*|[a-z]+)\s*-\s*\d+\s*,\s*)*(([A-Z]+[a-z]*|[a-z]+)\s*-\s*\d+\s*))$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
@@ -148,13 +152,21 @@ class EditProduct extends Component {
 	    }else{
 	      this.setState({form_complete: true});
 	      if(re.test(this.state.price)){
-	     	this.submitEdit();
-		    this.setState({name: ''});
-		    this.setState({price: ''});
-		    this.setState({description: ''});
-		    this.setState({display_product: ''});
-		    this.setState({colors: ''});
-		    this.cancel();
+	      	if(regex_color.test(this.state.colors)){
+	        	this.submitEdit();
+			    this.setState({name: ''});
+			    this.setState({price: ''});
+			    this.setState({description: ''});
+			    this.setState({display_product: ''});
+			    this.setState({colors: ''});
+			    this.setState({total_quantity: ''});
+			    this.cancel();
+	        }else{
+	          this.setState({form_error_field: true});
+	          this.setState({colors_error: true});
+	          this.setState({prompt_header: 'Incorrect value for color and quantity'}); 
+	          this.setState({prompt_message: 'Please follow the format Color-Quantity e.g. Blue-5.'});
+	        }
 	      }else{
 	        this.setState({form_error_field: true});
 	        this.setState({price_error: true});

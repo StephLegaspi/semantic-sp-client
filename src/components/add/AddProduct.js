@@ -90,6 +90,7 @@ export default class AddProduct extends Component {
   checkForm = () => {
     let error = false;
     let re = /^-?\d*(\.\d+)?$/;
+    let regex_color = /^((([A-Z]+[a-z]*|[a-z]+)\s*-\s*\d+\s*,\s*)*(([A-Z]+[a-z]*|[a-z]+)\s*-\s*\d+\s*))$/;
 
     if(this.state.name === ''){
       this.setState({name_error: true});
@@ -128,8 +129,15 @@ export default class AddProduct extends Component {
     }else{
       this.setState({form_complete: true});
       if(re.test(this.state.price)){
-        this.handleSubmit();
-        this.cancel();
+        if(regex_color.test(this.state.color_list)){
+          this.handleSubmit();
+          this.cancel(); 
+        }else{
+          this.setState({form_error_field: true});
+          this.setState({color_list_error: true});
+          this.setState({prompt_header: 'Incorrect value for color and quantity'}); 
+          this.setState({prompt_message: 'Please follow the format Color-Quantity e.g. Blue-5.'});
+        }
       }else{
         this.setState({form_error_field: true});
         this.setState({price_error: true});
