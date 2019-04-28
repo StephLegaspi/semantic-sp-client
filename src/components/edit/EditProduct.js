@@ -87,6 +87,8 @@ class EditProduct extends Component {
 		this.setState({price: this.props.data.price})
 		this.setState({description: this.props.data.description})
 		this.setState({display_product: this.props.data.display_product})
+		this.setState({total_quantity: this.props.data.total_quantity});
+		this.setState({image: null})
 		this.getColors(id);
 	}
 
