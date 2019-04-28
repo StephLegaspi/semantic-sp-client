@@ -93,6 +93,7 @@ class EditPackage extends Component {
 
 	checkForm = () => {
 	    let error = false;
+	    let regex_inclusion = /^(([^,']+\s*,\s*)*([^,']+)\s*)$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
@@ -112,12 +113,19 @@ class EditPackage extends Component {
 	      this.setState({prompt_header: 'Incomplete Information'}); 
 	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
-	    	this.setState({form_complete: true});
-	    	this.submitEdit();
-			this.setState({name: ''});
-	    	this.setState({price: ''});
-	    	this.setState({inclusion: ''});
-			this.cancel();
+	    	if(regex_inclusion.test(this.state.inclusion)){
+		    	this.setState({form_complete: true});
+		    	this.submitEdit();
+				this.setState({name: ''});
+		    	this.setState({price: ''});
+		    	this.setState({inclusion: ''});
+				this.cancel();
+			}else{
+	          this.setState({form_error_field: true});
+	          this.setState({inclusion_error: true});
+	          this.setState({prompt_header: 'Incorrect value for package inclusion/s'}); 
+	          this.setState({prompt_message: 'Please follow the format Inclusion1, Inclusion2, Inclusion3.'});
+	      }
 	    }
 
 	}
