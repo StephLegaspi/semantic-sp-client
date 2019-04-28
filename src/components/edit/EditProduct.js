@@ -123,7 +123,7 @@ class EditProduct extends Component {
 	checkForm = () => {
 	    let error = false;
 	    const re = /^-?\d*(\.\d+)?$/;
-	    let regex_color = /^((([A-Z]+[a-z]*|[a-z]+)\s*-\s*\d+\s*,\s*)*(([A-Z]+[a-z]*|[a-z]+)\s*-\s*\d+\s*))$/;
+	    let regex_color = /^(([A-Za-z ]+\s*-\s*\d+\s*,\s*)*([A-Za-z ]+\s*-\s*\d+\s*))$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
