@@ -31,6 +31,7 @@ export default class AddPackage extends Component {
         others_error: '',
 
         form_complete: '',
+        form_error_field: '',
         prompt_message: '',
         prompt_header: ''
       }
@@ -81,6 +82,7 @@ export default class AddPackage extends Component {
 
   checkForm = () => {
     var error = false;
+    let regex_inclusion = /^(([^,']+\s*,\s*)*([^,']+)\s*)*$/;
 
     if(this.state.name === ''){
       this.setState({name_error: true});
@@ -92,15 +94,21 @@ export default class AddPackage extends Component {
       this.setState({prompt_header: 'Incomplete Information'}); 
       this.setState({prompt_message: 'Please fill up all the required fields.'});  
     }else{
-      this.setState({form_complete: true});
-      this.handleSubmit();
-      this.setState({name: ''});
-      this.setState({main_course: ''});
-      this.setState({appetizer: ''});
-      this.setState({dessert: ''});
-      this.setState({soup: ''});
-      this.setState({beverage: ''});
-      this.setState({others: ''});
+      if(regex_inclusion.test(this.state.main_course) && regex_inclusion.test(this.state.appetizer) && regex_inclusion.test(this.state.dessert) && regex_inclusion.test(this.state.soup) && regex_inclusion.test(this.state.beverage) && regex_inclusion.test(this.state.others)){
+        this.setState({form_complete: true});
+        this.handleSubmit();
+        this.setState({name: ''});
+        this.setState({main_course: ''});
+        this.setState({appetizer: ''});
+        this.setState({dessert: ''});
+        this.setState({soup: ''});
+        this.setState({beverage: ''});
+        this.setState({others: ''});
+      }else{
+          this.setState({form_error_field: true});
+          this.setState({prompt_header: 'Incorrect value for menu inclusion/s'}); 
+          this.setState({prompt_message: 'Please follow the format Menu1, Menu2, Menu3.'});
+      }
     }
 
   }
@@ -153,7 +161,7 @@ export default class AddPackage extends Component {
                   <Form.TextArea label='Others' placeholder='e.g. Others1, Others2, Others3' style={{ minHeight: 100 }} onChange={this.handleOthersChange} error={this.state.others_error}/>
                 </Form.Group> 
 
-              {(this.state.form_complete===false) ?
+              {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}
