@@ -440,7 +440,11 @@ export default class AddRequest extends Component {
                   </Form.Field>
                 </Form.Group>
 
-                <Form.Input required label='Venue Address' placeholder='Venue Address' value={this.state.event_location} onChange={this.handleEventLocationChange} error={this.state.event_location_error}/>
+                <Form.Input required label='Venue Address' placeholder='Unit/House Number Street Name Barangay/District, City/Municipality' value={this.state.event_location} onChange={this.handleEventLocationChange} error={this.state.event_location_error}/>
+
+                <Form.Field>
+                  <label> Unit/House Number Street Name Barangay/District, City/Municipality</label>
+                </Form.Field>
 
                  <Form.TextArea label='Additional Request' placeholder='Additional Request'onChange={this.handleAddRequestChange} value={this.state.additional_request}/>
                 
