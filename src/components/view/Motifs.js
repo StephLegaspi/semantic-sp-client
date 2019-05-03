@@ -25,7 +25,8 @@ class Motifs extends Component {
 	}
 
 	toMotifsPortfolio(id) {
-		this.props.history.push('/motif-portfolio/' + id);
+		window.location.href='/motif-portfolio/' +id;
+		//this.props.history.push('/motif-portfolio/' + id);
 	}
 
 	handleMotifChange = (e) => {

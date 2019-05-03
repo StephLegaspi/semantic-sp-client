@@ -34,7 +34,8 @@ class Packages extends Component {
 	}
 
 	toPackageInclusion(id) {
-		this.props.history.push('/package-inclusion/' + id);
+		window.location.href='/package-inclusion/' +id;
+		//this.props.history.push('/package-inclusion/' + id);
 	}
 
 	searchByName = () => {

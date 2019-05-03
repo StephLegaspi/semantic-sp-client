@@ -25,7 +25,8 @@ class Menus extends Component {
 	}
 
 	toMenusPortfolio(id) {
-		this.props.history.push('/menu-portfolio/' + id);
+        window.location.href='/menu-portfolio/' +id;
+		//this.props.history.push('/menu-portfolio/' + id);
 	}
 
 	handleMenuChange = (e) => {

@@ -16,7 +16,7 @@ class CardRequest extends Component {
 	}
 
 	toRequestPackage(e) {
-	    this.props.history.push('/request-package');
+	    window.location.href='/request-package';
 	}
 
 	render() {

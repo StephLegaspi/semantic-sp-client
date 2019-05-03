@@ -60,10 +60,10 @@ class PackageInclusion extends Component {
 					<p className='body-font'>  P {this.state.package_price} per person </p>
 					
 					{this.state.data.map(pkg =>
-					<List style={{color: '#16163a'}}>
+					<List as='ul' style={{color: '#16163a'}}>
 						<List.Item>
-							<List.Icon name='plus' size='large'/>
-							<List.Content>{pkg.inclusion}</List.Content>
+							
+							<List.Content as='li'>{pkg.inclusion}</List.Content>
 						</List.Item>
 					</List>
 					)}

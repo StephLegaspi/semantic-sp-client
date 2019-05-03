@@ -37,7 +37,8 @@ class Shop extends Component {
 	}
 
 	toAddToCart(id) {
-		this.props.history.push('/add-to-cart/purchase/' + id);
+		window.location.href='/add-to-cart/purchase/' +id;
+		//this.props.history.push('/add-to-cart/purchase/' + id);
 	}
 
 	toShoppingCart(e) {

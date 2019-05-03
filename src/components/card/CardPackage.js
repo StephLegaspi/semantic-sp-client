@@ -16,7 +16,7 @@ class CardPackage extends Component {
 	}
 
 	toPackages(e) {
-	    this.props.history.push('/packages');
+	    window.location.href='/packages';
 	}
 
 	render() {
