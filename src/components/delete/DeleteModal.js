@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 
 import DeleteButton from '../button/DeleteButton.js'
+import PromptModal from '../infoModal/PromptModal.js'
 
 import '../../styles/delete.css';
 import '../../styles/button.css';
@@ -13,6 +14,7 @@ class DeleteModal extends Component {
 		super(props);
 		this.state = {
 			activeModal: false,
+			success: ''
 		}
 	}
 
@@ -23,6 +25,11 @@ class DeleteModal extends Component {
 	cancel = () => {
 		this.setState({activeModal: false});
 	}
+
+	setSuccess = () => {
+	    this.setState({success: ''});
+	    this.cancel();
+	 }
 
 
 	deleteData = () => {
@@ -38,11 +45,13 @@ class DeleteModal extends Component {
 				return response.json()
 			})
 			.then((result) => {
-				if(result.status){
+				if(result.status===200){
 					console.log("Successfully deleted data");
+					this.props.handleUpdate();
+					this.setState({activeModal: false});
+				}else if(result.status===500){
+					this.setState({success: false});
 				}
-				this.setState({activeModal: false});
-				this.props.handleUpdate();
 			})
 			.catch((e) => {
 				console.log(e)
@@ -61,6 +70,8 @@ class DeleteModal extends Component {
 	                <br/>
 				    <Button type='submit' onClick={this.deleteData} id='yes-button'>Yes</Button>
 				    <Button type='submit' onClick={this.cancel} id='cancel-button'>No</Button>
+
+				    {(this.state.success===false) ? <PromptModal changePrompt={this.setSuccess} modalStatus={true} message={'You cannot delete this.'}/> : '' }
 				</div>
 	      	</div>)}
       	</div>
