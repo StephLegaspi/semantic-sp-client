@@ -74,18 +74,18 @@ class OutOfStock extends Component {
 								<Table celled>
 							    <Table.Header>
 							      <Table.Row>
-							        <Table.HeaderCell style={{width: '20%'}}>Product ID</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '20%'}}>Product Name</Table.HeaderCell>
 							        <Table.HeaderCell style={{width: '10%'}}>Total Quantity</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '20%'}}>Number of Remaining Items</Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 
 							    <Table.Body>
 							    {this.state.data.map(product =>
 							    	 <Table.Row>
-								        <Table.Cell>{product.id}</Table.Cell>
 								        <Table.Cell>{product.name}</Table.Cell>
 								        <Table.Cell>{product.total_quantity}</Table.Cell>
+								        <Table.Cell>{product.remaining}</Table.Cell>
 								      </Table.Row>
 								)}
 							    </Table.Body>

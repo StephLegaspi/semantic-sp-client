@@ -39,7 +39,7 @@ class Dashboard extends Component {
 
 				<Segment vertical id='div-dashboard'>
 					<p className='title-header'> Inventory</p>
-					<p className='body-font'>  Number of products that are already out-of-stock: </p>
+					<p className='body-font'>  Number of products ready for renewal: </p>
 					<Grid inverted divided stackable>
               		<Grid.Row>
               			<Grid.Column width={8} >
