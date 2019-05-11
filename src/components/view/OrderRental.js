@@ -6,7 +6,6 @@ import OrderInfo from '../infoModal/OrderInfo.js'
 import RentalInfo from '../infoModal/RentalInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import DeleteModal from '../delete/DeleteModal.js'
 import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
@@ -18,19 +17,15 @@ class OrderRental extends Component {
 		this.state = {
 			data: [],
 			order_id: '',
-			rental_status: 'All'
+			rental_status: 'On-rent'
 		}
 
-		this.rentalStatusOptions = [ { value: 'All', text: 'All' }, { value: 'On-rent', text: 'On-rent' }, { value: 'Returned', text: 'Returned' } ]
+		this.rentalStatusOptions = [ { value: 'On-rent', text: 'On-rent' }, { value: 'Returned', text: 'Returned' } ]
 	}
 
 	handleStatusChange = (e, { value }) => {
 	    this.setState({ rental_status: value},() => { 
-	    	if(this.state.rental_status === "All"){
-	    		this.update();	
-	    	}else{
-	    		this.getByStatus();
-	    	}
+	    	this.getByStatus();
 	    })
 	}
 
@@ -45,19 +40,7 @@ class OrderRental extends Component {
 	}
 
 	componentDidMount() {
-        let self = this;
-        fetch('http://localhost:3001/v1/orders/rental', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({data: result.data});
-        }).catch(err => {
-        	console.log(err);
-        })
+        this.getByStatus();
     }
 
     searchByID = () => {
@@ -148,7 +131,6 @@ class OrderRental extends Component {
 				        <Table.HeaderCell style={{width: '5%'}}>Rental Information</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Update Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}>Delivery Status</Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 
 				      </Table.Row>
 				    </Table.Header>
@@ -170,14 +152,11 @@ class OrderRental extends Component {
 				        <Table.Cell>{order.total_bill}</Table.Cell>
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell>
-				        	<RentalInfo order_id={order.id} orderStatus={order.status} handleUpdate={this.update}/>
+				        	<RentalInfo order_id={order.id} orderStatus={order.status} handleUpdate={this.getByStatus}/>
 				        </Table.Cell>
 				        <Table.Cell>{order.update_timestamp2}</Table.Cell>
 				        <Table.Cell textAlign='center'>
-				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.update} statusButton={order.status==='Delivered' ? true:false}/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<DeleteModal data_id={order.id} table_name={'orders/rental'} handleUpdate={this.update} statusButton={order.rental_status==='Returned' ? false:true}/>
+				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.getByStatus} statusButton={order.status==='Delivered' ? true:false}/>
 				        </Table.Cell>
 				      </Table.Row> 
 				    )}  
