@@ -3,7 +3,6 @@ import { Dropdown, Table } from 'semantic-ui-react'
 
 import CustomerInfo2 from '../infoModal/CustomerInfo2.js'
 import InclusionInfo from '../infoModal/InclusionInfo.js'
-import DeleteModal from '../delete/DeleteModal.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
 import EditRequest from '../edit/EditRequest.js'
@@ -16,29 +15,23 @@ class Requests extends Component {
 
 		this.state = {
 			data: [],
-			status: "All",
+			status: "Pending",
 			request_id: ''
 		}
 	
-		this.stateOptions = [ {value: 'All', text: 'All' }, {value: 'Pending', text: 'Pending' }, { value: 'Successful', text: 'Successful' }, {value: 'Unsuccessful', text: 'Unsuccessful' } ]
+		this.stateOptions = [{value: 'Pending', text: 'Pending' }, { value: 'Successful', text: 'Successful' }, {value: 'Unsuccessful', text: 'Unsuccessful' } ]
 	}
 
 	handleStatusChange = (e, { value }) => {
 	    this.setState({ status: value},() => { 
-	    	if(this.state.status === "All"){
-	    		this.update();	
-	    	}else{
-	    		this.searchByStatus(); 
-	    	}
+	    	this.searchByStatus(); 	    	
 	    })
 	}
 
 	handleIDChange = (e) => {
 	    this.setState({ request_id: e.target.value},() => { 
 	    	if(this.state.request_id === ""){
-	    		/*this.update();*/
-	    		this.searchByStatus();	
-	    		/*this.handleStatusChange();*/
+	    		this.searchByStatus();
 	    	}else{
 	    		this.searchByID(); 
 	    	}
@@ -46,19 +39,7 @@ class Requests extends Component {
 	}
 
 	componentDidMount() {
-        let self = this;
-        fetch('http://localhost:3001/v1/requests', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({data: result.data});
-        }).catch(err => {
-        	console.log(err);
-        })
+        this.searchByStatus();
     }
 
     searchByID = () => {
@@ -147,7 +128,6 @@ class Requests extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Request Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Update Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
 				    </Table.Header>
 
@@ -170,9 +150,6 @@ class Requests extends Component {
 				        <Table.Cell>{request.update_timestamp2}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditRequest data={request} handleUpdate={this.searchByStatus} statusButton={request.status==='Successful' ? true:false}/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<DeleteModal data_id={request.id} table_name={'requests'} handleUpdate={this.searchByStatus} statusButton={(request.status==='Successful' || request.status==='Unsuccessful') ? false:true}/>
 				        </Table.Cell>
 				      </Table.Row>
 				    )}  
