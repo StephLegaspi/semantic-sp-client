@@ -5,7 +5,6 @@ import CustomerInfo from '../infoModal/CustomerInfo.js'
 import OrderInfo from '../infoModal/OrderInfo.js'
 import HeaderBar from '../headerBar/HeaderBar.js'
 import SearchBarTable from '../searchBar/SearchBarTable.js'
-import DeleteModal from '../delete/DeleteModal.js'
 import EditOrder from '../edit/EditOrder.js'
 
 import '../../styles/view.css';
@@ -16,29 +15,23 @@ class Orders extends Component {
 
 		this.state = {
 			data: [],
-			delivery_status: 'All',
+			delivery_status: 'Pending',
 			order_id: ''
 		}		
 
-		this.stateOptions = [ { value: 'All', text: 'All' }, { value: 'Pending', text: 'Pending' }, { value: 'On-delivery', text: 'On-delivery' }, { value: 'Delivered', text: 'Delivered' } ]
+		this.stateOptions = [ { value: 'Pending', text: 'Pending' }, { value: 'On-delivery', text: 'On-delivery' }, { value: 'Delivered', text: 'Delivered' } ]
 	}
 
 	handleStatusChange = (e, { value }) => {
 	    this.setState({ delivery_status: value},() => { 
-	    	if(this.state.delivery_status === "All"){
-	    		this.update();	
-	    	}else{
-	    		this.getByStatus();
-	    	}
+	    	this.getByStatus();
 	    })
 	}
 
 	handleIDChange = (e) => {
 	    this.setState({ order_id: e.target.value},() => { 
 	    	if(this.state.order_id === ""){
-	    		/*this.update();*/
-	    		this.getByStatus();	
-	    		/*this.handleStatusChange();*/
+	    		this.getByStatus();
 	    	}else{
 	    		this.searchByID(); 
 	    	}
@@ -46,19 +39,7 @@ class Orders extends Component {
 	}
 
 	componentDidMount() {
-        let self = this;
-        fetch('http://localhost:3001/v1/orders/purchase', {
-            method: 'GET'
-        }).then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        }).then(function(result) {
-            self.setState({data: result.data});
-        }).catch(err => {
-        	console.log(err);
-        })
+        this.getByStatus();
     }
 
     searchByID = () => {
@@ -148,7 +129,6 @@ class Orders extends Component {
 				        <Table.HeaderCell style={{width: '10%'}}>Update Timestamp</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '10%'}}>Delivery Status</Table.HeaderCell>
 				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
-				        <Table.HeaderCell style={{width: '5%'}}></Table.HeaderCell>
 				      </Table.Row>
 				    </Table.Header>
 
@@ -171,9 +151,6 @@ class Orders extends Component {
 				        <Table.Cell>{order.status}</Table.Cell>
 				        <Table.Cell textAlign='center'>
 				        	<EditOrder status_delivery={order.status} order_id={order.id} handleUpdate={this.getByStatus} statusButton={order.status==='Delivered' ? true:false}/>
-				        </Table.Cell>
-				        <Table.Cell textAlign='center'>
-				        	<DeleteModal data_id={order.id} table_name={'orders/purchase'} handleUpdate={this.update} statusButton={order.status==='Delivered' ? false:true}/>
 				        </Table.Cell>
 				      </Table.Row> 
 				    )} 
