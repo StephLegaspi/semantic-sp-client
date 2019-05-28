@@ -15,13 +15,17 @@ class EditProduct extends Component {
 			activeModal: false,
 			name: "",
     		price: "",
+    		total_quantity: "",
     		description: "",
     		display_product: "",
     		color_arr: [],
+    		quantity_arr: [],
     		colors: "",
+    		image: '',
 
     		name_error: false,
     		price_error: false,
+    		total_quantity_error: false,
     		description_error: false,
     		display_product_error: false,
     		colors_error: false,
@@ -36,12 +40,16 @@ class EditProduct extends Component {
 	    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
 	    this.handleDisplayChange = this.handleDisplayChange.bind(this);
 	    this.handleColorChange = this.handleColorChange.bind(this);
+	    this.handleTotalQuantityChange = this.handleTotalQuantityChange.bind(this);
+	    this.handleImageChange = this.handleImageChange.bind(this);
 	}
 
 	handleNameChange(e) { this.setState({name: e.target.value}); }
+	handleTotalQuantityChange(e) { this.setState({total_quantity: e.target.value}); }
   	handlePriceChange(e) { this.setState({price: e.target.value}); }
   	handleDescriptionChange(e) { this.setState({description: e.target.value}); }
   	handleColorChange(e) {this.setState({colors: e.target.value}); }
+  	handleImageChange(e) {this.setState({image: e.target.files[0]});}
   	handleDisplayChange(e) { 
   		if(this.state.display_product){
   			this.setState({display_product: 0}); 
@@ -63,6 +71,9 @@ class EditProduct extends Component {
     	this.setState({description_error: ''});
     	this.setState({display_product_error: ''});
     	this.setState({colors_error: ''});
+    	this.setState({total_quantity_error: ''});
+    	this.setState({total_quantity: ''});
+    	this.setState({colors: ''});
 
     	this.setState({form_complete: ''});
     	this.setState({form_error_field: ''});
@@ -76,17 +87,20 @@ class EditProduct extends Component {
 		this.setState({price: this.props.data.price})
 		this.setState({description: this.props.data.description})
 		this.setState({display_product: this.props.data.display_product})
+		this.setState({total_quantity: this.props.data.total_quantity});
+		this.setState({image: null})
 		this.getColors(id);
 	}
 
-	concatColors = () => {
-		var stringInclusion = this.state.color_arr[0].product_color;
+	concatColors = (id) => {
+		
+		var stringInclusion = this.state.color_arr[0].product_color + "-" + this.state.color_arr[0].product_quantity;
 		var i;
 
 		for(i=1; i<(this.state.color_arr.length); i++){
-			stringInclusion = stringInclusion + ", " + this.state.color_arr[i].product_color;
+			stringInclusion = stringInclusion + ", " + this.state.color_arr[i].product_color + "-" + this.state.color_arr[i].product_quantity;
 		}
-		this.setState({colors: stringInclusion})
+		this.setState({colors: stringInclusion});
 	}	
 
 	getColors = (id) => {
@@ -99,7 +113,7 @@ class EditProduct extends Component {
 			})
 			.then((result) => {
 				this.setState({color_arr: result.data})
-				this.concatColors();
+				this.concatColors(id);
 			})
 			.catch((e) => {
 				console.log(e)
@@ -109,6 +123,7 @@ class EditProduct extends Component {
 	checkForm = () => {
 	    let error = false;
 	    const re = /^-?\d*(\.\d+)?$/;
+	    let regex_color = /^(([A-Za-z ]+\s*-\s*\d+\s*,\s*)*([A-Za-z ]+\s*-\s*\d+\s*))$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
@@ -130,6 +145,10 @@ class EditProduct extends Component {
 	      this.setState({colors_error: true});
 	      error=true;
 	    }
+	    if(this.state.total_quantity === ''){
+	      this.setState({total_quantity_error: true});
+	      error=true;
+	    }
 
 	    if(error){
 	      this.setState({form_complete: false});
@@ -138,13 +157,21 @@ class EditProduct extends Component {
 	    }else{
 	      this.setState({form_complete: true});
 	      if(re.test(this.state.price)){
-	     	this.submitEdit();
-		    this.setState({name: ''});
-		    this.setState({price: ''});
-		    this.setState({description: ''});
-		    this.setState({display_product: ''});
-		    this.setState({colors: ''});
-		    this.cancel();
+	      	if(regex_color.test(this.state.colors)){
+	        	this.submitEdit();
+			    this.setState({name: ''});
+			    this.setState({price: ''});
+			    this.setState({description: ''});
+			    this.setState({display_product: ''});
+			    this.setState({colors: ''});
+			    this.setState({total_quantity: ''});
+			    this.cancel();
+	        }else{
+	          this.setState({form_error_field: true});
+	          this.setState({colors_error: true});
+	          this.setState({prompt_header: 'Incorrect value for color and quantity'}); 
+	          this.setState({prompt_message: 'Please follow the format Color-Quantity e.g. Blue-5.'});
+	        }
 	      }else{
 	        this.setState({form_error_field: true});
 	        this.setState({price_error: true});
@@ -158,12 +185,28 @@ class EditProduct extends Component {
 
 	submitEdit = () => {
 		const id_session = JSON.parse(local_storage.getItem("user_data")).id;
-        const prod = JSON.stringify({name: this.state.name, price: this.state.price, description: this.state.description, display_product: this.state.display_product, product_color: this.state.colors, session_id: id_session})
+
+        let formData = new FormData();
+        formData.set('enctype','multipart/form-data'); 
+
+        formData.append('name', this.state.name);
+        formData.append('price', this.state.price);
+        formData.append('description', this.state.description);
+        formData.append('display_product', this.state.display_product);
+        formData.append('product_color', this.state.colors);
+        formData.append('session_id', id_session);
+        formData.append('total_quantity', this.state.total_quantity);
+        formData.append('image', this.state.image);
+       
+        if(this.state.image === null){
+          formData.append('image_changed', false);
+        }else{
+          formData.append('image_changed', true);
+        }
        
         fetch(`http://localhost:3001/v1/products/` + this.props.data.id,{
-            headers: { 'Content-Type': 'application/json' },
             method: "PUT",
-            body: prod
+            body: formData
           })
         .then((response) => {
           return response.json()
@@ -195,7 +238,23 @@ class EditProduct extends Component {
 
 	                <Form.Input label='Description' placeholder='Description' defaultValue={this.props.data.description} onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-	               <Form.Input label='Color/s or Variant/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/>  
+	                <Form.Group>
+	               		<Form.Input width={12} label='Color/s or Variant/s' defaultValue={this.state.colors} onChange={this.handleColorChange} error={this.state.colors_error}/> 
+	                	<Form.Input width={4} required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+	               	</Form.Group> 
+
+	               	<Form.Group inline>
+	                    <label>Product Image: </label>
+	                    <Form.Field className="relative">
+	                        <input name='image' type="file" className="absolute" onChange={this.handleImageChange} id='embedpollfileinput'/>
+	                        <div className="absolute2"> 
+	                          <label for="embedpollfileinput" className="ui button" style={{height: '37px', width:'104px', paddingTop: '10px', paddingRight: '17px'}}> 
+	                            <i class="ui upload icon"></i>   
+	                             Upload
+	                          </label>
+	                        </div>
+	                    </Form.Field>
+	                </Form.Group> 
 
 	                <Form.Group inline>
 	                  <label>Display Product: </label>

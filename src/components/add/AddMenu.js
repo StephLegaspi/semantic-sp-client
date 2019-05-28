@@ -31,6 +31,7 @@ export default class AddPackage extends Component {
         others_error: '',
 
         form_complete: '',
+        form_error_field: '',
         prompt_message: '',
         prompt_header: ''
       }
@@ -81,51 +82,33 @@ export default class AddPackage extends Component {
 
   checkForm = () => {
     var error = false;
+    let regex_inclusion = /^(([^,']+\s*,\s*)*([^,']+)\s*)*$/;
 
     if(this.state.name === ''){
       this.setState({name_error: true});
       error=true;
     }
-    if(this.state.main_course === ''){
-      this.setState({main_course_error: true});
-      error=true;
-    }
-    if(this.state.appetizer === ''){
-      this.setState({appetizer_error: true});
-      error=true;
-    }
-    if(this.state.dessert === ''){
-      this.setState({dessert_error: true});
-      error=true;
-    }
-    if(this.state.soup === ''){
-      this.setState({soup_error: true});
-      error=true;
-    }
-    if(this.state.beverage === ''){
-      this.setState({beverage_error: true});
-      error=true;
-    }
-    if(this.state.others === ''){
-      this.setState({others_error: true});
-      error=true;
-    }
-
 
     if(error){
       this.setState({form_complete: false});
       this.setState({prompt_header: 'Incomplete Information'}); 
       this.setState({prompt_message: 'Please fill up all the required fields.'});  
     }else{
-      this.setState({form_complete: true});
-      this.handleSubmit();
-      this.setState({name: ''});
-      this.setState({main_course: ''});
-      this.setState({appetizer: ''});
-      this.setState({dessert: ''});
-      this.setState({soup: ''});
-      this.setState({beverage: ''});
-      this.setState({others: ''});
+      if(regex_inclusion.test(this.state.main_course) && regex_inclusion.test(this.state.appetizer) && regex_inclusion.test(this.state.dessert) && regex_inclusion.test(this.state.soup) && regex_inclusion.test(this.state.beverage) && regex_inclusion.test(this.state.others)){
+        this.setState({form_complete: true});
+        this.handleSubmit();
+        this.setState({name: ''});
+        this.setState({main_course: ''});
+        this.setState({appetizer: ''});
+        this.setState({dessert: ''});
+        this.setState({soup: ''});
+        this.setState({beverage: ''});
+        this.setState({others: ''});
+      }else{
+          this.setState({form_error_field: true});
+          this.setState({prompt_header: 'Incorrect value for menu inclusion/s'}); 
+          this.setState({prompt_message: 'Please follow the format Menu1, Menu2, Menu3.'});
+      }
     }
 
   }
@@ -164,21 +147,21 @@ export default class AddPackage extends Component {
                 <Form.Input required label='Food Menu Name' placeholder='Food Menu Name' onChange={this.handleNameChange} error={this.state.name_error}/>
 
                 <Form.Group widths='equal'>
-                  <Form.TextArea required label='Main Course' placeholder='e.g. Course1, Course2, Course3' style={{ minHeight: 100 }} onChange={this.handleMainCourseChange} error={this.state.main_course_error}/>
-                  <Form.TextArea required label='Appetizer' placeholder='e.g. Appetizer1, Appetizer2, Appetizer3' style={{ minHeight: 100 }} onChange={this.handleAppetizerChange} error={this.state.appetizer_error}/>
+                  <Form.TextArea label='Main Course' placeholder='e.g. Course1, Course2, Course3' style={{ minHeight: 100 }} onChange={this.handleMainCourseChange} error={this.state.main_course_error}/>
+                  <Form.TextArea label='Appetizer' placeholder='e.g. Appetizer1, Appetizer2, Appetizer3' style={{ minHeight: 100 }} onChange={this.handleAppetizerChange} error={this.state.appetizer_error}/>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.TextArea required label='Dessert' placeholder='e.g. Dessert1, Dessert2, Dessert3' style={{ minHeight: 100 }} onChange={this.handleDessertChange} error={this.state.dessert_error}/>
-                  <Form.TextArea required label='Pasta/Noodle' placeholder='e.g. Soup1, Soup2, Soup3' style={{ minHeight: 100 }} onChange={this.handleSoupChange} error={this.state.soup_error}/>
+                  <Form.TextArea label='Dessert' placeholder='e.g. Dessert1, Dessert2, Dessert3' style={{ minHeight: 100 }} onChange={this.handleDessertChange} error={this.state.dessert_error}/>
+                  <Form.TextArea label='Pasta/Noodle' placeholder='e.g. Pasta/Noodle1, Pasta/Noodle2, Pasta/Noodle3' style={{ minHeight: 100 }} onChange={this.handleSoupChange} error={this.state.soup_error}/>
                 </Form.Group>
 
                 <Form.Group widths='equal'>
-                  <Form.TextArea required label='Beverage' placeholder='e.g. Beverage1, Beverage2, Beverage3' style={{ minHeight: 100 }} onChange={this.handleBeverageChange} error={this.state.beverage_error}/>
-                  <Form.TextArea required label='Others' placeholder='e.g. Others1, Others2, Others3' style={{ minHeight: 100 }} onChange={this.handleOthersChange} error={this.state.others_error}/>
+                  <Form.TextArea label='Beverage' placeholder='e.g. Beverage1, Beverage2, Beverage3' style={{ minHeight: 100 }} onChange={this.handleBeverageChange} error={this.state.beverage_error}/>
+                  <Form.TextArea label='Others' placeholder='e.g. Others1, Others2, Others3' style={{ minHeight: 100 }} onChange={this.handleOthersChange} error={this.state.others_error}/>
                 </Form.Group> 
 
-              {(this.state.form_complete===false) ?
+              {(this.state.form_complete===false || this.state.form_error_field===true) ?
                   <Message
                     header={this.state.prompt_header}
                     content={this.state.prompt_message}

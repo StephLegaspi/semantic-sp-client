@@ -34,50 +34,50 @@ class NavigationBar extends Component {
     }
 
 	toHomePage(e) {
-		this.props.history.push('/');
+		window.location.href='/';
 	}
 
 	toShop(e) {
-		this.props.history.push('/shop/purchase');
+		window.location.href='/shop/purchase';
 	}
 
 	toShopRent(e) {
-		this.props.history.push('/shop/rent');
+		window.location.href='/shop/rent';
 	}
 
 	toPackages(e) {
-		this.props.history.push('/packages');
+		window.location.href='/packages';
 	}
 
 	toMotifs(e) {
-		this.props.history.push('/motifs');
+		window.location.href='/motifs';
 	}
 
 	toMenus(e) {
-		this.props.history.push('/menus');
+		window.location.href='/menus';
 	}
 
 	toRequest(e) {
-		this.props.history.push('/request-package');
+		window.location.href='/request-package';
 	}
 	toPortfolio(e) {
-		this.props.history.push('/portfolio');
+		window.location.href='/portfolio';
 	}
 
 	toContactUs(e) {
-		this.props.history.push('/contact-us');
+		window.location.href='/contact-us';
 	}
 
 	toSignUp(e) {
-		this.props.history.push('/sign-up');
+		window.location.href='/sign-up';
 	}
 
 	toLogin(e) {
-		this.props.history.push('/login/customer');
+		window.location.href='/login/customer';
 	}
 
 	toProfile(e) {
-		this.props.history.push('/profile-customer');
+		window.location.href='/profile-customer';
 	}
 
 	toLogOut(e) {
@@ -86,7 +86,7 @@ class NavigationBar extends Component {
 	}
 
 	toFAQs(e) {
-	    this.props.history.push('/FAQs');
+		window.location.href='/FAQs';
 	}
 
 	render() {
@@ -115,7 +115,7 @@ class NavigationBar extends Component {
 			        
 			        {(this.state.user===null) ? ( 
 			    	<Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '27.2%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '42%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toFAQs} >FAQs</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toSignUp} >Sign Up</Menu.Item>
@@ -124,7 +124,7 @@ class NavigationBar extends Component {
      				</Container>
 				    ) : (
 				    <Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '26.5%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '41.5%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toFAQs} >FAQs</Menu.Item>
 				         <Menu.Item as='a' id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toProfile} >Profile</Menu.Item>

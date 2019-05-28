@@ -12,6 +12,21 @@ class DashboardCircle extends Component {
 		}
 	}
 
+    componentDidUpdate() {
+        let self = this;
+        fetch('http://localhost:3001/v1/' + this.props.route ,{
+            method: 'GET'
+        }).then(function(response) {
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(result) {
+            self.setState({count: result.data[0].count});
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 
 	componentDidMount() {
         let self = this;

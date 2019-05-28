@@ -21,15 +21,15 @@ class Dashboard extends Component {
 	}
 
 	toRequests(e) {
-		this.props.history.push('/requests');
+		window.location.href='/requests';
 	}
 
 	toOrders(e) {
-		this.props.history.push('/orders-purchase');
+		window.location.href='/orders-purchase';
 	}
 
 	toOrderRentals(e) {
-		this.props.history.push('/orders-rental');
+		window.location.href='/orders-rental';
 	}
 
 	render() {
@@ -39,7 +39,7 @@ class Dashboard extends Component {
 
 				<Segment vertical id='div-dashboard'>
 					<p className='title-header'> Inventory</p>
-					<p className='body-font'>  Number of products that are already out-of-stock: </p>
+					<p className='body-font'>  Number of products ready for renewal: </p>
 					<Grid inverted divided stackable>
               		<Grid.Row>
               			<Grid.Column width={8} >
@@ -56,6 +56,8 @@ class Dashboard extends Component {
 
 				<div class="ui fluid segment" id='div-dashboard2'>
 					<p className='title-header'> Requests</p>
+					<br/>
+					<br/>
 					<p className='body-font'>  Number of requests that are still pending: </p>
 					<br/>
 					<DashboardCircle handleClick={this.toRequests} route={'requests/pending-count'}/>

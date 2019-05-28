@@ -35,74 +35,74 @@ class NavigationBar extends Component {
 	}
 
 	toDashboard(e) {
-		this.props.history.push('/dashboard');
+		window.location.href='/dashboard';
 	}
 
 	toInventoryPurchase(e) {
-		this.props.history.push('/inventory-purchase');
+		window.location.href='/inventory-purchase';
 	}
 	toInventoryRental(e) {
-		this.props.history.push('/inventory-rental');
+		window.location.href='/inventory-rental';
 	}
 
 	toProductsPurchase(e) {
-		this.props.history.push('/products-purchase');
+		window.location.href='/products-purchase';
 	}
 
 	toProductsRental(e) {
-		this.props.history.push('/products-rental');
+		window.location.href='/products-rental';
 	}
 
 	toOrders(e) {
-		this.props.history.push('/orders-purchase');
+		window.location.href='/orders-purchase';
 	}
 
 	toOrderRentals(e) {
-		this.props.history.push('/orders-rental');
+		window.location.href='/orders-rental';
 	}
 
 	toRequests(e) {
-		this.props.history.push('/requests');
+		window.location.href='/requests';
 	}
 
 	toUserCustomers(e) {
-		this.props.history.push('/user-customers');
+		window.location.href='/user-customers';
 	}
 
 	toUserAdmins(e) {
-		this.props.history.push('/user-admins');
+		window.location.href='/user-admins';
 	}
 
 	toPackagesTable(e) {
-		this.props.history.push('/packages-table');
+		window.location.href='/packages-table';
 	}
 
 	toMotifsTable(e) {
-		this.props.history.push('/motifs-table');
+		window.location.href='/motifs-table';
 	}
 
 	toMenusTable(e) {
-		this.props.history.push('/menus-table');
+		window.location.href='/menus-table';
 	}
 
 	toContactDetails(e) {
-		this.props.history.push('/contact-details');
+		window.location.href='/contact-details';
 	}
 
 	toFAQS(e) {
-		this.props.history.push('/faqs');
+		window.location.href='/faqs';
 	}
 
 	toLogsAdmin(e) {
-		this.props.history.push('/logs-admin');
+		window.location.href='/logs-admin';
 	}
 
 	toLogsCustomer(e) {
-		this.props.history.push('/logs-customer');
+		window.location.href='/logs-customer';
 	}
 
 	toProfileAdmin(e) {
-		this.props.history.push('/profile-admin');
+		window.location.href='/profile-admin';
 	}
 
 	render() {
@@ -128,7 +128,7 @@ class NavigationBar extends Component {
 			        <Menu.Item as='a'  id={this.props.activePage[5] ? 'lighter': 'menu-font'} onClick={this.toRequests}>Requests</Menu.Item>
 				            
 			    	<Container>
-			    		<Dropdown item simple text='Data Management' id={(this.props.activePage[6] || this.props.activePage[7] || this.props.activePage[8] || this.props.activePage[9] || this.props.activePage[10] || this.props.activePage[11]) ? 'lighter': 'menu-font'} style={{marginLeft: '28%'}}>
+			    		<Dropdown item simple text='Data Management' id={(this.props.activePage[6] || this.props.activePage[7] || this.props.activePage[8] || this.props.activePage[9] || this.props.activePage[10] || this.props.activePage[11]) ? 'lighter': 'menu-font'} style={{marginLeft: '41%'}}>
 				          <Dropdown.Menu>
 				          	<Dropdown.Item>
 				              <i className='dropdown icon' />

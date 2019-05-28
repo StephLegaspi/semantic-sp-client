@@ -90,6 +90,7 @@ export default class AddProduct extends Component {
   checkForm = () => {
     let error = false;
     let re = /^-?\d*(\.\d+)?$/;
+    let regex_color = /^(([A-Za-z ]+\s*-\s*\d+\s*,\s*)*([A-Za-z ]+\s*-\s*\d+\s*))$/;
 
     if(this.state.name === ''){
       this.setState({name_error: true});
@@ -128,8 +129,15 @@ export default class AddProduct extends Component {
     }else{
       this.setState({form_complete: true});
       if(re.test(this.state.price)){
-        this.handleSubmit();
-        this.cancel();
+        if(regex_color.test(this.state.color_list)){
+          this.handleSubmit();
+          this.cancel(); 
+        }else{
+          this.setState({form_error_field: true});
+          this.setState({color_list_error: true});
+          this.setState({prompt_header: 'Incorrect value for color and quantity'}); 
+          this.setState({prompt_message: 'Please follow the format Color-Quantity e.g. Blue-5.'});
+        }
       }else{
         this.setState({form_error_field: true});
         this.setState({price_error: true});
@@ -177,18 +185,28 @@ export default class AddProduct extends Component {
     <AddButton handleAdd={this.onModal}/>
         {this.state.activeModal && (
           <div className='add-modal'>
-            <Form className='form-style-longer'>
-                  
-                  <Form.Input required label='Product Name' placeholder='Product Name'onChange={this.handleNameChange} error={this.state.name_error}/>
+            <Form className='form-style-smaller'>
                   
                   <Form.Group widths='equal'>
-                      <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
-                      <Form.Input required type='number' min={1} defaultValue={this.state.total_quantity} label='Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                    <Form.Input required label='Product Name' placeholder='Product Name'onChange={this.handleNameChange} error={this.state.name_error}/>
+                    <Form.Input required label='Price' placeholder='Price' onChange={this.handlePriceChange} error={this.state.price_error}/>
                   </Form.Group>
-
+                  
                   <Form.Input required label='Description' placeholder='Description' onChange={this.handleDescriptionChange} error={this.state.description_error}/>
 
-                  <Form.Input required label='Color/s or Variant/s' placeholder='e.g. Color1, Color2, Color3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
+                  <Form.Group>
+                      <Form.Input width={3} required type='number' min={1} defaultValue={this.state.total_quantity} label='Total Quantity' placeholder='Total Quantity' onChange={this.handleTotalQuantityChange} error={this.state.total_quantity_error}/>
+                      <Form.Input width={13} required label='Color/s or Variant/s with Quantity e.g. Blue-5' placeholder='e.g. Color1-Quantity1, Color2-Quantity2, Color3-Quantity3'  onChange={this.handleColorChange} error={this.state.color_list_error}/>
+                  </Form.Group>
+
+                  <Form.Group widths='equal'>
+                    <Form.Field width={3}>
+                      
+                    </Form.Field>
+                    <Form.Field width={13}>
+                      <label> If the product has no color/variant, indicate none-Quantity e.g. none-10</label>
+                    </Form.Field>
+                  </Form.Group>
 
                   <Form.Group inline>
                     <label>Product Image: </label>

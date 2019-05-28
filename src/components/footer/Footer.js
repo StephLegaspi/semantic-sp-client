@@ -25,13 +25,16 @@ class Footer extends Component {
   }
 
   toContactUs(e) {
-    this.props.history.push('/contact-us');
+    window.location.href='/contact-us';
+    //this.props.history.push('/contact-us');
   }
   toRequest(e) {
-    this.props.history.push('/request-package');
+    window.location.href='/request-package';
+    //this.props.history.push('/request-package');
   }
   toFAQs(e) {
-    this.props.history.push('/FAQs');
+    window.location.href='/FAQs';
+    //this.props.history.push('/FAQs');
   }
 
   componentDidMount() {

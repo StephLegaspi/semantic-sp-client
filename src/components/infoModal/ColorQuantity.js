@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 
-import '../../styles/dashboard.css';
 import '../../styles/modal.css';
-import '../../styles/font.css';
+import ModalButton from '../button/ModalButton.js'
 
-class OutOfStock extends Component {
+import EditInventory from '../edit/EditInventory.js'
+
+class ColorQuantity extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			modal: false,
-			count: 0,
 			data: []
 		}
 	}
 
 
 	onModal = () => {
-		this.getOutOfStock();
 		this.setState({modal: true});
 	}
 
@@ -27,7 +26,7 @@ class OutOfStock extends Component {
 
 	componentDidMount() {
         let self = this;
-        fetch('http://localhost:3001/v1/inventories/' + this.props.category +'/out-of-stock-count', {
+        fetch('http://localhost:3001/v1/products/colors/' + self.props.prod_id, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -35,15 +34,15 @@ class OutOfStock extends Component {
             }
             return response.json();
         }).then(function(result) {
-            self.setState({count: result.data[0].count});
+            self.setState({data: result.data});
         }).catch(err => {
         	console.log(err);
         })
     }
 
-    getOutOfStock = () => {
+    update = () => {
         let self = this;
-        fetch('http://localhost:3001/v1/inventories/' + this.props.category +'/out-of-stock', {
+        fetch('http://localhost:3001/v1/products/colors/' + self.props.prod_id, {
             method: 'GET'
         }).then(function(response) {
             if (response.status >= 400) {
@@ -60,34 +59,29 @@ class OutOfStock extends Component {
 	render() {
 		return (
 			<div>
-				<Button animated circular id='circle-dashboard'  onClick={this.onModal}>
-                    <Button.Content visible>
-                    	<label className='circle-font'> {this.state.count } </label>
-                    </Button.Content>
-                    <Button.Content hidden className='label-font2'>
-                      View
-                    </Button.Content>
-                </Button>
+				<ModalButton handleClickModal={this.onModal}/>
 					        {this.state.modal && (<div className='custom-modal'>
 								<div>
 								<div className="open">
-								<Table celled>
+								<Table >
 							    <Table.Header>
 							      <Table.Row>
-							        <Table.HeaderCell style={{width: '20%'}}>Product Name</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '10%'}}>Total Quantity</Table.HeaderCell>
-							        <Table.HeaderCell style={{width: '20%'}}>Number of Remaining Items</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '10%'}}>Product or Service Color/Variant</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '10%'}}>Product or Service Quantity</Table.HeaderCell>
+							        <Table.HeaderCell style={{width: '3%'}}></Table.HeaderCell>
 							      </Table.Row>
 							    </Table.Header>
 
 							    <Table.Body>
-							    {this.state.data.map(product =>
+							    {this.state.data.map(prod =>
 							    	 <Table.Row>
-								        <Table.Cell>{product.name}</Table.Cell>
-								        <Table.Cell>{product.total_quantity}</Table.Cell>
-								        <Table.Cell>{product.remaining}</Table.Cell>
+								        <Table.Cell>{prod.product_color}</Table.Cell>
+								        <Table.Cell>{prod.product_quantity}</Table.Cell>
+								        <Table.Cell textAlign='center'>
+								        	<EditInventory handleUpdate={this.update} data={prod} table={this.props.table} updateInventory={this.props.updateInventory}/>
+								        </Table.Cell>
 								      </Table.Row>
-								)}
+							    )}
 							    </Table.Body>
 
 							    <Button className='close2' onClick={this.onClose}> Close </Button>
@@ -101,4 +95,4 @@ class OutOfStock extends Component {
 
 }
 
-export default OutOfStock;
+export default ColorQuantity;

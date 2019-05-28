@@ -38,31 +38,38 @@ class HomePage extends Component {
   }
 
   toMotifsPortfolio(id) {
-    this.props.history.push('/motif-portfolio/' +id);
+    window.location.href='/motif-portfolio/' +id;
+    //this.props.history.push('/motif-portfolio/' +id);
   }
 
   toRequestPackage(e) {
-    this.props.history.push('/request-package');
+    window.location.href='/request-package';
+    //this.props.history.push('/request-package');
   }
 
   toPackages(e) {
-    this.props.history.push('/packages');
+    window.location.href='/packages';
+    //this.props.history.push('/packages');
   }
 
   toMotifs(e) {
-    this.props.history.push('/motifs');
+    window.location.href='/motifs';
+    //this.props.history.push('/motifs');
   }
 
   toMenus(e) {
-    this.props.history.push('/menus');
+    window.location.href='/menus';
+    //this.props.history.push('/menus');
   }
 
   toMenuPortfolio(id) {
-    this.props.history.push('/menu-portfolio/' + id);
+    window.location.href='/menu-portfolio/'+id;
+    //this.props.history.push('/menu-portfolio/' + id);
   }
 
   toPackageInclusion(id) {
-    this.props.history.push('/package-inclusion/' + id);
+    window.location.href='/package-inclusion/'+id;
+    //this.props.history.push('/package-inclusion/' + id);
   }
 
   componentDidMount() {
@@ -124,7 +131,7 @@ class HomePage extends Component {
 
         <Segment vertical id='div-homepage'>
               <p className='title-header'> OUR SERVICES</p>
-              <p className='body-font'> We offer catering services for events, such as weddings, debuts and birthday parties, as well as party needs and supplies for order or rental.  </p>
+              <p className='body-font'> We offer party needs and supplies, and catering services for events, such as weddings, debuts and birthday parties.  </p>
              
                 <div>
                   <Image.Group>

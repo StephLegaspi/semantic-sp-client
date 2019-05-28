@@ -42,6 +42,7 @@ class EditMenu extends Component {
 			others_error: false,
 
 			form_complete: '',
+			form_error_field: '',
 	        prompt_message: '',
 	        prompt_header: ''
 		}
@@ -262,33 +263,10 @@ class EditMenu extends Component {
 
 	checkForm = () => {
 	    var error = false;
+	    let regex_inclusion = /^(([^,']+\s*,\s*)*([^,']+)\s*)*$/;
 
 	    if(this.state.name === ''){
 	      this.setState({name_error: true});
-	      error=true;
-	    }
-	    if(this.state.main_course === ''){
-	      this.setState({main_course_error: true});
-	      error=true;
-	    }
-	    if(this.state.appetizer === ''){
-	      this.setState({appetizer_error: true});
-	      error=true;
-	    }
-	    if(this.state.dessert === ''){
-	      this.setState({dessert_error: true});
-	      error=true;
-	    }
-	    if(this.state.soup === ''){
-	      this.setState({soup_error: true});
-	      error=true;
-	    }
-	    if(this.state.beverage === ''){
-	      this.setState({beverage_error: true});
-	      error=true;
-	    }
-	    if(this.state.others === ''){
-	      this.setState({others_error: true});
 	      error=true;
 	    }
 
@@ -297,23 +275,29 @@ class EditMenu extends Component {
 	      this.setState({prompt_header: 'Incomplete Information'}); 
 	      this.setState({prompt_message: 'Please fill up all the fields.'});  
 	    }else{
-	      this.setState({form_complete: true});
-	      this.submitEdit();
-	      this.setState({name: ''});
-	      this.setState({main_course: ''});
-	      this.setState({appetizer: ''});
-	      this.setState({dessert: ''});
-	      this.setState({soup: ''});
-	      this.setState({beverage: ''});
-	      this.setState({others: ''});
+	    	if(regex_inclusion.test(this.state.main_course) && regex_inclusion.test(this.state.appetizer) && regex_inclusion.test(this.state.dessert) && regex_inclusion.test(this.state.soup) && regex_inclusion.test(this.state.beverage) && regex_inclusion.test(this.state.others)){
+		      this.setState({form_complete: true});
+		      this.submitEdit();
+		      this.setState({name: ''});
+		      this.setState({main_course: ''});
+		      this.setState({appetizer: ''});
+		      this.setState({dessert: ''});
+		      this.setState({soup: ''});
+		      this.setState({beverage: ''});
+		      this.setState({others: ''});
 
-	      this.setState({name_error: ''});
-	      this.setState({main_course_error: ''});
-	      this.setState({appetizer_error: ''});
-	      this.setState({dessert_error: ''});
-	      this.setState({soup_error: ''});
-	      this.setState({beverage_error: ''});
-	      this.setState({others_error: ''});
+		      this.setState({name_error: ''});
+		      this.setState({main_course_error: ''});
+		      this.setState({appetizer_error: ''});
+		      this.setState({dessert_error: ''});
+		      this.setState({soup_error: ''});
+		      this.setState({beverage_error: ''});
+		      this.setState({others_error: ''});
+		    }else{
+		    	this.setState({form_error_field: true});
+          		this.setState({prompt_header: 'Incorrect value for menu inclusion/s'}); 
+          		this.setState({prompt_message: 'Please follow the format Menu1, Menu2, Menu3.'});
+		    }
 	    }
 
 	}
@@ -367,7 +351,7 @@ class EditMenu extends Component {
 	                    <Form.Input label='Others' defaultValue={this.state.others} onChange={this.handleOthersChange} error={this.state.others_error}/>
 	                </Form.Group>
 
-	                {(this.state.form_complete===false) ?
+	                {(this.state.form_complete===false || this.state.form_error_field===true) ?
 	                  <Message
 	                    header={this.state.prompt_header}
 	                    content={this.state.prompt_message}
