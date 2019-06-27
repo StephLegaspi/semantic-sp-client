@@ -56,8 +56,6 @@ class Dashboard extends Component {
 
 				<div class="ui fluid segment" id='div-dashboard2'>
 					<p className='title-header'> Requests</p>
-					<br/>
-					<br/>
 					<p className='body-font'>  Number of requests that are still pending: </p>
 					<br/>
 					<DashboardCircle handleClick={this.toRequests} route={'requests/pending-count'}/>
@@ -81,7 +79,7 @@ class Dashboard extends Component {
 					</Grid>
 				</Segment>
 
-				<div class="ui fluid segment" id='div-dashboard2' style={{marginTop: '3%'}}>
+				<div class="ui fluid segment" id='div-dashboard2' style={{marginTop: '2%'}}>
 					<p className='title-header'> Rental</p>
 					<p className='body-font'>  Number of rental products that are already due: </p>
 					<br/>

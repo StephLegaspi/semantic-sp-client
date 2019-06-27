@@ -115,7 +115,7 @@ class NavigationBar extends Component {
 			        
 			        {(this.state.user===null) ? ( 
 			    	<Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '26%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '27%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toFAQs} >FAQs</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toSignUp} >Sign Up</Menu.Item>
@@ -124,7 +124,7 @@ class NavigationBar extends Component {
      				</Container>
 				    ) : (
 				    <Container>
-				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '41.5%'}} >Portfolio</Menu.Item>
+				        <Menu.Item as='a'  id={this.props.activePage[7] ? 'lighter': 'menu-font'} onClick={this.toPortfolio} style={{marginLeft: '28%'}} >Portfolio</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[8] ? 'lighter': 'menu-font'} onClick={this.toContactUs}>Contact Us</Menu.Item>
 				        <Menu.Item as='a' id={this.props.activePage[9] ? 'lighter': 'menu-font'} onClick={this.toFAQs} >FAQs</Menu.Item>
 				         <Menu.Item as='a' id={this.props.activePage[10] ? 'lighter': 'menu-font'} onClick={this.toProfile} >Profile</Menu.Item>
