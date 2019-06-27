@@ -39,37 +39,30 @@ class HomePage extends Component {
 
   toMotifsPortfolio(id) {
     window.location.href='/motif-portfolio/' +id;
-    //this.props.history.push('/motif-portfolio/' +id);
   }
 
   toRequestPackage(e) {
     window.location.href='/request-package';
-    //this.props.history.push('/request-package');
   }
 
   toPackages(e) {
     window.location.href='/packages';
-    //this.props.history.push('/packages');
   }
 
   toMotifs(e) {
     window.location.href='/motifs';
-    //this.props.history.push('/motifs');
   }
 
   toMenus(e) {
     window.location.href='/menus';
-    //this.props.history.push('/menus');
   }
 
   toMenuPortfolio(id) {
     window.location.href='/menu-portfolio/'+id;
-    //this.props.history.push('/menu-portfolio/' + id);
   }
 
   toPackageInclusion(id) {
     window.location.href='/package-inclusion/'+id;
-    //this.props.history.push('/package-inclusion/' + id);
   }
 
   componentDidMount() {
